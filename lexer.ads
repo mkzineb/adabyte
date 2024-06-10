@@ -1,5 +1,7 @@
 with Interfaces; use Interfaces;
-package Lexer is
+package Lexer with
+  SPARK_Mode => On
+is
    type Token_Type is (add);
 
    type Token is record

@@ -1,16 +1,8 @@
 with Interfaces; use Interfaces;
-package Types is
-   --  Number Types
-   --  Vector Types
-   --  Reference Types
-   --  Value Types
-   --  Result Types
-   --  Function Types
-   --  Limits
-   --  Memory Types
-   --  Table Types
-   --  Global Types
-
+with Ada.Containers.Vectors;
+package Types with
+  SPARK_Mode => On
+is
    type Number is (I_32, I_64, F_32, F_64);
    type Number_Type (Num : Number := I_32) is record
       case Num is
@@ -30,25 +22,53 @@ package Types is
 
    type Vector_Type is (v_128);
 
-   type Reference_Type is (funcref, externref);
+   type Reference_Type is (Func_Ref, Extern_Ref);
 
-   type Value is (Number_Value, Vector, Reference);
-   type Value_Type (val : Value := Number_Value) is record
-      case val is
+   type Value_Posibilities is (Number_Value, Vector_Value, Reference_Value);
+   type Value_Type (Val : Value_Posibilities := Number_Value) is record
+      case Val is
          when Number_Value =>
             Num_Value : Number;
-         when Vector =>
+         when Vector_Value =>
             Vec_Value : Vector_Type;
-         when Reference =>
+         when Reference_Value =>
             Ref_Value : Reference_Type;
       end case;
    end record;
 
-   --  TODO
-   --  type Result_Type is array (Value_Type range <>) of Vector_Type;
-   --  type Func_Type;
-   --  type Limits;
-   --  type Table_Type;
-   --  type Memory_Type;
-   --  type Global_Type;
+   package Value_Type_Vectors is new Ada.Containers.Vectors
+     (Index_Type => Natural, Element_Type => Value_Type);
+   use Value_Type_Vectors;
+
+   subtype Result_Type is Vector;
+
+   subtype Parameter_Type is Vector;
+
+   type Function_Type is record
+      Params  : Parameter_Type;
+      Results : Result_Type;
+   end record;
+
+   --  By default no limit
+   type Limit_Type is record
+      Min        : Natural;
+      MAx        : Natural := 0;
+      Max_Exists : Boolean := False;
+   end record;
+
+   subtype Memory_Type is Limit_Type;
+
+   type Table_Type is record
+      Reference : Reference_Type;
+      Limit     : Limit_Type;
+   end record;
+
+   type Mutable is (Const, Var);
+   for Mutable use (Const => 0, Var => 1);
+
+   type Global_Type is record
+      Val_Type : Value_Type;
+      Mut      : Mutable;
+   end record;
+
 end Types;

@@ -1,26 +1,50 @@
 with Types;      use Types;
 with Interfaces; use Interfaces;
-with Indices;    use Indices;
-package Instructions is
+with Runtime;    use Runtime;
+package Instructions with
+  SPARK_Mode => On
+is
 
-   --    Control Instructions
-   --    Reference Instructions
-   --    Parametric Instructions
-   --    Variable Instructions
-   --    Table Instructions
-   --    Memory Instructions
-   --    Numeric Instructions
-   --    Vector Instructions
+   subtype Function_Index is Unsigned_32;
+   subtype Type_Index is Unsigned_32;
+   subtype Table_Index is Unsigned_32;
+   subtype Memory_Index is Unsigned_32;
+   subtype Global_Index is Unsigned_32;
+   subtype Element_Index is Unsigned_32;
+   subtype Data_Index is Unsigned_32;
+   subtype Local_Index is Unsigned_32;
+   subtype Label_Index is Unsigned_32;
 
-   type Block_Type is record
-      Index : Type_Index;
-      Value : Value_Type;
+   type Empty_Type is (E);
+   for Empty_Type use (E => 40);
+
+   type Instruction;
+   type Instruction_Acc is access all Instruction;
+
+   type Chunk is array (Natural range <>) of Instruction_Acc;
+   type Chunk_Acc is access Chunk;
+
+   type Instruction_Sequence is record
+      Sequence : Chunk_Acc;
    end record;
+
+   type B_Type is (Index, Empty, Val);
+   type Block_Type (B : B_Type := Index) is record
+      case B is
+         when Index =>
+            Index : Type_Index;
+         when Empty =>
+            Empty : Empty_Type;
+         when Val =>
+            Block_Value : Value_Type;
+      end case;
+   end record;
+
    type Sign_Extension is (Signed, Unsigned);
 
    type Opcode is
      (Numeric, Reference, Parametric, Variable, Table, Memory, Control,
-      Vector);
+      Vector_128, Expression, Admin);
 
    type Opcode_Numeric is
      (I32_Constant, I64_Constant, F32_Constant, F64_Constant, Count_Lead_Zeros,
@@ -40,19 +64,34 @@ package Instructions is
    type Opcode_Reference is (Null_Value, Is_Null, Func_Ref);
 
    type Opcode_Control is
-     (Unreachable, NOP, Block, Lopp_Inst, If_Inst, Branch, Branch_If,
-      Return_Inst, Call, Call_Indirect);
+     (Unreachable, NOP, Block, Loop_Inst, If_Inst, Branch, Branch_If,
+      Branch_Table, Return_Inst, Call, Call_Indirect);
 
    type Opcode_Parametric is (Drop, Select_Inst);
-
+   --  select possibly followed by a type notation
    type Opcode_Variable is
      (Local_Get, Local_Set, Local_Tee, Global_Get, Global_Set);
 
-   type Opcode_Table is (Get, Set, Size, Grow, Fill, Copy, Init, Element_Drop);
+   type Opcode_Table is (Get, Set, Init, Drop, Copy, Grow, Size, Fill);
+
+   type Mem_Arg is record
+      Align  : Unsigned_32;
+      Offset : Unsigned_32;
+   end record;
 
    type Opcode_Memory is
-     (Load, Store, Load_8, Load_16, Load_32, Store_8, Store_16, Store_32,
-      Size);
+     (I32_Load, I64_Load, F32_Load, F64_Load, I32_Load_8_S, I32_Load_8_U,
+      I32_Load_16_S, I32_Load_16_U, I64_Load_8_S, I64_Load_8_U, I64_Load_16_S,
+      I64_Load_16_U, I64_Load_32_S, I64_Load_32_U, I32_Store, I64_Store,
+      F32_Store, F64_Store, I32_Store_8, I32_Store_16, I64_Store_8,
+      I64_Store_16, I64_Store_32, Mem_Size, Mem_Grow, Mem_Init, Mem_Drop,
+      Mem_Copy, Mem_Fill);
+
+   type Opcode_Vector is (Extract, Splat, Pmin, Pmax);
+
+   type Opcode_Admin is
+     (Trap, Ref_Inst, Ref_Extern_Inst, Invoke, Label, Frames);
+   --  todo
 
    type Numeric_Instruction (Op : Opcode_Numeric := I32_Constant) is record
       case Op is
@@ -85,7 +124,7 @@ package Instructions is
          when Nearest =>
             Nearest : Float_Type;
          when Add =>
-            Add : Number_Type;
+            null;
          when Substract =>
             Sub : Number_Type;
          when Multiply =>
@@ -175,7 +214,7 @@ package Instructions is
          when Null_Value =>
             Ref_Type : Reference_Type; -- func producing a null value
          when Is_Null =>
-            null;--  check for a null value
+            null;  --  check for a null value
          when Func_Ref =>
             Func_Idx : Function_Index; -- func producing a ref to a func
       end case;
@@ -183,19 +222,104 @@ package Instructions is
 
    type Control_Instruction (Op : Opcode_Control := NOP) is record
       case Op is
+         when Block =>
+            B_Block : Block_Type;
+            B_Inst  : Instruction_Sequence;
          when If_Inst =>
-            Block : Block_Type;
+            If_Block       : Block_Type;  --  variable produced
+            Then_Chunk     : Instruction_Sequence;
+            Else_Opt_Chunk : Instruction_Sequence;  --  optional
+         when Loop_Inst =>
+            Loop_Block : Block_Type;
+            Block      : Instruction_Sequence;
+         when Branch_If =>
+            Label_BR_If : Unsigned_32;
+            Cond        : Boolean;
+         when Branch =>
+            Label_Br : Unsigned_32;
+         when NOP =>
+            null;
+         when Branch_Table =>
+            null;
+         when Return_Inst =>
+            null;
+         when Call =>
+            null;
+         when Call_Indirect =>
+            null;
+         when Unreachable =>
+            null;
+      end case;
+   end record;
 
+   type Table_Instruction (Op : Opcode_Table := Get) is record
+      --  Get, Set, Size, Grow, Fill, Copy, Init, Element_Drop
+      case Op is
          when others =>
             null;
       end case;
    end record;
 
-   --  type Parametric_Instruction;
-   --  type Variable_Instruction;
-   --  type Table_Instruction;
-   --  type Memory_Instruction;
-   --  type Vector_Instruction;
+   type Variable_Instruction (Op : Opcode_Variable := Local_Get) is record
+      case Op is
+         when Local_Get =>
+            Local_Get_Id : Local_Index;
+         when Local_Set =>
+            Local_Set_Id : Local_Index;
+         when Local_Tee =>
+            Local_Tee_Id : Local_Index;
+         when Global_Get =>
+            null;
+         when Global_Set =>
+            null;
+      end case;
+
+   end record;
+
+   type Parametric_Instruction (Op : Opcode_Parametric := Drop) is record
+      case Op is
+         when others =>
+            null;
+      end case;
+   end record;
+
+   type Memory_Instruction (Op : Opcode_Memory := I32_Load) is record
+      case Op is
+         when others =>
+            null;
+      end case;
+   end record;
+
+   type Vector_Instruction (Op : Opcode_Vector := Extract) is record
+      case Op is
+         when others =>
+            null;
+      end case;
+   end record;
+
+   type Label_Branch is record
+      Arity         : Unsigned_32;
+      Target_Branch : Instruction_Sequence; --  empty
+   end record;
+
+   type Administrative_Instruction (Op : Opcode_Admin := Trap) is record
+      case Op is
+         when Trap =>
+            Msg : Character;
+         when Ref_Inst =>
+            null;
+         when Ref_Extern_Inst =>
+            null; --  not supported
+         when Invoke =>
+            Invoke_Func_Addr : Integer;
+         when Label =>
+            Label_br : Label_Branch;
+            Instr    : Instruction_Sequence; -- todo
+         when Frames =>
+            Nested_Frame : Frame;
+            Frame_Instr  : Instruction_Sequence;
+      end case;
+   end record;
 
    type Instruction (Op : Opcode := Numeric) is record
       case Op is
@@ -205,20 +329,24 @@ package Instructions is
             Reference_Inst : Reference_Instruction;
          when Control =>
             Control_Inst : Control_Instruction;
-            --  when Parametric =>
-            --     Parametric_Inst : Parametric_Instruction;
-            --  when Variable =>
-            --     Variable_Inst : Variable_Instruction;
-            --  when Table =>
-            --     Table_Inst : Table_Instruction;
-            --  when Memory =>
-            --     Memory_Inst : Memory_Instruction;
-            --  when Vector =>
-            --     Vector_Inst : Vector_Instruction;
-         when others =>
-            null;
+         when Table =>
+            Table_Inst : Table_Instruction;
+         when Parametric =>
+            Parametric_Inst : Parametric_Instruction;
+         when Variable =>
+            Variable_Inst : Variable_Instruction;
+         when Memory =>
+            Memory_Inst : Memory_Instruction;
+         when Vector_128 =>
+            Vector_Inst : Vector_Instruction;
+         when Expression =>
+            Expression : Instruction_Sequence;
+         when Admin =>
+            Admin_Instruction : Administrative_Instruction;
       end case;
 
    end record;
+
+   function Reduce_Instruction return Instruction;
 
 end Instructions;

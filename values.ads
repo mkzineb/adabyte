@@ -1,9 +1,12 @@
-package Values is
+package Values with
+  SPARK_Mode => On
+is
 
-   --  Bytes
-   --  Integers
-   --  Floating-Point
-   --  Names
-   type Bytes;
+   subtype Name is Character;
+
+   subtype Byte is Integer;
+
+   type Sequence_Bytes is array (Positive range <>) of Byte;
+   type Bytes is access Sequence_Bytes;
 
 end Values;
