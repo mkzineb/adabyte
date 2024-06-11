@@ -10,3 +10,5 @@
 [link to yt wasm](https://www.youtube.com/watch?v=Y48ejoQyYow)
 
 [link to arm interpret](https://github.com/ARM-software/asl-interpreter)
+
+[link to wasm mr](https://github.com/bytecodealliance/wasm-micro-runtime/tree/main)
