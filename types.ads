@@ -22,7 +22,7 @@ is
 
    type Vector_Type is (v_128);
 
-   type Reference_Type is (Func_Ref, Extern_Ref);
+   type Reference_Type is (Null_Ref, Func_Ref, Extern_Ref);
 
    type Value_Posibilities is (Number_Value, Vector_Value, Reference_Value);
    type Value_Type (Val : Value_Posibilities := Number_Value) is record

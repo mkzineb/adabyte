@@ -3,8 +3,26 @@ with Instructions;                          use Instructions;
 with Runtime;                               use Runtime;
 with Ada.Containers.Vectors;
 with Ada.Containers.Indefinite_Hashed_Maps; use Ada.Containers;
-
+with Types;                                 use Types;
 package Interpreter is
+
+   type Element is (Value, Label, Activation_Call);
+   type Element_Variation (Elt : Element := Value) is record
+      case Elt is
+         when Value =>
+            Val : Number_Type;
+         when Label =>
+            Lab : Unsigned_32;
+         when Activation_Call =>
+            Frame : Integer;
+      end case;
+   end record;
+
+   type Label_Info is record
+      Label_Index : Unsigned_32; --  ?
+      Arity       : Positive;
+      Offset      : Natural;
+   end record;
 
    function Hash (x : Unsigned_32) return Hash_Type is (Hash_Type (x));
    package Symbols_Table is new Ada.Containers.Indefinite_Hashed_Maps
@@ -17,16 +35,15 @@ package Interpreter is
      (Index_Type => Natural, Element_Type => Element_Variation);
    use Vectors;
 
-   type Pc is record
-      Ip   : Natural;
-      Code : Chunk_Acc;
+   type Pointer is record
+      Pointer : Natural;
+      Code    : Instruction_Sequence;
    end record;
    --  record to manage store stack ip, block control and reduction
-   type Vm is record
-      Code    : Chunk_Acc;
-      Stack   : Vector;
-      Sym_Tab : Symbols_Table.Map;
-      Ip      : Natural; --  instruction pointer
+   type Env is record
+      Stack               : Vector;
+      Sym_Tab             : Symbols_Table.Map;
+      Instruction_Pointer : Pointer; --  instruction pointer
    end record;
 
    type Block_Context;
@@ -37,7 +54,9 @@ package Interpreter is
    end record;
 
    type Evaluation_Context is record
-      inst : Instruction_Acc; --  todo : enable reducing inside instruction sequences and admin forms as well as traps
+      inst : Instruction_Acc;
+      --  todo : enable reducing inside instruction sequences
+      --  and admin forms as well as traps
    end record;
 
    type Thread is record
@@ -51,17 +70,17 @@ package Interpreter is
       Executing_Thread : Thread;
    end record;
 
-   function Init_Interpreter return Vm; --  reset the stack
+   function Init_Interpreter (P : Pointer) return Env; --  reset the stack
 
    type Interpret_Result is
      (INTERPRET_OK, INTERPRET_COMPILE_ERROR, INTERPRET_RUNTIME_ERROR);
 
    --  decoding instruction
 
-   procedure Interpret (Interpreted : in out Vm);
+   procedure Interpret (Interpreted : in out Env);
 
    function Interpret_Control_Instruction
-     (Inst : Control_Instruction; Interpreted : in out Vm) return Natural;
+     (Inst : Control_Instruction; Interpreted : in out Env) return Natural;
 
    procedure Interpret_Reference_Instruction
      (Inst : Reference_Instruction; Stack : in out Vector);

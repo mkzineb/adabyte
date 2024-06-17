@@ -112,7 +112,7 @@ is
       Offset : Unsigned_128;
    end record;
 
-   type Module_Fields is array (Positive range <>) of Integer;
+   type Module_Fields is array (Natural range <>) of Section;
    type Module_Fields_List is access Module_Fields;
 
    type Module is record

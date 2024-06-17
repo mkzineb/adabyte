@@ -1,119 +1,114 @@
-with Ada.Text_IO;   use Ada.Text_IO;
-with Error_Handler; use Error_Handler;
+with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
-with Types;         use Types;
+with Types;       use Types;
 
 package body Interpreter is
 
-   Branch_inst : constant Instruction_Acc :=
-     new Instruction'
-       (Control, Control_Inst => Control_Instruction'(Branch, Label_Br => 0));
-
-   first : constant Instruction_Acc :=
-     new Instruction'
-       (Numeric,
-        Numeric_Inst =>
-          Numeric_Instruction'
-            (I32_Constant, I32_Constant => (Num => I_32, I_32 => 20)));
-
-   second : constant Instruction_Acc :=
-     new Instruction'
-       (Numeric,
-        Numeric_Inst =>
-          Numeric_Instruction'
-            (I32_Constant, I32_Constant => (Num => I_32, I_32 => 40)));
-
-   ad : constant Instruction_Acc :=
-     new Instruction'
-       (Numeric, Numeric_Inst => Numeric_Instruction'(Op => Add));
-
-   Inst : Chunk_Acc := new Chunk'(first, second, ad, Branch_inst);
-
-   ----   TODO
-   seq : Instruction_Sequence := (Sequence => Inst);
-   Blo : Block_Type;
-
-   if_instd : Instruction_Acc :=
-     new Instruction'
-       (Control,
-        Control_Inst =>
-          Control_Instruction'
-            (If_Inst, If_Block => Blo, Then_Chunk => seq,
-             Else_Opt_Chunk    => seq));
-
-   function Init_Interpreter return Vm is
+   function Init_Interpreter (P : Pointer) return Env is
       Tab  : Symbols_Table.Map;
-      Intp : Vm;
+      Intp : Env;
    begin
       Tab.Insert
-        (Key => 14, New_Item => (Label => 14, Arity => 1, Offset => 0));
-      Intp := (Code => Inst, Stack => Empty_Vector, Sym_Tab => Tab, Ip => 0);
+        (Key => 14, New_Item => (Label_Index => 0, Arity => 1, Offset => 0));
+      Intp :=
+        (Stack => Empty_Vector, Sym_Tab => Tab, Instruction_Pointer => P);
       return Intp;
    end Init_Interpreter;
 
-   procedure Exec_Branch_If (Program : in out Vm; Label : Unsigned_32) is
+   procedure Next_Instr_At (skip : Natural; Environment : in out Env) is
    begin
-      null; --  continue to the next instruction (goto)
-   end Exec_Branch_If;
+      Environment.Instruction_Pointer.Pointer :=
+        Environment.Instruction_Pointer.Pointer + skip;
+   end Next_Instr_At;
 
-   function Exec_Branch
-     (Interp : in out Vm; Label : Unsigned_32) return Natural
+   procedure Next_Instr (Environment : in out Env) is
+   begin
+      Next_Instr_At (1, Environment);
+   end Next_Instr;
+
+   procedure Free is new Ada.Unchecked_Deallocation
+     (Chunk, Instruction_Sequence);
+
+   function Count_Lables (Environment : Env) return Natural is
+      Label_Count : Natural;
+   begin
+      for I in Environment.Stack.First_Index .. Environment.Stack.Last_Index
+      loop
+         if Environment.Stack (I).Elt = Label then
+            Label_Count := Label_Count + 1;
+         end if;
+      end loop;
+      return Label_Count;
+   end Count_Lables;
+
+   procedure Execute_Branch_Instr
+     (Environment : in out Env; Lab_Index : Natural)
    is
-      Val            : Element_Variation (Value);
-      arity_of_label : Integer := 1;
-      Br             : Natural;
+      Label_Info_Entry : Label_Info;
+      Target_Label     : Unsigned_32;
+      Lab_Arity        : Positive;
+      Tmp_Storage      : Vector;
    begin
-      --  assert (validation)
-      arity_of_label := Interp.Sym_Tab.Element (14).Arity;
-      Put_Line ("arity n :");
-      Put_Line (Integer'Image (arity_of_label));
-      Put_Line ("----------------");
+      --  Assert that the stack contains at least l+1 labels
+      pragma Assert
+        (Count_Lables (Environment) >= Lab_Index + 1,
+         "Stack does not contain enough labels");
+      --  get target label
+      Target_Label := Environment.Stack (Lab_Index).Lab;
+      --  check symbol table
+      if Environment.Sym_Tab.Contains (Target_Label) then
+         Label_Info_Entry := Environment.Sym_Tab (Target_Label);
+         --  Assert there are at least n values on the top of the stack.
+         Lab_Arity        := Label_Info_Entry.Arity;
+         pragma Assert (Lab_Arity >= 1);
+         for i in 1 .. Lab_Arity loop
+            --  pop and stock
+            Tmp_Storage.Append (Environment.Stack.Last_Element);
+            Delete_Last (Environment.Stack);
+         end loop;
+         --  delete the label -----------------------------------
+         --  loop l+1 while top is value
+         for i in 1 .. Lab_Index + 1 loop
+            --  assert top label
+            if Environment.Stack.Last_Element.Elt = Label then
+               Delete_Last (Environment.Stack);
+               --  pop label from stack;
+            else
+               --  pop l+1 values
+               for j in 1 .. Lab_Index + 1 loop
+                  --  enough elements to pop
+                  pragma Assert
+                    (Environment.Stack.Length > 0,
+                     "Not enough elements in the stack.");
+                  Delete_Last (Environment.Stack);
+               end loop;
+               --  Exit the loop
+               exit;
+            end if;
+         end loop;
+         for i in 1 .. Lab_Arity loop
+            --  push val n
+            Environment.Stack.Append (Tmp_Storage.Last_Element);
+         end loop;
+         --  jump to continuation
+         Environment.Instruction_Pointer.Pointer := Label_Info_Entry.Offset;
+      else
+         raise Program_Error with "Label not found in symbol table.";
+      end if;
+   end Execute_Branch_Instr;
 
-      --  assert that are at least n values
-      --  pop values
-      Val := Last_Element (Interp.Stack);
-      --  Delete_Last (Interp.Stack);
-      Delete_Last (Interp.Stack);
-
-      Put_Line ("popping n values :");
-      Put_Line (Integer_32'Image (Val.Val.I_32));
-      Put_Line ("----------------");
-      --  repeat l + 1 times while value
-      --       pop the value
-      --  assert top is a label
-      --       pop the label
-      Delete_Last (Interp.Stack);
-      --  push the value
-      Put_Line ("pushing the values back");
-      Interp.Stack.Append (Val);
-      Interp.Ip := Interp.Sym_Tab.Element (14).Offset;
-      Br        := Interp.Ip;
-      return Br;
-   end Exec_Branch;
-
-   procedure Exec_Loop (Program : in out Vm) is
+   function Reduce_Block_To_Admin
+     (Block_Instr : Control_Instruction) return Administrative_Instruction
+   is
    begin
-      null;
-      --  current frame (state of the program)
-      --  assert (validation)
-      --
-      --  assert m values in the stack
-      --  pop all values
-      --  enter the block with label
-   end Exec_Loop;
+      return
+        (Label, Label_br    => 0, N => 2, M => 1,
+         Target_Info        => (Has_Target => False),
+         Instr_Continuation => Block_Instr.B_Inst);
+   end Reduce_Block_To_Admin;
 
-   function Exec_Unreachable return Integer is
-   begin
-      null;
-      --  OS_Exit (1);
-      return Handle_Trap;
-   end Exec_Unreachable;
-
-   procedure Free is new Ada.Unchecked_Deallocation (Chunk, Chunk_Acc);
-
-   --  decoding instruction
    function Interpret_Control_Instruction
-     (Inst : Control_Instruction; Interpreted : in out Vm) return Natural
+     (Inst : Control_Instruction; Interpreted : in out Env) return Natural
    is
       Ofs : Natural;
    begin
@@ -122,10 +117,11 @@ package body Interpreter is
             null;
          when Branch =>
             Put_Line ("---- branch");
-            Ofs := Exec_Branch (Interpreted, 14);
          when Block =>
             Put_Line ("---- block");
-            Interpreted.Stack.Append ((Elt => Label, Lab => 14));
+            --  pop m values
+            --  push l on the stack
+            --  jump to the start of inst*
          when others =>
             null;
       end case;
@@ -206,7 +202,6 @@ package body Interpreter is
       null;
    end Interpret_Vector128_Instruction;
 
-   --  Todo
    procedure Interpret_Expression_Instruction
      (Insts : Instruction_Sequence; Stack : in out Vector)
    is
@@ -214,47 +209,59 @@ package body Interpreter is
       null;
    end Interpret_Expression_Instruction;
 
-   procedure Interpret (Interpreted : in out Vm) is
+   --  module Instance
+   --  exec env
+   --  cur_func (instance func)
+   --  prev frame
+   procedure Interpret (Interpreted : in out Env) is
       i    : Natural := 0;
       Jump : Natural;
    begin
-      while i <= Interpreted.Code'Last loop
-         case Interpreted.Code (i).Op is
+      while i <= Interpreted.Instruction_Pointer.Code'Last loop
+         case Interpreted.Instruction_Pointer.Code (i).Op is
             when Numeric =>
                Put_Line ("Numeric inst");
                Interpret_Numeric_Instruction
-                 (Interpreted.Code (i).Numeric_Inst, Interpreted.Stack);
+                 (Interpreted.Instruction_Pointer.Code (i).Numeric_Inst,
+                  Interpreted.Stack);
             when Control =>
                Put_Line ("Control inst");
                Jump :=
                  Interpret_Control_Instruction
-                   (Interpreted.Code (i).Control_Inst, Interpreted);
+                   (Interpreted.Instruction_Pointer.Code (i).Control_Inst,
+                    Interpreted);
             when Reference =>
                Interpret_Reference_Instruction
-                 (Interpreted.Code (i).Reference_Inst, Interpreted.Stack);
+                 (Interpreted.Instruction_Pointer.Code (i).Reference_Inst,
+                  Interpreted.Stack);
             when Parametric =>
                Interpret_Parametric_Instruction
-                 (Interpreted.Code (i).Parametric_Inst, Interpreted.Stack);
+                 (Interpreted.Instruction_Pointer.Code (i).Parametric_Inst,
+                  Interpreted.Stack);
             when Variable =>
                Interpret_Variable_Instruction
-                 (Interpreted.Code (i).Variable_Inst, Interpreted.Stack);
+                 (Interpreted.Instruction_Pointer.Code (i).Variable_Inst,
+                  Interpreted.Stack);
             when Table =>
                Interpret_Table_Instruction
-                 (Interpreted.Code (i).Table_Inst, Interpreted.Stack);
+                 (Interpreted.Instruction_Pointer.Code (i).Table_Inst,
+                  Interpreted.Stack);
             when Memory =>
                Interpret_Memory_Instruction
-                 (Interpreted.Code (i).Memory_Inst, Interpreted.Stack);
+                 (Interpreted.Instruction_Pointer.Code (i).Memory_Inst,
+                  Interpreted.Stack);
             when Vector_128 =>
                Interpret_Vector128_Instruction
-                 (Interpreted.Code (i).Vector_Inst, Interpreted.Stack);
+                 (Interpreted.Instruction_Pointer.Code (i).Vector_Inst,
+                  Interpreted.Stack);
             when Expression =>
                Interpret_Expression_Instruction
-                 (Interpreted.Code (i).Expression, Interpreted.Stack);
-            when Admin =>
-               null;
+                 (Interpreted.Instruction_Pointer.Code (i).Expression,
+                  Interpreted.Stack);
          end case;
-         if Interpreted.Code (i).Op = Control
-           and then Interpreted.Code (i).Control_Inst.Op = Branch
+         if Interpreted.Instruction_Pointer.Code (i).Op = Control
+           and then Interpreted.Instruction_Pointer.Code (i).Control_Inst.Op =
+             Branch
          then
             i := Jump;
             Put_Line ("--- > Jump");
@@ -264,5 +271,4 @@ package body Interpreter is
          end if;
       end loop;
    end Interpret;
-
 end Interpreter;

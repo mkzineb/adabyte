@@ -22,14 +22,11 @@ is
    type Instruction_Acc is access all Instruction;
 
    type Chunk is array (Natural range <>) of Instruction_Acc;
-   type Chunk_Acc is access Chunk;
-
-   type Instruction_Sequence is record
-      Sequence : Chunk_Acc;
-   end record;
+   type Instruction_Sequence is access Chunk;
 
    type B_Type is (Index, Empty, Val);
-   type Block_Type (B : B_Type := Index) is record
+
+   type Block_Args (B : B_Type := Index) is record
       case B is
          when Index =>
             Index : Type_Index;
@@ -44,7 +41,7 @@ is
 
    type Opcode is
      (Numeric, Reference, Parametric, Variable, Table, Memory, Control,
-      Vector_128, Expression, Admin);
+      Vector_128, Expression);
 
    type Opcode_Numeric is
      (I32_Constant, I64_Constant, F32_Constant, F64_Constant, Count_Lead_Zeros,
@@ -223,14 +220,16 @@ is
    type Control_Instruction (Op : Opcode_Control := NOP) is record
       case Op is
          when Block =>
-            B_Block : Block_Type;
-            B_Inst  : Instruction_Sequence;
+            B_Block    : Block_Args;
+            Arity_N    : Unsigned_32;
+            Produced_M : Unsigned_32;
+            B_Inst     : Instruction_Sequence;
          when If_Inst =>
-            If_Block       : Block_Type;  --  variable produced
-            Then_Chunk     : Instruction_Sequence;
-            Else_Opt_Chunk : Instruction_Sequence;  --  optional
+            If_Block             : Block_Args;  --  variable produced
+            Then_Block_Chunk     : Instruction_Sequence;
+            Else_Block_Opt_Chunk : Instruction_Sequence;  --  optional
          when Loop_Inst =>
-            Loop_Block : Block_Type;
+            Loop_Block : Block_Args;
             Block      : Instruction_Sequence;
          when Branch_If =>
             Label_BR_If : Unsigned_32;
@@ -302,6 +301,15 @@ is
       Target_Branch : Instruction_Sequence; --  empty
    end record;
 
+   type Optional_Instruction_Sequence (Has_Target : Boolean := False) is record
+      case Has_Target is
+         when True =>
+            Instr_target : Instruction_Sequence;
+         when False =>
+            null;
+      end case;
+   end record;
+
    type Administrative_Instruction (Op : Opcode_Admin := Trap) is record
       case Op is
          when Trap =>
@@ -313,8 +321,11 @@ is
          when Invoke =>
             Invoke_Func_Addr : Integer;
          when Label =>
-            Label_br : Label_Branch;
-            Instr    : Instruction_Sequence; -- todo
+            Label_br           : Unsigned_32;
+            N                  : Unsigned_32;
+            M                  : Unsigned_32;
+            Target_Info        : Optional_Instruction_Sequence;
+            Instr_Continuation : Instruction_Sequence;
          when Frames =>
             Nested_Frame : Frame;
             Frame_Instr  : Instruction_Sequence;
@@ -341,8 +352,6 @@ is
             Vector_Inst : Vector_Instruction;
          when Expression =>
             Expression : Instruction_Sequence;
-         when Admin =>
-            Admin_Instruction : Administrative_Instruction;
       end case;
 
    end record;

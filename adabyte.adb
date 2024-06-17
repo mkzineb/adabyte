@@ -5,11 +5,14 @@ with Interpreter;  use Interpreter;
 with Types;        use Types;
 with Interfaces;   use Interfaces;
 with Modules;      use Modules;
+with Numerics;     use Numerics;
 procedure Adabyte is
-   program : Vm := Init_Interpreter;
 
+   P : Pointer;
+
+   program : Env := Init_Interpreter (P);
 begin
-   Interpret (program);
-   Put_Line (Integer_32'Image (program.Stack.Last_Element.Val.I_32));
+   --  Interpret (program);
+   --  Put_Line (Integer_32'Image (program.Stack.Last_Element.Val.I_32));
    null;
 end Adabyte;

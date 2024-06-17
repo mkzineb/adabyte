@@ -26,4 +26,11 @@ package body Runtime is
       Initialize_References;
       Initialize_Configuration;
    end Instatiate_Module;
+
+   procedure New_Data_Instance (Data : Integer; Owner : Module_Instance_Addr)
+   is
+   begin
+      null;
+   end New_Data_Instance;
+
 end Runtime;
