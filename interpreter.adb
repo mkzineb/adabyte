@@ -29,8 +29,8 @@ package body Interpreter is
    procedure Free is new Ada.Unchecked_Deallocation
      (Chunk, Instruction_Sequence);
 
-   function Count_Lables (Environment : Env) return Natural is
-      Label_Count : Natural;
+   function Count_Labels (Environment : Env) return Natural is
+      Label_Count : Natural := 0;
    begin
       for I in Environment.Stack.First_Index .. Environment.Stack.Last_Index
       loop
@@ -39,7 +39,7 @@ package body Interpreter is
          end if;
       end loop;
       return Label_Count;
-   end Count_Lables;
+   end Count_Labels;
 
    procedure Execute_Branch_Instr
      (Environment : in out Env; Lab_Index : Natural)
@@ -51,16 +51,16 @@ package body Interpreter is
    begin
       --  Assert that the stack contains at least l+1 labels
       pragma Assert
-        (Count_Lables (Environment) >= Lab_Index + 1,
+        (Count_Labels (Environment) >= Lab_Index + 1,
          "Stack does not contain enough labels");
       --  get target label
-      Target_Label := Environment.Stack (Lab_Index).Lab;
+      Target_Label := Environment.Stack (Lab_Index).Lab; -- NOT CORRECT INDEX
       --  check symbol table
       if Environment.Sym_Tab.Contains (Target_Label) then
          Label_Info_Entry := Environment.Sym_Tab (Target_Label);
          --  Assert there are at least n values on the top of the stack.
          Lab_Arity        := Label_Info_Entry.Arity;
-         pragma Assert (Lab_Arity >= 1);
+         pragma Assert (Lab_Arity >= 1); -- WHY NOT ZERO?
          for i in 1 .. Lab_Arity loop
             --  pop and stock
             Tmp_Storage.Append (Environment.Stack.Last_Element);
@@ -75,7 +75,7 @@ package body Interpreter is
                --  pop label from stack;
             else
                --  pop l+1 values
-               for j in 1 .. Lab_Index + 1 loop
+               for j in 1 .. Lab_Index + 1 loop -- WHY DOUBLE LOOP?
                   --  enough elements to pop
                   pragma Assert
                     (Environment.Stack.Length > 0,
