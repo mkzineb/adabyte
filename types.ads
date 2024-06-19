@@ -28,7 +28,7 @@ is
    type Value_Type (Val : Value_Posibilities := Number_Value) is record
       case Val is
          when Number_Value =>
-            Num_Value : Number;
+            Num_Value : Number_Type;
          when Vector_Value =>
             Vec_Value : Vector_Type;
          when Reference_Value =>
@@ -49,7 +49,6 @@ is
       Results : Result_Type;
    end record;
 
-   --  By default no limit
    type Limit_Type is record
       Min        : Natural;
       MAx        : Natural := 0;

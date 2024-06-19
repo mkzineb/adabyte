@@ -1,9 +1,14 @@
 with Types;      use Types;
 with Interfaces; use Interfaces;
-with Runtime;    use Runtime;
+with Instances;  use Instances;
 package Instructions with
   SPARK_Mode => On
 is
+
+   subtype End_Offset is Unsigned_32;
+   subtype Else_Offset is Unsigned_32;
+   subtype Br_Table_Default is Unsigned_32;
+   subtype Br_Table_Len is Unsigned_32;
 
    subtype Function_Index is Unsigned_32;
    subtype Type_Index is Unsigned_32;
@@ -24,17 +29,22 @@ is
    type Chunk is array (Natural range <>) of Instruction_Acc;
    type Instruction_Sequence is access Chunk;
 
-   type B_Type is (Index, Empty, Val);
+   type B_Type is (Empty, Block_Type, Func_Type);
 
-   type Block_Args (B : B_Type := Index) is record
+   type Block_Args (B : B_Type := Empty) is record
       case B is
-         when Index =>
-            Index : Type_Index;
          when Empty =>
             Empty : Empty_Type;
-         when Val =>
-            Block_Value : Value_Type;
+         when Block_Type =>
+            Block_Ty : Value_Type;
+         when Func_Type =>
+            Func_Ty : Unsigned_32;
       end case;
+   end record;
+
+   type Mem_Arg is record
+      Offset       : Unsigned_64;
+      Arg_Mem_Addr : Mem_Addr;
    end record;
 
    type Sign_Extension is (Signed, Unsigned);
@@ -44,25 +54,37 @@ is
       Vector_128, Expression);
 
    type Opcode_Numeric is
-     (I32_Constant, I64_Constant, F32_Constant, F64_Constant, Count_Lead_Zeros,
-      Count_Trail_Zeros, Count_Ones, Absolute_Value, Negate, Square_Root,
-      Ceiling, Floor, Truncate, Nearest, Add, Substract, Multiply,
-      Divide_Integer, Divide_Float, Remainder, And_Inst, Or_Inst, Xor_Inst,
-      Shift_Left, Shift_Right, Rotate_Left, Rotate_Right, Minimum, Maximum,
-      Copy_Sign, Equal_To_Zero, Equal, Not_Equal, Less_Than_Integer,
-      Less_Than_Float, Greater_Than_Integer, Greater_Than_Float,
-      Less_Than_Or_Equal_To_Integer, Less_Than_Or_Equal_To_Float,
-      Greater_Than_Or_Equal_To_Integer, Greater_Than_Or_Equal_To_Float,
-      Extend_Signed_8, Extend_Signed_16, Extend_Signed_32, Wrap,
-      Extend_With_Sign_Extension, Convert_And_Truncate,
-      Convert_And_Truncate_With_Saturation, Demote, Promote, Convert,
-      Reinterpret_Float, Reinterpret_Integer);
+     (I32_Const, I64_Const, F32_Const, F64_Const, I32_Eqz, I32_Eq, I32_Ne,
+      I32_Lt_S, I32_Lt_U, I32_Gt_S, I32_Gt_U, I32_Le_S, I32_Le_U, I32_Ge_S,
+      I32_Ge_U, I64_Eqz, I64_Eq, I64_Ne, I64_Lt_S, I64_Lt_U, I64_Gt_S,
+      I64_Gt_U, I64_Le_S, I64_Le_U, I64_Ge_S, I64_Ge_U, F32_Eq, F32_Ne, F32_Lt,
+      F32_Gt, F32_Le, F32_Ge, F64_Eq, F64_Ne, F64_Lt, F64_Gt, F64_Le, F64_Ge,
+      I32_Clz, I32_Ctz, I32_Popcnt, I32_Add, I32_Sub, I32_Mul, I32_Div_S,
+      I32_Div_U, I32_Rem_S, I32_Rem_U, I64_Clz, I64_Ctz, I64_Popcnt, I64_Add,
+      I64_Sub, I64_Mul, I64_Div_S, I64_Div_U, I64_Rem_S, I64_Rem_U, I32_And,
+      I32_Or, I32_Xor, I32_Shl, I32_Shr_S, I32_Shr_U, I32_Rotl, I32_Rotr,
+      I64_And, I64_Or, I64_Xor, I64_Shl, I64_Shr_S, I64_Shr_U, I64_Rotl,
+      I64_Rotr, F32_Abs, F32_Neg, F32_Ceil, F32_Floor, F32_Trunc, F32_Nearest,
+      F32_Sqrt, F32_Add, F32_Sub, F32_Mul, F32_Div, F32_Min, F32_Max,
+      F32_Copysign, F64_Abs, F64_Neg, F64_Ceil, F64_Floor, F64_Trunc,
+      F64_Nearest, F64_Sqrt, F64_Add, F64_Sub, F64_Mul, F64_Div, F64_Min,
+      F64_Max, F64_Copysign, I32_Wrap_I64, I32_Trunc_F32_S, I32_Trunc_F32_U,
+      I32_Trunc_F64_S, I32_Trunc_F64_U, I32_Extend_8_S, I32_Extend_16_S,
+      I64_Extend_8_S, I64_Extend_16_S, I64_Extend_32_S, I64_Extend_I32_S,
+      I64_Extend_I32_U, I64_Trunc_F32_S, I64_Trunc_F32_U, I64_Trunc_F64_S,
+      I64_Trunc_F64_U, F32_Convert_I32_S, F32_Convert_I32_U, F32_Convert_I64_S,
+      F32_Convert_I64_U, F32_Demote_F64, F64_Convert_I32_S, F64_Convert_I32_U,
+      F64_Convert_I64_S, F64_Convert_I64_U, F64_Promote_F32,
+      I32_Reinterpret_F32, I64_Reinterpret_F64, F32_Reinterpret_I32,
+      F64_Reinterpret_I64, I32_Trunc_Sat_F32_S, I32_Trunc_Sat_F32_U,
+      I32_Trunc_Sat_F64_S, I32_Trunc_Sat_F64_U, I64_Trunc_Sat_F32_S,
+      I64_Trunc_Sat_F32_U, I64_Trunc_Sat_F64_S, I64_Trunc_Sat_F64_U);
 
    type Opcode_Reference is (Null_Value, Is_Null, Func_Ref);
 
    type Opcode_Control is
-     (Unreachable, NOP, Block, Loop_Inst, If_Inst, Branch, Branch_If,
-      Branch_Table, Return_Inst, Call, Call_Indirect);
+     (Unreachable, NOP, Block, Loop_Inst, If_Inst, Else_Inst, End_Block,
+      Branch, Branch_If, Branch_Table, Return_Inst, Call, Call_Indirect);
 
    type Opcode_Parametric is (Drop, Select_Inst);
    --  select possibly followed by a type notation
@@ -71,221 +93,225 @@ is
 
    type Opcode_Table is (Get, Set, Init, Drop, Copy, Grow, Size, Fill);
 
-   type Mem_Arg is record
-      Align  : Unsigned_32;
-      Offset : Unsigned_32;
-   end record;
-
    type Opcode_Memory is
      (I32_Load, I64_Load, F32_Load, F64_Load, I32_Load_8_S, I32_Load_8_U,
       I32_Load_16_S, I32_Load_16_U, I64_Load_8_S, I64_Load_8_U, I64_Load_16_S,
       I64_Load_16_U, I64_Load_32_S, I64_Load_32_U, I32_Store, I64_Store,
       F32_Store, F64_Store, I32_Store_8, I32_Store_16, I64_Store_8,
-      I64_Store_16, I64_Store_32, Mem_Size, Mem_Grow, Mem_Init, Mem_Drop,
+      I64_Store_16, I64_Store_32, Mem_Size, Mem_Grow,
+                         --  bulk memory inst
+                         Mem_Init, Mem_Drop,
       Mem_Copy, Mem_Fill);
 
    type Opcode_Vector is (Extract, Splat, Pmin, Pmax);
 
    type Opcode_Admin is
      (Trap, Ref_Inst, Ref_Extern_Inst, Invoke, Label, Frames);
-   --  todo
 
-   type Numeric_Instruction (Op : Opcode_Numeric := I32_Constant) is record
+   type Numeric_Instruction (Op : Opcode_Numeric := I32_Const) is record
       case Op is
-         when I32_Constant =>
+         when I32_Const =>
             I32_Constant : Number_Type (Num => I_32);
-         when I64_Constant =>
+         when I64_Const =>
             I64_Constant : Number_Type (Num => I_64);
-         when F32_Constant =>
+         when F32_Const =>
             F32_Constant : Number_Type (Num => F_32);
-         when F64_Constant =>
+         when F64_Const =>
             F64_Constant : Number_Type (Num => F_64);
-         when Count_Lead_Zeros =>
-            Count_L_Zeros : Integer_Type;
-         when Count_Trail_Zeros =>
-            Count_T_Zeros : Integer_Type;
-         when Count_Ones =>
-            Count_Ones : Integer_Type;
-         when Absolute_Value =>
-            Abs_Value : Float_Type;
-         when Negate =>
-            Neg : Float_Type;
-         when Square_Root =>
-            Square_Root : Float_Type;
-         when Ceiling =>
-            Ceiling : Float_Type;
-         when Floor =>
-            Floor : Float_Type;
-         when Truncate =>
-            Truncate : Float_Type;
-         when Nearest =>
-            Nearest : Float_Type;
-         when Add =>
+         when others =>
             null;
-         when Substract =>
-            Sub : Number_Type;
-         when Multiply =>
-            Mul : Number_Type;
-         when Divide_Integer =>
-            Div_Int  : Integer_Type;
-            Div_Sign : Sign_Extension;
-         when Divide_Float =>
-            Div_Float : Float_Type;
-         when Remainder =>
-            Remainder : Integer_Type;
-            Rem_Sign  : Sign_Extension;
-         when And_Inst =>
-            And_Inst : Integer_Type;
-         when Or_Inst =>
-            Or_Inst : Integer_Type;
-         when Xor_Inst =>
-            Xor_Inst : Integer_Type;
-         when Shift_Left =>
-            Shift_Left : Integer_Type;
-         when Shift_Right =>
-            Shift_Right : Integer_Type;
-            Shift_Sign  : Sign_Extension;
-         when Rotate_Left =>
-            null;
-         when Rotate_Right =>
-            null;
-         when Minimum =>
-            null;
-         when Maximum =>
-            null;
-         when Copy_Sign =>
-            null;
-         when Equal_To_Zero =>
-            null;
-         when Equal =>
-            null;
-         when Not_Equal =>
-            null;
-         when Less_Than_Integer =>
-            null;
-         when Less_Than_Float =>
-            null;
-         when Greater_Than_Integer =>
-            null;
-         when Greater_Than_Float =>
-            null;
-         when Less_Than_Or_Equal_To_Integer =>
-            null;
-         when Less_Than_Or_Equal_To_Float =>
-            null;
-         when Greater_Than_Or_Equal_To_Integer =>
-            null;
-         when Greater_Than_Or_Equal_To_Float =>
-            null;
-         when Extend_Signed_8 =>
-            null;
-         when Extend_Signed_16 =>
-            null;
-         when Extend_Signed_32 =>
-            null;
-         when Wrap =>
-            null;
-         when Extend_With_Sign_Extension =>
-            null;
-         when Convert_And_Truncate =>
-            null;
-         when Convert_And_Truncate_With_Saturation =>
-            null;
-         when Demote =>
-            null;
-         when Promote =>
-            null;
-         when Convert =>
-            Int       : Integer_Type;
-            Float     : Float_Type;
-            Conv_Sign : Sign_Extension;
-         when Reinterpret_Float =>
-            Re_Float : Float_Type;
-         when Reinterpret_Integer =>
-            Re_Int : Integer_Type;
       end case;
    end record;
 
    type Reference_Instruction (Op : Opcode_Reference := Null_Value) is record
       case Op is
          when Null_Value =>
-            Ref_Type : Reference_Type; -- func producing a null value
+            Ref_Type : Value_Type;
          when Is_Null =>
-            null;  --  check for a null value
+            null;
          when Func_Ref =>
-            Func_Idx : Function_Index; -- func producing a ref to a func
+            Function_Addr : Func_Addr;
       end case;
    end record;
 
    type Control_Instruction (Op : Opcode_Control := NOP) is record
       case Op is
+         when End_Block =>
+            null;
          when Block =>
-            B_Block    : Block_Args;
-            Arity_N    : Unsigned_32;
-            Produced_M : Unsigned_32;
-            B_Inst     : Instruction_Sequence;
+            Block_Arguments : Block_Args;
+            End_Block       : End_Offset;
          when If_Inst =>
-            If_Block             : Block_Args;  --  variable produced
-            Then_Block_Chunk     : Instruction_Sequence;
-            Else_Block_Opt_Chunk : Instruction_Sequence;  --  optional
+            If_Block_Args : Block_Args;
+            Else_If       : Else_Offset;
+            End_If        : End_Offset;
+         when Else_Inst =>
+            End_Else_Offset : End_Offset;
+
          when Loop_Inst =>
-            Loop_Block : Block_Args;
-            Block      : Instruction_Sequence;
+            Loop_Arguments : Block_Args;
+            End_Loop_Block : End_Offset;
          when Branch_If =>
-            Label_BR_If : Unsigned_32;
-            Cond        : Boolean;
+            Label_Br_If : Label_Addr;
          when Branch =>
-            Label_Br : Unsigned_32;
+            Label_Br : Label_Addr;
          when NOP =>
             null;
          when Branch_Table =>
-            null;
+            Table_Default : Br_Table_Default;
+            Table_Len     : Br_Table_Len;
          when Return_Inst =>
             null;
          when Call =>
-            null;
+            call_addr : Func_Addr;
          when Call_Indirect =>
-            null;
+            Call_Type_Addr  : Type_Addr;
+            Call_Table_Addr : Table_Addr;
          when Unreachable =>
             null;
       end case;
    end record;
 
    type Table_Instruction (Op : Opcode_Table := Get) is record
-      --  Get, Set, Size, Grow, Fill, Copy, Init, Element_Drop
       case Op is
-         when others =>
-            null;
+         when Get =>
+            Table_Get : Table_Addr;
+         when Set =>
+            Table_Set : Table_Addr;
+         when Size =>
+            Table_Size : Table_Addr;
+         when Fill =>
+            Table_Fill : Table_Addr;
+         when Init =>
+            Elem_Init  : Table_Addr;
+            Table_Init : Table_Addr;
+         when Drop =>
+            Elem_Drop : Table_Addr;
+         when Grow =>
+            Table_Grow : Table_Addr;
+         when Copy =>
+            From : Table_Addr;
+            To   : Table_Addr;
       end case;
    end record;
 
    type Variable_Instruction (Op : Opcode_Variable := Local_Get) is record
       case Op is
          when Local_Get =>
-            Local_Get_Id : Local_Index;
+            Local_Get_Id : Local_Addr;
          when Local_Set =>
-            Local_Set_Id : Local_Index;
+            Local_Set_Id : Local_Addr;
          when Local_Tee =>
-            Local_Tee_Id : Local_Index;
+            Local_Tee_Id : Local_Addr;
          when Global_Get =>
-            null;
+            Glb_Get_Addr : Global_Addr;
          when Global_Set =>
-            null;
+            Glb_Set_Addr : Global_Addr;
       end case;
 
    end record;
 
+   type Val_Type_Vector is array (Natural range <>) of Value_Type;
+   type Val_Type_Array_Acc is access Val_Type_Vector;
+
    type Parametric_Instruction (Op : Opcode_Parametric := Drop) is record
       case Op is
-         when others =>
+         when Drop =>
             null;
+         when Select_Inst =>
+            Array_Val_Type : Val_Type_Array_Acc;
       end case;
    end record;
 
    type Memory_Instruction (Op : Opcode_Memory := I32_Load) is record
       case Op is
-         when others =>
-            null;
+         when I32_Load =>
+            Offset_I32_Load   : Unsigned_64;
+            Mem_Addr_I32_Load : Mem_Addr;
+         when I64_Load =>
+            Offset_I64_Load   : Unsigned_64;
+            Mem_Addr_I64_Load : Mem_Addr;
+         when F32_Load =>
+            Offset_F32_Load   : Unsigned_64;
+            Mem_Addr_F32_Load : Mem_Addr;
+         when F64_Load =>
+            Offset_F64_Load   : Unsigned_64;
+            Mem_Addr_F64_Load : Mem_Addr;
+         when I32_Load_8_S =>
+            Offset_I32_Load_8_S   : Unsigned_64;
+            Mem_Addr_I32_Load_8_S : Mem_Addr;
+         when I32_Load_8_U =>
+            Offset_I32_Load_8_U   : Unsigned_64;
+            Mem_Addr_I32_Load_8_U : Mem_Addr;
+         when I32_Load_16_S =>
+            Offset_I32_Load_16_S   : Unsigned_64;
+            Mem_Addr_I32_Load_16_S : Mem_Addr;
+         when I32_Load_16_U =>
+            Offset_I32_Load_16_U   : Unsigned_64;
+            Mem_Addr_I32_Load_16_U : Mem_Addr;
+         when I64_Load_8_S =>
+            Offset_I64_Load_8_S   : Unsigned_64;
+            Mem_Addr_I64_Load_8_S : Mem_Addr;
+         when I64_Load_8_U =>
+            Offset_I64_Load_8_U   : Unsigned_64;
+            Mem_Addr_I64_Load_8_U : Mem_Addr;
+         when I64_Load_16_S =>
+            Offset_I64_Load_16_S   : Unsigned_64;
+            Mem_Addr_I64_Load_16_S : Mem_Addr;
+         when I64_Load_16_U =>
+            Offset_I64_Load_16_U   : Unsigned_64;
+            Mem_Addr_I64_Load_16_U : Mem_Addr;
+         when I64_Load_32_S =>
+            Offset_I64_Load_32_S   : Unsigned_64;
+            Mem_Addr_I64_Load_32_S : Mem_Addr;
+         when I64_Load_32_U =>
+            Offset_I64_Load_32_U   : Unsigned_64;
+            Mem_Addr_I64_Load_32_U : Mem_Addr;
+         when I32_Store =>
+            Offset_I32_Store   : Unsigned_64;
+            Mem_Addr_I32_Store : Mem_Addr;
+         when I64_Store =>
+            Offset_I64_Store   : Unsigned_64;
+            Mem_Addr_I64_Store : Mem_Addr;
+         when F32_Store =>
+            Offset_F32_Store   : Unsigned_64;
+            Mem_Addr_F32_Store : Mem_Addr;
+         when F64_Store =>
+            Offset_F64_Store   : Unsigned_64;
+            Mem_Addr_F64_Store : Mem_Addr;
+         when I32_Store_8 =>
+            Offset_I32_Store_8   : Unsigned_64;
+            Mem_Addr_I32_Store_8 : Mem_Addr;
+         when I32_Store_16 =>
+            Offset_I32_Store_16   : Unsigned_64;
+            Mem_Addr_I32_Store_16 : Mem_Addr;
+         when I64_Store_8 =>
+            Offset_I64_Store_8   : Unsigned_64;
+            Mem_Addr_I64_Store_8 : Mem_Addr;
+         when I64_Store_16 =>
+            Offset_I64_Store_16   : Unsigned_64;
+            Mem_Addr_I64_Store_16 : Mem_Addr;
+         when I64_Store_32 =>
+            Offset_I64_Store_32   : Unsigned_64;
+            Mem_Addr_I64_Store_32 : Mem_Addr;
+         when Mem_Size =>
+            Offset_Mem_Size   : Unsigned_64;
+            Mem_Addr_Mem_Size : Mem_Addr;
+         when Mem_Grow =>
+            Offset_Mem_Grow   : Unsigned_64;
+            Mem_Addr_Mem_Grow : Mem_Addr;
+         when Mem_Init =>
+            Offset_Mem_Init   : Unsigned_64;
+            Mem_Addr_Mem_Init : Mem_Addr;
+         when Mem_Drop =>
+            Offset_Mem_Drop   : Unsigned_64;
+            Mem_Addr_Mem_Drop : Mem_Addr;
+         when Mem_Copy =>
+            Offset_Mem_Copy   : Unsigned_64;
+            Mem_Addr_Mem_Copy : Mem_Addr;
+         when Mem_Fill =>
+            Offset_Mem_Fill   : Unsigned_64;
+            Mem_Addr_Mem_Fill : Mem_Addr;
       end case;
    end record;
 
@@ -296,39 +322,12 @@ is
       end case;
    end record;
 
-   type Label_Branch is record
-      Arity         : Unsigned_32;
-      Target_Branch : Instruction_Sequence; --  empty
-   end record;
-
    type Optional_Instruction_Sequence (Has_Target : Boolean := False) is record
       case Has_Target is
          when True =>
             Instr_target : Instruction_Sequence;
          when False =>
             null;
-      end case;
-   end record;
-
-   type Administrative_Instruction (Op : Opcode_Admin := Trap) is record
-      case Op is
-         when Trap =>
-            Msg : Character;
-         when Ref_Inst =>
-            null;
-         when Ref_Extern_Inst =>
-            null; --  not supported
-         when Invoke =>
-            Invoke_Func_Addr : Integer;
-         when Label =>
-            Label_br           : Unsigned_32;
-            N                  : Unsigned_32;
-            M                  : Unsigned_32;
-            Target_Info        : Optional_Instruction_Sequence;
-            Instr_Continuation : Instruction_Sequence;
-         when Frames =>
-            Nested_Frame : Frame;
-            Frame_Instr  : Instruction_Sequence;
       end case;
    end record;
 
@@ -353,8 +352,9 @@ is
          when Expression =>
             Expression : Instruction_Sequence;
       end case;
-
    end record;
+
+   subtype Constant_Expression is Instruction (Numeric);  --  todo
 
    function Reduce_Instruction return Instruction;
 
