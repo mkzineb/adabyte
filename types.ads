@@ -4,6 +4,9 @@ package Types with
   SPARK_Mode => On
 is
    type Number is (I_32, I_64, F_32, F_64);
+   subtype Integer_Type is Number range I_32 .. I_64;
+   subtype Float_Type is Number range F_32 .. F_64;
+
    type Number_Type (Num : Number := I_32) is record
       case Num is
          when I_32 =>
@@ -16,9 +19,6 @@ is
             F_64 : IEEE_Float_64;
       end case;
    end record;
-
-   subtype Integer_Type is Number range I_32 .. I_64;
-   subtype Float_Type is Number range F_32 .. F_64;
 
    type Vector_Type is (v_128);
 

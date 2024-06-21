@@ -13,21 +13,21 @@ package Interpreter is
          when Value =>
             Val : Value_Stack;
          when Label =>
-            Block : Block_Frame;
+            Special_Id : Unsigned_32;
+            Block      : Block_Frame;
          when Activation_Call =>
             Call : Call_Frame;
       end case;
    end record;
 
    type Label_Info is record
-      Arity             : Natural;
-      Position_In_Stack : Natural;
-
+      Arity    : Natural;
+      Lab_Addr : Label_Addr;
    end record;
 
-   function Hash (x : Label_Addr) return Hash_Type is (Hash_Type (x));
+   function Hash (x : Unsigned_32) return Hash_Type is (Hash_Type (x));
    package Symbols_Table is new Ada.Containers.Indefinite_Hashed_Maps
-     (Key_Type        => Label_Addr, Element_Type => Label_Info, Hash => Hash,
+     (Key_Type        => Unsigned_32, Element_Type => Label_Info, Hash => Hash,
       Equivalent_Keys => "=");
 
    use Symbols_Table;
@@ -48,15 +48,17 @@ package Interpreter is
    type Interpret_Result is
      (INTERPRET_OK, INTERPRET_COMPILE_ERROR, INTERPRET_RUNTIME_ERROR);
 
-   type Control_Flow is (Break, Continue);
+   type Control_Flow is (Break, Continue, Trap);
 
    function Next_Instr (Environment : Env) return Integer;
 
    function Count_Lables (Environment : Env) return Natural;
+
    function Init_Environment
      (S : Store_Type; Stack : Vector; i : Instruction_Sequence) return Env;
 
    function Run (Environment : in out Env) return Interpret_Result;
+
    function Execute_Next_Instr (Environment : in out Env) return Control_Flow;
 
 end Interpreter;

@@ -10,33 +10,20 @@ is
    subtype Br_Table_Default is Unsigned_32;
    subtype Br_Table_Len is Unsigned_32;
 
-   subtype Function_Index is Unsigned_32;
-   subtype Type_Index is Unsigned_32;
-   subtype Table_Index is Unsigned_32;
-   subtype Memory_Index is Unsigned_32;
-   subtype Global_Index is Unsigned_32;
-   subtype Element_Index is Unsigned_32;
-   subtype Data_Index is Unsigned_32;
-   subtype Local_Index is Unsigned_32;
-   subtype Label_Index is Unsigned_32;
-
-   type Empty_Type is (E);
-   for Empty_Type use (E => 40);
-
    type Instruction;
    type Instruction_Acc is access all Instruction;
 
    type Chunk is array (Natural range <>) of Instruction_Acc;
    type Instruction_Sequence is access Chunk;
 
-   type B_Type is (Empty, Block_Type, Func_Type);
+   type Blocks_Variation is (Empty, TType, Func_Type);
 
-   type Block_Args (B : B_Type := Empty) is record
+   type Block_Args (B : Blocks_Variation := Empty) is record
       case B is
          when Empty =>
-            Empty : Empty_Type;
-         when Block_Type =>
-            Block_Ty : Value_Type;
+            null;
+         when TType =>
+            Val_Ty : Value_Type;
          when Func_Type =>
             Func_Ty : Unsigned_32;
       end case;
@@ -136,25 +123,25 @@ is
 
    type Control_Instruction (Op : Opcode_Control := NOP) is record
       case Op is
+         when Block =>
+            Label           : Unsigned_32;
+            Block_Arguments : Block_Args;
+            End_Block_Ptr   : End_Offset;
          when End_Block =>
             null;
-         when Block =>
-            Block_Arguments : Block_Args;
-            End_Block       : End_Offset;
          when If_Inst =>
             If_Block_Args : Block_Args;
             Else_If       : Else_Offset;
             End_If        : End_Offset;
          when Else_Inst =>
             End_Else_Offset : End_Offset;
-
          when Loop_Inst =>
             Loop_Arguments : Block_Args;
             End_Loop_Block : End_Offset;
          when Branch_If =>
-            Label_Br_If : Label_Addr;
+            Label_Br_If : Unsigned_32;
          when Branch =>
-            Label_Br : Label_Addr;
+            Label_Br : Unsigned_32;
          when NOP =>
             null;
          when Branch_Table =>

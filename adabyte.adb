@@ -9,23 +9,43 @@ with Ada.Containers.Vectors;
 procedure Adabyte is
    Executor : Env;
    St       : Store_Type;
-   Seq      : Instruction_Sequence := new Chunk (0 .. 1);
+   Seq      : Instruction_Sequence := new Chunk (0 .. 2);
    stac     : Vectors.Vector       := Vectors.Empty_Vector;
    Result   : Interpret_Result;
-   const32  : Instruction_Acc      :=
-     new Instruction'
-       (Numeric,
-        Numeric_Inst => (I32_Const, I32_Constant => (I_32, I_32 => 12)));
-   const456 : Instruction_Acc      :=
-     new Instruction'
-       (Numeric,
-        Numeric_Inst => (I32_Const, I32_Constant => (I_32, I_32 => 12)));
-begin
-   Seq (0) := const456;
-   Seq (1) := const32;
 
+   blk : Instruction_Acc :=
+     new Instruction'
+       (Control,
+        Control_Inst =>
+          (Block, Label  => 0, Block_Arguments => (B => Empty),
+           End_Block_Ptr => 2));
+
+   const32  : Instruction_Acc :=
+     new Instruction'
+       (Numeric,
+        Numeric_Inst => (I32_Const, I32_Constant => (I_32, I_32 => 12)));
+   const456 : Instruction_Acc :=
+     new Instruction'
+       (Numeric,
+        Numeric_Inst => (I32_Const, I32_Constant => (I_32, I_32 => 12)));
+
+   branching : Instruction_Acc :=
+     new Instruction'(Control, Control_Inst => (Branch, Label_Br => (0)));
+
+   nopp  : Instruction_Acc :=
+     new Instruction'(Control, Control_Inst => (Op => NOP));
+   unrea : Instruction_Acc :=
+     new Instruction'(Control, Control_Inst => (Op => Unreachable));
+
+begin
+
+   Seq (0)  := blk;
+   Seq (1)  := const32;
+   Seq (2)  := branching;
+   --  Seq (2)  := branching;
    Executor := Init_Environment (St, stac, Seq);
-   Result   := Run (Executor);
+
+   Result := Run (Executor);
    --  Put_Line (Integer_32'Image (program.Stack.Last_Element.Val.I_32));
 
 end Adabyte;

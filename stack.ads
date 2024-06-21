@@ -11,7 +11,6 @@ package Stack is
    type Block_Frame is record
       Instr_ptr        : Unsigned_32;
       End_Instr_Offset : Unsigned_32;
-      Stack_Ptr        : Unsigned_32;
       Results          : Unsigned_8;
       Params           : Unsigned_8;
       B_Type           : Block_Type;
