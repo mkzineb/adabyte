@@ -17,7 +17,7 @@ procedure Adabyte is
      new Instruction'
        (Control,
         Control_Inst =>
-          (Block, Label  => 0, Block_Arguments => (B => Empty),
+          (Block, Label => 0, Block_Arguments => (Func_Type, Func_Ty => Block),
            End_Block_Ptr => 2));
 
    const32  : Instruction_Acc :=
@@ -41,7 +41,7 @@ begin
 
    Seq (0)  := blk;
    Seq (1)  := const32;
-   Seq (2)  := branching;
+   Seq (2)  := unrea;
    --  Seq (2)  := branching;
    Executor := Init_Environment (St, stac, Seq);
 

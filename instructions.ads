@@ -131,7 +131,7 @@ is
             null;
          when If_Inst =>
             If_Block_Args  : Block_Args;
-            Else_If_Offset : Else_Offset;
+            Else_If_Offset : Else_Offset; --  0 when no else statement
             End_If_Offset  : End_Offset;
          when Else_Inst =>
             End_Else_Offset : End_Offset;

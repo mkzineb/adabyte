@@ -31,14 +31,29 @@ package body Interpreter is
          Module => Current_Module, Temp => i);
    end Init_Environment;
 
-   procedure Exec_Return (Cf : in out Call_Frame) is
+   function Exec_Return (Environment : in out Env) return Control_Flow is
+      Old : Unsigned_32;
    begin
-      Cf.Instr_Ptr := 0;
+      Old := Environment.Cf.Block_Ptr;
+      --     --  no call frame is in the stack
+      --     --  pop the last call frame in the stack
+      --     --  delete block
+      --  Swap_Module_Context
+      return Continue;
    end Exec_Return;
 
-   function Count_Values_Top_Stack (Stack : Vector) return Natural is
+   function Count_Values_Top_Stack (Environment : Env) return Natural is
+      Value_Size : Natural := 0;
    begin
-      return 0;
+      for I in Environment.Stack.First_Index .. Environment.Stack.Last_Index
+      loop
+         if Environment.Stack (I).Elt = Value then
+            Value_Size := Value_Size + 1;
+         else
+            exit;
+         end if;
+      end loop;
+      return Value_Size;
    end Count_Values_Top_Stack;
 
    function Pop_Values (N : Natural; Environment : in out Env) return Vector is
@@ -103,8 +118,7 @@ package body Interpreter is
 
          Lab_Arity := Symbols_Table.Element (Environment.Symbols, To).Arity;
 
-         pragma Assert
-           (Count_Values_Top_Stack (Environment.Stack) >= Lab_Arity);
+         pragma Assert (Count_Values_Top_Stack (Environment) >= Lab_Arity);
 
          Tmp_Storage := Pop_Values (Lab_Arity, Environment);
 
@@ -115,16 +129,18 @@ package body Interpreter is
          Environment.Cf.Instr_Ptr :=
            Unsigned_32
              (Symbols_Table.Element (Environment.Symbols, To).Lab_Addr);
-
       else
          raise Program_Error with "Label not found in symbol table.";
       end if;
    end Jump_If_Block_Exists;
 
-   procedure Execute_Branching (To : Unsigned_32; Environment : in out Env) is
+   function Execute_Branching
+     (To : Unsigned_32; Environment : in out Env) return Control_Flow
+   is
    begin
       Jump_If_Block_Exists (To, Environment);
       Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
+      return Continue;
    end Execute_Branching;
 
    procedure Execute_Const (Stack : in out Vector; Var : Number_Type) is
@@ -483,15 +499,17 @@ package body Interpreter is
    end Execute_Numeric_Instruction;
 
    procedure Execute_Block_Entry
-     (Instr : Control_Instruction; Environment : in out Env)
+     (Instr     : Control_Instruction; Environment : in out Env;
+      Instr_Ptr : Unsigned_32; End_Instr_Offset : Unsigned_32; Ty : Block_Type;
+      Args      : Block_Args)
    is
       Params, Results : Unsigned_8 := 0;
       New_Block_Frame : Block_Frame;
       Arity           : Natural    := 0;
       Lab_Ad          : Address    := 0;
    begin
-      Put_Line ("   block entry");
-      case Instr.Block_Arguments.B is
+      Put_Line ("   Entering a block");
+      case Args.B is
          when Empty =>
             Params  := 0;
             Results := 0;
@@ -499,25 +517,31 @@ package body Interpreter is
             Params  := 0;
             Results := 1;
          when Func_Type =>
+            declare
+               Typ : Block_Type := Args.Func_Ty;
+            begin
+               Params  := 0;
+               Results := 0;
+            end;
             --  get params/results from function
             --  get type of block as well  (loop, block, if...)
-            null;
       end case;
       New_Block_Frame :=
         (Instr_ptr        => Environment.Cf.Instr_Ptr,
          End_Instr_Offset => Instr.End_Block_Ptr, Results => Results,
-         Params           => Params, B_Type => Loop_Block);
+         Params           => Params, B_Type => Ty);
       --  push label in stack
+      Put_Line ("       Adding label to the stack");
+
       Environment.Stack.Append
         ((Elt => Label, Special_Id => Instr.Label, Block => New_Block_Frame));
+
+      Put_Line ("       Adding label to the Symbols table");
 
       --  add info in table
       Environment.Symbols.Insert
         (Instr.Label, (Arity => Arity, Lab_Addr => Lab_Ad));
 
-      --  --  push new block frame and continue
-      Environment.Stack.Append
-        ((Label, Special_Id => Instr.Label, Block => New_Block_Frame));
       Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
    end Execute_Block_Entry;
 
@@ -551,7 +575,7 @@ package body Interpreter is
    procedure Execute_If (Instr : Control_Instruction; Environment : in out Env)
    is
       Value_To_Evaluate : Unsigned_32;
-      Old               : Unsigned_32;
+      Old               : Unsigned_32 := 0;
    begin
       Value_To_Evaluate :=
         Unsigned_32 (Environment.Stack.Last_Element.Val.Val.Num_Value.I_32);
@@ -559,7 +583,9 @@ package body Interpreter is
 
       if Value_To_Evaluate /= 0 then
          Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
-         --  Execute_Block_Entry (Instr, Environment);
+         Execute_Block_Entry
+           (Instr, Environment, Environment.Cf.Instr_Ptr, Instr.End_If_Offset,
+            If_Block, Instr.If_Block_Args);
       end if;
 
       if Instr.Else_If_Offset = 0 then
@@ -570,14 +596,27 @@ package body Interpreter is
       Old                      := Environment.Cf.Instr_Ptr;
       Environment.Cf.Instr_Ptr :=
         Environment.Cf.Instr_Ptr + Instr.Else_If_Offset;
-      --  Execute_Block_Entry (Instr, Environment);
+      Execute_Block_Entry
+        (Instr, Environment, Old + Instr.Else_If_Offset,
+         Instr.End_If_Offset - Instr.Else_If_Offset, Else_Block,
+         Instr.If_Block_Args);
    end Execute_If;
 
-   procedure Execute_Branching_If
+   function Execute_Branching_If
      (Instr : Control_Instruction; Environment : in out Env)
+      return Control_Flow
    is
+      Value_To_Evaluate : Unsigned_32;
    begin
-      null;
+      Value_To_Evaluate :=
+        Unsigned_32 (Environment.Stack.Last_Element.Val.Val.Num_Value.I_32);
+      Delete_Last (Environment.Stack);
+      if Value_To_Evaluate /= 0 then
+         return Execute_Branching (Instr.Label_Br_If, Environment);
+      else
+         Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
+      end if;
+      return Continue;
    end Execute_Branching_If;
 
    procedure Execute_Nop is
@@ -614,25 +653,31 @@ package body Interpreter is
       case Instr.Op is
          when Block =>
             Put_Line ("  Block instruction");
-            Execute_Block_Entry (Instr, Environment);
+            Execute_Block_Entry
+              (Instr, Environment, Environment.Cf.Instr_Ptr,
+               Instr.End_Block_Ptr, Instr.Block_Arguments.Func_Ty,
+               Instr.Block_Arguments);
          when End_Block =>
             Execute_End_Block (Instr, Environment);
          when Branch =>
-            Execute_Branching (Instr.Label_Br, Environment);
+            return Execute_Branching (Instr.Label_Br, Environment);
          when If_Inst =>
             Execute_If (Instr, Environment);
          when Else_Inst =>
             Execute_Else (Instr, Environment);
          when Loop_Inst =>
-            Execute_Block_Entry (Instr, Environment);
+            Execute_Block_Entry
+              (Instr, Environment, Environment.Cf.Instr_Ptr,
+               Instr.End_Loop_Block, Instr.Loop_Arguments.Func_Ty,
+               Instr.Loop_Arguments);
          when Branch_If =>
-            Execute_Branching_If (Instr, Environment);
+            return Execute_Branching_If (Instr, Environment);
          when NOP =>
             Execute_Nop;
          when Branch_Table =>
             Execute_Branching_Table (Instr, Environment);
          when Return_Inst =>
-            null;
+            return Exec_Return (Environment);
          when Call =>
             null;
          when Call_Indirect =>
@@ -701,6 +746,7 @@ package body Interpreter is
       Put_Line (Environment.Cf.Instr_Ptr'Img & " instruction");
       case Inst.Op is
          when Numeric =>
+            Put_Line ("numeric instruction");
             Execute_Numeric_Instruction
               (Inst.Numeric_Inst, Environment.Stack, Environment);
          when Control =>
@@ -742,6 +788,7 @@ package body Interpreter is
             when Continue =>
                null;
             when Trap =>
+               return INTERPRET_RUNTIME_ERROR;
                exit;
          end case;
       end loop;
