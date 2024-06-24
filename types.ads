@@ -3,6 +3,9 @@ with Ada.Containers.Vectors;
 package Types with
   SPARK_Mode => On
 is
+
+   type Block_Type is (Loop_Block, If_Block, Else_Block, Block);
+
    type Number is (I_32, I_64, F_32, F_64);
    subtype Integer_Type is Number range I_32 .. I_64;
    subtype Float_Type is Number range F_32 .. F_64;

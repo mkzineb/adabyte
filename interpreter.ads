@@ -50,8 +50,6 @@ package Interpreter is
 
    type Control_Flow is (Break, Continue, Trap);
 
-   function Next_Instr (Environment : Env) return Integer;
-
    function Count_Lables (Environment : Env) return Natural;
 
    function Init_Environment

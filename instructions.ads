@@ -25,7 +25,7 @@ is
          when TType =>
             Val_Ty : Value_Type;
          when Func_Type =>
-            Func_Ty : Unsigned_32;
+            Func_Ty : Block_Type;
       end case;
    end record;
 
@@ -130,9 +130,9 @@ is
          when End_Block =>
             null;
          when If_Inst =>
-            If_Block_Args : Block_Args;
-            Else_If       : Else_Offset;
-            End_If        : End_Offset;
+            If_Block_Args  : Block_Args;
+            Else_If_Offset : Else_Offset;
+            End_If_Offset  : End_Offset;
          when Else_Inst =>
             End_Else_Offset : End_Offset;
          when Loop_Inst =>

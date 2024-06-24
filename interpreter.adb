@@ -1,20 +1,13 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
-with Types;       use Types;
-with Instances;   use Instances;
-package body Interpreter is
 
-   function Next_Instr (Environment : Env) return Integer
-   is --  return Instruction_Acc is
-   begin
-      return 0;
-   end Next_Instr;
+package body Interpreter is
 
    procedure Free is new Ada.Unchecked_Deallocation
      (Chunk, Instruction_Sequence);
 
    function Count_Lables (Environment : Env) return Natural is
-      Label_Count : Natural;
+      Label_Count : Natural := 0;
    begin
       for I in Environment.Stack.First_Index .. Environment.Stack.Last_Index
       loop
@@ -30,7 +23,6 @@ package body Interpreter is
    is
       Current_Frame  : Call_Frame;
       Current_Module : Module_Instance;
-      Environment    : Env;
       Tab            : Symbols_Table.Map;
 
    begin
@@ -174,7 +166,7 @@ package body Interpreter is
       --     "Not 'Value Type' on top of the stack");
       Op := Stack.Last_Element.Val.Val.Num_Value;
       Delete_Last (Stack);
-      if Op.I_32 = 0 or Op.I_64 = 0 then
+      if Op.I_32 = 0 or else Op.I_64 = 0 then
          case Op.Num is
             when I_32 =>
                Stack.Append
@@ -495,8 +487,8 @@ package body Interpreter is
    is
       Params, Results : Unsigned_8 := 0;
       New_Block_Frame : Block_Frame;
-      Arity           : Natural;
-      Lab_Ad          : Address;
+      Arity           : Natural    := 0;
+      Lab_Ad          : Address    := 0;
    begin
       Put_Line ("   block entry");
       case Instr.Block_Arguments.B is
@@ -514,7 +506,7 @@ package body Interpreter is
       New_Block_Frame :=
         (Instr_ptr        => Environment.Cf.Instr_Ptr,
          End_Instr_Offset => Instr.End_Block_Ptr, Results => Results,
-         Params           => Params, B_Type => Block);
+         Params           => Params, B_Type => Loop_Block);
       --  push label in stack
       Environment.Stack.Append
         ((Elt => Label, Special_Id => Instr.Label, Block => New_Block_Frame));
@@ -565,21 +557,20 @@ package body Interpreter is
         Unsigned_32 (Environment.Stack.Last_Element.Val.Val.Num_Value.I_32);
       Delete_Last (Environment.Stack);
 
-      --  if Value_To_Evaluate /= 0 then
-      --     Execute_Block_Entry
-      --       (Environment, Environment.Cf.Instr_Ptr, 0, If_Inst, args);
-      --  end if;
+      if Value_To_Evaluate /= 0 then
+         Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
+         --  Execute_Block_Entry (Instr, Environment);
+      end if;
 
-      --  if Else_Offset = 0 then
-      --     Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + End_Offset;
-      --  end if;
+      if Instr.Else_If_Offset = 0 then
+         Environment.Cf.Instr_Ptr :=
+           Environment.Cf.Instr_Ptr + Instr.End_Else_Offset;
+      end if;
 
-      --  Old                      := Environment.Cf.Instr_Ptr;
-      --  Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + Else_Offset;
-      --  Execute_Block_Entry
-      --    (Environment, Old + Else_Offset, End_Offset - Else_Offset,
-      --     Block_Type_Else, Args);
-      null;
+      Old                      := Environment.Cf.Instr_Ptr;
+      Environment.Cf.Instr_Ptr :=
+        Environment.Cf.Instr_Ptr + Instr.Else_If_Offset;
+      --  Execute_Block_Entry (Instr, Environment);
    end Execute_If;
 
    procedure Execute_Branching_If
@@ -605,7 +596,9 @@ package body Interpreter is
      (Instr : Control_Instruction; Environment : in out Env)
    is
    begin
-      null;
+      Execute_End_Block (Instr, Environment);
+      Environment.Cf.Instr_Ptr :=
+        Environment.Cf.Instr_Ptr + Instr.End_Else_Offset;
    end Execute_Else;
 
    function Execute_Unreachable return Control_Flow is
@@ -631,8 +624,7 @@ package body Interpreter is
          when Else_Inst =>
             Execute_Else (Instr, Environment);
          when Loop_Inst =>
-            --  Execute_Block_Entry (Environment);
-            null;
+            Execute_Block_Entry (Instr, Environment);
          when Branch_If =>
             Execute_Branching_If (Instr, Environment);
          when NOP =>

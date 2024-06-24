@@ -1,11 +1,8 @@
-with Interfaces;   use Interfaces;
-with Instructions; use Instructions;
-with Types;        use Types;
-with Instances;    use Instances;
-with Wasm;         use Wasm;
+with Interfaces; use Interfaces;
+with Types;      use Types;
+with Instances;  use Instances;
+with Wasm;       use Wasm;
 package Stack is
-
-   type Block_Type is (Loop_Block, If_Block, Else_Block, Block);
 
    --  labels / control instr
    type Block_Frame is record
