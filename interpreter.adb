@@ -186,129 +186,471 @@ package body Interpreter is
                 Val =>
                   (Val =>
                      (Number_Value, Num_Value => (F_64, F_64 => Var.F_64)))));
+         when others =>
+            null;
       end case;
    end Execute_Const;
 
    procedure Execute_Compare_To_Zero (Stack : in out Vector; Var : Number_Type)
    is
-      Op : Number_Type;
    begin
-      --  pragma Assert
-      --    (Stack.Last_Element.Val = Value_Stack,
-      --     "Not 'Value Type' on top of the stack");
-      Op := Stack.Last_Element.Val.Val.Num_Value;
+      --     pragma Assert
+      --       (Stack.Last_Element = Value_Type,
+      --        "Not 'Value Type' on top of the stack");
+
       Delete_Last (Stack);
-      if Op.I_32 = 0 or else Op.I_64 = 0 then
-         case Op.Num is
+      if Var.I_32 = 0 or else Var.I_64 = 0 then
+         case Var.Num is
             when I_32 =>
                Stack.Append
                  ((Elt => Value,
                    Val =>
                      (Val =>
                         (Number_Value,
-                          Num_Value => (I_32, I_32 => Op.I_32)))));
+                          Num_Value => (I_32, I_32 => Var.I_32)))));
             when I_64 =>
                Stack.Append
                  ((Elt => Value,
                    Val =>
                      (Val =>
                         (Number_Value,
-                          Num_Value => (I_64, I_64 => Op.I_64)))));
+                          Num_Value => (I_64, I_64 => Var.I_64)))));
             when others =>
                null;
          end case;
       end if;
    end Execute_Compare_To_Zero;
 
-   procedure Execute_Compare (Environment : in out Env) is
+   procedure Push_Value (Stack : in out Vector; Num : Number_Type) is
    begin
-      null;
+      case Num.Num is
+         when I_32 =>
+            Stack.Append
+              ((Value,
+                Val =>
+                  (Val =>
+                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
+         when I_64 =>
+            Stack.Append
+              ((Value,
+                Val =>
+                  (Val =>
+                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
+         when F_32 =>
+            Stack.Append
+              ((Value,
+                Val =>
+                  (Val =>
+                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
+         when F_64 =>
+            Stack.Append
+              ((Value,
+                Val =>
+                  (Val =>
+                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
+         when others =>
+            null;
+      end case;
+   end Push_Value;
+
+   procedure Compare_And_Push_I32
+     (Stack : in out Vector; A, B : Integer_32; Op : String)
+   is
+   begin
+      if Op = "==" then
+         if A = B then
+            Push_Value (Stack, (I_32, I_32 => 0));
+         else
+            Push_Value (Stack, (I_32, I_32 => 1));
+         end if;
+      elsif Op = "!=" then
+         if A /= B then
+            Push_Value (Stack, (I_32, I_32 => 0));
+         else
+            Push_Value (Stack, (I_32, I_32 => 1));
+         end if;
+      elsif Op = "<" then
+         if A < B then
+            Push_Value (Stack, (I_32, I_32 => 0));
+         else
+            Push_Value (Stack, (I_32, I_32 => 1));
+         end if;
+      elsif Op = ">" then
+         if A > B then
+            Push_Value (Stack, (I_32, I_32 => 0));
+         else
+            Push_Value (Stack, (I_32, I_32 => 1));
+         end if;
+      elsif Op = "<=" then
+         if A <= B then
+            Push_Value (Stack, (I_32, I_32 => 0));
+         else
+            Push_Value (Stack, (I_32, I_32 => 1));
+         end if;
+      elsif Op = ">=" then
+         if A >= B then
+            Push_Value (Stack, (I_32, I_32 => 0));
+         else
+            Push_Value (Stack, (I_32, I_32 => 1));
+         end if;
+      else
+         raise Program_Error with "Unsupported operation";
+      end if;
+   end Compare_And_Push_I32;
+
+   procedure Compare_And_Push_I64
+     (Stack : in out Vector; A, B : Integer_64; Op : String)
+   is
+   begin
+      if Op = "==" then
+         if A = B then
+            Push_Value (Stack, (I_64, I_64 => 0));
+         else
+            Push_Value (Stack, (I_64, I_64 => 1));
+         end if;
+      elsif Op = "!=" then
+         if A /= B then
+            Push_Value (Stack, (I_64, I_64 => 0));
+         else
+            Push_Value (Stack, (I_64, I_64 => 1));
+         end if;
+      elsif Op = "<" then
+         if A < B then
+            Push_Value (Stack, (I_64, I_64 => 0));
+         else
+            Push_Value (Stack, (I_64, I_64 => 1));
+         end if;
+      elsif Op = ">" then
+         if A > B then
+            Push_Value (Stack, (I_64, I_64 => 0));
+         else
+            Push_Value (Stack, (I_64, I_64 => 1));
+         end if;
+      elsif Op = "<=" then
+         if A <= B then
+            Push_Value (Stack, (I_64, I_64 => 0));
+         else
+            Push_Value (Stack, (I_64, I_64 => 1));
+         end if;
+      elsif Op = ">=" then
+         if A >= B then
+            Push_Value (Stack, (I_64, I_64 => 0));
+         else
+            Push_Value (Stack, (I_64, I_64 => 1));
+         end if;
+      else
+         raise Program_Error with "Unsupported operation";
+      end if;
+   end Compare_And_Push_I64;
+
+   procedure Compare_And_Push_F32
+     (Stack : in out Vector; A, B : IEEE_Float_32; Op : String)
+   is
+   begin
+      if Op = "==" then
+         if A = B then
+            Push_Value (Stack, (F_32, F_32 => 0.0));
+         else
+            Push_Value (Stack, (F_32, F_32 => 1.0));
+         end if;
+      elsif Op = "!=" then
+         if A /= B then
+            Push_Value (Stack, (F_32, F_32 => 0.0));
+         else
+            Push_Value (Stack, (F_32, F_32 => 1.0));
+         end if;
+      elsif Op = "<" then
+         if A < B then
+            Push_Value (Stack, (F_32, F_32 => 0.0));
+         else
+            Push_Value (Stack, (F_32, F_32 => 1.0));
+         end if;
+      elsif Op = ">" then
+         if A > B then
+            Push_Value (Stack, (F_32, F_32 => 0.0));
+         else
+            Push_Value (Stack, (F_32, F_32 => 1.0));
+         end if;
+      elsif Op = "<=" then
+         if A <= B then
+            Push_Value (Stack, (F_32, F_32 => 0.0));
+         else
+            Push_Value (Stack, (F_32, F_32 => 1.0));
+         end if;
+      elsif Op = ">=" then
+         if A >= B then
+            Push_Value (Stack, (F_32, F_32 => 0.0));
+         else
+            Push_Value (Stack, (F_32, F_32 => 1.0));
+         end if;
+      else
+         raise Program_Error with "Unsupported operation";
+      end if;
+   end Compare_And_Push_F32;
+
+   procedure Compare_And_Push_F64
+     (Stack : in out Vector; A, B : IEEE_Float_64; Op : String)
+   is
+   begin
+      if Op = "==" then
+         if A = B then
+            Push_Value (Stack, (F_64, F_64 => 0.0));
+         else
+            Push_Value (Stack, (F_64, F_64 => 1.0));
+         end if;
+      elsif Op = "!=" then
+         if A /= B then
+            Push_Value (Stack, (F_64, F_64 => 0.0));
+         else
+            Push_Value (Stack, (F_64, F_64 => 1.0));
+         end if;
+      elsif Op = "<" then
+         if A < B then
+            Push_Value (Stack, (F_64, F_64 => 0.0));
+         else
+            Push_Value (Stack, (F_64, F_64 => 1.0));
+         end if;
+      elsif Op = ">" then
+         if A > B then
+            Push_Value (Stack, (F_64, F_64 => 0.0));
+         else
+            Push_Value (Stack, (F_64, F_64 => 1.0));
+         end if;
+      elsif Op = "<=" then
+         if A <= B then
+            Push_Value (Stack, (F_64, F_64 => 0.0));
+         else
+            Push_Value (Stack, (F_64, F_64 => 1.0));
+         end if;
+      elsif Op = ">=" then
+         if A >= B then
+            Push_Value (Stack, (F_64, F_64 => 0.0));
+         else
+            Push_Value (Stack, (F_64, F_64 => 1.0));
+         end if;
+      else
+         raise Program_Error with "Unsupported operation";
+      end if;
+   end Compare_And_Push_F64;
+
+   procedure Compare_And_Push_U32
+     (Stack : in out Vector; A, B : Unsigned_32; Op : String)
+   is
+   begin
+      if Op = "==" then
+         if A = B then
+            Push_Value (Stack, (U_32, U_32 => 0));
+         else
+            Push_Value (Stack, (U_32, U_32 => 1));
+         end if;
+      elsif Op = "!=" then
+         if A /= B then
+            Push_Value (Stack, (U_32, U_32 => 0));
+         else
+            Push_Value (Stack, (U_32, U_32 => 1));
+         end if;
+      elsif Op = "<" then
+         if A < B then
+            Push_Value (Stack, (U_32, U_32 => 0));
+         else
+            Push_Value (Stack, (U_32, U_32 => 1));
+         end if;
+      elsif Op = ">" then
+         if A > B then
+            Push_Value (Stack, (U_32, U_32 => 0));
+         else
+            Push_Value (Stack, (U_32, U_32 => 1));
+         end if;
+      elsif Op = "<=" then
+         if A <= B then
+            Push_Value (Stack, (U_32, U_32 => 0));
+         else
+            Push_Value (Stack, (U_32, U_32 => 1));
+         end if;
+      elsif Op = ">=" then
+         if A >= B then
+            Push_Value (Stack, (U_32, U_32 => 0));
+         else
+            Push_Value (Stack, (U_32, U_32 => 1));
+         end if;
+      else
+         raise Program_Error with "Unsupported operation";
+      end if;
+   end Compare_And_Push_U32;
+
+   procedure Compare_And_Push_U64
+     (Stack : in out Vector; A, B : Unsigned_64; Op : String)
+   is
+   begin
+      if Op = "==" then
+         if A = B then
+            Push_Value (Stack, (U_64, U_64 => 0));
+         else
+            Push_Value (Stack, (U_64, U_64 => 1));
+         end if;
+      elsif Op = "!=" then
+         if A /= B then
+            Push_Value (Stack, (U_64, U_64 => 0));
+         else
+            Push_Value (Stack, (U_64, U_64 => 1));
+         end if;
+      elsif Op = "<" then
+         if A < B then
+            Push_Value (Stack, (U_64, U_64 => 0));
+         else
+            Push_Value (Stack, (U_64, U_64 => 1));
+         end if;
+      elsif Op = ">" then
+         if A > B then
+            Push_Value (Stack, (U_64, U_64 => 0));
+         else
+            Push_Value (Stack, (U_64, U_64 => 1));
+         end if;
+      elsif Op = "<=" then
+         if A <= B then
+            Push_Value (Stack, (U_64, U_64 => 0));
+         else
+            Push_Value (Stack, (U_64, U_64 => 1));
+         end if;
+      elsif Op = ">=" then
+         if A >= B then
+            Push_Value (Stack, (U_64, U_64 => 0));
+         else
+            Push_Value (Stack, (U_64, U_64 => 1));
+         end if;
+      else
+         raise Program_Error with "Unsupported operation";
+      end if;
+   end Compare_And_Push_U64;
+
+   procedure Execute_Compare (Stack : in out Vector; Nt : Number; Op : String)
+   is
+      A, B : Element_Variation;
+
+   begin
+      -- pragma assert tp 2 value type
+      A := Last_Element (Stack);
+      Delete_Last (Stack);
+      B := Last_Element (Stack);
+      Delete_Last (Stack);
+      case Nt is
+         when I_32 =>
+            Compare_And_Push_I32
+              (Stack, A.Val.Val.Num_Value.I_32, B.Val.Val.Num_Value.I_32, Op);
+         when I_64 =>
+            Compare_And_Push_I64
+              (Stack, A.Val.Val.Num_Value.I_64, B.Val.Val.Num_Value.I_64, Op);
+         when U_32 =>
+            Compare_And_Push_U32
+              (Stack, A.Val.Val.Num_Value.U_32, B.Val.Val.Num_Value.U_32, Op);
+         when U_64 =>
+            Compare_And_Push_U64
+              (Stack, A.Val.Val.Num_Value.U_64, B.Val.Val.Num_Value.U_64, Op);
+         when F_32 =>
+            Compare_And_Push_F32
+              (Stack, A.Val.Val.Num_Value.F_32, B.Val.Val.Num_Value.F_32, Op);
+         when F_64 =>
+            Compare_And_Push_F64
+              (Stack, A.Val.Val.Num_Value.F_64, B.Val.Val.Num_Value.F_64, Op);
+      end case;
    end Execute_Compare;
 
+   procedure Count_Leading_Zeros (Value : Integer_Type) return Natural is
+      Result : Natural := 0;
+   begin
+      if Value /= 0 then
+         while Value'First <= Result loop
+            exit when Value and 1 /= 0;
+            Value  := Shift_Right (Value, 1);
+            Result := Result + 1;
+         end loop;
+      end if;
+      return Result;
+   end Count_Leading_Zeros;
+
    procedure Execute_Numeric_Instruction
-     (Instr       :        Numeric_Instruction; Stack : in out Vector;
-      Environment : in out Env)
+     (Instr : Numeric_Instruction; Environment : in out Env)
    is
    begin
       case Instr.Op is
          when I32_Const =>
-            Execute_Const (Stack, Instr.I32_Constant);
+            Execute_Const (Environment.Stack, Instr.I32_Constant);
          when I64_Const =>
-            Execute_Const (Stack, Instr.I64_Constant);
+            Execute_Const (Environment.Stack, Instr.I64_Constant);
          when F32_Const =>
-            Execute_Const (Stack, Instr.F32_Constant);
+            Execute_Const (Environment.Stack, Instr.F32_Constant);
          when F64_Const =>
-            Execute_Const (Stack, Instr.F64_Constant);
+            Execute_Const (Environment.Stack, Instr.F64_Constant);
          when I32_Eqz =>
-            Execute_Compare_To_Zero (Stack, Instr.I32_Constant);
+            Execute_Compare_To_Zero (Environment.Stack, Instr.I32_Constant);
          when I32_Eq =>
-            Execute_Compare (Environment);
+            Execute_Compare (Environment.Stack, I_32, "==");
          when I32_Ne =>
-            null;
+            Execute_Compare (Environment.Stack, I_32, "!=");
          when I32_Lt_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_32, "<<");
          when I32_Lt_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_32, "<<");
          when I32_Gt_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_32, ">>");
          when I32_Gt_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_32, ">>");
          when I32_Le_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_32, "<=");
          when I32_Le_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_32, "<=");
          when I32_Ge_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_32, ">=");
          when I32_Ge_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_32, ">=");
          when I64_Eqz =>
-            Execute_Compare_To_Zero (Stack, Instr.I64_Constant);
+            Execute_Compare_To_Zero (Environment.Stack, Instr.I64_Constant);
          when I64_Eq =>
-            null;
+            Execute_Compare (Environment.Stack, I_64, "==");
          when I64_Ne =>
-            null;
+            Execute_Compare (Environment.Stack, I_64, "!=");
          when I64_Lt_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_64, "<<");
          when I64_Lt_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_64, "<<");
          when I64_Gt_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_64, ">>");
          when I64_Gt_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_64, ">>");
          when I64_Le_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_64, "<=");
          when I64_Le_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_64, "<=");
          when I64_Ge_S =>
-            null;
+            Execute_Compare (Environment.Stack, I_64, ">=");
          when I64_Ge_U =>
-            null;
+            Execute_Compare (Environment.Stack, U_64, ">=");
          when F32_Eq =>
-            null;
+            Execute_Compare (Environment.Stack, F_32, "==");
          when F32_Ne =>
-            null;
+            Execute_Compare (Environment.Stack, F_32, "!=");
          when F32_Lt =>
-            null;
+            Execute_Compare (Environment.Stack, F_32, "<<");
          when F32_Gt =>
-            null;
+            Execute_Compare (Environment.Stack, F_32, ">>");
          when F32_Le =>
-            null;
+            Execute_Compare (Environment.Stack, F_32, "<=");
          when F32_Ge =>
-            null;
+            Execute_Compare (Environment.Stack, F_32, ">=");
          when F64_Eq =>
-            null;
+            Execute_Compare (Environment.Stack, F_64, "==");
          when F64_Ne =>
-            null;
+            Execute_Compare (Environment.Stack, F_64, "!=");
          when F64_Lt =>
-            null;
+            Execute_Compare (Environment.Stack, F_64, "<<");
          when F64_Gt =>
-            null;
+            Execute_Compare (Environment.Stack, F_64, ">>");
          when F64_Le =>
-            null;
+            Execute_Compare (Environment.Stack, F_64, "<=");
          when F64_Ge =>
-            null;
+            Execute_Compare (Environment.Stack, F_64, ">=");
          when I32_Clz =>
-            null;
+            Execute_Count (Environment.Stack, I_32);
          when I32_Ctz =>
             null;
          when I32_Popcnt =>
@@ -709,7 +1051,7 @@ package body Interpreter is
    end Execute_Control_Instruction;
 
    procedure Execute_Reference_Instruction
-     (Instr : Reference_Instruction; Stack : Vector)
+     (Instr : Reference_Instruction; Environment : in out Env)
    is
    begin
       null;
@@ -767,15 +1109,13 @@ package body Interpreter is
       case Inst.Op is
          when Numeric =>
             Put_Line ("numeric instruction");
-            Execute_Numeric_Instruction
-              (Inst.Numeric_Inst, Environment.Stack, Environment);
+            Execute_Numeric_Instruction (Inst.Numeric_Inst, Environment);
          when Control =>
             Put_Line ("control instruction");
             return
               Execute_Control_Instruction (Inst.Control_Inst, Environment);
          when Reference =>
-            Execute_Reference_Instruction
-              (Inst.Reference_Inst, Environment.Stack);
+            Execute_Reference_Instruction (Inst.Reference_Inst, Environment);
          when Table =>
             Execute_Table_Instruction (Inst.Table_Inst, Environment.Stack);
          when Parametric =>

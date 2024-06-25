@@ -6,9 +6,9 @@ is
 
    type Block_Type is (Loop_Block, If_Block, Else_Block, Block);
 
-   type Number is (I_32, I_64, F_32, F_64);
-   subtype Integer_Type is Number range I_32 .. I_64;
-   subtype Float_Type is Number range F_32 .. F_64;
+   type Number is (I_32, I_64, F_32, F_64, U_32, U_64);
+
+   type Integer_Type is range I_32 .. I_64;
 
    type Number_Type (Num : Number := I_32) is record
       case Num is
@@ -20,6 +20,10 @@ is
             F_32 : IEEE_Float_32;
          when F_64 =>
             F_64 : IEEE_Float_64;
+         when U_32 =>
+            U_32 : Unsigned_32;
+         when U_64 =>
+            U_64 : Unsigned_64;
       end case;
    end record;
 
