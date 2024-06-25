@@ -104,19 +104,37 @@ package body Interpreter is
       raise Program_Error;
    end Get_Lab_Position;
 
+   function Get_Lab_From_Position
+     (Pos : Natural; Stack : Vector) return Unsigned_32
+   is
+   begin
+      if (Pos >= First_Index (Stack)) and (Pos <= Last_Index (Stack)) then
+         pragma Assert
+           (Stack (Pos).Element.Elt = Label,
+            "Not a Label at Position: " & Pos'Img);
+         return Stack (Pos).Special_Id;
+      else
+         raise Constraint_Error with "Position out of range";
+      end if;
+   end Get_Lab_From_Position;
+
    procedure Jump_If_Block_Exists (To : Unsigned_32; Environment : in out Env)
    is
       Lab_Arity   : Natural;
       Position    : Natural;
+      Lab_Addr    : Unsigned_32;
       Tmp_Storage : Vector;
    begin
-      if Symbols_Table.Contains (Environment.Symbols, To) then
-         Position := Get_Lab_Position (To, Environment.Stack);
+      Position := Get_Lab_Position (To, Environment.Stack);
+      Lab_Addr := Get_Lab_From_Position (Position, Environment.Stack);
+
+      if Symbols_Table.Contains (Environment.Symbols, Lab_Addr) then
          pragma Assert
            (Count_Lables (Environment) >= Position + 1,
             "Stack does not contain enough labels");
 
-         Lab_Arity := Symbols_Table.Element (Environment.Symbols, To).Arity;
+         Lab_Arity :=
+           Symbols_Table.Element (Environment.Symbols, Lab_Addr).Arity;
 
          pragma Assert (Count_Values_Top_Stack (Environment) >= Lab_Arity);
 
@@ -126,9 +144,7 @@ package body Interpreter is
 
          Push_Values (Tmp_Storage, Lab_Arity, Environment);
 
-         Environment.Cf.Instr_Ptr :=
-           Unsigned_32
-             (Symbols_Table.Element (Environment.Symbols, To).Lab_Addr);
+         Environment.Cf.Instr_Ptr := Unsigned_32 (Lab_Addr);
       else
          raise Program_Error with "Label not found in symbol table.";
       end if;
@@ -554,10 +570,15 @@ package body Interpreter is
       return Length;
    end Get_Blocks_Length;
 
-   procedure Remove_Last_Block_Values (Stack : Vector) is
+   procedure Remove_Last_Block_Label (Stack : in out Vector) is
    begin
-      null;
-   end Remove_Last_Block_Values;
+      for I in Stack.First_Index .. Stack.Last_Index loop
+         if Stack (I).Element.Elt = Label then
+            Delete (Stack, I);
+            exit;
+         end if;
+      end loop;
+   end Remove_Last_Block_Label;
 
    procedure Execute_End_Block
      (Instr : Control_Instruction; Environment : in out Env)
@@ -565,11 +586,10 @@ package body Interpreter is
       Block : Block_Frame;
    begin
       if Get_Blocks_Length (Environment.Stack) > 0 then
-         Remove_Last_Block_Values (Environment.Stack);
+         Remove_Last_Block_Label (Environment.Stack);
       else
          raise Program_Error with "No Block has been found";
       end if;
-      --  keep values ???
    end Execute_End_Block;
 
    procedure Execute_If (Instr : Control_Instruction; Environment : in out Env)
