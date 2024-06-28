@@ -1,0 +1,181 @@
+V "GNAT Lib v13"
+A -Og
+A -gnatA
+A -ffunction-sections
+A -fdata-sections
+A -g
+A -gnatwa
+A -gnatw.X
+A -gnatVa
+A -gnaty3
+A -gnatya
+A -gnatyA
+A -gnatyB
+A -gnatyb
+A -gnatyc
+A -gnaty-
+A -gnatyd
+A -gnatye
+A -gnatyf
+A -gnatyh
+A -gnatyi
+A -gnatyI
+A -gnatyk
+A -gnatyl
+A -gnatym
+A -gnatyn
+A -gnatyO
+A -gnatyp
+A -gnatyr
+A -gnatyS
+A -gnatyt
+A -gnatyu
+A -gnatyx
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U numerics%b		numerics.adb		0df6e3fe NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.containers%s	a-contai.ads		a-contai.ali
+W ada.containers.indefinite_hashed_maps%s
+W ada.containers.vectors%s
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W interpreter%s		interpreter.adb		interpreter.ali
+W types%s		types.ads		types.ali
+
+U numerics%s		numerics.ads		7936f584 EE NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.containers%s	a-contai.ads		a-contai.ali
+W ada.containers.indefinite_hashed_maps%s
+W ada.containers.vectors%s
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W instructions%s	instructions.adb	instructions.ali
+W interpreter%s		interpreter.adb		interpreter.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-contai.ads		20230727081304 61e5e089 ada.containers%s
+D a-cgarso.ads		20230727081303 9129bfa8 ada.containers.generic_array_sort%s
+D a-cohata.ads		20230727081304 c4f77997 ada.containers.hash_tables%s
+D a-chtgke.ads		20230727081303 20177f7b ada.containers.hash_tables.generic_keys%s
+D a-chtgop.ads		20230727081303 11c5978a ada.containers.hash_tables.generic_operations%s
+D a-conhel.ads		20230727081304 46fe1ce3 ada.containers.helpers%s
+D a-cihama.ads		20230727081303 42861819 ada.containers.indefinite_hashed_maps%s
+D a-cihama.adb		20230727081303 1212fa7d ada.containers.indefinite_hashed_maps%b
+D a-convec.ads		20230727081304 91fb49f3 ada.containers.vectors%s
+D a-convec.adb		20230727081304 b2ed0168 ada.containers.vectors%b
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20230727081304 c3a8ac65 ada.unchecked_deallocation%s
+D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
+D instructions.ads	20240617154158 3563717d instructions%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D interpreter.ads	20240617154747 f5ba3f83 interpreter%s
+D modules.ads		20240617145829 b14ba3f7 modules%s
+D numerics.ads		20240613133114 6a92ea90 numerics%s
+D numerics.adb		20240618080634 9aa75f40 numerics%b
+D runtime.ads		20240617095205 c4a5ffd3 runtime%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20230727081304 d494a4a6 system.parameters%s
+D s-pooglo.ads		20230727081304 91708d21 system.pool_global%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+D types.ads		20240617082841 db043847 types%s
+D values.ads		20240617094508 b34fcf6b values%s
+G a e
+G c Z s b [execute_unary_inst numerics 12 14 none]
+G c Z b b [resultIP numerics 8 9 none]
+G r s number_type [execute_unary_inst numerics 12 14 none] [number_typeIP types 7 9 none]
+G r s element_variation [execute_unary_inst numerics 12 14 none] [element_variationIP interpreter 10 9 none]
+G r s number_type [resultIP numerics 8 9 none] [number_typeIP types 7 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 27|3r6 4r6 4r49 28|3r6 4r6 4r49
+X 2 a-contai.ads
+16K13*Containers 28e19 27|3r10 4r10 4r53 28|3r10 4r10 4r53
+X 8 a-cihama.ads
+49k24*Indefinite_Hashed_Maps 478e42 27|4w21 28|4w21
+X 10 a-convec.ads
+74k24*Vectors 878e27 27|3w21 28|3w21
+91R9*Vector<13|43R9>
+483U14*Append 28|30s31[25|32] 33s31[25|32] 36s31[25|32] 39s31[25|32]
+X 14 a-iteint.ads
+24h9 Forward_Iterator
+32h9 Reversible_Iterator<24R9[10|119]>
+X 23 instructions.ads
+4K9*Instructions 382e17 27|1w6 1r49
+56E9*Opcode_Numeric 81e69 27|13r54 28|22r54
+57n7*I32_Const{56E9} 28|29r15
+57n18*I64_Const{56E9} 28|32r15
+57n29*F32_Const{56E9} 28|35r15
+57n40*F64_Const{56E9} 28|38r15
+111R9*Numeric_Instruction 124e14 27|13r28 28|22r28
+111e30*Op{56E9} 28|28r18
+114r13*I32_Constant{49|7R9} 28|31r44
+116r13*I64_Constant{49|7R9} 28|34r44
+118r13*F32_Constant{49|7R9} 28|37r44
+120r13*F64_Constant{49|7R9} 28|40r44
+X 25 interpreter.ads
+7K9*Interpreter 107e16 27|2w6 2r49 28|2w6 2r49
+9n21*Value{9E9} 28|31r24 34r24 37r24 40r24
+10R9*Element_Variation 19e14 28|26r21
+10e28*Elt{9E9} 28|31m17 34m17 37m17 40m17
+13r13*Val{49|7R9} 28|31m31 34m31 37m31 40m31
+41R9*Env 45e14 27|14r28 28|23r28
+42r7*Stack{10|91R9[32]} 28|30m25 33m25 36m25 39m25
+X 27 numerics.ads
+5K9*Numerics 16l5 16e13 28|5b14 47l5 47t13
+12U14*Execute_Unary_Inst 13>7 13>49 14=7 28|21b14 45l8 45t26
+13r7 Instr{23|111R9} 28|22b7 28r12 31r38 34r38 37r38 40r38
+13e49 Op{23|56E9} 28|22b49
+14r7 Environment{25|41R9} 28|23b7 30m13 30r13 33m13 33r13 36m13 36r13 39m13
+. 39r13
+X 28 numerics.adb
+7E9 Result_Types 7e73 8r21
+7n26 Result_I32{7E9} 8r37 10r15
+7n38 Result_I64{7E9} 12r15
+7n50 Result_F32{7E9} 14r15
+7n62 Result_F64{7E9} 16r15
+8R9 Result 8d17 19e14 25r21
+8e17*R{7E9} 9r12
+11r13*Result_I32{49|7R9}
+13r13*Result_I64{49|7R9}
+15r13*Result_F32{49|7R9}
+17r13*Result_F64{49|7R9}
+25r7 R{8R9}
+26r7 Tmp_Integer{25|10R9}
+X 49 types.ads
+3K9*Types 28|1w6 1r49 49|74e10
+6n26*I_64{6E9} 28|13r39
+6n32*F_32{6E9} 28|15r39
+6n38*F_64{6E9} 28|17r39
+7R9*Number_Type 28|11r26 13r26 15r26 17r26 49|18e14
+

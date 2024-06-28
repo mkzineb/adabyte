@@ -1,0 +1,4 @@
+cannot generate code for file runtime.ads (package spec)
+runtime.ads:3:09: warning: no entities of "Ada.Containers" are referenced [-gnatwu]
+runtime.ads:4:20: warning: unit "Ada.Containers.Vectors" is not referenced [-gnatwu]
+runtime.ads:5:20: warning: unit "Ada.Containers.Indefinite_Hashed_Maps" is not referenced [-gnatwu]

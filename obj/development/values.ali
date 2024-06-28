@@ -1,0 +1,70 @@
+V "GNAT Lib v13"
+A -Og
+A -gnatA
+A -ffunction-sections
+A -fdata-sections
+A -g
+A -gnatwa
+A -gnatw.X
+A -gnatVa
+A -gnaty3
+A -gnatya
+A -gnatyA
+A -gnatyB
+A -gnatyb
+A -gnatyc
+A -gnaty-
+A -gnatyd
+A -gnatye
+A -gnatyf
+A -gnatyh
+A -gnatyi
+A -gnatyI
+A -gnatyk
+A -gnatyl
+A -gnatym
+A -gnatyn
+A -gnatyO
+A -gnatyp
+A -gnatyr
+A -gnatyS
+A -gnatyt
+A -gnatyu
+A -gnatyx
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U values%s		values.ads		e58096ad NE OO PK
+W ada%s			ada.ads			ada.ali
+W ada.wide_characters%s	a-widcha.ads		a-widcha.ali
+W interfaces%s		interfac.ads		interfac.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D system.ads		20230727081304 426dafb8 system%s
+D values.ads		20240626123542 52cf5252 values%s
+G a e
+G c Z s s [byte_arrayIP values 8 9 none]
+G c Z s s [raw_wasm_valueIP values 11 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 5|1r6 1r31
+X 2 a-widcha.ads
+19K13*Wide_Characters 21e24 5|1w10 1r35
+X 3 interfac.ads
+38K9*Interfaces 232e15 5|2w6 2r31
+69M9*Unsigned_8 5|8r51
+X 5 values.ads
+3K9*Values 15l5 15e11
+6E12*Name{character}
+8A9*Byte_Array(3|69M9)<integer> 9r35
+9P9*Bytes_Array_Acc(8A9) 12r15
+11R9*Raw_Wasm_Value 13e14
+12p7*Bytes{9P9}
+

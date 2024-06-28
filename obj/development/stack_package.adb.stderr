@@ -1,0 +1,3 @@
+stack_package.adb:1:01: error: spec of this package does not allow a body
+stack_package.adb:1:01: error: either remove the body or add pragma Elaborate_Body in the spec
+stack_package.ads:3:22: warning: use clause for package "Interfaces" has no effect [-gnatwu]

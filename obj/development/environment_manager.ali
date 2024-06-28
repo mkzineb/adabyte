@@ -1,0 +1,379 @@
+V "GNAT Lib v13"
+A -Og
+A -gnatA
+A -ffunction-sections
+A -fdata-sections
+A -g
+A -gnatwa
+A -gnatw.X
+A -gnatVa
+A -gnaty3
+A -gnatya
+A -gnatyA
+A -gnatyB
+A -gnatyb
+A -gnatyc
+A -gnaty-
+A -gnatyd
+A -gnatye
+A -gnatyf
+A -gnatyh
+A -gnatyi
+A -gnatyI
+A -gnatyk
+A -gnatyl
+A -gnatym
+A -gnatyn
+A -gnatyO
+A -gnatyp
+A -gnatyr
+A -gnatyS
+A -gnatyt
+A -gnatyu
+A -gnatyx
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_NESTED_FINALIZATION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_ELABORATION_CODE
+
+U environment_manager%b	environment_manager.adb	e146fb44 OO PK
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+Z system%s		system.ads		system.ali
+Z system.exception_table%s  s-exctab.adb	s-exctab.ali
+Z system.img_uns%s	s-imguns.ads		s-imguns.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+Z system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
+
+U environment_manager%s	environment_manager.ads	4271fcb7 EE OO PF PK
+W ada%s			ada.ads			ada.ali
+W ada.containers%s	a-contai.ads		a-contai.ali
+Z ada.containers.hash_tables%s  a-cohata.ads	a-cohata.ali
+Z ada.containers.hash_tables.generic_keys%s
+Z ada.containers.hash_tables.generic_operations%s
+Z ada.containers.helpers%s  a-conhel.adb	a-conhel.ali
+W ada.containers.indefinite_hashed_maps%s
+Z ada.containers.prime_numbers%s  a-coprnu.adb	a-coprnu.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.finalization%s	a-finali.ads		a-finali.ali
+Z ada.iterator_interfaces%s
+Z ada.streams%s		a-stream.adb		a-stream.ali
+W ada.strings%s		a-string.ads		a-string.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+Z ada.unchecked_deallocation%s
+W interfaces%s		interfac.ads		interfac.ali
+Z system%s		system.ads		system.ali
+Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
+Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
+Z system.put_images%s	s-putima.adb		s-putima.ali
+Z system.return_stack%s	s-retsta.ads		s-retsta.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+Z system.storage_elements%s  s-stoele.adb	s-stoele.ali
+Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
+Z system.storage_pools.subpools%s  s-stposu.adb	s-stposu.ali
+Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-assert.ads		20230727081303 ba465f5c ada.assertions%s
+D a-contai.ads		20230727081304 61e5e089 ada.containers%s
+D a-cohata.ads		20230727081304 c4f77997 ada.containers.hash_tables%s
+D a-chtgke.ads		20230727081303 20177f7b ada.containers.hash_tables.generic_keys%s
+D a-chtgke.adb		20230727081303 fdf2dddc ada.containers.hash_tables.generic_keys%b
+D a-chtgop.ads		20230727081303 11c5978a ada.containers.hash_tables.generic_operations%s
+D a-chtgop.adb		20230727081303 c3ccdc4f ada.containers.hash_tables.generic_operations%b
+D a-conhel.ads		20230727081304 46fe1ce3 ada.containers.helpers%s
+D a-conhel.adb		20230727081304 854d323e ada.containers.helpers%b
+D a-cihama.ads		20230727081303 42861819 ada.containers.indefinite_hashed_maps%s
+D a-cihama.adb		20230727081303 1212fa7d ada.containers.indefinite_hashed_maps%b
+D a-coprnu.ads		20230727081304 24215258 ada.containers.prime_numbers%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
+D a-numeri.ads		20230727081304 84bea7a3 ada.numerics%s
+D a-nubinu.ads		20230727081304 93f1f3d1 ada.numerics.big_numbers%s
+D a-nbnbig.ads		20230727081304 711e0174 ada.numerics.big_numbers.big_integers_ghost%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20230727081304 c3a8ac65 ada.unchecked_deallocation%s
+D environment_manager.ads  20240604074300 15007d6c environment_manager%s
+D environment_manager.adb  20240604074230 f4468628 environment_manager%b
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D system.ads		20230727081304 426dafb8 system%s
+D s-assert.ads		20230727081304 9c4520c7 system.assertions%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-atocou.adb		20230727081304 6fe685de system.atomic_counters%b
+D s-atopri.ads		20230727081304 1b132436 system.atomic_primitives%s
+D s-casuti.ads		20230727081304 cf13d755 system.case_util%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-imageu.ads		20230727081304 631c6ed0 system.image_u%s
+D s-imguns.ads		20230727081304 7867236f system.img_uns%s
+D s-memory.ads		20230727081304 5b8432d0 system.memory%s
+D s-parame.ads		20230727081304 d494a4a6 system.parameters%s
+D s-pooglo.ads		20230727081304 91708d21 system.pool_global%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stalib.adb		20230727081304 eb464a47 system.standard_library%b
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stposu.ads		20230727081304 e251976f system.storage_pools.subpools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+D s-valuns.ads		20230727081304 e8a1f424 system.val_uns%s
+D s-valuti.ads		20230727081304 fcd603d8 system.val_util%s
+D s-valueu.ads		20230727081304 18770347 system.value_u%s
+D s-vauspe.ads		20230727081304 a67b2f28 system.value_u_spec%s
+D s-widuns.ads		20230727081304 866a5800 system.wid_uns%s
+D s-widthu.ads		20230727081304 b32f15e2 system.width_u%s
+G a e
+G c Z s s [hash environment_manager 6 13 none]
+G c Z s s [empty environment_manager__symbols_table 73 13 7_4]
+G c Z s s [has_element environment_manager__symbols_table 79 13 7_4]
+G c Z s s [Oeq environment_manager__symbols_table 85 24 7_4]
+G c Z s s [capacity environment_manager__symbols_table 96 13 7_4]
+G c Z s s [reserve_capacity environment_manager__symbols_table 100 14 7_4]
+G c Z s s [length environment_manager__symbols_table 110 13 7_4]
+G c Z s s [is_empty environment_manager__symbols_table 113 13 7_4]
+G c Z s s [clear environment_manager__symbols_table 116 14 7_4]
+G c Z s s [key environment_manager__symbols_table 119 13 7_4]
+G c Z s s [element environment_manager__symbols_table 122 13 7_4]
+G c Z s s [replace_element environment_manager__symbols_table 125 14 7_4]
+G c Z s s [query_element environment_manager__symbols_table 131 14 7_4]
+G c Z s s [update_element environment_manager__symbols_table 138 14 7_4]
+G c Z s s [constant_reference environment_manager__symbols_table 155 13 7_4]
+G c Z s s [reference environment_manager__symbols_table 160 13 7_4]
+G c Z s s [constant_reference environment_manager__symbols_table 165 13 7_4]
+G c Z s s [reference environment_manager__symbols_table 170 13 7_4]
+G c Z s s [assign environment_manager__symbols_table 175 14 7_4]
+G c Z s s [copy environment_manager__symbols_table 177 13 7_4]
+G c Z s s [move environment_manager__symbols_table 179 14 7_4]
+G c Z s s [insert environment_manager__symbols_table 183 14 7_4]
+G c Z s s [insert environment_manager__symbols_table 201 14 7_4]
+G c Z s s [include environment_manager__symbols_table 212 14 7_4]
+G c Z s s [replace environment_manager__symbols_table 223 14 7_4]
+G c Z s s [exclude environment_manager__symbols_table 234 14 7_4]
+G c Z s s [delete environment_manager__symbols_table 243 14 7_4]
+G c Z s s [delete environment_manager__symbols_table 251 14 7_4]
+G c Z s s [first environment_manager__symbols_table 257 13 7_4]
+G c Z s s [next environment_manager__symbols_table 261 13 7_4]
+G c Z s s [next environment_manager__symbols_table 269 14 7_4]
+G c Z s s [find environment_manager__symbols_table 272 13 7_4]
+G c Z s s [contains environment_manager__symbols_table 278 13 7_4]
+G c Z s s [element environment_manager__symbols_table 281 13 7_4]
+G c Z s s [equivalent_keys environment_manager__symbols_table 284 13 7_4]
+G c Z s s [equivalent_keys environment_manager__symbols_table 288 13 7_4]
+G c Z s s [equivalent_keys environment_manager__symbols_table 292 13 7_4]
+G c Z s s [iterate environment_manager__symbols_table 296 14 7_4]
+G c Z s s [iterate environment_manager__symbols_table 301 13 7_4]
+G c Z s s [node_typeIP environment_manager__symbols_table 325 9 7_4]
+G c Z s s [adjust environment_manager__symbols_table__ht_types__implementation 90 28 58_7_331_4_7_4]
+G c Z s s [finalize environment_manager__symbols_table__ht_types__implementation 93 28 58_7_331_4_7_4]
+G c Z s s [zero_counts environment_manager__symbols_table__ht_types__implementation 96 17 58_7_331_4_7_4]
+G c Z s s [busy environment_manager__symbols_table__ht_types__implementation 100 17 58_7_331_4_7_4]
+G c Z s s [unbusy environment_manager__symbols_table__ht_types__implementation 104 17 58_7_331_4_7_4]
+G c Z s s [lock environment_manager__symbols_table__ht_types__implementation 108 17 58_7_331_4_7_4]
+G c Z s s [unlock environment_manager__symbols_table__ht_types__implementation 112 17 58_7_331_4_7_4]
+G c Z s s [tc_check environment_manager__symbols_table__ht_types__implementation 116 17 58_7_331_4_7_4]
+G c Z s s [te_check environment_manager__symbols_table__ht_types__implementation 120 17 58_7_331_4_7_4]
+G c Z s s [is_busy environment_manager__symbols_table__ht_types__implementation 136 16 58_7_331_4_7_4]
+G c Z s s [is_locked environment_manager__symbols_table__ht_types__implementation 140 16 58_7_331_4_7_4]
+G c Z s s [initialize environment_manager__symbols_table__ht_types__implementation 161 28 58_7_331_4_7_4]
+G c Z s s [finalize environment_manager__symbols_table__ht_types__implementation 162 28 58_7_331_4_7_4]
+G c Z s s [initialize environment_manager__symbols_table__ht_types__implementation 167 28 58_7_331_4_7_4]
+G c Z s s [finalize environment_manager__symbols_table__ht_types__implementation 168 28 58_7_331_4_7_4]
+G c Z s s [reference_control_typeDA environment_manager__symbols_table__ht_types__implementation 84 12 58_7_331_4_7_4]
+G c Z s s [reference_control_typeDF environment_manager__symbols_table__ht_types__implementation 84 12 58_7_331_4_7_4]
+G c Z s s [reference_control_typeIP environment_manager__symbols_table__ht_types__implementation 84 12 58_7_331_4_7_4]
+G c Z s s [with_busyDF environment_manager__symbols_table__ht_types__implementation 158 12 58_7_331_4_7_4]
+G c Z s s [with_busyIP environment_manager__symbols_table__ht_types__implementation 158 12 58_7_331_4_7_4]
+G c Z s s [with_lockDF environment_manager__symbols_table__ht_types__implementation 164 12 58_7_331_4_7_4]
+G c Z s s [with_lockIP environment_manager__symbols_table__ht_types__implementation 164 12 58_7_331_4_7_4]
+G c Z s s [buckets_typeIP environment_manager__symbols_table__ht_types 46 12 331_4_7_4]
+G c Z s s [hash_table_typeDA environment_manager__symbols_table__ht_types 52 12 331_4_7_4]
+G c Z s s [hash_table_typeDF environment_manager__symbols_table__ht_types 52 12 331_4_7_4]
+G c Z s s [hash_table_typeIP environment_manager__symbols_table__ht_types 52 12 331_4_7_4]
+G c Z s s [put_image environment_manager__symbols_table 338 14 7_4]
+G c Z s s [adjust environment_manager__symbols_table 341 25 7_4]
+G c Z s s [finalize environment_manager__symbols_table 343 25 7_4]
+G c Z s s [write environment_manager__symbols_table 349 14 7_4]
+G c Z s s [read environment_manager__symbols_table 355 14 7_4]
+G c Z s s [write environment_manager__symbols_table 384 14 7_4]
+G c Z s s [read environment_manager__symbols_table 390 14 7_4]
+G c Z s s [write environment_manager__symbols_table 409 14 7_4]
+G c Z s s [read environment_manager__symbols_table 415 14 7_4]
+G c Z s s [write environment_manager__symbols_table 431 14 7_4]
+G c Z s s [read environment_manager__symbols_table 437 14 7_4]
+G c Z s s [pseudo_reference environment_manager__symbols_table 447 13 7_4]
+G c Z s s [get_element_access environment_manager__symbols_table 454 13 7_4]
+G c Z s s [mapDA environment_manager__symbols_table 334 9 7_4]
+G c Z s s [mapDF environment_manager__symbols_table 334 9 7_4]
+G c Z s s [mapIP environment_manager__symbols_table 334 9 7_4]
+G c Z s s [cursorIP environment_manager__symbols_table 364 9 7_4]
+G c Z s s [finalize environment_manager__symbols_table 470 25 7_4]
+G c Z s s [first environment_manager__symbols_table 472 24 7_4]
+G c Z s s [next environment_manager__symbols_table 474 24 7_4]
+G c Z s s [constant_reference_typeDI environment_manager__symbols_table 399 9 7_4]
+G c Z s s [constant_reference_typeDA environment_manager__symbols_table 399 9 7_4]
+G c Z s s [constant_reference_typeDF environment_manager__symbols_table 399 9 7_4]
+G c Z s s [constant_reference_typeIP environment_manager__symbols_table 399 9 7_4]
+G c Z s s [reference_typeDI environment_manager__symbols_table 421 9 7_4]
+G c Z s s [reference_typeDA environment_manager__symbols_table 421 9 7_4]
+G c Z s s [reference_typeDF environment_manager__symbols_table 421 9 7_4]
+G c Z s s [reference_typeIP environment_manager__symbols_table 421 9 7_4]
+G c Z s s [iteratorDF environment_manager__symbols_table 463 9 7_4]
+G c Z s s [iteratorIP environment_manager__symbols_table 463 9 7_4]
+G c Z s s [free_key environment_manager__symbols_table 51 14 7_4]
+G c Z s s [free_element environment_manager__symbols_table 54 14 7_4]
+G c Z s s [copy_node environment_manager__symbols_table 61 13 7_4]
+G c Z s s [equivalent_key_node environment_manager__symbols_table 64 13 7_4]
+G c Z s s [find_equal_key environment_manager__symbols_table 69 13 7_4]
+G c Z s s [free environment_manager__symbols_table 73 14 7_4]
+G c Z s s [hash_node environment_manager__symbols_table 76 13 7_4]
+G c Z s s [next environment_manager__symbols_table 79 13 7_4]
+G c Z s s [read_node environment_manager__symbols_table 82 13 7_4]
+G c Z s s [set_next environment_manager__symbols_table 85 14 7_4]
+G c Z s s [vet environment_manager__symbols_table 88 13 7_4]
+G c Z s s [write_node environment_manager__symbols_table 90 14 7_4]
+G c Z s s [free_hash_table environment_manager__symbols_table__ht_ops 57 14 98_4_7_4]
+G c Z s s [index environment_manager__symbols_table__ht_ops 61 13 98_4_7_4]
+G c Z s s [index environment_manager__symbols_table__ht_ops 67 13 98_4_7_4]
+G c Z s s [checked_index environment_manager__symbols_table__ht_ops 74 13 98_4_7_4]
+G c Z s s [checked_index environment_manager__symbols_table__ht_ops 81 13 98_4_7_4]
+G c Z s s [adjust environment_manager__symbols_table__ht_ops 86 14 98_4_7_4]
+G c Z s s [finalize environment_manager__symbols_table__ht_ops 92 14 98_4_7_4]
+G c Z s s [clear environment_manager__symbols_table__ht_ops 108 14 98_4_7_4]
+G c Z s s [move environment_manager__symbols_table__ht_ops 114 14 98_4_7_4]
+G c Z s s [capacity environment_manager__symbols_table__ht_ops 120 13 98_4_7_4]
+G c Z s s [reserve_capacity environment_manager__symbols_table__ht_ops 123 14 98_4_7_4]
+G c Z s s [delete_node_at_index environment_manager__symbols_table__ht_ops 132 14 98_4_7_4]
+G c Z s s [delete_node_sans_free environment_manager__symbols_table__ht_ops 141 14 98_4_7_4]
+G c Z s s [first environment_manager__symbols_table__ht_ops 146 13 98_4_7_4]
+G c Z s s [first environment_manager__symbols_table__ht_ops 148 13 98_4_7_4]
+G c Z s s [next environment_manager__symbols_table__ht_ops 155 13 98_4_7_4]
+G c Z s s [next environment_manager__symbols_table__ht_ops 158 13 98_4_7_4]
+G c Z s s [new_buckets environment_manager__symbols_table__ht_ops 205 13 98_4_7_4]
+G c Z s s [free_buckets environment_manager__symbols_table__ht_ops 209 14 98_4_7_4]
+G c Z s s [index environment_manager__symbols_table__key_ops 56 13 106_4_7_4]
+G c Z s s [checked_index environment_manager__symbols_table__key_ops 62 13 106_4_7_4]
+G c Z s s [checked_equivalent_keys environment_manager__symbols_table__key_ops 69 13 106_4_7_4]
+G c Z s s [delete_key_sans_free environment_manager__symbols_table__key_ops 76 14 106_4_7_4]
+G c Z s s [find environment_manager__symbols_table__key_ops 84 13 106_4_7_4]
+G c Z s s [is_equalR environment_manager__symbols_table__is_equalGP4730 118 13 7_4]
+G c Z s s [is_equal environment_manager__symbols_table 118 13 7_4]
+G c Z s s [read_nodesR environment_manager__symbols_table__read_nodesGP27037 1003 14 7_4]
+G c Z s s [read_nodes environment_manager__symbols_table 1003 14 7_4]
+G c Z s s [write_nodesR environment_manager__symbols_table__write_nodesGP36160 1367 14 7_4]
+G c Z s s [write_nodes environment_manager__symbols_table 1367 14 7_4]
+G c Z s b [init_env environment_manager 21 13 none]
+G c Z s b [init_env_with_parent environment_manager 23 13 none]
+G c Z s b [define environment_manager 27 14 none]
+G c Z s b [get environment_manager 30 13 none]
+G c Z s b [assign environment_manager 32 14 none]
+G c Z s b [find_parent_env environment_manager 36 13 none]
+G c Z s b [get_at environment_manager 39 13 none]
+G c Z s b [assign_at environment_manager 43 14 none]
+G c Z s s [environmentDI environment_manager 16 9 none]
+G c Z s s [environmentDA environment_manager 16 9 none]
+G c Z s s [environmentDF environment_manager 16 9 none]
+G c Z s s [environmentIP environment_manager 16 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 27|1r6 1r49 7r33
+X 3 a-contai.ads
+16K13*Containers 28e19 27|1r10 1r53 7r37
+19M9*Hash_Type 27|6r43 6r57
+X 11 a-cihama.ads
+42+9 Key_Type 27|8r7
+43+9 Element_Type 27|8r32
+45V18 Hash{3|19M9} 27|8r61
+46V18 Equivalent_Keys{boolean} 27|9r7
+49k24*Indefinite_Hashed_Maps 478e42 27|1w21 7r48
+56R9*Map<15|43R9> 27|18r34[7] 24r61[7] 28|12r61[27|7]
+212U14*Include 28|23s18[27|7]
+278V13*Contains{boolean} 28|28s21[27|7]
+281V13*Element{29|80M9} 28|29s28[27|7]
+X 16 a-iteint.ads
+24h9 Forward_Iterator
+X 27 environment_manager.ads
+3K9*Environment_Manager 47l5 47e24 28|1b14 83l5 83t24
+6V13*Hash{3|19M9} 6>19 8r69
+6m19 x{29|80M9} 6r68
+7K12*Symbols_Table[11|49] 11r8 18r20 24r47 28|12r47
+13R9*Environment 14r35 16c9 19e14 21r33 21r53 25r14 28r17 30r24 32r28 37r13
+. 40r13 44r15 28|5r33 5r53 13r14 20r17 26r24 36r28 43r13 50r13 58r15
+14P9*Environment_Acc(13R9) 17r20 24r20 37r53 28|12r20 43r53
+16R9*Environment
+17p7*Parent_Env{14P9} 28|7m11 16m15 46r18
+18r7*Values{11|56R9[7]} 28|16m41 23m11 28r14 29r21
+21V13*Init_Env{16R9} 21<23 28|5b13 9l8 9t16
+21r23 Env{16R9} 28|5b23 7m7 8r14
+23V13*Init_Env_With_Parent{16R9} 24>7 24>37 28|11b13 17l8 17t28
+24p7 Parent_Env{14P9} 28|12b7 16r29
+24r37 Sym_Tab{11|56R9[7]} 28|12b37 16r51
+27U14*Define 28<7 28>30 28>48 28|19b14 24l8 24t14
+28r7 Env{16R9} 28|20b7 23m7 23r7
+28m30 Id{29|80M9} 28|20b30 23r27
+28m48 Value{29|80M9} 28|20b48 23r31
+30V13*Get{29|80M9} 30>18 30>37 28|26b13 34l8 34t11
+30r18 Env{16R9} 28|26b18 28r10 29r17
+30m37 Id{29|80M9} 28|26b37 28r31 29r37 31r60
+32U14*Assign 32>22 32>41 32>59 28|36b14 40l8 40t14
+32r22 Env{16R9} 28|36b22
+32m41 Id{29|80M9} 28|36b41
+32i59 Value{29|53I9} 28|36b59
+36V13*Find_Parent_Env{14P9} 37>7 37>26 28|42b13 47l8 47t23
+37r7 Env{16R9} 28|43b7 46r14
+37i26 Distance{integer} 28|43b26
+39V13*Get_At{29|53I9} 40>7 40>26 40>46 28|49b13 55l8 55t14
+40r7 Env{16R9} 28|50b7
+40i26 Distance{integer} 28|50b26
+40m46 Id{29|80M9} 28|50b46
+43U14*Assign_At 44>7 44>28 44>48 45>7 28|57b14 63l8 63t17
+44r7 Env{16R9} 28|58b7
+44i28 Distance{integer} 28|58b28
+44m48 Id{29|80M9} 28|58b48
+45i7 Value{29|53I9} 28|59b7
+X 28 environment_manager.adb
+2X4 RunTime_Error 31r16
+X 29 interfac.ads
+38K9*Interfaces 27|2w6 2r49 29|232e15
+53I9*Integer_32<integer> 27|32r67 41r14 45r15 28|36r67 51r14 59r15
+80M9*Unsigned_32 27|6r23 8r19 8r48 28r35 28r56 30r42 30r62 32r46 40r51 44r53
+. 28|20r35 20r56 26r42 26r62 36r46 50r51 58r53
+X 31 system.ads
+67M9*Address
+X 42 s-memory.ads
+51V13*Alloc{31|67M9} 101i<c,__gnat_malloc>22
+66U14*Free 102i<c,__gnat_free>22
+74V13*Realloc{31|67M9} 103i<c,__gnat_realloc>22
+X 51 s-stalib.adb
+87U14 Break_Start 88i<c,__gnat_break_start>22
+

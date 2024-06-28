@@ -1,0 +1,7 @@
+instances.adb:20:14: warning: procedure "Instatiate_Module" is not referenced [-gnatwu]
+instances.ads:3:09: warning: no entities of "Ada.Containers" are referenced [-gnatwu]
+instances.ads:3:45: warning: use clause for package "Containers" has no effect [-gnatwu]
+instances.ads:4:20: warning: unit "Ada.Containers.Vectors" is not referenced [-gnatwu]
+instances.ads:5:20: warning: unit "Ada.Containers.Indefinite_Hashed_Maps" is not referenced [-gnatwu]
+instances.ads:5:45: warning: use clause for package "Containers" has no effect [-gnatwu]
+instances.ads:5:52: warning: "Containers" is already use-visible through previous use_clause at line 3 [-gnatwr]

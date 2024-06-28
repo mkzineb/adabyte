@@ -1,0 +1,14 @@
+numerics.adb:2:06: warning: redundant with clause in body [-gnatwr]
+numerics.adb:2:45: warning: "Interpreter" is already use-visible through previous use_clause at numerics.ads:2 [-gnatwr]
+numerics.adb:3:06: warning: redundant with clause in body [-gnatwr]
+numerics.adb:3:20: warning: unit "Ada.Containers.Vectors" is not referenced [-gnatwu]
+numerics.adb:4:06: warning: redundant with clause in body [-gnatwr]
+numerics.adb:4:20: warning: unit "Ada.Containers.Indefinite_Hashed_Maps" is not referenced [-gnatwu]
+numerics.adb:4:45: warning: "Containers" is already use-visible through previous use_clause at numerics.ads:4 [-gnatwr]
+numerics.adb:5:01: error: spec of this package does not allow a body
+numerics.adb:5:01: error: either remove the body or add pragma Elaborate_Body in the spec
+numerics.ads:1:45: warning: use clause for package "Instructions" has no effect [-gnatwu]
+numerics.ads:2:45: warning: use clause for package "Interpreter" has no effect [-gnatwu]
+numerics.ads:3:20: warning: unit "Ada.Containers.Vectors" is not referenced [-gnatwu]
+numerics.ads:4:20: warning: unit "Ada.Containers.Indefinite_Hashed_Maps" is not referenced [-gnatwu]
+numerics.ads:4:45: warning: use clause for package "Containers" has no effect [-gnatwu]

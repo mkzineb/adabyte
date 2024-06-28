@@ -1,0 +1,28 @@
+[GENERATED OBJECT FILE]
+b__adabyte.o
+[PROJECT FILES]
+/home/moubarik/Desktop/adabyte/adabyte.gpr
+20240517150451 416ed27d89aa403be1dbc78a6cc9470c
+/home/moubarik/Desktop/adabyte/config/adabyte_config.gpr
+20240517141516 ab04452b2a9b2d0af1d0bf6e9f0567ae
+[BOUND OBJECT FILES]
+/home/moubarik/Desktop/adabyte/obj/development/types.o
+/home/moubarik/Desktop/adabyte/obj/development/values.o
+/home/moubarik/Desktop/adabyte/obj/development/instances.o
+/home/moubarik/Desktop/adabyte/obj/development/instructions.o
+/home/moubarik/Desktop/adabyte/obj/development/wasm.o
+/home/moubarik/Desktop/adabyte/obj/development/stack.o
+/home/moubarik/Desktop/adabyte/obj/development/interpreter.o
+/home/moubarik/Desktop/adabyte/obj/development/adabyte.o
+[GENERATED SOURCE FILES]
+b__adabyte.ads
+b__adabyte.adb
+b__adabyte.ali
+[RESULTING OPTIONS]
+-L/home/moubarik/Desktop/adabyte/obj/development/
+-L/home/moubarik/Desktop/adabyte/obj/development/
+-L/home/moubarik/.local/share/alire/toolchains/gnat_native_13.2.1_788a01f9/lib/gcc/x86_64-pc-linux-gnu/13.2.0/adalib/
+-static
+-static-libgcc
+/home/moubarik/.local/share/alire/toolchains/gnat_native_13.2.1_788a01f9/lib/gcc/x86_64-pc-linux-gnu/13.2.0/adalib/libgnat.a
+-ldl

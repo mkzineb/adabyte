@@ -1,0 +1,10 @@
+name = "adabyte"
+description = "Runtime for WebAssembly"
+version = "0.1.0-dev"
+
+authors = ["moubarik"]
+maintainers = ["moubarik <moubarik@adacore.com>"]
+maintainers-logins = ["mkzineb"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = []

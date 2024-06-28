@@ -1,0 +1,4 @@
+instructions.adb:19:80: (style) this line is too long
+instructions.adb:47:80: (style) this line is too long
+instructions.adb:57:80: (style) this line is too long
+instructions.adb:68:13: warning: function "Get_Block_Type" is not referenced [-gnatwu]

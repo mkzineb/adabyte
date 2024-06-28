@@ -1,0 +1,54 @@
+V "GNAT Lib v13"
+A -Og
+A -gnatA
+A -ffunction-sections
+A -fdata-sections
+A -g
+A -gnatwa
+A -gnatw.X
+A -gnatVa
+A -gnaty3
+A -gnatya
+A -gnatyA
+A -gnatyB
+A -gnatyb
+A -gnatyc
+A -gnaty-
+A -gnatyd
+A -gnatye
+A -gnatyf
+A -gnatyh
+A -gnatyi
+A -gnatyI
+A -gnatyk
+A -gnatyl
+A -gnatym
+A -gnatyn
+A -gnatyO
+A -gnatyp
+A -gnatyr
+A -gnatyS
+A -gnatyt
+A -gnatyu
+A -gnatyx
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U error_handler%b	error_handler.adb	f6f82175 NE OO PK
+
+U error_handler%s	error_handler.ads	34436c3c EE NE OO PK
+
+D error_handler.ads	20240610150150 34436c3c error_handler%s
+D error_handler.adb	20240610150150 c2bb4d49 error_handler%b
+D system.ads		20230727081304 426dafb8 system%s
+G a e
+G c Z s b [handle_trap error_handler 3 13 none]
+X 1 error_handler.ads
+1K9*Error_Handler 4l5 4e18 2|1b14 7l5 7t18
+3V13*Handle_Trap{integer} 2|2b13 5l8 5t19
+

@@ -1,0 +1,17 @@
+[LIBRARY PATH]
+/home/moubarik/Desktop/WASM/adabyte/lib/libAdabyte.a
+[OBJECT FILES]
+/home/moubarik/Desktop/WASM/adabyte/obj/development/adabyte.o
+20240517150223
+/home/moubarik/Desktop/WASM/adabyte/obj/development/adabyte_config.o
+20240517145645
+/home/moubarik/Desktop/WASM/adabyte/obj/development/indices.o
+20240517145825
+/home/moubarik/Desktop/WASM/adabyte/obj/development/instructions.o
+20240517145825
+/home/moubarik/Desktop/WASM/adabyte/obj/development/modules.o
+20240517145825
+/home/moubarik/Desktop/WASM/adabyte/obj/development/types.o
+20240517145922
+/home/moubarik/Desktop/WASM/adabyte/obj/development/values.o
+20240517145825

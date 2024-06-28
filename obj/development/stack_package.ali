@@ -1,0 +1,83 @@
+V "GNAT Lib v13"
+A -Og
+A -gnatA
+A -ffunction-sections
+A -fdata-sections
+A -g
+A -gnatwa
+A -gnatw.X
+A -gnatVa
+A -gnaty3
+A -gnatya
+A -gnatyA
+A -gnatyB
+A -gnatyb
+A -gnatyc
+A -gnaty-
+A -gnatyd
+A -gnatye
+A -gnatyf
+A -gnatyh
+A -gnatyi
+A -gnatyI
+A -gnatyk
+A -gnatyl
+A -gnatym
+A -gnatyn
+A -gnatyO
+A -gnatyp
+A -gnatyr
+A -gnatyS
+A -gnatyt
+A -gnatyu
+A -gnatyx
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U stack_package%b	stack_package.adb	42ee1c23 NE OO PK
+Z ada.exceptions%s	a-except.adb		a-except.ali
+
+U stack_package%s	stack_package.ads	5030fb29 EE NE OO PK
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D stack_package.ads	20240529132010 5030fb29 stack_package%s
+D stack_package.adb	20240528144509 12dee70a stack_package%b
+D system.ads		20230727081304 426dafb8 system%s
+D s-parame.ads		20230727081304 d494a4a6 system.parameters%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+G a e
+G c Z s b [push stack_package 11 14 none]
+G c Z s b [pop stack_package 12 14 none]
+G c Z s b [is_empty stack_package 13 13 none]
+G c Z s b [is_full stack_package 14 13 none]
+G c Z s s [stack_arrayIP stack_package 3 9 none]
+G c Z s s [stackIP stack_package 6 9 none]
+X 4 stack_package.ads
+1K9*Stack_Package 16l5 16e18 5|1b14 32l5 32t18
+2I12*Element{integer} 3r53 11r45 12r48 5|2r45 12r48
+3A9*Stack_Array(2I12)<integer> 4r29
+4P9*Stack_Acc(3A9) 7r18
+6R9*Stack 9e14 11r31 12r30 13r27 14r26 5|2r31 12r30 22r27 27r26
+7p7*Elements{4P9} 5|8r12 17r21
+8i7*Top{integer} 5|7m12 7r34 8r24 17r33 18m12 18r21 24r16 29r16
+11U14*Push 11=20 11>38 5|2b14 10l8 10t12
+11r20 S{6R9} 5|2b20 4r19 7m10 7r32 8m10 8r10 8r22
+11i38 Item{2I12} 5|2b38 8r32
+12U14*Pop 12=19 12<37 5|12b14 20l8 20t11
+12r19 S{6R9} 5|12b19 14r20 17r19 17r31 18m10 18r19
+12i37 Item{2I12} 5|12b37 17m10
+13V13*Is_Empty{boolean} 13>23 5|14s10 22b13 25l8 25t16
+13r23 S{6R9} 5|22b23 24r14
+14V13*Is_Full{boolean} 14>22 5|4s10 27b13 30l8 30t15
+14r22 S{6R9} 5|27b22 29r14
+

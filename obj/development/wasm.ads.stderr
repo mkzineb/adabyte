@@ -1,0 +1,1 @@
+wasm.ads:1:09: warning: unit "Ada.Containers" is not referenced [-gnatwu]

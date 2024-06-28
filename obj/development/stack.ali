@@ -1,0 +1,158 @@
+V "GNAT Lib v13"
+A -Og
+A -gnatA
+A -ffunction-sections
+A -fdata-sections
+A -g
+A -gnatwa
+A -gnatw.X
+A -gnatVa
+A -gnaty3
+A -gnatya
+A -gnatyA
+A -gnatyB
+A -gnatyb
+A -gnatyc
+A -gnaty-
+A -gnatyd
+A -gnatye
+A -gnatyf
+A -gnatyh
+A -gnatyi
+A -gnatyI
+A -gnatyk
+A -gnatyl
+A -gnatym
+A -gnatyn
+A -gnatyO
+A -gnatyp
+A -gnatyr
+A -gnatyS
+A -gnatyt
+A -gnatyu
+A -gnatyx
+A -gnatW8
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV NO_IMPLICIT_LOOPS
+
+U stack%b		stack.adb		f3c278ac NE OO PK
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+
+U stack%s		stack.ads		20b82dae EE NE OO PK
+Z ada.exceptions%s	a-except.adb		a-except.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W instances%s		instances.adb		instances.ali
+W interfaces%s		interfac.ads		interfac.ali
+Z system%s		system.ads		system.ali
+W types%s		types.ads		types.ali
+W wasm%s		wasm.ads		wasm.ali
+
+D ada.ads		20230727081304 76789da1 ada%s
+D a-contai.ads		20230727081304 61e5e089 ada.containers%s
+D a-cohata.ads		20230727081304 c4f77997 ada.containers.hash_tables%s
+D a-conhel.ads		20230727081304 46fe1ce3 ada.containers.helpers%s
+D a-cihama.ads		20230727081303 42861819 ada.containers.indefinite_hashed_maps%s
+D a-convec.ads		20230727081304 91fb49f3 ada.containers.vectors%s
+D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
+D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
+D a-string.ads		20230727081304 90ac6797 ada.strings%s
+D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
+D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
+D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
+D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
+D instances.ads		20240626151139 4c487857 instances%s
+D instructions.ads	20240626151438 7dd0fe4b instructions%s
+D interfac.ads		20230727081304 15f799c2 interfaces%s
+D stack.ads		20240626130952 e255b8e6 stack%s
+D stack.adb		20240618095414 1197c04a stack%b
+D system.ads		20230727081304 426dafb8 system%s
+D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
+D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
+D s-parame.ads		20230727081304 d494a4a6 system.parameters%s
+D s-pooglo.ads		20230727081304 91708d21 system.pool_global%s
+D s-putima.ads		20230727081304 17291fe4 system.put_images%s
+D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
+D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
+D s-soflin.ads		20230727081304 df77073e system.soft_links%s
+D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
+D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
+D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
+D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
+D types.ads		20240626122327 e0c06572 types%s
+D values.ads		20240626123542 52cf5252 values%s
+D wasm.ads		20240624085442 9b5274dd wasm%s
+G a e
+G c Z s b [get_inst_ptr stack 32 14 none]
+G c Z s b [new_call_frame stack 33 14 none]
+G c Z s s [block_frameIP stack 9 9 none]
+G c Z s s [locals_arrayIP stack 17 9 none]
+G c Z s s [call_frameDI stack 20 9 none]
+G c Z s s [call_frameDA stack 20 9 none]
+G c Z s s [call_frameDF stack 20 9 none]
+G c Z s s [call_frameIP stack 20 9 none]
+G c Z s s [value_stackIP stack 28 9 none]
+G r s value_type [locals_arrayIP stack 17 9 none] [value_typeIP types 33 9 none]
+G r j function_spec [call_frameDA stack 20 9 none] [function_specDA wasm 19 9 none]
+G r k function_spec [call_frameDF stack 20 9 none] [function_specDF wasm 19 9 none]
+G r s function_spec [call_frameIP stack 20 9 none] [function_specIP wasm 19 9 none]
+G r l function_spec [call_frameIP stack 20 9 none] [function_specDI wasm 19 9 none]
+G r k function_spec [call_frameIP stack 20 9 none] [function_specDF wasm 19 9 none]
+G r s value_type [value_stackIP stack 28 9 none] [value_typeIP types 33 9 none]
+X 9 a-iteint.ads
+24h9 Forward_Iterator
+32h9 Reversible_Iterator<24R9[6|119]>
+X 17 instances.ads
+7K9*Instances 138e14 20|3w6 3r22
+15I9*Address<short_short_integer>
+26I12*Local_Addr{15I9} 20|17r32
+28I12*Module_Instance_Addr{15I9} 20|24r21
+X 19 interfac.ads
+38K9*Interfaces 232e15 20|1w6 1r22
+69M9*Unsigned_8 20|12r26 13r26
+80M9*Unsigned_32 20|10r26 11r26 21r21 22r21
+X 20 stack.ads
+6K9*Stack 35l5 35e10 21|1b14 12l5 12t10
+9R9*Block_Frame 15e14
+10m7*Instr_ptr{19|80M9}
+11m7*End_Instr_Offset{19|80M9}
+12m7*Results{19|69M9}
+13m7*Params{19|69M9}
+14e7*B_Type{41|7E9}
+17A9*Locals_Array(41|33R9)<17|15I9> 18r33
+18P9*Locals_Vector(17A9) 25r21
+20R9*Call_Frame 26e14
+21m7*Instr_Ptr{19|80M9}
+22m7*Block_Ptr{19|80M9}
+23r7*Func_Inst{43|19R9}
+24i7*Module_Addr{17|28I12}
+25p7*Locals{18P9}
+28R9*Value_Stack 30e14
+29r7*Val{41|33R9}
+32U14*Get_Inst_Ptr 21|3b14 6l8 6t20
+33U14*New_Call_Frame 21|8b14 11l8 11t22
+X 41 types.ads
+3K9*Types 20|2w6 2r22 5w6 5r22 41|78e10
+7E9*Block_Type 20|14r26 41|7e64
+33R9*Value_Type 20|17r56 29r13 41|42e14
+X 43 wasm.ads
+5K9*Wasm 20|4w6 4r22 43|51e9
+19R9*Function_Spec 20|23r21 43|23e14
+

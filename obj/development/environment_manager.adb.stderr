@@ -1,0 +1,4 @@
+environment_manager.adb:43:26: warning: formal parameter "Distance" is not referenced [-gnatwf]
+environment_manager.adb:50:07: warning: formal parameter "Env" is not referenced [-gnatwf]
+environment_manager.adb:50:26: warning: formal parameter "Distance" is not referenced [-gnatwf]
+environment_manager.adb:50:46: warning: formal parameter "Id" is not referenced [-gnatwf]
