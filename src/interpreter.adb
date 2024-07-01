@@ -97,16 +97,39 @@ package body Interpreter is
       end if;
    end Get_Lab_From_Position;
 
+   function Get_Block_Type (Pos : Natural; Stack : Vector) return Block_Type is
+   begin
+      if (Pos >= First_Index (Stack)) and (Pos <= Last_Index (Stack)) then
+         pragma Assert
+           (Stack (Pos).Element.Elt = Label,
+            "Not a Label at Position: " & Pos'Img);
+         return Stack (Pos).Block.B_Type;
+      else
+         raise Constraint_Error with "Position out of range";
+      end if;
+   end Get_Block_Type;
+
+   procedure Pop_Values_Before_Label
+     (Position : Natural; Stack : in out Vector)
+   is
+   begin
+      Delete_Last
+        (Stack, Ada.Containers.Count_Type (Stack.Last_Index - Position));
+   end Pop_Values_Before_Label;
+
    procedure Jump_If_Block_Exists (To : Unsigned_32; Environment : in out Env)
    is
       Lab_Arity   : Natural;
       Position    : Natural;
       Lab_Id      : Unsigned_32;
       Tmp_Storage : Vector;
+      Block_Ty    : Block_Type;
    begin
+
       Position := Get_Lab_Position (To, Environment.Stack);
       Lab_Id   := Get_Lab_From_Position (Position, Environment.Stack);
-
+      Block_Ty := Get_Block_Type (Position, Environment.Stack);
+      Put_Line (Block_Ty'Img);
       if Symbols_Table.Contains (Environment.Symbols, Lab_Id) then
          pragma Assert
            (Count_Labels (Environment) >= Position + 1,
@@ -119,7 +142,12 @@ package body Interpreter is
 
          Tmp_Storage := Pop_Values (Lab_Arity, Environment);
 
-         Pop_Label_Or_Values (Position, Environment.Stack);
+         case Block_Ty is
+            when Loop_Block =>
+               Pop_Values_Before_Label (Position, Environment.Stack);
+            when Block | If_Block | Else_Block =>
+               Pop_Label_Or_Values (Position, Environment.Stack);
+         end case;
 
          Push_Values (Tmp_Storage, Lab_Arity, Environment);
 
@@ -127,10 +155,10 @@ package body Interpreter is
            Unsigned_32
              (Symbols_Table.Element (Environment.Symbols, Lab_Id).Lab_Addr) +
            1;
-
       else
          raise Program_Error with "Label not found in symbol table.";
       end if;
+
    end Jump_If_Block_Exists;
 
    function Execute_Branching
@@ -138,7 +166,7 @@ package body Interpreter is
    is
    begin
       Jump_If_Block_Exists (To, Environment);
-      --  Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
+      Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
       return Continue;
    end Execute_Branching;
 
@@ -520,7 +548,7 @@ package body Interpreter is
       A, B : Element_Variation;
 
    begin
-      -- pragma assert tp 2 value type
+      --  pragma assert tp 2 value type
       A := Last_Element (Stack);
       Delete_Last (Stack);
       B := Last_Element (Stack);
@@ -1279,6 +1307,7 @@ package body Interpreter is
    begin
       loop
          Control := Execute_Next_Instr (Environment);
+         Put_Line ("sizeeee : " & Environment.Stack.Length'Img);
          case Control is
             when Break =>
                return INTERPRET_OK;
