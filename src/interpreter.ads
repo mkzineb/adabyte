@@ -59,4 +59,20 @@ package Interpreter is
 
    function Execute_Next_Instr (Environment : in out Env) return Control_Flow;
 
+   --  type Unary_Op is (clz, ctz, popcnt);
+   --  type Binary_Op is
+   --    (add, sub, mul, div, rem_s, and_op, or_op, xor_op, shl, shr_s, rotl,
+   --     rotr);
+   --  type Comparison is
+   --    (Equal, Not_Equal, Less, Greater, Less_Equal, Greater_Equal);
+   --  generic
+   --     type T is private;
+   --     with function "=" (Left, Right : T) return Boolean;
+   --     with function "<" (Left, Right : T) return Boolean;
+   --     with function ">" (Left, Right : T) return Boolean;
+   --     with function "<=" (Left, Right : T) return Boolean;
+   --     with function ">=" (Left, Right : T) return Boolean;
+   --  procedure Compare_And_Push
+   --    (Stack : in out Vector; A, B : T; Op : Comparison);
+
 end Interpreter;

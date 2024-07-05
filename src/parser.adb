@@ -35,12 +35,12 @@ package body Parser is
    end Read_Version;
 
    function Read_Wasm_File
-     (File_Path : String; Data : out Bytes_Array_Acc) return Raw_Wasm_Value
+     (File_Path : String; Module : in out Module_Instance)
+      return Module_Instance
    is
       Fd           : File_Descriptor;
       Magic_Number : Boolean;
       Version      : Boolean;
-      wasm         : Raw_Wasm_Value;
    begin
       Fd           := Open_Read (File_Path, Binary);
       Magic_Number := Read_Magic_Number (Fd);
@@ -52,7 +52,7 @@ package body Parser is
         (Version = True,
          "Magic Number did not match, The file does not conform to WebAssembly (Wasm) standards. ");
 
-      return wasm;
+      return Module;
    end Read_Wasm_File;
 
 end Parser;

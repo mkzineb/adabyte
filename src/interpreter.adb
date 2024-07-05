@@ -1,6 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
-
+with Wasm;        use Wasm;
 package body Interpreter is
 
    procedure Free is new Ada.Unchecked_Deallocation
@@ -26,6 +26,9 @@ package body Interpreter is
       Tab            : Symbols_Table.Map;
 
    begin
+      Current_Frame  := Last_Element (Stack).Call;
+      Current_Module := Get_Module_Instance (Current_Frame.Module_Addr);
+
       return
         (Stack  => Stack, Store => S, Symbols => Tab, Cf => Current_Frame,
          Module => Current_Module, Temp => i);
@@ -272,6 +275,33 @@ package body Interpreter is
       Delete_Last (Stack);
       return Result;
    end Pop_Value;
+
+   --  procedure Compare_And_Push
+   --    (Stack : in out Vector; A, B : T; Op : Comparison)
+   --  is
+   --     Result : Boolean;
+   --  begin
+   --     case Op is
+   --        when Equal =>
+   --           Result := (A = B);
+   --        when Not_Equal =>
+   --           Result := (A /= B);
+   --        when Less =>
+   --           Result := (A < B);
+   --        when Greater =>
+   --           Result := (A > B);
+   --        when Less_Equal =>
+   --           Result := (A <= B);
+   --        when Greater_Equal =>
+   --           Result := (A >= B);
+   --     end case;
+
+   --     if Result then
+   --        Push_Value (Stack, (T, T => 0));
+   --     else
+   --        Push_Value (Stack, (T, T => 1));
+   --     end if;
+   --  end Compare_And_Push;
 
    procedure Compare_And_Push_I32
      (Stack : in out Vector; A, B : Integer_32; Op : String)
@@ -970,7 +1000,6 @@ package body Interpreter is
       Lab_Ad          : Address    := 0;
       Func            : Function_Type;
    begin
-      Put_Line ("   Entering a block");
       case Args.B is
          when Empty =>
             Params  := 0;
@@ -987,21 +1016,32 @@ package body Interpreter is
         (Instr_ptr => Instr_Ptr, End_Instr_Offset => End_Instr_Offset,
          Results   => Results, Params => Params, B_Type => Ty);
       --  push label in stack
+      Put_Line ("   Entering a block");
       case Instr.Op is
+
          when Block =>
             Environment.Stack.Append
               ((Elt   => Label, Special_Id => Instr.Block_Label,
                 Block => New_Block_Frame));
-            Put_Line ("       Adding block label to the Symbols table");
+            Put_Line
+              ("       Adding block label to the Symbols table & a block frame");
             Environment.Symbols.Insert
               (Instr.Block_Label, (Arity => Arity, Lab_Addr => Lab_Ad));
          when Loop_Inst =>
             Environment.Stack.Append
               ((Elt   => Label, Special_Id => Instr.Loop_Label,
                 Block => New_Block_Frame));
-            Put_Line ("       Adding  loop label to the Symbols table");
+            Put_Line
+              ("       Adding  loop label to the Symbols table & a block frame");
             Environment.Symbols.Insert
               (Instr.Loop_Label, (Arity => Arity, Lab_Addr => Lab_Ad));
+         when If_Inst =>
+            Environment.Stack.Append
+              (
+               (Elt        => Label,
+                Special_Id => 0, --  0 reserved for if block
+                Block      => New_Block_Frame));
+            Put_Line ("adding new block if");
          when others =>
             null;
       end case;
@@ -1012,14 +1052,17 @@ package body Interpreter is
       Length : Natural := 0;
    begin
       for I in Stack.First_Index .. Stack.Last_Index loop
-         Length := Length + 1;
+         if Stack (I).Element.Elt = Label then
+            Length := Length + 1;
+         end if;
       end loop;
       return Length;
    end Get_Blocks_Length;
 
    procedure Remove_Last_Block_Label (Stack : in out Vector) is
    begin
-      for I in Stack.First_Index .. Stack.Last_Index loop
+      --  TODO remove values as well
+      for I in reverse Stack.First_Index .. Stack.Last_Index loop
          if Stack (I).Element.Elt = Label then
             Delete (Stack, I);
             exit;
@@ -1030,13 +1073,29 @@ package body Interpreter is
    procedure Execute_End_Block
      (Instr : Control_Instruction; Environment : in out Env)
    is
-      Block : Block_Frame;
+      Block      : Block_Frame;
+      Last_Index : Natural;
+
    begin
       if Get_Blocks_Length (Environment.Stack) > 0 then
-         Remove_Last_Block_Label (Environment.Stack);
+         Last_Index := Environment.Stack.Last_Index;
+         for I in reverse Environment.Stack.First_Index .. Last_Index loop
+            if Environment.Stack (I).Element.Elt = Label then
+               Block := Environment.Stack (I).Element.Block;
+               exit;
+            end if;
+         end loop;
       else
          raise Program_Error with "No Block has been found";
       end if;
+      if Block.B_Type = Loop_Block then
+         Environment.Cf.Instr_Ptr := Block.Instr_ptr + 1;
+      else
+         Remove_Last_Block_Label (Environment.Stack);
+      end if;
+      Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
+
+      --  remove label from symbols when the block is a loop
    end Execute_End_Block;
 
    procedure Execute_If
@@ -1054,6 +1113,7 @@ package body Interpreter is
       Delete_Last (Environment.Stack);
 
       if Value_To_Evaluate /= 0 then
+         Put_Line ("          if block");
          Execute_Block_Entry
            (Instr, Environment, Environment.Cf.Instr_Ptr, End_Offset, If_Block,
             Args);
@@ -1065,13 +1125,13 @@ package body Interpreter is
          return;
       end if;
       --  save for block context
-      Old                      := Environment.Cf.Instr_Ptr;
-      Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + Else_Offset;
-
+      Old := Environment.Cf.Instr_Ptr;
+      --  todo
       Execute_Block_Entry
         (Instr, Environment, Old + Else_Offset, End_Offset - Else_Offset,
          Else_Block, Args);
-      return;
+      Put_Line ("          else block");
+
    end Execute_If;
 
    function Execute_Branching_If
@@ -1273,8 +1333,10 @@ package body Interpreter is
    is
       Inst : Instruction_Acc;
    begin
+      --  Inst := Get_Instruction (Environment.Cf.Func_Inst);
       Inst := Environment.Temp (Natural (Environment.Cf.Instr_Ptr));
-      Put_Line (Environment.Cf.Instr_Ptr'Img & " instruction");
+      Put_Line ("");
+      Put_Line (" instruction n " & Environment.Cf.Instr_Ptr'Img);
       case Inst.Op is
          when Numeric =>
             Put_Line ("numeric instruction");
@@ -1302,12 +1364,21 @@ package body Interpreter is
       return Continue;
    end Execute_Next_Instr;
 
+   function Get_Instruction (Environment : Env) return Chunk is
+   begin
+      if Environment.Cf.Instr_Ptr > Environment.Cf.Func_Inst then
+         raise Constraint_Error with "Instruction pointer out of bounds";
+      else
+         return
+           Environment.Cf.Func_Inst.Instructions (Environment.Cf.Instr_Ptr);
+      end if;
+   end Get_Instruction;
+
    function Run (Environment : in out Env) return Interpret_Result is
       Control : Control_Flow;
    begin
       loop
          Control := Execute_Next_Instr (Environment);
-         Put_Line ("sizeeee : " & Environment.Stack.Length'Img);
          case Control is
             when Break =>
                return INTERPRET_OK;

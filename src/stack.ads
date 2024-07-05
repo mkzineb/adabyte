@@ -1,8 +1,9 @@
-with Interfaces; use Interfaces;
-with Types;      use Types;
-with Instances;  use Instances;
-with Wasm;       use Wasm;
-with Types;      use Types;
+with Interfaces;   use Interfaces;
+with Types;        use Types;
+with Instances;    use Instances;
+with Wasm;         use Wasm;
+with Types;        use Types;
+with Instructions; use Instructions;
 package Stack is
 
    --  labels / control instr
@@ -29,7 +30,8 @@ package Stack is
       Val : Value_Type;
    end record;
 
-   procedure Get_Inst_Ptr;
-   procedure New_Call_Frame;
+   function New_Call_Frame
+     (Func_Inst : Function_Spec; Owner : Module_Instance_Addr;
+      Params    : Value_Type; Block_Ptr : Unsigned_32) return Call_Frame;
 
 end Stack;

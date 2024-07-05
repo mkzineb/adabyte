@@ -1,6 +1,7 @@
 with Types;      use Types;
 with Interfaces; use Interfaces;
 with Instances;  use Instances;
+
 package Instructions with
   SPARK_Mode => On
 is
@@ -78,7 +79,9 @@ is
    type Opcode_Variable is
      (Local_Get, Local_Set, Local_Tee, Global_Get, Global_Set);
 
-   type Opcode_Table is (Get, Set, Init, Drop, Copy, Grow, Size, Fill);
+   type Opcode_Table is
+     (Table_Get, Table_Set, Table_Init, Table_Drop, Table_Copy, Table_Grow,
+      Table_Size, Table_Fill);
 
    type Opcode_Memory is
      (I32_Load, I64_Load, F32_Load, F64_Load, I32_Load_8_S, I32_Load_8_U,
@@ -157,24 +160,24 @@ is
       end case;
    end record;
 
-   type Table_Instruction (Op : Opcode_Table := Get) is record
+   type Table_Instruction (Op : Opcode_Table := Table_Get) is record
       case Op is
-         when Get =>
+         when Table_Get =>
             Table_Get : Table_Addr;
-         when Set =>
+         when Table_Set =>
             Table_Set : Table_Addr;
-         when Size =>
+         when Table_Size =>
             Table_Size : Table_Addr;
-         when Fill =>
+         when Table_Fill =>
             Table_Fill : Table_Addr;
-         when Init =>
+         when Table_Init =>
             Elem_Init  : Table_Addr;
             Table_Init : Table_Addr;
-         when Drop =>
+         when Table_Drop =>
             Elem_Drop : Table_Addr;
-         when Grow =>
+         when Table_Grow =>
             Table_Grow : Table_Addr;
-         when Copy =>
+         when Table_Copy =>
             From : Table_Addr;
             To   : Table_Addr;
       end case;
@@ -194,9 +197,6 @@ is
             Glb_Set_Addr : Global_Addr;
       end case;
    end record;
-
-   type Val_Type_Vector is array (Natural range <>) of Value_Type;
-   type Val_Type_Array_Acc is access Val_Type_Vector;
 
    type Parametric_Instruction (Op : Opcode_Parametric := Drop) is record
       case Op is
@@ -338,6 +338,6 @@ is
 
    subtype Constant_Expression is Instruction (Numeric);  --  todo
 
-   function Reduce_Instruction return Instruction;
+   function Get_Block_Type return Block_Type;
 
 end Instructions;

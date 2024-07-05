@@ -40,4 +40,13 @@ package body Instances is
       return (Params => Params, Results => Results);
    end Func_Ty;
 
+   function Get_Module_Instance
+     (Addr : Module_Instance_Addr) return Module_Instance
+   is
+      m : Module_Instance;
+   begin
+      return m;
+
+   end Get_Module_Instance;
+
 end Instances;
