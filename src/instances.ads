@@ -9,9 +9,6 @@ with Interfaces;                            use Interfaces;
 package Instances is
    pragma Elaborate_Body;
 
-   type Val_Type_Vector is array (Natural range <>) of Value_Type;
-   type Val_Type_Array_Acc is access Val_Type_Vector;
-
    --  WebAssembly Address
 
    type Address is range 0 .. 100;
@@ -27,6 +24,9 @@ package Instances is
    subtype Local_Addr is Address;
    subtype Label_Addr is Address;
    subtype Module_Instance_Addr is Address;
+
+   type Val_Type_Vector is array (Local_Addr range <>) of Value_Type;
+   type Locals_Vector is access Val_Type_Vector;
 
    type Vector_Of_Bytes is array (Natural range <>) of Unsigned_8;
    type Vector_Of_Bytes_Acc is access Vector_Of_Bytes;

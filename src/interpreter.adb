@@ -1,6 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
-with Wasm;        use Wasm;
+with Ada.Containers;
 package body Interpreter is
 
    procedure Free is new Ada.Unchecked_Deallocation
@@ -18,20 +18,35 @@ package body Interpreter is
       return Label_Count;
    end Count_Labels;
 
+   procedure Adding_Start_Call_Frame
+     (start : Function_Spec; Stack : in out Vector)
+   is
+      Current_Frame : Call_Frame;
+   begin
+      Current_Frame :=
+        (Instr_Ptr => 0, Block_Ptr => 0, Func_Inst => start, Module_Addr => 0,
+         Locals    => start.Locals);
+      Stack.Append ((Activation_Call, Call => Current_Frame));
+   end Adding_Start_Call_Frame;
+
    function Init_Environment
-     (S : Store_Type; Stack : Vector; i : Instruction_Sequence) return Env
+     (S : Store_Type; Stack : in out Vector; Start_Func : Function_Spec)
+      return Env
    is
       Current_Frame  : Call_Frame;
       Current_Module : Module_Instance;
       Tab            : Symbols_Table.Map;
 
    begin
-      Current_Frame  := Last_Element (Stack).Call;
+      --  Adding the first function to the stack to start
+      Adding_Start_Call_Frame (Start_Func, Stack);
+
       Current_Module := Get_Module_Instance (Current_Frame.Module_Addr);
+      Current_Frame  := Last_Element (Stack).Call;
 
       return
         (Stack  => Stack, Store => S, Symbols => Tab, Cf => Current_Frame,
-         Module => Current_Module, Temp => i);
+         Module => Current_Module);
    end Init_Environment;
 
    function Count_Values_Top_Stack (Environment : Env) return Natural is
@@ -156,8 +171,7 @@ package body Interpreter is
 
          Environment.Cf.Instr_Ptr :=
            Unsigned_32
-             (Symbols_Table.Element (Environment.Symbols, Lab_Id).Lab_Addr) +
-           1;
+             (Symbols_Table.Element (Environment.Symbols, Lab_Id).Lab_Addr);
       else
          raise Program_Error with "Label not found in symbol table.";
       end if;
@@ -342,6 +356,14 @@ package body Interpreter is
             Push_Value (Stack, (I_32, I_32 => 0));
          else
             Push_Value (Stack, (I_32, I_32 => 1));
+         end if;
+      elsif Op = "<<" then
+         if A < B then
+            Push_Value (Stack, (I_32, I_32 => 0));
+            Put_Line ("False");
+         else
+            Push_Value (Stack, (I_32, I_32 => 1));
+            Put_Line ("True");
          end if;
       else
          raise Program_Error with "Unsupported operation";
@@ -578,15 +600,22 @@ package body Interpreter is
       A, B : Element_Variation;
 
    begin
-      --  pragma assert tp 2 value type
+      pragma Assert (Stack.Length > 3);
+
       A := Last_Element (Stack);
       Delete_Last (Stack);
       B := Last_Element (Stack);
       Delete_Last (Stack);
       case Nt is
          when I_32 =>
+            Put_Line (Op);
+            Put_Line
+              (Integer_32'Image (A.Val.Val.Num_Value.I_32) & " element");
+            Put_Line
+              (Integer_32'Image (B.Val.Val.Num_Value.I_32) & " element - 1");
             Compare_And_Push_I32
-              (Stack, A.Val.Val.Num_Value.I_32, B.Val.Val.Num_Value.I_32, Op);
+              (Stack, Integer_32 (A.Val.Val.Num_Value.I_32),
+               Integer_32 (B.Val.Val.Num_Value.I_32), Op);
          when I_64 =>
             Compare_And_Push_I64
               (Stack, A.Val.Val.Num_Value.I_64, B.Val.Val.Num_Value.I_64, Op);
@@ -701,6 +730,18 @@ package body Interpreter is
       end if;
    end Execute_Count;
 
+   procedure Execute_Addition (Stack : in out Vector; Ty : Number) is
+      A, B   : Element_Variation;
+      Result : Integer_32;
+   begin
+      A := Last_Element (Stack);
+      Delete_Last (Stack);
+      B := Last_Element (Stack);
+      Delete_Last (Stack);
+      Result := A.Val.Val.Num_Value.I_32 + B.Val.Val.Num_Value.I_32;
+      Push_Value (Stack, (I_32, I_32 => Result));
+   end Execute_Addition;
+
    procedure Execute_Numeric_Instruction
      (Instr : Numeric_Instruction; Environment : in out Env)
    is
@@ -789,7 +830,7 @@ package body Interpreter is
          when I32_Popcnt =>
             null;
          when I32_Add =>
-            null;
+            Execute_Addition (Environment.Stack, I_32);
          when I32_Sub =>
             null;
          when I32_Mul =>
@@ -1016,24 +1057,24 @@ package body Interpreter is
         (Instr_ptr => Instr_Ptr, End_Instr_Offset => End_Instr_Offset,
          Results   => Results, Params => Params, B_Type => Ty);
       --  push label in stack
+
       Put_Line ("   Entering a block");
       case Instr.Op is
-
          when Block =>
             Environment.Stack.Append
               ((Elt   => Label, Special_Id => Instr.Block_Label,
                 Block => New_Block_Frame));
             Put_Line
               ("       Adding block label to the Symbols table & a block frame");
-            Environment.Symbols.Insert
+            Environment.Symbols.Include
               (Instr.Block_Label, (Arity => Arity, Lab_Addr => Lab_Ad));
          when Loop_Inst =>
             Environment.Stack.Append
               ((Elt   => Label, Special_Id => Instr.Loop_Label,
                 Block => New_Block_Frame));
             Put_Line
-              ("       Adding  loop label to the Symbols table & a block frame");
-            Environment.Symbols.Insert
+              ("       Adding loop label to the Symbols table & a block frame");
+            Environment.Symbols.Include
               (Instr.Loop_Label, (Arity => Arity, Lab_Addr => Lab_Ad));
          when If_Inst =>
             Environment.Stack.Append
@@ -1088,13 +1129,8 @@ package body Interpreter is
       else
          raise Program_Error with "No Block has been found";
       end if;
-      if Block.B_Type = Loop_Block then
-         Environment.Cf.Instr_Ptr := Block.Instr_ptr + 1;
-      else
-         Remove_Last_Block_Label (Environment.Stack);
-      end if;
+      Remove_Last_Block_Label (Environment.Stack);
       Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
-
       --  remove label from symbols when the block is a loop
    end Execute_End_Block;
 
@@ -1268,18 +1304,41 @@ package body Interpreter is
    is
       Local_Var : Value_Type;
    begin
-      if Addr in Environment.Cf.Locals'Range then
-         Local_Var := Environment.Cf.Locals (Addr);
-         Put_Line ("Locale Variable found.");
-         Environment.Stack.Append ((Value, Val => (Val => Local_Var)));
+      if Natural (Addr) in 0 .. Natural (Environment.Cf.Locals.Length) - 1 then
+         Local_Var := Environment.Cf.Locals.Element (Natural (Addr));
+         Put_Line ("Local Variable found.");
+         Append (Environment.Stack, (Value, Val => (Val => Local_Var)));
+         Put_Line
+           (Integer_32'Image (Local_Var.Num_Value.I_32) &
+            "this is the variable to get and push in the stack");
       else
-         Put_Line ("Invalide locale variable adresse.");
+         Ada.Text_IO.Put_Line ("Invalid local variable address.");
       end if;
    end Get_Push_Local_Variable;
 
-   procedure Set_Pop_Local_Variable (Addr : Local_Addr) is
+   procedure Set_Pop_Local_Variable
+     (Addr : Local_Addr; Environment : in out Env)
+   is
    begin
-      null;
+      if Natural (Addr) in 0 .. Natural (Environment.Cf.Locals.Length) - 1 then
+         if Last_Element (Environment.Stack).Elt = Value then
+            Value_Type_Vectors.Replace_Element
+              (Environment.Cf.Locals, Natural (Addr),
+               Last_Element (Environment.Stack).Val.Val);
+            Put_Line
+              ("Local variable successfully replaced. or is it !!!!!!!");
+            Put_Line
+              (Integer_32'Image
+                 (Last_Element (Environment.Stack).Val.Val.Num_Value.I_32) &
+               "this is the addition result");
+            Delete_Last (Environment.Stack);
+            Put_Line ("variable is deleted");
+         end if;
+      else
+         raise Program_Error
+           with "Could not replace local variable with params.";
+      end if;
+
    end Set_Pop_Local_Variable;
 
    procedure Duplicate_Set_Variable (Addr : Local_Addr) is
@@ -1303,9 +1362,11 @@ package body Interpreter is
    begin
       case Instr.Op is
          when Local_Get =>
+            Put_Line ("local get var");
             Get_Push_Local_Variable (Instr.Local_Get_Id, Environment);
          when Local_Set =>
-            Set_Pop_Local_Variable (Instr.Local_Set_Id);
+            Put_Line ("local set var");
+            Set_Pop_Local_Variable (Instr.Local_Set_Id, Environment);
          when Local_Tee =>
             Duplicate_Set_Variable (Instr.Local_Tee_Id);
          when Global_Get =>
@@ -1329,12 +1390,25 @@ package body Interpreter is
       null;
    end Execute_Vector_128_Instruction;
 
+   function Get_Instruction (Environment : Env) return Instruction_Acc is
+   begin
+      if Integer (Environment.Cf.Instr_Ptr) < 0
+        or else Integer (Environment.Cf.Instr_Ptr) >
+          Environment.Cf.Func_Inst.Instructions'Length
+      then
+         raise Constraint_Error with "Instruction pointer out of bounds";
+      else
+         return
+           Environment.Cf.Func_Inst.Instructions
+             (Natural (Environment.Cf.Instr_Ptr));
+      end if;
+   end Get_Instruction;
+
    function Execute_Next_Instr (Environment : in out Env) return Control_Flow
    is
       Inst : Instruction_Acc;
    begin
-      --  Inst := Get_Instruction (Environment.Cf.Func_Inst);
-      Inst := Environment.Temp (Natural (Environment.Cf.Instr_Ptr));
+      Inst := Get_Instruction (Environment);
       Put_Line ("");
       Put_Line (" instruction n " & Environment.Cf.Instr_Ptr'Img);
       case Inst.Op is
@@ -1363,16 +1437,6 @@ package body Interpreter is
       Environment.Cf.Instr_Ptr := Environment.Cf.Instr_Ptr + 1;
       return Continue;
    end Execute_Next_Instr;
-
-   function Get_Instruction (Environment : Env) return Chunk is
-   begin
-      if Environment.Cf.Instr_Ptr > Environment.Cf.Func_Inst then
-         raise Constraint_Error with "Instruction pointer out of bounds";
-      else
-         return
-           Environment.Cf.Func_Inst.Instructions (Environment.Cf.Instr_Ptr);
-      end if;
-   end Get_Instruction;
 
    function Run (Environment : in out Env) return Interpret_Result is
       Control : Control_Flow;

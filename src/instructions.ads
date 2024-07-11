@@ -203,7 +203,7 @@ is
          when Drop =>
             null;
          when Select_Inst =>
-            Array_Val_Type : Val_Type_Array_Acc;
+            Array_Val_Type : Locals_Vector;
       end case;
    end record;
 

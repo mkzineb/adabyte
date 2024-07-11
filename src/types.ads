@@ -45,9 +45,9 @@ is
      (Index_Type => Natural, Element_Type => Value_Type);
    use Value_Type_Vectors;
 
-   subtype Result_Type is Vector;
+   subtype Result_Type is Value_Type_Vectors.Vector;
 
-   subtype Parameter_Type is Vector;
+   subtype Parameter_Type is Value_Type_Vectors.Vector;
 
    type Function_Type is record
       Params  : Parameter_Type;

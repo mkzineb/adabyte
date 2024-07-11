@@ -4,9 +4,9 @@ with Types;        use Types;
 with Interfaces;   use Interfaces;
 with Instances;    use Instances;
 --  Specification for the sections of the module
-
+with Types; use Types;
 package Wasm is
-
+   use Value_Type_Vectors;
    --  WebAssembly Address
 
    type Option_FuncAddr (Is_Null : Boolean := True) is record
@@ -20,7 +20,7 @@ package Wasm is
 
    type Function_Spec is record
       Instructions : Instruction_Sequence;
-      Locals       : Val_Type_Array_Acc;
+      Locals       : Vector;
       Func_Ty      : Function_Type;
    end record;
 

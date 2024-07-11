@@ -1,15 +1,20 @@
 package body Stack is
 
-   function New_Call_Frame
-     (Func_Inst : Function_Spec; Owner : Module_Instance_Addr;
-      Params    : Value_Type; Block_Ptr : Unsigned_32) return Call_Frame
+   function Add_Elements_To_Call_Frame_Locals
+     (Func_Locals : Vector; params : Parameter_Type) return Vector
    is
-      Locals : Locals_Vector;
+      Result : Vector;
    begin
+      Reserve_Capacity (Result, (Func_Locals.Length + params.Length));
 
-      return
-        (Instr_Ptr   => 0, Block_Ptr => Block_Ptr, Func_Inst => Func_Inst,
-         Module_Addr => Owner, Locals => Locals);
-   end New_Call_Frame;
+      for I in 0 .. Natural (Func_Locals.Length) - 1 loop
+         Append (Result, Func_Locals (I));
+      end loop;
 
+      for J in 0 .. Natural (params.Length) - 1 loop
+         Append (Result, params (J));
+      end loop;
+
+      return Result;
+   end Add_Elements_To_Call_Frame_Locals;
 end Stack;

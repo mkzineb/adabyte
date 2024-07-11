@@ -5,6 +5,8 @@ with Ada.Containers.Indefinite_Hashed_Maps; use Ada.Containers;
 with Types;                                 use Types;
 with Stack;                                 use Stack;
 with Instances;                             use Instances;
+with Wasm;                                  use Wasm;
+
 package Interpreter is
 
    type Element is (Value, Label, Activation_Call);
@@ -31,18 +33,16 @@ package Interpreter is
       Equivalent_Keys => "=");
 
    use Symbols_Table;
-
    package Vectors is new Ada.Containers.Vectors
      (Index_Type => Natural, Element_Type => Element_Variation);
    use Vectors;
 
    type Env is record
-      Stack   : Vector;
+      Stack   : Vectors.Vector;
       Store   : Store_Type;
       Symbols : Symbols_Table.Map;
       Cf      : Call_Frame;
       Module  : Module_Instance;
-      Temp    : Instruction_Sequence;  --  temporarly
    end record;
 
    type Interpret_Result is
@@ -53,7 +53,8 @@ package Interpreter is
    function Count_Labels (Environment : Env) return Natural;
 
    function Init_Environment
-     (S : Store_Type; Stack : Vector; i : Instruction_Sequence) return Env;
+     (S : Store_Type; Stack : in out Vector; Start_Func : Function_Spec)
+      return Env;
 
    function Run (Environment : in out Env) return Interpret_Result;
 
