@@ -63,7 +63,7 @@ RV NO_IMPLICIT_ALIASING
 RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 
-U types%s		types.ads		64ccb543 EE OO PF PK
+U types%s		types.ads		8c10043a EE OO PF PK
 W ada%s			ada.ads			ada.ali
 W ada.containers%s	a-contai.ads		a-contai.ali
 Z ada.containers.generic_array_sort%s
@@ -164,7 +164,7 @@ D s-wchstw.ads		20230727081304 2d112c01 system.wch_stw%s
 D s-widllu.ads		20230727081304 a6620b19 system.wid_llu%s
 D s-widuns.ads		20230727081304 866a5800 system.wid_uns%s
 D s-widthu.ads		20230727081304 b32f15e2 system.width_u%s
-D types.ads		20240626122327 e0c06572 types%s
+D types.ads		20240710083804 081cd40b types%s
 G a e
 G c Z s s [number_typeIP types 11 9 none]
 G c Z s s [value_typeIP types 33 9 none]
@@ -315,7 +315,7 @@ X 7 a-convec.ads
 62I9 Index_Type 70|45r7
 63+9 Element_Type 70|45r30
 74k24*Vectors 878e27 70|2w21 44r53
-91R9*Vector<10|43R9> 70|48r27[44] 50r30[44]
+91R9*Vector<10|43R9> 70|48r46[44] 50r49[44]
 X 11 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[7|119]>
@@ -372,7 +372,7 @@ X 70 types.ads
 36r13*Num_Value{11R9}
 38e13*Vec_Value{28E9}
 40e13*Ref_Value{30E9}
-44K12*Value_Type_Vectors[7|74] 46r8
+44K12*Value_Type_Vectors[7|74] 46r8 48r27 50r30
 48R12*Result_Type{7|91R9[44]} 54r17
 50R12*Parameter_Type{7|91R9[44]} 53r17
 52R9*Function_Type 55e14

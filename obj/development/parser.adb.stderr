@@ -1,0 +1,18 @@
+parser.adb:1:09: warning: no entities of "Ada.Text_IO" are referenced [-gnatwu]
+parser.adb:1:19: warning: use clause for package "Text_IO" has no effect [-gnatwu]
+parser.adb:3:06: warning: redundant with clause in body [-gnatwr]
+parser.adb:3:06: warning: no entities of "Values" are referenced [-gnatwu]
+parser.adb:3:19: warning: "Values" is already use-visible through previous use_clause at parser.ads:2 [-gnatwr]
+parser.adb:3:19: warning: use clause for package "Values" has no effect [-gnatwu]
+parser.adb:49:23: warning: comparison with True is redundant [-gnatwr]
+parser.adb:50:80: (style) this line is too long
+parser.adb:52:18: warning: comparison with True is redundant [-gnatwr]
+parser.adb:53:80: (style) this line is too long
+parser.ads:1:06: warning: no entities of "Types" are referenced [-gnatwu]
+parser.ads:1:18: warning: use clause for package "Types" has no effect [-gnatwu]
+parser.ads:2:06: warning: no entities of "Values" are referenced [-gnatwu]
+parser.ads:2:18: warning: use clause for package "Values" has no effect [-gnatwu]
+parser.ads:3:06: warning: no entities of "Wasm" are referenced [-gnatwu]
+parser.ads:3:18: warning: use clause for package "Wasm" has no effect [-gnatwu]
+parser.ads:4:06: warning: no entities of "Interfaces" are referenced in spec [-gnatwu]
+parser.ads:4:06: warning: with clause might be moved to body [-gnatwu]

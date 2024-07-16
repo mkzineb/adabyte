@@ -39,15 +39,14 @@ P SS ZX
 RN
 RV NO_IMPLICIT_CONDITIONALS
 RV NO_STANDARD_STORAGE_POOLS
-RV NO_DEFAULT_INITIALIZATION
 RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
 
-U instructions%b	instructions.adb	a8f80a84 NE OO PK
+U instructions%b	instructions.adb	bc80e83e NE OO PK
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 
-U instructions%s	instructions.ads	c4af7aac EE NE OO PK
+U instructions%s	instructions.ads	59e6f61f EE NE OO PK
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 W instances%s		instances.adb		instances.ali
 W interfaces%s		interfac.ads		interfac.ali
@@ -69,9 +68,9 @@ D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D instances.ads		20240626151139 4c487857 instances%s
-D instructions.ads	20240626151438 7dd0fe4b instructions%s
-D instructions.adb	20240624093324 d528f4cf instructions%b
+D instances.ads		20240709130741 71df3e22 instances%s
+D instructions.ads	20240708082418 35d285f4 instructions%s
+D instructions.adb	20240703093249 89526dca instructions%b
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D system.ads		20230727081304 426dafb8 system%s
 D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
@@ -92,440 +91,433 @@ D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
 D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
 D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
 D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
-D types.ads		20240626122327 e0c06572 types%s
+D types.ads		20240710083804 081cd40b types%s
 D values.ads		20240626123542 52cf5252 values%s
 G a e
-G c Z s b [reduce_instruction instructions 340 13 none]
-G c Z s s [numeric_instructionIP instructions 95 9 none]
-G c Z s s [reference_instructionIP instructions 110 9 none]
-G c Z s s [block_argsIP instructions 21 9 none]
-G c Z s s [control_instructionIP instructions 121 9 none]
-G c Z s s [table_instructionIP instructions 159 9 none]
-G c Z s s [parametric_instructionIP instructions 200 9 none]
-G c Z s s [variable_instructionIP instructions 182 9 none]
-G c Z s s [memory_instructionIP instructions 209 9 none]
-G c Z s s [vector_instructionIP instructions 301 9 none]
-G c Z s s [instructionIP instructions 317 9 none]
-G c Z s s [chunkIP instructions 16 9 none]
-G c Z s s [mem_argIP instructions 32 9 none]
-G c Z s s [val_type_vectorIP instructions 197 9 none]
-G c Z s s [optional_instruction_sequenceIP instructions 308 9 none]
-G c Z b b [get_block_type instructions 68 13 none]
-G r s number_type [reduce_instruction instructions 340 13 none] [number_typeIP types 11 9 none]
-G r s value_type [reduce_instruction instructions 340 13 none] [value_typeIP types 33 9 none]
-G r s number_type [numeric_instructionIP instructions 95 9 none] [number_typeIP types 11 9 none]
-G r s value_type [reference_instructionIP instructions 110 9 none] [value_typeIP types 33 9 none]
-G r s value_type [block_argsIP instructions 21 9 none] [value_typeIP types 33 9 none]
-G r s value_type [control_instructionIP instructions 121 9 none] [value_typeIP types 33 9 none]
-G r s number_type [instructionIP instructions 317 9 none] [number_typeIP types 11 9 none]
-G r s value_type [instructionIP instructions 317 9 none] [value_typeIP types 33 9 none]
-G r s value_type [val_type_vectorIP instructions 197 9 none] [value_typeIP types 33 9 none]
+G c Z s b [get_block_type instructions 341 13 none]
+G c Z s s [numeric_instructionIP instructions 98 9 none]
+G c Z s s [reference_instructionIP instructions 113 9 none]
+G c Z s s [block_argsIP instructions 22 9 none]
+G c Z s s [control_instructionIP instructions 124 9 none]
+G c Z s s [table_instructionIP instructions 163 9 none]
+G c Z s s [parametric_instructionIP instructions 201 9 none]
+G c Z s s [variable_instructionIP instructions 186 9 none]
+G c Z s s [memory_instructionIP instructions 210 9 none]
+G c Z s s [vector_instructionIP instructions 302 9 none]
+G c Z s s [instructionIP instructions 318 9 none]
+G c Z s s [chunkIP instructions 17 9 none]
+G c Z s s [mem_argIP instructions 33 9 none]
+G c Z s s [optional_instruction_sequenceIP instructions 309 9 none]
+G r s number_type [numeric_instructionIP instructions 98 9 none] [number_typeIP types 11 9 none]
+G r s value_type [reference_instructionIP instructions 113 9 none] [value_typeIP types 33 9 none]
+G r s value_type [block_argsIP instructions 22 9 none] [value_typeIP types 33 9 none]
+G r s value_type [control_instructionIP instructions 124 9 none] [value_typeIP types 33 9 none]
+G r s number_type [instructionIP instructions 318 9 none] [number_typeIP types 11 9 none]
+G r s value_type [instructionIP instructions 318 9 none] [value_typeIP types 33 9 none]
 X 9 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
 X 17 instances.ads
-7K9*Instances 138e14 18|3w6 3r22
-15I9*Address<short_short_integer>
-16I12*Func_Addr{15I9} 18|117r29 150r25
-17I12*Table_Addr{15I9} 18|153r31 162r25 164r25 166r26 168r26 170r26 171r26
-. 173r25 175r26 177r20 178r20
-18I12*Mem_Addr{15I9} 18|34r22 213r33 216r33 219r33 222r33 225r37 228r37 231r38
-. 234r38 237r37 240r37 243r38 246r38 249r38 252r38 255r34 258r34 261r34 264r34
-. 267r36 270r37 273r36 276r37 279r37 282r33 285r33 288r33 291r33 294r33 297r33
-19I12*Global_Addr{15I9} 18|191r28 193r28
-25I12*Type_Addr{15I9} 18|152r31
-26I12*Local_Addr{15I9} 18|185r28 187r28 189r28
+9K9*Instances 184e14 18|3w6 3r22
+14I9*Address<short_short_integer>
+15I12*Func_Addr{14I9} 18|120r29 154r25
+16I12*Table_Addr{14I9} 18|157r31 166r25 168r25 170r26 172r26 174r26 175r26
+. 177r25 179r26 181r20 182r20
+17I12*Mem_Addr{14I9} 18|35r22 214r33 217r33 220r33 223r33 226r37 229r37 232r38
+. 235r38 238r37 241r37 244r38 247r38 250r38 253r38 256r34 259r34 262r34 265r34
+. 268r36 271r37 274r36 277r37 280r37 283r33 286r33 289r33 292r33 295r33 298r33
+18I12*Global_Addr{14I9} 18|195r28 197r28
+23I12*Type_Addr{14I9} 18|156r31
+24I12*Local_Addr{14I9} 18|189r28 191r28 193r28
+28A9*Val_Type_Vector(40|33R9)<14I9>
+29P9*Locals_Vector(28A9) 18|206r30
 X 18 instructions.ads
-4K9*Instructions 342l5 342e17 19|1b14 72l5 72t17
-8M12*End_Offset{20|80M9} 126r31 132r30 134r31 137r30
-9M12*Else_Offset{20|80M9} 131r30
-10M12*Br_Table_Default{20|80M9} 145r29
-11M12*Br_Table_Len{20|80M9} 146r29
-13R9*Instruction 14r39 317c9 317d22 336e14 338r35 340r39 19|3r39 4r11
-14P9*Instruction_Acc(13R9) 16r46
-16A9*Chunk(14P9)<integer> 17r40
-17P9*Instruction_Sequence(16A9) 311r28
-19E9*Blocks_Variation 19e54 21r25
-19n30*Empty{19E9} 21r45 23r15
-19n37*TType{19E9} 25r15
-19n44*Func_Type{19E9} 27r15
-21R9*Block_Args 21d21 30e14 125r31 130r30 136r30
-21e21*B{19E9} 22r12
-26r13*Val_Ty{40|33R9}
-28e13*Func_Ty{40|7E9}
-32R9*Mem_Arg 35e14
-33m7*Offset{20|83M9}
-34i7*Arg_Mem_Addr{17|18I12}
-37E9*Sign_Extension 37e45
-37n28*Signed{37E9}
-37n36*Unsigned{37E9}
-39E9*Opcode 41e18 317r27
-40n7*Numeric{39E9} 317r37 319r15 338r48
-40n16*Reference{39E9} 321r15
-40n27*Parametric{39E9} 327r15
-40n39*Variable{39E9} 329r15
-40n49*Table{39E9} 325r15
-40n56*Memory{39E9} 331r15
-40n64*Control{39E9} 323r15
-41n7*Vector_128{39E9} 333r15
-43E9*Opcode_Numeric 68e69 95r35
-44n7*I32_Const{43E9} 95r53 97r15
-44n18*I64_Const{43E9} 99r15
-44n29*F32_Const{43E9} 101r15
-44n40*F64_Const{43E9} 103r15
-44n51*I32_Eqz{43E9}
-44n60*I32_Eq{43E9}
-44n68*I32_Ne{43E9}
-45n7*I32_Lt_S{43E9}
-45n17*I32_Lt_U{43E9}
-45n27*I32_Gt_S{43E9}
-45n37*I32_Gt_U{43E9}
-45n47*I32_Le_S{43E9}
-45n57*I32_Le_U{43E9}
-45n67*I32_Ge_S{43E9}
-46n7*I32_Ge_U{43E9}
-46n17*I64_Eqz{43E9}
-46n26*I64_Eq{43E9}
-46n34*I64_Ne{43E9}
-46n42*I64_Lt_S{43E9}
-46n52*I64_Lt_U{43E9}
-46n62*I64_Gt_S{43E9}
-47n7*I64_Gt_U{43E9}
-47n17*I64_Le_S{43E9}
-47n27*I64_Le_U{43E9}
-47n37*I64_Ge_S{43E9}
-47n47*I64_Ge_U{43E9}
-47n57*F32_Eq{43E9}
-47n65*F32_Ne{43E9}
-47n73*F32_Lt{43E9}
-48n7*F32_Gt{43E9}
-48n15*F32_Le{43E9}
-48n23*F32_Ge{43E9}
-48n31*F64_Eq{43E9}
-48n39*F64_Ne{43E9}
-48n47*F64_Lt{43E9}
-48n55*F64_Gt{43E9}
-48n63*F64_Le{43E9}
-48n71*F64_Ge{43E9}
-49n7*I32_Clz{43E9}
-49n16*I32_Ctz{43E9}
-49n25*I32_Popcnt{43E9}
-49n37*I32_Add{43E9}
-49n46*I32_Sub{43E9}
-49n55*I32_Mul{43E9}
-49n64*I32_Div_S{43E9}
-50n7*I32_Div_U{43E9}
-50n18*I32_Rem_S{43E9}
-50n29*I32_Rem_U{43E9}
-50n40*I64_Clz{43E9}
-50n49*I64_Ctz{43E9}
-50n58*I64_Popcnt{43E9}
-50n70*I64_Add{43E9}
-51n7*I64_Sub{43E9}
-51n16*I64_Mul{43E9}
-51n25*I64_Div_S{43E9}
-51n36*I64_Div_U{43E9}
-51n47*I64_Rem_S{43E9}
-51n58*I64_Rem_U{43E9}
-51n69*I32_And{43E9}
-52n7*I32_Or{43E9}
-52n15*I32_Xor{43E9}
-52n24*I32_Shl{43E9}
-52n33*I32_Shr_S{43E9}
-52n44*I32_Shr_U{43E9}
-52n55*I32_Rotl{43E9}
-52n65*I32_Rotr{43E9}
-53n7*I64_And{43E9}
-53n16*I64_Or{43E9}
-53n24*I64_Xor{43E9}
-53n33*I64_Shl{43E9}
-53n42*I64_Shr_S{43E9}
-53n53*I64_Shr_U{43E9}
-53n64*I64_Rotl{43E9}
-54n7*I64_Rotr{43E9}
-54n17*F32_Abs{43E9}
-54n26*F32_Neg{43E9}
-54n35*F32_Ceil{43E9}
-54n45*F32_Floor{43E9}
-54n56*F32_Trunc{43E9}
-54n67*F32_Nearest{43E9}
-55n7*F32_Sqrt{43E9}
-55n17*F32_Add{43E9}
-55n26*F32_Sub{43E9}
-55n35*F32_Mul{43E9}
-55n44*F32_Div{43E9}
-55n53*F32_Min{43E9}
-55n62*F32_Max{43E9}
-56n7*F32_Copysign{43E9}
-56n21*F64_Abs{43E9}
-56n30*F64_Neg{43E9}
-56n39*F64_Ceil{43E9}
-56n49*F64_Floor{43E9}
-56n60*F64_Trunc{43E9}
-57n7*F64_Nearest{43E9}
-57n20*F64_Sqrt{43E9}
-57n30*F64_Add{43E9}
-57n39*F64_Sub{43E9}
-57n48*F64_Mul{43E9}
-57n57*F64_Div{43E9}
-57n66*F64_Min{43E9}
-58n7*F64_Max{43E9}
-58n16*F64_Copysign{43E9}
-58n30*I32_Wrap_I64{43E9}
-58n44*I32_Trunc_F32_S{43E9}
-58n61*I32_Trunc_F32_U{43E9}
-59n7*I32_Trunc_F64_S{43E9}
-59n24*I32_Trunc_F64_U{43E9}
-59n41*I32_Extend_8_S{43E9}
-59n57*I32_Extend_16_S{43E9}
-60n7*I64_Extend_8_S{43E9}
-60n23*I64_Extend_16_S{43E9}
-60n40*I64_Extend_32_S{43E9}
-60n57*I64_Extend_I32_S{43E9}
-61n7*I64_Extend_I32_U{43E9}
-61n25*I64_Trunc_F32_S{43E9}
-61n42*I64_Trunc_F32_U{43E9}
-61n59*I64_Trunc_F64_S{43E9}
-62n7*I64_Trunc_F64_U{43E9}
-62n24*F32_Convert_I32_S{43E9}
-62n43*F32_Convert_I32_U{43E9}
-62n62*F32_Convert_I64_S{43E9}
-63n7*F32_Convert_I64_U{43E9}
-63n26*F32_Demote_F64{43E9}
-63n42*F64_Convert_I32_S{43E9}
-63n61*F64_Convert_I32_U{43E9}
-64n7*F64_Convert_I64_S{43E9}
-64n26*F64_Convert_I64_U{43E9}
-64n45*F64_Promote_F32{43E9}
-65n7*I32_Reinterpret_F32{43E9}
-65n28*I64_Reinterpret_F64{43E9}
-65n49*F32_Reinterpret_I32{43E9}
-66n7*F64_Reinterpret_I64{43E9}
-66n28*I32_Trunc_Sat_F32_S{43E9}
-66n49*I32_Trunc_Sat_F32_U{43E9}
-67n7*I32_Trunc_Sat_F64_S{43E9}
-67n28*I32_Trunc_Sat_F64_U{43E9}
-67n49*I64_Trunc_Sat_F32_S{43E9}
-68n7*I64_Trunc_Sat_F32_U{43E9}
-68n28*I64_Trunc_Sat_F64_S{43E9}
-68n49*I64_Trunc_Sat_F64_U{43E9}
-70E9*Opcode_Reference 70e60 110r37
-70n30*Null_Value{70E9} 110r57 112r15
-70n42*Is_Null{70E9} 114r15
-70n51*Func_Ref{70E9} 116r15
-72E9*Opcode_Control 74e73 121r35
-73n7*Unreachable{72E9} 154r15
-73n20*NOP{72E9} 121r53 142r15
-73n25*Block{72E9} 123r15
-73n32*Loop_Inst{72E9} 135r15
-73n43*If_Inst{72E9} 129r15
-73n52*Else_Inst{72E9} 133r15
-73n63*End_Block{72E9} 127r15
-74n7*Branch{72E9} 140r15
-74n15*Branch_If{72E9} 138r15
-74n26*Branch_Table{72E9} 144r15
-74n40*Return_Inst{72E9} 147r15
-74n53*Call{72E9} 149r15
-74n59*Call_Indirect{72E9} 151r15
-76E9*Opcode_Parametric 76e49 200r38
-76n31*Drop{76E9} 200r59 202r15
-76n37*Select_Inst{76E9} 204r15
-78E9*Opcode_Variable 79e63 182r36
-79n7*Local_Get{78E9} 182r55 184r15
-79n18*Local_Set{78E9} 186r15
-79n29*Local_Tee{78E9} 188r15
-79n40*Global_Get{78E9} 190r15
-79n52*Global_Set{78E9} 192r15
-81E9*Opcode_Table 81e71 159r33
-81n26*Get{81E9} 159r49 161r15
-81n31*Set{81E9} 163r15
-81n36*Init{81E9} 169r15
-81n42*Drop{81E9} 172r15
-81n48*Copy{81E9} 176r15
-81n54*Grow{81E9} 174r15
-81n60*Size{81E9} 165r15
-81n66*Fill{81E9} 167r15
-83E9*Opcode_Memory 91e26 209r34
-84n7*I32_Load{83E9} 209r51 211r15
-84n17*I64_Load{83E9} 214r15
-84n27*F32_Load{83E9} 217r15
-84n37*F64_Load{83E9} 220r15
-84n47*I32_Load_8_S{83E9} 223r15
-84n61*I32_Load_8_U{83E9} 226r15
-85n7*I32_Load_16_S{83E9} 229r15
-85n22*I32_Load_16_U{83E9} 232r15
-85n37*I64_Load_8_S{83E9} 235r15
-85n51*I64_Load_8_U{83E9} 238r15
-85n65*I64_Load_16_S{83E9} 241r15
-86n7*I64_Load_16_U{83E9} 244r15
-86n22*I64_Load_32_S{83E9} 247r15
-86n37*I64_Load_32_U{83E9} 250r15
-86n52*I32_Store{83E9} 253r15
-86n63*I64_Store{83E9} 256r15
-87n7*F32_Store{83E9} 259r15
-87n18*F64_Store{83E9} 262r15
-87n29*I32_Store_8{83E9} 265r15
-87n42*I32_Store_16{83E9} 268r15
-87n56*I64_Store_8{83E9} 271r15
-88n7*I64_Store_16{83E9} 274r15
-88n21*I64_Store_32{83E9} 277r15
-88n35*Mem_Size{83E9} 280r15
-88n45*Mem_Grow{83E9} 283r15
-90n26*Mem_Init{83E9} 286r15
-90n36*Mem_Drop{83E9} 289r15
-91n7*Mem_Copy{83E9} 292r15
-91n17*Mem_Fill{83E9} 295r15
-93E9*Opcode_Vector 93e54 301r34
-93n27*Extract{93E9} 301r51
-93n36*Splat{93E9}
-93n43*Pmin{93E9}
-93n49*Pmax{93E9}
-95R9*Numeric_Instruction 95d30 108e14 320r28
-95e30*Op{43E9} 96r12
-98r13*I32_Constant{40|11R9}
-100r13*I64_Constant{40|11R9}
-102r13*F32_Constant{40|11R9}
-104r13*F64_Constant{40|11R9}
-110R9*Reference_Instruction 110d32 119e14 322r30
-110e32*Op{70E9} 111r12
-113r13*Ref_Type{40|33R9}
-117i13*Function_Addr{17|16I12}
-121R9*Control_Instruction 121d30 157e14 324r28
-121e30*Op{72E9} 122r12
-124m13*Label{20|80M9}
-125r13*Block_Arguments{21R9}
-126m13*End_Block_Ptr{8M12}
-130r13*If_Block_Args{21R9}
-131m13*Else_If_Offset{9M12}
-132m13*End_If_Offset{8M12}
-134m13*End_Else_Offset{8M12}
-136r13*Loop_Arguments{21R9}
-137m13*End_Loop_Block{8M12}
-139m13*Label_Br_If{20|80M9}
-141m13*Label_Br{20|80M9}
-145m13*Table_Default{10M12}
-146m13*Table_Len{11M12}
-150i13*call_addr{17|16I12}
-152i13*Call_Type_Addr{17|25I12}
-153i13*Call_Table_Addr{17|17I12}
-159R9*Table_Instruction 159d28 180e14 326r26
-159e28*Op{81E9} 160r12
-162i13*Table_Get{17|17I12}
-164i13*Table_Set{17|17I12}
-166i13*Table_Size{17|17I12}
-168i13*Table_Fill{17|17I12}
-170i13*Elem_Init{17|17I12}
-171i13*Table_Init{17|17I12}
-173i13*Elem_Drop{17|17I12}
-175i13*Table_Grow{17|17I12}
-177i13*From{17|17I12}
-178i13*To{17|17I12}
-182R9*Variable_Instruction 182d31 195e14 330r29
-182e31*Op{78E9} 183r12
-185i13*Local_Get_Id{17|26I12}
-187i13*Local_Set_Id{17|26I12}
-189i13*Local_Tee_Id{17|26I12}
-191i13*Glb_Get_Addr{17|19I12}
-193i13*Glb_Set_Addr{17|19I12}
-197A9*Val_Type_Vector(40|33R9)<integer> 198r38
-198P9*Val_Type_Array_Acc(197A9) 205r30
-200R9*Parametric_Instruction 200d33 207e14 328r31
-200e33*Op{76E9} 201r12
-205p13*Array_Val_Type{198P9}
-209R9*Memory_Instruction 209d29 299e14 332r27
-209e29*Op{83E9} 210r12
-212m13*Offset_I32_Load{20|83M9}
-213i13*Mem_Addr_I32_Load{17|18I12}
-215m13*Offset_I64_Load{20|83M9}
-216i13*Mem_Addr_I64_Load{17|18I12}
-218m13*Offset_F32_Load{20|83M9}
-219i13*Mem_Addr_F32_Load{17|18I12}
-221m13*Offset_F64_Load{20|83M9}
-222i13*Mem_Addr_F64_Load{17|18I12}
-224m13*Offset_I32_Load_8_S{20|83M9}
-225i13*Mem_Addr_I32_Load_8_S{17|18I12}
-227m13*Offset_I32_Load_8_U{20|83M9}
-228i13*Mem_Addr_I32_Load_8_U{17|18I12}
-230m13*Offset_I32_Load_16_S{20|83M9}
-231i13*Mem_Addr_I32_Load_16_S{17|18I12}
-233m13*Offset_I32_Load_16_U{20|83M9}
-234i13*Mem_Addr_I32_Load_16_U{17|18I12}
-236m13*Offset_I64_Load_8_S{20|83M9}
-237i13*Mem_Addr_I64_Load_8_S{17|18I12}
-239m13*Offset_I64_Load_8_U{20|83M9}
-240i13*Mem_Addr_I64_Load_8_U{17|18I12}
-242m13*Offset_I64_Load_16_S{20|83M9}
-243i13*Mem_Addr_I64_Load_16_S{17|18I12}
-245m13*Offset_I64_Load_16_U{20|83M9}
-246i13*Mem_Addr_I64_Load_16_U{17|18I12}
-248m13*Offset_I64_Load_32_S{20|83M9}
-249i13*Mem_Addr_I64_Load_32_S{17|18I12}
-251m13*Offset_I64_Load_32_U{20|83M9}
-252i13*Mem_Addr_I64_Load_32_U{17|18I12}
-254m13*Offset_I32_Store{20|83M9}
-255i13*Mem_Addr_I32_Store{17|18I12}
-257m13*Offset_I64_Store{20|83M9}
-258i13*Mem_Addr_I64_Store{17|18I12}
-260m13*Offset_F32_Store{20|83M9}
-261i13*Mem_Addr_F32_Store{17|18I12}
-263m13*Offset_F64_Store{20|83M9}
-264i13*Mem_Addr_F64_Store{17|18I12}
-266m13*Offset_I32_Store_8{20|83M9}
-267i13*Mem_Addr_I32_Store_8{17|18I12}
-269m13*Offset_I32_Store_16{20|83M9}
-270i13*Mem_Addr_I32_Store_16{17|18I12}
-272m13*Offset_I64_Store_8{20|83M9}
-273i13*Mem_Addr_I64_Store_8{17|18I12}
-275m13*Offset_I64_Store_16{20|83M9}
-276i13*Mem_Addr_I64_Store_16{17|18I12}
-278m13*Offset_I64_Store_32{20|83M9}
-279i13*Mem_Addr_I64_Store_32{17|18I12}
-281m13*Offset_Mem_Size{20|83M9}
-282i13*Mem_Addr_Mem_Size{17|18I12}
-284m13*Offset_Mem_Grow{20|83M9}
-285i13*Mem_Addr_Mem_Grow{17|18I12}
-287m13*Offset_Mem_Init{20|83M9}
-288i13*Mem_Addr_Mem_Init{17|18I12}
-290m13*Offset_Mem_Drop{20|83M9}
-291i13*Mem_Addr_Mem_Drop{17|18I12}
-293m13*Offset_Mem_Copy{20|83M9}
-294i13*Mem_Addr_Mem_Copy{17|18I12}
-296m13*Offset_Mem_Fill{20|83M9}
-297i13*Mem_Addr_Mem_Fill{17|18I12}
-301R9*Vector_Instruction 301d29 306e14 334r27
-301e29*Op{93E9} 302r12
-308R9*Optional_Instruction_Sequence 308d40 315e14
-308b40*Has_Target{boolean} 309r12
-311p13*Instr_target{17P9}
-317R9*Instruction
-317e22*Op{39E9} 318r12
-320r13*Numeric_Inst{95R9}
-322r13*Reference_Inst{110R9}
-324r13*Control_Inst{121R9}
-326r13*Table_Inst{159R9}
-328r13*Parametric_Inst{200R9}
-330r13*Variable_Inst{182R9}
-332r13*Memory_Inst{209R9}
-334r13*Vector_Inst{301R9}
-338R12*Constant_Expression{317R9}
-340V13*Reduce_Instruction{317R9} 19|3b13 7l8 7t26
-X 19 instructions.adb
-4r7 N{18|317R9} 6r14
-68V13 Get_Block_Type{40|7E9} 68b13 71l8 71t22
+5K9*Instructions 343l5 343e17 19|1b14 7l5 7t17
+9M12*End_Offset{20|80M9} 129r31 135r30 137r31 141r30
+10M12*Else_Offset{20|80M9} 134r30
+11M12*Br_Table_Default{20|80M9} 149r29
+12M12*Br_Table_Len{20|80M9} 150r29
+14R9*Instruction 15r39 318c9 318d22 337e14 339r35
+15P9*Instruction_Acc(14R9) 17r46
+17A9*Chunk(15P9)<integer> 18r40
+18P9*Instruction_Sequence(17A9) 312r28
+20E9*Blocks_Variation 20e54 22r25
+20n30*Empty{20E9} 22r45 24r15
+20n37*TType{20E9} 26r15
+20n44*Func_Type{20E9} 28r15
+22R9*Block_Args 22d21 31e14 128r31 133r30 140r30
+22e21*B{20E9} 23r12
+27r13*Val_Ty{40|33R9}
+29m13*Func_Ty{20|80M9}
+33R9*Mem_Arg 36e14
+34m7*Offset{20|83M9}
+35i7*Arg_Mem_Addr{17|17I12}
+38E9*Sign_Extension 38e45
+38n28*Signed{38E9}
+38n36*Unsigned{38E9}
+40E9*Opcode 42e18 318r27
+41n7*Numeric{40E9} 318r37 320r15 339r48
+41n16*Reference{40E9} 322r15
+41n27*Parametric{40E9} 328r15
+41n39*Variable{40E9} 330r15
+41n49*Table{40E9} 326r15
+41n56*Memory{40E9} 332r15
+41n64*Control{40E9} 324r15
+42n7*Vector_128{40E9} 334r15
+44E9*Opcode_Numeric 69e69 98r35
+45n7*I32_Const{44E9} 98r53 100r15
+45n18*I64_Const{44E9} 102r15
+45n29*F32_Const{44E9} 104r15
+45n40*F64_Const{44E9} 106r15
+45n51*I32_Eqz{44E9}
+45n60*I32_Eq{44E9}
+45n68*I32_Ne{44E9}
+46n7*I32_Lt_S{44E9}
+46n17*I32_Lt_U{44E9}
+46n27*I32_Gt_S{44E9}
+46n37*I32_Gt_U{44E9}
+46n47*I32_Le_S{44E9}
+46n57*I32_Le_U{44E9}
+46n67*I32_Ge_S{44E9}
+47n7*I32_Ge_U{44E9}
+47n17*I64_Eqz{44E9}
+47n26*I64_Eq{44E9}
+47n34*I64_Ne{44E9}
+47n42*I64_Lt_S{44E9}
+47n52*I64_Lt_U{44E9}
+47n62*I64_Gt_S{44E9}
+48n7*I64_Gt_U{44E9}
+48n17*I64_Le_S{44E9}
+48n27*I64_Le_U{44E9}
+48n37*I64_Ge_S{44E9}
+48n47*I64_Ge_U{44E9}
+48n57*F32_Eq{44E9}
+48n65*F32_Ne{44E9}
+48n73*F32_Lt{44E9}
+49n7*F32_Gt{44E9}
+49n15*F32_Le{44E9}
+49n23*F32_Ge{44E9}
+49n31*F64_Eq{44E9}
+49n39*F64_Ne{44E9}
+49n47*F64_Lt{44E9}
+49n55*F64_Gt{44E9}
+49n63*F64_Le{44E9}
+49n71*F64_Ge{44E9}
+50n7*I32_Clz{44E9}
+50n16*I32_Ctz{44E9}
+50n25*I32_Popcnt{44E9}
+50n37*I32_Add{44E9}
+50n46*I32_Sub{44E9}
+50n55*I32_Mul{44E9}
+50n64*I32_Div_S{44E9}
+51n7*I32_Div_U{44E9}
+51n18*I32_Rem_S{44E9}
+51n29*I32_Rem_U{44E9}
+51n40*I64_Clz{44E9}
+51n49*I64_Ctz{44E9}
+51n58*I64_Popcnt{44E9}
+51n70*I64_Add{44E9}
+52n7*I64_Sub{44E9}
+52n16*I64_Mul{44E9}
+52n25*I64_Div_S{44E9}
+52n36*I64_Div_U{44E9}
+52n47*I64_Rem_S{44E9}
+52n58*I64_Rem_U{44E9}
+52n69*I32_And{44E9}
+53n7*I32_Or{44E9}
+53n15*I32_Xor{44E9}
+53n24*I32_Shl{44E9}
+53n33*I32_Shr_S{44E9}
+53n44*I32_Shr_U{44E9}
+53n55*I32_Rotl{44E9}
+53n65*I32_Rotr{44E9}
+54n7*I64_And{44E9}
+54n16*I64_Or{44E9}
+54n24*I64_Xor{44E9}
+54n33*I64_Shl{44E9}
+54n42*I64_Shr_S{44E9}
+54n53*I64_Shr_U{44E9}
+54n64*I64_Rotl{44E9}
+55n7*I64_Rotr{44E9}
+55n17*F32_Abs{44E9}
+55n26*F32_Neg{44E9}
+55n35*F32_Ceil{44E9}
+55n45*F32_Floor{44E9}
+55n56*F32_Trunc{44E9}
+55n67*F32_Nearest{44E9}
+56n7*F32_Sqrt{44E9}
+56n17*F32_Add{44E9}
+56n26*F32_Sub{44E9}
+56n35*F32_Mul{44E9}
+56n44*F32_Div{44E9}
+56n53*F32_Min{44E9}
+56n62*F32_Max{44E9}
+57n7*F32_Copysign{44E9}
+57n21*F64_Abs{44E9}
+57n30*F64_Neg{44E9}
+57n39*F64_Ceil{44E9}
+57n49*F64_Floor{44E9}
+57n60*F64_Trunc{44E9}
+58n7*F64_Nearest{44E9}
+58n20*F64_Sqrt{44E9}
+58n30*F64_Add{44E9}
+58n39*F64_Sub{44E9}
+58n48*F64_Mul{44E9}
+58n57*F64_Div{44E9}
+58n66*F64_Min{44E9}
+59n7*F64_Max{44E9}
+59n16*F64_Copysign{44E9}
+59n30*I32_Wrap_I64{44E9}
+59n44*I32_Trunc_F32_S{44E9}
+59n61*I32_Trunc_F32_U{44E9}
+60n7*I32_Trunc_F64_S{44E9}
+60n24*I32_Trunc_F64_U{44E9}
+60n41*I32_Extend_8_S{44E9}
+60n57*I32_Extend_16_S{44E9}
+61n7*I64_Extend_8_S{44E9}
+61n23*I64_Extend_16_S{44E9}
+61n40*I64_Extend_32_S{44E9}
+61n57*I64_Extend_I32_S{44E9}
+62n7*I64_Extend_I32_U{44E9}
+62n25*I64_Trunc_F32_S{44E9}
+62n42*I64_Trunc_F32_U{44E9}
+62n59*I64_Trunc_F64_S{44E9}
+63n7*I64_Trunc_F64_U{44E9}
+63n24*F32_Convert_I32_S{44E9}
+63n43*F32_Convert_I32_U{44E9}
+63n62*F32_Convert_I64_S{44E9}
+64n7*F32_Convert_I64_U{44E9}
+64n26*F32_Demote_F64{44E9}
+64n42*F64_Convert_I32_S{44E9}
+64n61*F64_Convert_I32_U{44E9}
+65n7*F64_Convert_I64_S{44E9}
+65n26*F64_Convert_I64_U{44E9}
+65n45*F64_Promote_F32{44E9}
+66n7*I32_Reinterpret_F32{44E9}
+66n28*I64_Reinterpret_F64{44E9}
+66n49*F32_Reinterpret_I32{44E9}
+67n7*F64_Reinterpret_I64{44E9}
+67n28*I32_Trunc_Sat_F32_S{44E9}
+67n49*I32_Trunc_Sat_F32_U{44E9}
+68n7*I32_Trunc_Sat_F64_S{44E9}
+68n28*I32_Trunc_Sat_F64_U{44E9}
+68n49*I64_Trunc_Sat_F32_S{44E9}
+69n7*I64_Trunc_Sat_F32_U{44E9}
+69n28*I64_Trunc_Sat_F64_S{44E9}
+69n49*I64_Trunc_Sat_F64_U{44E9}
+71E9*Opcode_Reference 71e60 113r37
+71n30*Null_Value{71E9} 113r57 115r15
+71n42*Is_Null{71E9} 117r15
+71n51*Func_Ref{71E9} 119r15
+73E9*Opcode_Control 75e73 124r35
+74n7*Unreachable{73E9} 158r15
+74n20*NOP{73E9} 124r53 146r15
+74n25*Block{73E9} 126r15
+74n32*Loop_Inst{73E9} 138r15
+74n43*If_Inst{73E9} 132r15
+74n52*Else_Inst{73E9} 136r15
+74n63*End_Block{73E9} 130r15
+75n7*Branch{73E9} 144r15
+75n15*Branch_If{73E9} 142r15
+75n26*Branch_Table{73E9} 148r15
+75n40*Return_Inst{73E9} 151r15
+75n53*Call{73E9} 153r15
+75n59*Call_Indirect{73E9} 155r15
+77E9*Opcode_Parametric 77e49 201r38
+77n31*Drop{77E9} 201r59 203r15
+77n37*Select_Inst{77E9} 205r15
+79E9*Opcode_Variable 80e63 186r36
+80n7*Local_Get{79E9} 186r55 188r15
+80n18*Local_Set{79E9} 190r15
+80n29*Local_Tee{79E9} 192r15
+80n40*Global_Get{79E9} 194r15
+80n52*Global_Set{79E9} 196r15
+82E9*Opcode_Table 84e30 163r33
+83n7*Table_Get{82E9} 163r49 165r15
+83n18*Table_Set{82E9} 167r15
+83n29*Table_Init{82E9} 173r15
+83n41*Table_Drop{82E9} 176r15
+83n53*Table_Copy{82E9} 180r15
+83n65*Table_Grow{82E9} 178r15
+84n7*Table_Size{82E9} 169r15
+84n19*Table_Fill{82E9} 171r15
+86E9*Opcode_Memory 94e26 210r34
+87n7*I32_Load{86E9} 210r51 212r15
+87n17*I64_Load{86E9} 215r15
+87n27*F32_Load{86E9} 218r15
+87n37*F64_Load{86E9} 221r15
+87n47*I32_Load_8_S{86E9} 224r15
+87n61*I32_Load_8_U{86E9} 227r15
+88n7*I32_Load_16_S{86E9} 230r15
+88n22*I32_Load_16_U{86E9} 233r15
+88n37*I64_Load_8_S{86E9} 236r15
+88n51*I64_Load_8_U{86E9} 239r15
+88n65*I64_Load_16_S{86E9} 242r15
+89n7*I64_Load_16_U{86E9} 245r15
+89n22*I64_Load_32_S{86E9} 248r15
+89n37*I64_Load_32_U{86E9} 251r15
+89n52*I32_Store{86E9} 254r15
+89n63*I64_Store{86E9} 257r15
+90n7*F32_Store{86E9} 260r15
+90n18*F64_Store{86E9} 263r15
+90n29*I32_Store_8{86E9} 266r15
+90n42*I32_Store_16{86E9} 269r15
+90n56*I64_Store_8{86E9} 272r15
+91n7*I64_Store_16{86E9} 275r15
+91n21*I64_Store_32{86E9} 278r15
+91n35*Mem_Size{86E9} 281r15
+91n45*Mem_Grow{86E9} 284r15
+93n26*Mem_Init{86E9} 287r15
+93n36*Mem_Drop{86E9} 290r15
+94n7*Mem_Copy{86E9} 293r15
+94n17*Mem_Fill{86E9} 296r15
+96E9*Opcode_Vector 96e54 302r34
+96n27*Extract{96E9} 302r51
+96n36*Splat{96E9}
+96n43*Pmin{96E9}
+96n49*Pmax{96E9}
+98R9*Numeric_Instruction 98d30 111e14 321r28
+98e30*Op{44E9} 99r12
+101r13*I32_Constant{40|11R9}
+103r13*I64_Constant{40|11R9}
+105r13*F32_Constant{40|11R9}
+107r13*F64_Constant{40|11R9}
+113R9*Reference_Instruction 113d32 122e14 323r30
+113e32*Op{71E9} 114r12
+116r13*Ref_Type{40|33R9}
+120i13*Function_Addr{17|15I12}
+124R9*Control_Instruction 124d30 161e14 325r28
+124e30*Op{73E9} 125r12
+127m13*Block_Label{20|80M9}
+128r13*Block_Arguments{22R9}
+129m13*End_Block_Ptr{9M12}
+133r13*If_Block_Args{22R9}
+134m13*Else_If_Offset{10M12}
+135m13*End_If_Offset{9M12}
+137m13*End_Else_Offset{9M12}
+139m13*Loop_Label{20|80M9}
+140r13*Loop_Arguments{22R9}
+141m13*End_Loop_Block{9M12}
+143m13*Label_Br_If{20|80M9}
+145m13*Label_Br{20|80M9}
+149m13*Table_Default{11M12}
+150m13*Table_Len{12M12}
+154i13*call_addr{17|15I12}
+156i13*Call_Type_Addr{17|23I12}
+157i13*Call_Table_Addr{17|16I12}
+163R9*Table_Instruction 163d28 184e14 327r26
+163e28*Op{82E9} 164r12
+166i13*Table_Get{17|16I12}
+168i13*Table_Set{17|16I12}
+170i13*Table_Size{17|16I12}
+172i13*Table_Fill{17|16I12}
+174i13*Elem_Init{17|16I12}
+175i13*Table_Init{17|16I12}
+177i13*Elem_Drop{17|16I12}
+179i13*Table_Grow{17|16I12}
+181i13*From{17|16I12}
+182i13*To{17|16I12}
+186R9*Variable_Instruction 186d31 199e14 331r29
+186e31*Op{79E9} 187r12
+189i13*Local_Get_Id{17|24I12}
+191i13*Local_Set_Id{17|24I12}
+193i13*Local_Tee_Id{17|24I12}
+195i13*Glb_Get_Addr{17|18I12}
+197i13*Glb_Set_Addr{17|18I12}
+201R9*Parametric_Instruction 201d33 208e14 329r31
+201e33*Op{77E9} 202r12
+206p13*Array_Val_Type{17|29P9}
+210R9*Memory_Instruction 210d29 300e14 333r27
+210e29*Op{86E9} 211r12
+213m13*Offset_I32_Load{20|83M9}
+214i13*Mem_Addr_I32_Load{17|17I12}
+216m13*Offset_I64_Load{20|83M9}
+217i13*Mem_Addr_I64_Load{17|17I12}
+219m13*Offset_F32_Load{20|83M9}
+220i13*Mem_Addr_F32_Load{17|17I12}
+222m13*Offset_F64_Load{20|83M9}
+223i13*Mem_Addr_F64_Load{17|17I12}
+225m13*Offset_I32_Load_8_S{20|83M9}
+226i13*Mem_Addr_I32_Load_8_S{17|17I12}
+228m13*Offset_I32_Load_8_U{20|83M9}
+229i13*Mem_Addr_I32_Load_8_U{17|17I12}
+231m13*Offset_I32_Load_16_S{20|83M9}
+232i13*Mem_Addr_I32_Load_16_S{17|17I12}
+234m13*Offset_I32_Load_16_U{20|83M9}
+235i13*Mem_Addr_I32_Load_16_U{17|17I12}
+237m13*Offset_I64_Load_8_S{20|83M9}
+238i13*Mem_Addr_I64_Load_8_S{17|17I12}
+240m13*Offset_I64_Load_8_U{20|83M9}
+241i13*Mem_Addr_I64_Load_8_U{17|17I12}
+243m13*Offset_I64_Load_16_S{20|83M9}
+244i13*Mem_Addr_I64_Load_16_S{17|17I12}
+246m13*Offset_I64_Load_16_U{20|83M9}
+247i13*Mem_Addr_I64_Load_16_U{17|17I12}
+249m13*Offset_I64_Load_32_S{20|83M9}
+250i13*Mem_Addr_I64_Load_32_S{17|17I12}
+252m13*Offset_I64_Load_32_U{20|83M9}
+253i13*Mem_Addr_I64_Load_32_U{17|17I12}
+255m13*Offset_I32_Store{20|83M9}
+256i13*Mem_Addr_I32_Store{17|17I12}
+258m13*Offset_I64_Store{20|83M9}
+259i13*Mem_Addr_I64_Store{17|17I12}
+261m13*Offset_F32_Store{20|83M9}
+262i13*Mem_Addr_F32_Store{17|17I12}
+264m13*Offset_F64_Store{20|83M9}
+265i13*Mem_Addr_F64_Store{17|17I12}
+267m13*Offset_I32_Store_8{20|83M9}
+268i13*Mem_Addr_I32_Store_8{17|17I12}
+270m13*Offset_I32_Store_16{20|83M9}
+271i13*Mem_Addr_I32_Store_16{17|17I12}
+273m13*Offset_I64_Store_8{20|83M9}
+274i13*Mem_Addr_I64_Store_8{17|17I12}
+276m13*Offset_I64_Store_16{20|83M9}
+277i13*Mem_Addr_I64_Store_16{17|17I12}
+279m13*Offset_I64_Store_32{20|83M9}
+280i13*Mem_Addr_I64_Store_32{17|17I12}
+282m13*Offset_Mem_Size{20|83M9}
+283i13*Mem_Addr_Mem_Size{17|17I12}
+285m13*Offset_Mem_Grow{20|83M9}
+286i13*Mem_Addr_Mem_Grow{17|17I12}
+288m13*Offset_Mem_Init{20|83M9}
+289i13*Mem_Addr_Mem_Init{17|17I12}
+291m13*Offset_Mem_Drop{20|83M9}
+292i13*Mem_Addr_Mem_Drop{17|17I12}
+294m13*Offset_Mem_Copy{20|83M9}
+295i13*Mem_Addr_Mem_Copy{17|17I12}
+297m13*Offset_Mem_Fill{20|83M9}
+298i13*Mem_Addr_Mem_Fill{17|17I12}
+302R9*Vector_Instruction 302d29 307e14 335r27
+302e29*Op{96E9} 303r12
+309R9*Optional_Instruction_Sequence 309d40 316e14
+309b40*Has_Target{boolean} 310r12
+312p13*Instr_target{18P9}
+318R9*Instruction
+318e22*Op{40E9} 319r12
+321r13*Numeric_Inst{98R9}
+323r13*Reference_Inst{113R9}
+325r13*Control_Inst{124R9}
+327r13*Table_Inst{163R9}
+329r13*Parametric_Inst{201R9}
+331r13*Variable_Inst{186R9}
+333r13*Memory_Inst{210R9}
+335r13*Vector_Inst{302R9}
+339R12*Constant_Expression{318R9}
+341V13*Get_Block_Type{40|7E9} 19|3b13 6l8 6t22
 X 20 interfac.ads
 38K9*Interfaces 18|2w6 2r22 20|232e15
-80M9*Unsigned_32 18|8r26 9r27 10r32 11r28 124r31 139r27 141r24
-83M9*Unsigned_64 18|33r22 212r33 215r33 218r33 221r33 224r37 227r37 230r38
-. 233r38 236r37 239r37 242r38 245r38 248r38 251r38 254r34 257r34 260r34 263r34
-. 266r36 269r37 272r36 275r37 278r37 281r33 284r33 287r33 290r33 293r33 296r33
+80M9*Unsigned_32 18|9r26 10r27 11r32 12r28 29r23 127r31 139r30 143r27 145r24
+83M9*Unsigned_64 18|34r22 213r33 216r33 219r33 222r33 225r37 228r37 231r38
+. 234r38 237r37 240r37 243r38 246r38 249r38 252r38 255r34 258r34 261r34 264r34
+. 267r36 270r37 273r36 276r37 279r37 282r33 285r33 288r33 291r33 294r33 297r33
 X 40 types.ads
 3K9*Types 18|1w6 1r22 40|78e10
-7E9*Block_Type 18|28r23 19|68r35 40|7e64
-7n24*Loop_Block{7E9} 19|70r14
-9n20*I_32{9E9} 18|98r48
-9n26*I_64{9E9} 18|100r48
-9n32*F_32{9E9} 18|102r48
-9n38*F_64{9E9} 18|104r48
-11R9*Number_Type 18|98r28 100r28 102r28 104r28 40|26e14
-33R9*Value_Type 18|26r22 113r24 197r56 40|42e14
+7E9*Block_Type 18|341r35 19|3r35 40|7e64
+7n24*Loop_Block{7E9} 19|5r14
+9n20*I_32{9E9} 18|101r48
+9n26*I_64{9E9} 18|103r48
+9n32*F_32{9E9} 18|105r48
+9n38*F_64{9E9} 18|107r48
+11R9*Number_Type 18|101r28 103r28 105r28 107r28 40|26e14
+33R9*Value_Type 18|27r22 116r24 40|42e14
 

@@ -1,0 +1,4 @@
+module.adb:3:25: warning: formal parameter "Fd" is not referenced [-gnatwf]
+module.adb:10:07: warning: formal parameter "Module" is not referenced [-gnatwf]
+module.adb:10:29: warning: formal parameter "Store" is not referenced [-gnatwf]
+module.adb:12:07: warning: variable "Module_Inst" is read but never assigned [-gnatwv]

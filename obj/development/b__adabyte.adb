@@ -7,42 +7,44 @@ with Ada.Exceptions;
 
 package body ada_main is
 
-   E075 : Short_Integer; pragma Import (Ada, E075, "system__os_lib_E");
-   E014 : Short_Integer; pragma Import (Ada, E014, "ada__exceptions_E");
-   E010 : Short_Integer; pragma Import (Ada, E010, "system__soft_links_E");
-   E008 : Short_Integer; pragma Import (Ada, E008, "system__exception_table_E");
-   E005 : Short_Integer; pragma Import (Ada, E005, "ada__containers_E");
-   E070 : Short_Integer; pragma Import (Ada, E070, "ada__io_exceptions_E");
-   E023 : Short_Integer; pragma Import (Ada, E023, "ada__numerics_E");
-   E057 : Short_Integer; pragma Import (Ada, E057, "ada__strings_E");
-   E059 : Short_Integer; pragma Import (Ada, E059, "ada__strings__maps_E");
-   E062 : Short_Integer; pragma Import (Ada, E062, "ada__strings__maps__constants_E");
-   E045 : Short_Integer; pragma Import (Ada, E045, "interfaces__c_E");
-   E017 : Short_Integer; pragma Import (Ada, E017, "system__exceptions_E");
-   E084 : Short_Integer; pragma Import (Ada, E084, "system__object_reader_E");
-   E052 : Short_Integer; pragma Import (Ada, E052, "system__dwarf_lines_E");
-   E098 : Short_Integer; pragma Import (Ada, E098, "system__soft_links__initialize_E");
-   E040 : Short_Integer; pragma Import (Ada, E040, "system__traceback__symbolic_E");
-   E022 : Short_Integer; pragma Import (Ada, E022, "system__img_int_E");
-   E065 : Short_Integer; pragma Import (Ada, E065, "system__img_uns_E");
+   E079 : Short_Integer; pragma Import (Ada, E079, "system__os_lib_E");
+   E006 : Short_Integer; pragma Import (Ada, E006, "ada__exceptions_E");
+   E011 : Short_Integer; pragma Import (Ada, E011, "system__soft_links_E");
+   E023 : Short_Integer; pragma Import (Ada, E023, "system__exception_table_E");
+   E046 : Short_Integer; pragma Import (Ada, E046, "ada__containers_E");
+   E074 : Short_Integer; pragma Import (Ada, E074, "ada__io_exceptions_E");
+   E030 : Short_Integer; pragma Import (Ada, E030, "ada__numerics_E");
+   E061 : Short_Integer; pragma Import (Ada, E061, "ada__strings_E");
+   E063 : Short_Integer; pragma Import (Ada, E063, "ada__strings__maps_E");
+   E066 : Short_Integer; pragma Import (Ada, E066, "ada__strings__maps__constants_E");
+   E051 : Short_Integer; pragma Import (Ada, E051, "interfaces__c_E");
+   E024 : Short_Integer; pragma Import (Ada, E024, "system__exceptions_E");
+   E088 : Short_Integer; pragma Import (Ada, E088, "system__object_reader_E");
+   E056 : Short_Integer; pragma Import (Ada, E056, "system__dwarf_lines_E");
+   E019 : Short_Integer; pragma Import (Ada, E019, "system__soft_links__initialize_E");
+   E045 : Short_Integer; pragma Import (Ada, E045, "system__traceback__symbolic_E");
+   E029 : Short_Integer; pragma Import (Ada, E029, "system__img_int_E");
+   E069 : Short_Integer; pragma Import (Ada, E069, "system__img_uns_E");
    E104 : Short_Integer; pragma Import (Ada, E104, "ada__strings__utf_encoding_E");
    E112 : Short_Integer; pragma Import (Ada, E112, "ada__tags_E");
    E102 : Short_Integer; pragma Import (Ada, E102, "ada__strings__text_buffers_E");
+   E184 : Short_Integer; pragma Import (Ada, E184, "gnat_E");
    E120 : Short_Integer; pragma Import (Ada, E120, "ada__streams_E");
    E132 : Short_Integer; pragma Import (Ada, E132, "system__file_control_block_E");
    E131 : Short_Integer; pragma Import (Ada, E131, "system__finalization_root_E");
    E129 : Short_Integer; pragma Import (Ada, E129, "ada__finalization_E");
    E128 : Short_Integer; pragma Import (Ada, E128, "system__file_io_E");
-   E138 : Short_Integer; pragma Import (Ada, E138, "system__storage_pools_E");
-   E136 : Short_Integer; pragma Import (Ada, E136, "system__finalization_masters_E");
+   E139 : Short_Integer; pragma Import (Ada, E139, "system__storage_pools_E");
+   E137 : Short_Integer; pragma Import (Ada, E137, "system__finalization_masters_E");
    E162 : Short_Integer; pragma Import (Ada, E162, "system__storage_pools__subpools_E");
    E118 : Short_Integer; pragma Import (Ada, E118, "ada__text_io_E");
-   E140 : Short_Integer; pragma Import (Ada, E140, "system__pool_global_E");
-   E157 : Short_Integer; pragma Import (Ada, E157, "system__img_llu_E");
-   E143 : Short_Integer; pragma Import (Ada, E143, "types_E");
+   E141 : Short_Integer; pragma Import (Ada, E141, "system__pool_global_E");
+   E158 : Short_Integer; pragma Import (Ada, E158, "system__img_llu_E");
+   E144 : Short_Integer; pragma Import (Ada, E144, "types_E");
    E134 : Short_Integer; pragma Import (Ada, E134, "instances_E");
    E173 : Short_Integer; pragma Import (Ada, E173, "instructions_E");
    E181 : Short_Integer; pragma Import (Ada, E181, "wasm_E");
+   E187 : Short_Integer; pragma Import (Ada, E187, "parser_E");
    E180 : Short_Integer; pragma Import (Ada, E180, "stack_E");
    E175 : Short_Integer; pragma Import (Ada, E175, "interpreter_E");
 
@@ -80,10 +82,10 @@ package body ada_main is
          procedure F4;
          pragma Import (Ada, F4, "types__finalize_spec");
       begin
-         E143 := E143 - 1;
+         E144 := E144 - 1;
          F4;
       end;
-      E140 := E140 - 1;
+      E141 := E141 - 1;
       declare
          procedure F5;
          pragma Import (Ada, F5, "system__pool_global__finalize_spec");
@@ -104,7 +106,7 @@ package body ada_main is
       begin
          F7;
       end;
-      E136 := E136 - 1;
+      E137 := E137 - 1;
       declare
          procedure F8;
          pragma Import (Ada, F8, "system__finalization_masters__finalize_spec");
@@ -228,39 +230,39 @@ package body ada_main is
       Ada.Exceptions'Elab_Spec;
       System.Soft_Links'Elab_Spec;
       System.Exception_Table'Elab_Body;
-      E008 := E008 + 1;
-      Ada.Containers'Elab_Spec;
-      E005 := E005 + 1;
-      Ada.Io_Exceptions'Elab_Spec;
-      E070 := E070 + 1;
-      Ada.Numerics'Elab_Spec;
       E023 := E023 + 1;
+      Ada.Containers'Elab_Spec;
+      E046 := E046 + 1;
+      Ada.Io_Exceptions'Elab_Spec;
+      E074 := E074 + 1;
+      Ada.Numerics'Elab_Spec;
+      E030 := E030 + 1;
       Ada.Strings'Elab_Spec;
-      E057 := E057 + 1;
+      E061 := E061 + 1;
       Ada.Strings.Maps'Elab_Spec;
-      E059 := E059 + 1;
+      E063 := E063 + 1;
       Ada.Strings.Maps.Constants'Elab_Spec;
-      E062 := E062 + 1;
+      E066 := E066 + 1;
       Interfaces.C'Elab_Spec;
-      E045 := E045 + 1;
+      E051 := E051 + 1;
       System.Exceptions'Elab_Spec;
-      E017 := E017 + 1;
+      E024 := E024 + 1;
       System.Object_Reader'Elab_Spec;
-      E084 := E084 + 1;
+      E088 := E088 + 1;
       System.Dwarf_Lines'Elab_Spec;
       System.Os_Lib'Elab_Body;
-      E075 := E075 + 1;
+      E079 := E079 + 1;
       System.Soft_Links.Initialize'Elab_Body;
-      E098 := E098 + 1;
-      E010 := E010 + 1;
+      E019 := E019 + 1;
+      E011 := E011 + 1;
       System.Traceback.Symbolic'Elab_Body;
-      E040 := E040 + 1;
+      E045 := E045 + 1;
       System.Img_Int'Elab_Spec;
-      E022 := E022 + 1;
-      E014 := E014 + 1;
+      E029 := E029 + 1;
+      E006 := E006 + 1;
       System.Img_Uns'Elab_Spec;
-      E065 := E065 + 1;
-      E052 := E052 + 1;
+      E069 := E069 + 1;
+      E056 := E056 + 1;
       Ada.Strings.Utf_Encoding'Elab_Spec;
       E104 := E104 + 1;
       Ada.Tags'Elab_Spec;
@@ -268,6 +270,8 @@ package body ada_main is
       E112 := E112 + 1;
       Ada.Strings.Text_Buffers'Elab_Spec;
       E102 := E102 + 1;
+      Gnat'Elab_Spec;
+      E184 := E184 + 1;
       Ada.Streams'Elab_Spec;
       E120 := E120 + 1;
       System.File_Control_Block'Elab_Spec;
@@ -279,26 +283,27 @@ package body ada_main is
       System.File_Io'Elab_Body;
       E128 := E128 + 1;
       System.Storage_Pools'Elab_Spec;
-      E138 := E138 + 1;
+      E139 := E139 + 1;
       System.Finalization_Masters'Elab_Spec;
       System.Finalization_Masters'Elab_Body;
-      E136 := E136 + 1;
+      E137 := E137 + 1;
       System.Storage_Pools.Subpools'Elab_Spec;
       E162 := E162 + 1;
       Ada.Text_Io'Elab_Spec;
       Ada.Text_Io'Elab_Body;
       E118 := E118 + 1;
       System.Pool_Global'Elab_Spec;
-      E140 := E140 + 1;
+      E141 := E141 + 1;
       System.Img_Llu'Elab_Spec;
-      E157 := E157 + 1;
+      E158 := E158 + 1;
       Types'Elab_Spec;
-      E143 := E143 + 1;
+      E144 := E144 + 1;
       Instances'Elab_Spec;
       E134 := E134 + 1;
       E173 := E173 + 1;
       Wasm'Elab_Spec;
       E181 := E181 + 1;
+      E187 := E187 + 1;
       E180 := E180 + 1;
       Interpreter'Elab_Spec;
       E175 := E175 + 1;
@@ -344,6 +349,8 @@ package body ada_main is
    --   /home/moubarik/Desktop/adabyte/obj/development/instances.o
    --   /home/moubarik/Desktop/adabyte/obj/development/instructions.o
    --   /home/moubarik/Desktop/adabyte/obj/development/wasm.o
+   --   /home/moubarik/Desktop/adabyte/obj/development/module.o
+   --   /home/moubarik/Desktop/adabyte/obj/development/parser.o
    --   /home/moubarik/Desktop/adabyte/obj/development/stack.o
    --   /home/moubarik/Desktop/adabyte/obj/development/interpreter.o
    --   /home/moubarik/Desktop/adabyte/obj/development/adabyte.o

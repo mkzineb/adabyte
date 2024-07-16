@@ -2,15 +2,17 @@
 b__adabyte.o
 [PROJECT FILES]
 /home/moubarik/Desktop/adabyte/adabyte.gpr
-20240517150451 416ed27d89aa403be1dbc78a6cc9470c
+20240628135437 416ed27d89aa403be1dbc78a6cc9470c
 /home/moubarik/Desktop/adabyte/config/adabyte_config.gpr
-20240517141516 ab04452b2a9b2d0af1d0bf6e9f0567ae
+20240628135437 ab04452b2a9b2d0af1d0bf6e9f0567ae
 [BOUND OBJECT FILES]
 /home/moubarik/Desktop/adabyte/obj/development/types.o
 /home/moubarik/Desktop/adabyte/obj/development/values.o
 /home/moubarik/Desktop/adabyte/obj/development/instances.o
 /home/moubarik/Desktop/adabyte/obj/development/instructions.o
 /home/moubarik/Desktop/adabyte/obj/development/wasm.o
+/home/moubarik/Desktop/adabyte/obj/development/module.o
+/home/moubarik/Desktop/adabyte/obj/development/parser.o
 /home/moubarik/Desktop/adabyte/obj/development/stack.o
 /home/moubarik/Desktop/adabyte/obj/development/interpreter.o
 /home/moubarik/Desktop/adabyte/obj/development/adabyte.o

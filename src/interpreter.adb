@@ -358,7 +358,7 @@ package body Interpreter is
             Push_Value (Stack, (I_32, I_32 => 1));
          end if;
       elsif Op = "<<" then
-         if A < B then
+         if A < B and A /= B then
             Push_Value (Stack, (I_32, I_32 => 0));
             Put_Line ("False");
          else
@@ -613,6 +613,7 @@ package body Interpreter is
               (Integer_32'Image (A.Val.Val.Num_Value.I_32) & " element");
             Put_Line
               (Integer_32'Image (B.Val.Val.Num_Value.I_32) & " element - 1");
+
             Compare_And_Push_I32
               (Stack, Integer_32 (A.Val.Val.Num_Value.I_32),
                Integer_32 (B.Val.Val.Num_Value.I_32), Op);
