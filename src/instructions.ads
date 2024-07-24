@@ -1,10 +1,8 @@
 ------------------------------------------------------------------------------
 --  Package Instructions
 --
---  This package defines types and records for representing WebAssembly instructions,
---  including numeric, reference, control flow, table, variable, memory, parametric,
---  and vector operations. It provides a structured way to handle and interpret these
---  instructions, supporting their execution in a WebAssembly virtual machine.
+--  This package defines the internal representation of bytecode instructions.
+--  See <https://webassembly.github.io/spec/core/binary/instructions.html>
 --
 --  Author: Moubarik Zineb
 --  Date: 24-07-2024
