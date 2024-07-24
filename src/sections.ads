@@ -1,3 +1,10 @@
+------------------------------------------------------------------------------
+--  Package: Sections
+--
+--  comment...
+--  Author: Moubarik Zineb
+--  Date: 24-07-2024
+------------------------------------------------------------------------------
 with Interfaces; use Interfaces;
 with Values;     use Values;
 with Types;      use Types;

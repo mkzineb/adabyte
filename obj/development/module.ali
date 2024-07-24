@@ -69,7 +69,7 @@ D a-uncdea.ads		20230727081304 c3a8ac65 ada.unchecked_deallocation%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
 D gnat.ads		20230727081304 b5988c27 gnat%s
 D g-os_lib.ads		20230727081304 0db74523 gnat.os_lib%s
-D instances.ads		20240709130741 71df3e22 instances%s
+D instances.ads		20240724103528 71df3e22 instances%s
 D instructions.ads	20240708082418 35d285f4 instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D module.ads		20240705094155 20562468 module%s
@@ -104,7 +104,7 @@ G c Z s b [instantiate_module module 15 13 none]
 G c Z s b [get_id module 18 13 none]
 G c Z s s [module_typeIP module 9 9 none]
 G r s wasm_module [parse_file module 13 13 none] [wasm_moduleIP wasm 112 9 none]
-G r s module_instance [instantiate_module module 15 13 none] [module_instanceIP instances 149 9 none]
+G r s module_instance [instantiate_module module 15 13 none] [module_instanceIP instances 160 9 none]
 G r s wasm_module [module_typeIP module 9 9 none] [wasm_moduleIP wasm 112 9 none]
 X 9 a-iteint.ads
 24h9 Forward_Iterator
@@ -114,26 +114,26 @@ X 18 gnat.ads
 X 19 g-os_lib.ads
 51K14*OS_Lib=51:36 23|2w11 2r28
 X 20 instances.ads
-9K9*Instances 184e14 23|3w6 3r23
-14I9*Address<short_short_integer>
-26I12*Module_Instance_Addr{14I9} 23|18r54 24|17r54
-149R9*Module_Instance 163e14 23|16r56 18r30 24|10r56 12r21 17r30
-152i7*Module_Addr{26I12} 24|19r21
-167R9*Store_Type 175e14 23|16r37 24|10r37
+21K9*Instances 200e14 23|3w6 3r23
+25I9*Address<short_short_integer>
+37I12*Module_Instance_Addr{25I9} 23|18r54 24|17r54
+160R9*Module_Instance 174e14 23|16r56 18r30 24|10r56 12r21 17r30
+163i7*Module_Addr{37I12} 24|19r21
+183R9*Store_Type 191e14 23|16r37 24|10r37
 X 23 module.ads
 7K9*Module 20l5 20e11 24|1b14 21l5 21t11
 9R9*Module_Type 11e14 13r54 16r16 24|3r54 4r16 10r16
 10r7*Data{48|112R9}
 13V13*Parse_File{9R9} 13>25 24|3b13 7l8 7t18
 13i25 Fd{30|201I9} 24|3b25
-15V13*Instantiate_Module{20|149R9} 16>7 16>29 24|9b13 15l8 15t26
+15V13*Instantiate_Module{20|160R9} 16>7 16>29 24|9b13 15l8 15t26
 16r7 Module{9R9} 24|10b7
-16r29 Store{20|167R9} 24|10b29
-18V13*Get_Id{20|26I12} 18>21 24|17b13 20l8 20t14
-18r21 Module{20|149R9} 24|17b21 19r14
+16r29 Store{20|183R9} 24|10b29
+18V13*Get_Id{20|37I12} 18>21 24|17b13 20l8 20t14
+18r21 Module{20|160R9} 24|17b21 19r14
 X 24 module.adb
 4r7 Module{23|9R9} 6r14
-12r7 Module_Inst{20|149R9} 14r14
+12r7 Module_Inst{20|160R9} 14r14
 X 30 s-os_lib.ads
 201I9*File_Descriptor<integer> 23|13r30 24|3r30
 X 48 wasm.ads

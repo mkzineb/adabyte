@@ -1,16 +1,31 @@
+------------------------------------------------------------------------------
+--  Package: Instances
+--
+--  Description:
+--  This package defines various data types and records used to represent
+--  different aspects of a WebAssembly environment. It includes types and
+--  records for handling addresses, function instances, table instances,
+--  memory instances, global instances, and more. It also provides access
+--  types and functions for managing these instances.
+--
+--  License: MIT License
+--  Copyright (c) 2024 Moubarik
+--  See LICENSE file for details.
+--
+--  Author: Moubarik Zineb
+--  Date: 24-07-2024
+------------------------------------------------------------------------------
 with Types;                                 use Types;
 with Values;                                use Values;
 with Ada.Containers;                        use Ada.Containers;
 with Ada.Containers.Vectors;
 with Ada.Containers.Indefinite_Hashed_Maps; use Ada.Containers;
 with Interfaces;                            use Interfaces;
---  Validated Module instance ready for execution
 
 package Instances is
    pragma Elaborate_Body;
-
-   --  WebAssembly Address
-
+   --  Define address types and subtypes used for various elements in the
+   --  WebAssembly environment,
    type Address is range 0 .. 100;
    subtype Func_Addr is Address;
    subtype Table_Addr is Address;
@@ -161,8 +176,13 @@ package Instances is
       Imports      : Integer;--  TODO
       Exports      : Integer;
    end record;
+
    type Module_Instance_List is array (Natural range <>) of Module_Instance;
    type Module_Instances_Acc is access Module_Instance_List;
+
+   --  Store Type
+   --  The store represents the runtime representation of all instances
+   --  that have been allocated during the life time of the abstract machine
 
    type Store_Type is record
       Funcs           : Function_Instances;

@@ -51,7 +51,7 @@ RV NO_STANDARD_STORAGE_POOLS
 RV NO_DEFAULT_INITIALIZATION
 RV NO_IMPLEMENTATION_PRAGMAS
 
-U adabyte%b		adabyte.adb		ccf341a5 NE OO SU
+U adabyte%b		adabyte.adb		907dead1 NE OO SU
 W ada%s			ada.ads			ada.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
@@ -93,11 +93,11 @@ D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
 D adabyte.adb		20240711095813 bbab7d7d adabyte%b
 D gnat.ads		20230727081304 b5988c27 gnat%s
 D g-os_lib.ads		20230727081304 0db74523 gnat.os_lib%s
-D instances.ads		20240709130741 71df3e22 instances%s
+D instances.ads		20240724103528 71df3e22 instances%s
 D instructions.ads	20240708082418 35d285f4 instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D i-cstrea.ads		20230727081304 e53d8b8e interfaces.c_streams%s
-D interpreter.ads	20240710132127 8db324b7 interpreter%s
+D interpreter.ads	20240724103619 d13d8fc3 interpreter%s
 D module.ads		20240705094155 20562468 module%s
 D parser.ads		20240702084253 a346febc parser%s
 D stack.ads		20240710132618 a3ba1bb0 stack%s
@@ -135,7 +135,7 @@ G c Z b b [adabyte standard 12 11 none]
 G r s env [adabyte standard 12 11 none] [envIP interpreter 40 9 none]
 G r l env [adabyte standard 12 11 none] [envDI interpreter 40 9 none]
 G r k env [adabyte standard 12 11 none] [envDF interpreter 40 9 none]
-G r s store_type [adabyte standard 12 11 none] [store_typeIP instances 167 9 none]
+G r s store_type [adabyte standard 12 11 none] [store_typeIP instances 183 9 none]
 G r s chunk [adabyte standard 12 11 none] [chunkIP instructions 17 9 none]
 G r s function_spec [adabyte standard 12 11 none] [function_specIP wasm 21 9 none]
 G r l function_spec [adabyte standard 12 11 none] [function_specDI wasm 21 9 none]
@@ -166,7 +166,7 @@ X 20 adabyte.adb
 93p7 Seq{24|18P9} 96r7 104r7 108r7 113r7 115r7 119r7 123r7 128r7 130r7 134r7
 . 136r7 138r14
 142r4 Executor{27|40R9} 167m4 167r4 169m27 169r27
-143r4 Store{23|167R9} 167r34
+143r4 Store{23|183R9} 167r34
 144p4 Seq{24|18P9} 163r38
 145r4 Stack{6|91R9[27|36]} 167m41 167r41
 146r4 Start_function{59|21R9} 162m4 162r4 167r48
@@ -176,10 +176,10 @@ X 20 adabyte.adb
 150p4 Inst_Seq{24|18P9}
 151e4 Return_Message{27|48E9} 169m4
 X 23 instances.ads
-9K9*Instances 20|2w6 2r24 23|184e14
-14I9*Address<short_short_integer>
-24I12*Local_Addr{14I9}
-167R9*Store_Type 20|143r21 23|175e14
+21K9*Instances 20|2w6 2r24 23|200e14
+25I9*Address<short_short_integer>
+35I12*Local_Addr{25I9}
+183R9*Store_Type 20|143r21 23|191e14
 X 24 instructions.ads
 5K9*Instructions 20|3w6 3r24 24|343e17
 14R9*Instruction 20|17r14 25r14 33r14 38r14 43r14 48r14 51r14 59r14 64r14
@@ -222,8 +222,8 @@ X 24 instructions.ads
 140r13*Loop_Arguments{22R9} 20|29m16 101m15
 141m13*End_Loop_Block{9M12} 20|30m16 102m15
 143m13*Label_Br_If{25|80M9} 20|132m49
-189i13*Local_Get_Id{23|24I12} 20|72m52 106m51 121m51
-191i13*Local_Set_Id{23|24I12} 20|117m51
+189i13*Local_Get_Id{23|35I12} 20|72m52 106m51 121m51
+191i13*Local_Set_Id{23|35I12} 20|117m51
 321r13*Numeric_Inst{98R9} 20|35m13 40m13 45m13 61m13 77m13 82m13 111m12 113m44
 . 126m12 128m44
 325r13*Control_Inst{124R9} 20|19m13 27m13 48m36 51m36 66m13 85m36 88m36 99m12
@@ -234,7 +234,7 @@ X 25 interfac.ads
 53I9*Integer_32<integer>
 80M9*Unsigned_32
 X 27 interpreter.ads
-10K9*Interpreter 20|4w6 4r24 27|79e16
+10K9*Interpreter 20|4w6 4r24 27|89e16
 36K12*Vectors[6|74] 20|145r21
 40R9*Env 20|142r21 27|46e14
 48E9*Interpret_Result 20|151r21 27|49e70

@@ -68,7 +68,7 @@ D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D instances.ads		20240709130741 71df3e22 instances%s
+D instances.ads		20240724103528 71df3e22 instances%s
 D instructions.ads	20240708082418 35d285f4 instructions%s
 D instructions.adb	20240703093249 89526dca instructions%b
 D interfac.ads		20230727081304 15f799c2 interfaces%s
@@ -118,19 +118,19 @@ X 9 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
 X 17 instances.ads
-9K9*Instances 184e14 18|3w6 3r22
-14I9*Address<short_short_integer>
-15I12*Func_Addr{14I9} 18|120r29 154r25
-16I12*Table_Addr{14I9} 18|157r31 166r25 168r25 170r26 172r26 174r26 175r26
+21K9*Instances 200e14 18|3w6 3r22
+25I9*Address<short_short_integer>
+26I12*Func_Addr{25I9} 18|120r29 154r25
+27I12*Table_Addr{25I9} 18|157r31 166r25 168r25 170r26 172r26 174r26 175r26
 . 177r25 179r26 181r20 182r20
-17I12*Mem_Addr{14I9} 18|35r22 214r33 217r33 220r33 223r33 226r37 229r37 232r38
+28I12*Mem_Addr{25I9} 18|35r22 214r33 217r33 220r33 223r33 226r37 229r37 232r38
 . 235r38 238r37 241r37 244r38 247r38 250r38 253r38 256r34 259r34 262r34 265r34
 . 268r36 271r37 274r36 277r37 280r37 283r33 286r33 289r33 292r33 295r33 298r33
-18I12*Global_Addr{14I9} 18|195r28 197r28
-23I12*Type_Addr{14I9} 18|156r31
-24I12*Local_Addr{14I9} 18|189r28 191r28 193r28
-28A9*Val_Type_Vector(40|33R9)<14I9>
-29P9*Locals_Vector(28A9) 18|206r30
+29I12*Global_Addr{25I9} 18|195r28 197r28
+34I12*Type_Addr{25I9} 18|156r31
+35I12*Local_Addr{25I9} 18|189r28 191r28 193r28
+39A9*Val_Type_Vector(40|33R9)<25I9>
+40P9*Locals_Vector(39A9) 18|206r30
 X 18 instructions.ads
 5K9*Instructions 343l5 343e17 19|1b14 7l5 7t17
 9M12*End_Offset{20|80M9} 129r31 135r30 137r31 141r30
@@ -151,7 +151,7 @@ X 18 instructions.ads
 29m13*Func_Ty{20|80M9}
 33R9*Mem_Arg 36e14
 34m7*Offset{20|83M9}
-35i7*Arg_Mem_Addr{17|17I12}
+35i7*Arg_Mem_Addr{17|28I12}
 38E9*Sign_Extension 38e45
 38n28*Signed{38E9}
 38n36*Unsigned{38E9}
@@ -385,7 +385,7 @@ X 18 instructions.ads
 113R9*Reference_Instruction 113d32 122e14 323r30
 113e32*Op{71E9} 114r12
 116r13*Ref_Type{40|33R9}
-120i13*Function_Addr{17|15I12}
+120i13*Function_Addr{17|26I12}
 124R9*Control_Instruction 124d30 161e14 325r28
 124e30*Op{73E9} 125r12
 127m13*Block_Label{20|80M9}
@@ -402,91 +402,91 @@ X 18 instructions.ads
 145m13*Label_Br{20|80M9}
 149m13*Table_Default{11M12}
 150m13*Table_Len{12M12}
-154i13*call_addr{17|15I12}
-156i13*Call_Type_Addr{17|23I12}
-157i13*Call_Table_Addr{17|16I12}
+154i13*call_addr{17|26I12}
+156i13*Call_Type_Addr{17|34I12}
+157i13*Call_Table_Addr{17|27I12}
 163R9*Table_Instruction 163d28 184e14 327r26
 163e28*Op{82E9} 164r12
-166i13*Table_Get{17|16I12}
-168i13*Table_Set{17|16I12}
-170i13*Table_Size{17|16I12}
-172i13*Table_Fill{17|16I12}
-174i13*Elem_Init{17|16I12}
-175i13*Table_Init{17|16I12}
-177i13*Elem_Drop{17|16I12}
-179i13*Table_Grow{17|16I12}
-181i13*From{17|16I12}
-182i13*To{17|16I12}
+166i13*Table_Get{17|27I12}
+168i13*Table_Set{17|27I12}
+170i13*Table_Size{17|27I12}
+172i13*Table_Fill{17|27I12}
+174i13*Elem_Init{17|27I12}
+175i13*Table_Init{17|27I12}
+177i13*Elem_Drop{17|27I12}
+179i13*Table_Grow{17|27I12}
+181i13*From{17|27I12}
+182i13*To{17|27I12}
 186R9*Variable_Instruction 186d31 199e14 331r29
 186e31*Op{79E9} 187r12
-189i13*Local_Get_Id{17|24I12}
-191i13*Local_Set_Id{17|24I12}
-193i13*Local_Tee_Id{17|24I12}
-195i13*Glb_Get_Addr{17|18I12}
-197i13*Glb_Set_Addr{17|18I12}
+189i13*Local_Get_Id{17|35I12}
+191i13*Local_Set_Id{17|35I12}
+193i13*Local_Tee_Id{17|35I12}
+195i13*Glb_Get_Addr{17|29I12}
+197i13*Glb_Set_Addr{17|29I12}
 201R9*Parametric_Instruction 201d33 208e14 329r31
 201e33*Op{77E9} 202r12
-206p13*Array_Val_Type{17|29P9}
+206p13*Array_Val_Type{17|40P9}
 210R9*Memory_Instruction 210d29 300e14 333r27
 210e29*Op{86E9} 211r12
 213m13*Offset_I32_Load{20|83M9}
-214i13*Mem_Addr_I32_Load{17|17I12}
+214i13*Mem_Addr_I32_Load{17|28I12}
 216m13*Offset_I64_Load{20|83M9}
-217i13*Mem_Addr_I64_Load{17|17I12}
+217i13*Mem_Addr_I64_Load{17|28I12}
 219m13*Offset_F32_Load{20|83M9}
-220i13*Mem_Addr_F32_Load{17|17I12}
+220i13*Mem_Addr_F32_Load{17|28I12}
 222m13*Offset_F64_Load{20|83M9}
-223i13*Mem_Addr_F64_Load{17|17I12}
+223i13*Mem_Addr_F64_Load{17|28I12}
 225m13*Offset_I32_Load_8_S{20|83M9}
-226i13*Mem_Addr_I32_Load_8_S{17|17I12}
+226i13*Mem_Addr_I32_Load_8_S{17|28I12}
 228m13*Offset_I32_Load_8_U{20|83M9}
-229i13*Mem_Addr_I32_Load_8_U{17|17I12}
+229i13*Mem_Addr_I32_Load_8_U{17|28I12}
 231m13*Offset_I32_Load_16_S{20|83M9}
-232i13*Mem_Addr_I32_Load_16_S{17|17I12}
+232i13*Mem_Addr_I32_Load_16_S{17|28I12}
 234m13*Offset_I32_Load_16_U{20|83M9}
-235i13*Mem_Addr_I32_Load_16_U{17|17I12}
+235i13*Mem_Addr_I32_Load_16_U{17|28I12}
 237m13*Offset_I64_Load_8_S{20|83M9}
-238i13*Mem_Addr_I64_Load_8_S{17|17I12}
+238i13*Mem_Addr_I64_Load_8_S{17|28I12}
 240m13*Offset_I64_Load_8_U{20|83M9}
-241i13*Mem_Addr_I64_Load_8_U{17|17I12}
+241i13*Mem_Addr_I64_Load_8_U{17|28I12}
 243m13*Offset_I64_Load_16_S{20|83M9}
-244i13*Mem_Addr_I64_Load_16_S{17|17I12}
+244i13*Mem_Addr_I64_Load_16_S{17|28I12}
 246m13*Offset_I64_Load_16_U{20|83M9}
-247i13*Mem_Addr_I64_Load_16_U{17|17I12}
+247i13*Mem_Addr_I64_Load_16_U{17|28I12}
 249m13*Offset_I64_Load_32_S{20|83M9}
-250i13*Mem_Addr_I64_Load_32_S{17|17I12}
+250i13*Mem_Addr_I64_Load_32_S{17|28I12}
 252m13*Offset_I64_Load_32_U{20|83M9}
-253i13*Mem_Addr_I64_Load_32_U{17|17I12}
+253i13*Mem_Addr_I64_Load_32_U{17|28I12}
 255m13*Offset_I32_Store{20|83M9}
-256i13*Mem_Addr_I32_Store{17|17I12}
+256i13*Mem_Addr_I32_Store{17|28I12}
 258m13*Offset_I64_Store{20|83M9}
-259i13*Mem_Addr_I64_Store{17|17I12}
+259i13*Mem_Addr_I64_Store{17|28I12}
 261m13*Offset_F32_Store{20|83M9}
-262i13*Mem_Addr_F32_Store{17|17I12}
+262i13*Mem_Addr_F32_Store{17|28I12}
 264m13*Offset_F64_Store{20|83M9}
-265i13*Mem_Addr_F64_Store{17|17I12}
+265i13*Mem_Addr_F64_Store{17|28I12}
 267m13*Offset_I32_Store_8{20|83M9}
-268i13*Mem_Addr_I32_Store_8{17|17I12}
+268i13*Mem_Addr_I32_Store_8{17|28I12}
 270m13*Offset_I32_Store_16{20|83M9}
-271i13*Mem_Addr_I32_Store_16{17|17I12}
+271i13*Mem_Addr_I32_Store_16{17|28I12}
 273m13*Offset_I64_Store_8{20|83M9}
-274i13*Mem_Addr_I64_Store_8{17|17I12}
+274i13*Mem_Addr_I64_Store_8{17|28I12}
 276m13*Offset_I64_Store_16{20|83M9}
-277i13*Mem_Addr_I64_Store_16{17|17I12}
+277i13*Mem_Addr_I64_Store_16{17|28I12}
 279m13*Offset_I64_Store_32{20|83M9}
-280i13*Mem_Addr_I64_Store_32{17|17I12}
+280i13*Mem_Addr_I64_Store_32{17|28I12}
 282m13*Offset_Mem_Size{20|83M9}
-283i13*Mem_Addr_Mem_Size{17|17I12}
+283i13*Mem_Addr_Mem_Size{17|28I12}
 285m13*Offset_Mem_Grow{20|83M9}
-286i13*Mem_Addr_Mem_Grow{17|17I12}
+286i13*Mem_Addr_Mem_Grow{17|28I12}
 288m13*Offset_Mem_Init{20|83M9}
-289i13*Mem_Addr_Mem_Init{17|17I12}
+289i13*Mem_Addr_Mem_Init{17|28I12}
 291m13*Offset_Mem_Drop{20|83M9}
-292i13*Mem_Addr_Mem_Drop{17|17I12}
+292i13*Mem_Addr_Mem_Drop{17|28I12}
 294m13*Offset_Mem_Copy{20|83M9}
-295i13*Mem_Addr_Mem_Copy{17|17I12}
+295i13*Mem_Addr_Mem_Copy{17|28I12}
 297m13*Offset_Mem_Fill{20|83M9}
-298i13*Mem_Addr_Mem_Fill{17|17I12}
+298i13*Mem_Addr_Mem_Fill{17|28I12}
 302R9*Vector_Instruction 302d29 307e14 335r27
 302e29*Op{96E9} 303r12
 309R9*Optional_Instruction_Sequence 309d40 316e14

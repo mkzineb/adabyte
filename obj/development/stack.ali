@@ -80,7 +80,7 @@ D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D instances.ads		20240709130741 71df3e22 instances%s
+D instances.ads		20240724103528 71df3e22 instances%s
 D instructions.ads	20240708082418 35d285f4 instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D stack.ads		20240710132618 a3ba1bb0 stack%s
@@ -136,9 +136,9 @@ X 9 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
 X 17 instances.ads
-9K9*Instances 184e14 20|3w6 3r24
-14I9*Address<short_short_integer>
-26I12*Module_Instance_Addr{14I9} 20|25r21
+21K9*Instances 200e14 20|3w6 3r24
+25I9*Address<short_short_integer>
+37I12*Module_Instance_Addr{25I9} 20|25r21
 X 18 instructions.ads
 5K9*Instructions 343e17 20|6w6 6r24
 X 19 interfac.ads
@@ -157,7 +157,7 @@ X 20 stack.ads
 22m7*Instr_Ptr{19|80M9}
 23m7*Block_Ptr{19|80M9}
 24r7*Func_Inst{43|21R9}
-25i7*Module_Addr{17|26I12}
+25i7*Module_Addr{17|37I12}
 26r7*Locals{6|91R9[41|44]}
 29R9*Value_Stack 31e14
 30r7*Val{41|33R9}

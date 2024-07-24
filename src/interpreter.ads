@@ -1,3 +1,10 @@
+------------------------------------------------------------------------------
+--  Package: Interpreter
+--
+--  comment...
+--  Author: Moubarik Zineb
+--  Date: 24-07-2024
+------------------------------------------------------------------------------
 with Interfaces;                            use Interfaces;
 with Instructions;                          use Instructions;
 with Ada.Containers.Vectors;
@@ -60,12 +67,23 @@ package Interpreter is
 
    function Execute_Next_Instr (Environment : in out Env) return Control_Flow;
 
-   --  type Unary_Op is (clz, ctz, popcnt);
-   --  type Binary_Op is
-   --    (add, sub, mul, div, rem_s, and_op, or_op, xor_op, shl, shr_s, rotl,
-   --     rotr);
-   --  type Comparison is
-   --    (Equal, Not_Equal, Less, Greater, Less_Equal, Greater_Equal);
+   type Unary_Op is (clz, ctz, popcnt);
+   type Binary_Op is
+     (add, sub, mul, div, rem_s, and_op, or_op, xor_op, shl, shr_s, rotl,
+      rotr);
+   type Comparison is
+     (Equal, Not_Equal, Less, Greater, Less_Equal, Greater_Equal);
+
+   generic
+      type T is private;
+      with function "=" (Left, Right : T) return Boolean;
+      with function "<" (Left, Right : T) return Boolean;
+      with function ">" (Left, Right : T) return Boolean;
+      with function "<=" (Left, Right : T) return Boolean;
+      with function ">=" (Left, Right : T) return Boolean;
+   procedure Compare_And_Push
+     (Stack : in out Vector; A, B : T; Op : Comparison);
+
    --  generic
    --     type T is private;
    --     with function "=" (Left, Right : T) return Boolean;
@@ -73,7 +91,6 @@ package Interpreter is
    --     with function ">" (Left, Right : T) return Boolean;
    --     with function "<=" (Left, Right : T) return Boolean;
    --     with function ">=" (Left, Right : T) return Boolean;
-   --  procedure Compare_And_Push
-   --    (Stack : in out Vector; A, B : T; Op : Comparison);
+   --  -- procedure Push_Value_T (Stack : in out Vector; A : T);
 
 end Interpreter;

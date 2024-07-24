@@ -264,23 +264,52 @@ package body Interpreter is
               ((Value,
                 Val =>
                   (Val =>
-                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
+                     (Number_Value, Num_Value => (I_64, I_64 => Num.I_64)))));
          when F_32 =>
             Stack.Append
               ((Value,
                 Val =>
                   (Val =>
-                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
+                     (Number_Value, Num_Value => (F_32, F_32 => Num.F_32)))));
          when F_64 =>
             Stack.Append
               ((Value,
                 Val =>
                   (Val =>
-                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
+                     (Number_Value, Num_Value => (F_64, F_64 => Num.F_64)))));
          when others =>
             null;
       end case;
    end Push_Value;
+
+   procedure Compare_And_Push
+     (Stack : in out Vector; A, B : T; Op : Comparison)
+   is
+      Result : Boolean;
+   begin
+      case Op is
+         when Equal =>
+            Result := (A = B);
+         when Not_Equal =>
+            Result := (A /= B);
+         when Less =>
+            Result := (A < B);
+         when Greater =>
+            Result := (A > B);
+         when Less_Equal =>
+            Result := (A <= B);
+         when Greater_Equal =>
+            Result := (A >= B);
+      end case;
+
+      if Result then
+         --Push_Value_T (Stack, (T, T => 0));
+         null;
+      else
+         --Push_Value_T (Stack, (T, T => 1));
+         null;
+      end if;
+   end Compare_And_Push;
 
    function Pop_Value (Stack : in out Vector) return Number_Type is
       Result : Number_Type;
@@ -289,33 +318,6 @@ package body Interpreter is
       Delete_Last (Stack);
       return Result;
    end Pop_Value;
-
-   --  procedure Compare_And_Push
-   --    (Stack : in out Vector; A, B : T; Op : Comparison)
-   --  is
-   --     Result : Boolean;
-   --  begin
-   --     case Op is
-   --        when Equal =>
-   --           Result := (A = B);
-   --        when Not_Equal =>
-   --           Result := (A /= B);
-   --        when Less =>
-   --           Result := (A < B);
-   --        when Greater =>
-   --           Result := (A > B);
-   --        when Less_Equal =>
-   --           Result := (A <= B);
-   --        when Greater_Equal =>
-   --           Result := (A >= B);
-   --     end case;
-
-   --     if Result then
-   --        Push_Value (Stack, (T, T => 0));
-   --     else
-   --        Push_Value (Stack, (T, T => 1));
-   --     end if;
-   --  end Compare_And_Push;
 
    procedure Compare_And_Push_I32
      (Stack : in out Vector; A, B : Integer_32; Op : String)

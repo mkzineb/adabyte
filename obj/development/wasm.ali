@@ -79,7 +79,7 @@ D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D instances.ads		20240709130741 71df3e22 instances%s
+D instances.ads		20240724103528 71df3e22 instances%s
 D instructions.ads	20240708082418 35d285f4 instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D system.ads		20230727081304 426dafb8 system%s
@@ -181,16 +181,16 @@ X 9 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
 X 17 instances.ads
-9K9*Instances 184e14 43|5w6 5r24
-14I9*Address<short_short_integer>
-15I12*Func_Addr{14I9} 43|15r26 73r20
-16I12*Table_Addr{14I9} 43|64r22
-23I12*Type_Addr{14I9} 43|38r16
-31A9*Vector_Of_Bytes(19|69M9)<integer>
-32P9*Vector_Of_Bytes_Acc(31A9) 43|53r14
-121A12*Array_Type(41|52R9)<integer>
-122P12*Array_Access(121A12[128]) 43|123r44[17|128]
-128K12*Ft_Array_Access_Types[120] 43|123r22
+21K9*Instances 200e14 43|5w6 5r24
+25I9*Address<short_short_integer>
+26I12*Func_Addr{25I9} 43|15r26 73r20
+27I12*Table_Addr{25I9} 43|64r22
+34I12*Type_Addr{25I9} 43|38r16
+42A9*Vector_Of_Bytes(19|69M9)<integer>
+43P9*Vector_Of_Bytes_Acc(42A9) 43|53r14
+132A12*Array_Type(41|52R9)<integer>
+133P12*Array_Access(132A12[139]) 43|123r44[17|139]
+139K12*Ft_Array_Access_Types[131] 43|123r22
 X 18 instructions.ads
 5K9*Instructions 343e17 43|2w6 2r24
 15P9*Instruction_Acc(14R9)
@@ -223,7 +223,7 @@ X 43 wasm.ads
 8K9*Wasm 126l5 126e9
 12R9*Option_FuncAddr 12d26 19e14 113r22
 12b26*Is_Null{boolean} 13r12 113m42
-15i13*Satrt_Addr{17|15I12}
+15i13*Satrt_Addr{17|26I12}
 21R9*Function_Spec 25e14 85r59
 22p7*Instructions{18|18P9}
 23r7*Locals{6|91R9[41|44]}
@@ -234,7 +234,7 @@ X 43 wasm.ads
 32R9*Export 34e14 97r53
 33m7*Index{19|80M9}
 37R9*Import_Kind 42e14 46r16
-38i7*Func{17|23I12}
+38i7*Func{17|34I12}
 39r7*Table{41|65R9}
 40r7*Memory{41|63R12}
 41r7*Global{41|73R9}
@@ -246,7 +246,7 @@ X 43 wasm.ads
 50n23*Active{50E9}
 50n31*Passive{50E9}
 52R9*Data 56e14 106r51
-53p7*Data{17|32P9}
+53p7*Data{17|43P9}
 54e7*Kind{50E9}
 58E9*Element_Kind 58e52 59r37 80r15
 58n26*Passive{58E9} 59r53 61r15
@@ -254,14 +254,14 @@ X 43 wasm.ads
 58n43*Declared{58E9} 61r25
 59R9*Element_Kind_Record 59d30 67e14
 59e30*Kind{58E9} 60r12
-64i13*Table{17|16I12}
+64i13*Table{17|27I12}
 65r13*Offset{18|98R9}
 69E9*Inst_Seq 69e33 70r30
 69n22*Func{69E9} 70r42 72r15
 69n28*Expr{69E9} 74r15
 70R9*Element_Item 70d23 77e14
 70e23*Item{69E9} 71r12
-73i13*Func{17|15I12}
+73i13*Func{17|26I12}
 75r13*Expr{18|98R9}
 79R9*Element 83e14 109r55
 80e7*Kind{58E9}
@@ -296,5 +296,5 @@ X 43 wasm.ads
 120p7*Imports{104P9}
 121p7*Data{107P9}
 122p7*Elements{110P9}
-123p7*l{17|122P12[17|128]}
+123p7*l{17|133P12[17|139]}
 

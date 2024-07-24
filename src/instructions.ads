@@ -1,3 +1,14 @@
+------------------------------------------------------------------------------
+--  Package Instructions
+--
+--  This package defines types and records for representing WebAssembly instructions,
+--  including numeric, reference, control flow, table, variable, memory, parametric,
+--  and vector operations. It provides a structured way to handle and interpret these
+--  instructions, supporting their execution in a WebAssembly virtual machine.
+--
+--  Author: Moubarik Zineb
+--  Date: 24-07-2024
+------------------------------------------------------------------------------
 with Types;      use Types;
 with Interfaces; use Interfaces;
 with Instances;  use Instances;

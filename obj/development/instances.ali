@@ -90,7 +90,7 @@ D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D instances.ads		20240709130741 71df3e22 instances%s
+D instances.ads		20240724103528 71df3e22 instances%s
 D instances.adb		20240709125036 8ba8543f instances%b
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D system.ads		20230727081304 426dafb8 system%s
@@ -117,212 +117,212 @@ D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
 D types.ads		20240710083804 081cd40b types%s
 D values.ads		20240626123542 52cf5252 values%s
 G a e
-G c Z s s [Tarray_typeBIP instances__unsigned_8_array_access_types 121 7 125_4]
-G c Z s s [Tarray_typeBIP instances__ft_array_access_types 121 7 128_4]
-G c Z s s [Tarray_typeBDI instances__ft_array_access_types 121 7 128_4]
-G c Z s s [Tarray_typeBDA instances__ft_array_access_types 121 7 128_4]
-G c Z s s [Tarray_typeBDF instances__ft_array_access_types 121 7 128_4]
-G c Z s s [Tarray_typeBIP instances__fa_array_access_types 121 7 131_4]
-G c Z s s [Tarray_typeBIP instances__ta_array_access_types 121 7 134_4]
-G c Z s s [Tarray_typeBIP instances__ma_array_access_types 121 7 137_4]
-G c Z s s [Tarray_typeBIP instances__ga_array_access_types 121 7 140_4]
-G c Z s s [Tarray_typeBIP instances__ea_array_access_types 121 7 143_4]
-G c Z s s [Tarray_typeBIP instances__da_array_access_types 121 7 146_4]
-G c Z s b [get_module_instance instances 177 13 none]
-G c Z s b [new_data_instance instances 180 14 none]
-G c Z s b [func_ty instances 182 13 none]
-G c Z s s [val_type_vectorIP instances 28 9 none]
-G c Z s s [vector_of_bytesIP instances 31 9 none]
-G c Z s s [vector_of_table_elementIP instances 34 9 none]
-G c Z s s [external_valuesIP instances 42 9 none]
-G c Z s s [func_instanceDI instances 58 9 none]
-G c Z s s [func_instanceDA instances 58 9 none]
-G c Z s s [func_instanceDF instances 58 9 none]
-G c Z s s [func_instanceIP instances 58 9 none]
-G c Z s s [table_instanceIP instances 68 9 none]
-G c Z s s [memory_instanceIP instances 74 9 none]
-G c Z s s [global_instanceIP instances 81 9 none]
-G c Z s s [element_instanceIP instances 87 9 none]
-G c Z s s [data_instanceIP instances 93 9 none]
-G c Z s s [export_instanceIP instances 98 9 none]
-G c Z s s [function_instance_listIP instances 103 9 none]
-G c Z s s [function_instance_listDI instances 103 9 none]
-G c Z s s [function_instance_listDA instances 103 9 none]
-G c Z s s [function_instance_listDF instances 103 9 none]
-G c Z s s [table_instance_listIP instances 105 9 none]
-G c Z s s [mems_instance_listIP instances 107 9 none]
-G c Z s s [global_instance_listIP instances 109 9 none]
-G c Z s s [elem_instance_listIP instances 111 9 none]
-G c Z s s [data_instance_listIP instances 113 9 none]
-G c Z s s [module_instanceIP instances 149 9 none]
-G c Z s s [module_instance_listIP instances 164 9 none]
-G c Z s s [store_typeIP instances 167 9 none]
+G c Z s s [Tarray_typeBIP instances__unsigned_8_array_access_types 132 7 136_4]
+G c Z s s [Tarray_typeBIP instances__ft_array_access_types 132 7 139_4]
+G c Z s s [Tarray_typeBDI instances__ft_array_access_types 132 7 139_4]
+G c Z s s [Tarray_typeBDA instances__ft_array_access_types 132 7 139_4]
+G c Z s s [Tarray_typeBDF instances__ft_array_access_types 132 7 139_4]
+G c Z s s [Tarray_typeBIP instances__fa_array_access_types 132 7 142_4]
+G c Z s s [Tarray_typeBIP instances__ta_array_access_types 132 7 145_4]
+G c Z s s [Tarray_typeBIP instances__ma_array_access_types 132 7 148_4]
+G c Z s s [Tarray_typeBIP instances__ga_array_access_types 132 7 151_4]
+G c Z s s [Tarray_typeBIP instances__ea_array_access_types 132 7 154_4]
+G c Z s s [Tarray_typeBIP instances__da_array_access_types 132 7 157_4]
+G c Z s b [get_module_instance instances 193 13 none]
+G c Z s b [new_data_instance instances 196 14 none]
+G c Z s b [func_ty instances 198 13 none]
+G c Z s s [val_type_vectorIP instances 39 9 none]
+G c Z s s [vector_of_bytesIP instances 42 9 none]
+G c Z s s [vector_of_table_elementIP instances 45 9 none]
+G c Z s s [external_valuesIP instances 53 9 none]
+G c Z s s [func_instanceDI instances 69 9 none]
+G c Z s s [func_instanceDA instances 69 9 none]
+G c Z s s [func_instanceDF instances 69 9 none]
+G c Z s s [func_instanceIP instances 69 9 none]
+G c Z s s [table_instanceIP instances 79 9 none]
+G c Z s s [memory_instanceIP instances 85 9 none]
+G c Z s s [global_instanceIP instances 92 9 none]
+G c Z s s [element_instanceIP instances 98 9 none]
+G c Z s s [data_instanceIP instances 104 9 none]
+G c Z s s [export_instanceIP instances 109 9 none]
+G c Z s s [function_instance_listIP instances 114 9 none]
+G c Z s s [function_instance_listDI instances 114 9 none]
+G c Z s s [function_instance_listDA instances 114 9 none]
+G c Z s s [function_instance_listDF instances 114 9 none]
+G c Z s s [table_instance_listIP instances 116 9 none]
+G c Z s s [mems_instance_listIP instances 118 9 none]
+G c Z s s [global_instance_listIP instances 120 9 none]
+G c Z s s [elem_instance_listIP instances 122 9 none]
+G c Z s s [data_instance_listIP instances 124 9 none]
+G c Z s s [module_instanceIP instances 160 9 none]
+G c Z s s [module_instance_listIP instances 176 9 none]
+G c Z s s [store_typeIP instances 183 9 none]
 G c Z b b [initialize_frame instances 3 14 none]
 G c Z b b [initialize_configuration instances 8 14 none]
 G c Z b b [initialize_globals instances 12 14 none]
 G c Z b b [initialize_references instances 16 14 none]
 G c Z b b [instatiate_module instances 20 14 none]
-G r s function_type [Tarray_typeBIP instances__ft_array_access_types 121 7 128_4] [function_typeIP types 52 9 none]
-G r l function_type [Tarray_typeBDI instances__ft_array_access_types 121 7 128_4] [function_typeDI types 52 9 none]
-G r k function_type [Tarray_typeBDI instances__ft_array_access_types 121 7 128_4] [function_typeDF types 52 9 none]
-G r j function_type [Tarray_typeBDA instances__ft_array_access_types 121 7 128_4] [function_typeDA types 52 9 none]
-G r k function_type [Tarray_typeBDF instances__ft_array_access_types 121 7 128_4] [function_typeDF types 52 9 none]
-G r j function_type [func_ty instances 182 13 none] [function_typeDA types 52 9 none]
-G r s value_type [val_type_vectorIP instances 28 9 none] [value_typeIP types 33 9 none]
-G r s table_type [vector_of_table_elementIP instances 34 9 none] [table_typeIP types 65 9 none]
-G r j function_type [func_instanceDA instances 58 9 none] [function_typeDA types 52 9 none]
-G r k function_type [func_instanceDF instances 58 9 none] [function_typeDF types 52 9 none]
-G r s function_type [func_instanceIP instances 58 9 none] [function_typeIP types 52 9 none]
-G r l function_type [func_instanceIP instances 58 9 none] [function_typeDI types 52 9 none]
-G r k function_type [func_instanceIP instances 58 9 none] [function_typeDF types 52 9 none]
-G r s table_type [table_instanceIP instances 68 9 none] [table_typeIP types 65 9 none]
-G r s limit_type [memory_instanceIP instances 74 9 none] [limit_typeIP types 57 9 none]
-G r s global_type [global_instanceIP instances 81 9 none] [global_typeIP types 73 9 none]
-G r s function_type [function_instance_listIP instances 103 9 none] [function_typeIP types 52 9 none]
-G r l function_type [function_instance_listIP instances 103 9 none] [function_typeDI types 52 9 none]
-G r k function_type [function_instance_listIP instances 103 9 none] [function_typeDF types 52 9 none]
-G r k function_type [function_instance_listDI instances 103 9 none] [function_typeDF types 52 9 none]
-G r j function_type [function_instance_listDA instances 103 9 none] [function_typeDA types 52 9 none]
-G r k function_type [function_instance_listDF instances 103 9 none] [function_typeDF types 52 9 none]
-G r s table_type [table_instance_listIP instances 105 9 none] [table_typeIP types 65 9 none]
-G r s limit_type [mems_instance_listIP instances 107 9 none] [limit_typeIP types 57 9 none]
-G r s global_type [global_instance_listIP instances 109 9 none] [global_typeIP types 73 9 none]
+G r s function_type [Tarray_typeBIP instances__ft_array_access_types 132 7 139_4] [function_typeIP types 52 9 none]
+G r l function_type [Tarray_typeBDI instances__ft_array_access_types 132 7 139_4] [function_typeDI types 52 9 none]
+G r k function_type [Tarray_typeBDI instances__ft_array_access_types 132 7 139_4] [function_typeDF types 52 9 none]
+G r j function_type [Tarray_typeBDA instances__ft_array_access_types 132 7 139_4] [function_typeDA types 52 9 none]
+G r k function_type [Tarray_typeBDF instances__ft_array_access_types 132 7 139_4] [function_typeDF types 52 9 none]
+G r j function_type [func_ty instances 198 13 none] [function_typeDA types 52 9 none]
+G r s value_type [val_type_vectorIP instances 39 9 none] [value_typeIP types 33 9 none]
+G r s table_type [vector_of_table_elementIP instances 45 9 none] [table_typeIP types 65 9 none]
+G r j function_type [func_instanceDA instances 69 9 none] [function_typeDA types 52 9 none]
+G r k function_type [func_instanceDF instances 69 9 none] [function_typeDF types 52 9 none]
+G r s function_type [func_instanceIP instances 69 9 none] [function_typeIP types 52 9 none]
+G r l function_type [func_instanceIP instances 69 9 none] [function_typeDI types 52 9 none]
+G r k function_type [func_instanceIP instances 69 9 none] [function_typeDF types 52 9 none]
+G r s table_type [table_instanceIP instances 79 9 none] [table_typeIP types 65 9 none]
+G r s limit_type [memory_instanceIP instances 85 9 none] [limit_typeIP types 57 9 none]
+G r s global_type [global_instanceIP instances 92 9 none] [global_typeIP types 73 9 none]
+G r s function_type [function_instance_listIP instances 114 9 none] [function_typeIP types 52 9 none]
+G r l function_type [function_instance_listIP instances 114 9 none] [function_typeDI types 52 9 none]
+G r k function_type [function_instance_listIP instances 114 9 none] [function_typeDF types 52 9 none]
+G r k function_type [function_instance_listDI instances 114 9 none] [function_typeDF types 52 9 none]
+G r j function_type [function_instance_listDA instances 114 9 none] [function_typeDA types 52 9 none]
+G r k function_type [function_instance_listDF instances 114 9 none] [function_typeDF types 52 9 none]
+G r s table_type [table_instance_listIP instances 116 9 none] [table_typeIP types 65 9 none]
+G r s limit_type [mems_instance_listIP instances 118 9 none] [limit_typeIP types 57 9 none]
+G r s global_type [global_instance_listIP instances 120 9 none] [global_typeIP types 73 9 none]
 X 1 ada.ads
-16K9*Ada 20e8 17|3r6 3r49 4r6 5r6 5r49
+16K9*Ada 20e8 17|16r6 16r49 17r6 18r6 18r49
 X 2 a-contai.ads
-16K13*Containers 28e19 17|3w10 3r53 4r10 5r10 5r53
+16K13*Containers 28e19 17|16w10 16r53 17r10 18r10 18r53
 X 5 a-cihama.ads
-49k24*Indefinite_Hashed_Maps 478e42 17|5w21
+49k24*Indefinite_Hashed_Maps 478e42 17|18w21
 X 6 a-convec.ads
-74k24*Vectors 878e27 17|4w21
+74k24*Vectors 878e27 17|17w21
 91R9*Vector<8|43R9>
 X 9 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
 X 17 instances.ads
-9K9*Instances 184l5 184e14 18|1b14 52l5 52t14
-14I9*Address<short_short_integer> 15r25 16r26 17r24 18r27 19r25 20r25 21r27
-. 23r25 24r26 25r26 26r36
-15I12*Func_Addr{14I9} 45r20 132r23
-16I12*Table_Addr{14I9} 47r21 135r23
-17I12*Mem_Addr{14I9} 49r19 138r23
-18I12*Global_Addr{14I9} 51r22 141r23
-19I12*Elem_Addr{14I9} 144r23
-20I12*Data_Addr{14I9} 147r23
-21I12*Extern_Addr{14I9}
-23I12*Type_Addr{14I9}
-24I12*Local_Addr{14I9} 28r35
-25I12*Label_Addr{14I9}
-26I12*Module_Instance_Addr{14I9} 64r25 71r18 78r20 84r18 89r15 95r15 152r37
-. 178r14 180r57 18|30r57 44r14
-28A9*Val_Type_Vector(41|33R9)<14I9> 29r33
-29P9*Locals_Vector(28A9)
-31A9*Vector_Of_Bytes(19|69M9)<integer> 32r39
-32P9*Vector_Of_Bytes_Acc(31A9) 76r20 94r15
-34A9*Vector_Of_Table_Element(41|65R9)<integer> 35r47
-35P9*Vector_Of_Table_Element_Acc(34A9) 70r18 88r15
-37m4*PAGE_SIZE{19|80M9} 39r53 77r35
-38m4*MAX_PAGES{19|80M9} 39r65
-39m4*MAX_SIZE{19|83M9}
-41E9*External_Values_Type 41e59 42r30
-41n34*Func{41E9} 42r54 44r15
-41n40*Table{41E9} 46r15
-41n47*Mem{41E9} 48r15
-41n52*Global{41E9} 50r15
-42R9*External_Values 42d26 53e14 100r22
-42e26*T{41E9} 43r12
-45i13*Func{15I12}
-47i13*Table{16I12}
-49i13*Mem{17I12}
-51i13*Global{18I12}
-56E9*Func_Instance_Type 56e55 58r28
-56n32*Host_Func{56E9} 60r15
-56n43*Module_Func{56E9} 58r50 62r15
-58R9*Func_Instance 58d24 66e14 103r63
-58e24*T{56E9} 59r12
-63r13*Func_Type{41|52R9}
-64i13*Owner{26I12}
-68R9*Table_Instance 72e14 105r60
-69r7*Kind{41|65R9}
-70p7*Elements{35P9}
-71i7*Owner{26I12}
-74R9*Memory_Instance 79e14 107r59
-75r7*Kind{41|63R12}
-76p7*Data{32P9}
-77m7*Page_Count{19|80M9}
-78i7*Owner{26I12}
-81R9*Global_Instance 85e14 109r61
-82r7*Glb_Type{41|73R9}
-83i7*Value{integer}
-84i7*Owner{26I12}
-87R9*Element_Instance 91e14 111r59
-88p7*Items{35P9}
-89i7*Owner{26I12}
-90e7*Kind{41|30E9}
-93R9*Data_Instance 96e14 113r59
-94p7*Data{32P9}
-95i7*Owner{26I12}
-98R9*Export_Instance 101e14
-99e7*Name_export{42|6E12}
-100r7*External_Val{42R9}
-103A9*Function_Instance_List(58R9)<integer> 104r38
-104P9*Function_Instances(103A9) 168r25
-105A9*Table_Instance_List(68R9)<integer> 106r35
-106P9*Table_Instances(105A9) 169r25
-107A9*Mems_Instance_List(74R9)<integer> 108r33
-108P9*Mem_Instances(107A9) 170r25
-109A9*Global_Instance_List(81R9)<integer> 110r36
-110P9*Global_Instances(109A9) 171r25
-111A9*Elem_Instance_List(87R9)<integer> 112r34
-112P9*Elem_Instances(111A9) 172r25
-113A9*Data_Instance_List(93R9)<integer> 114r34
-114P9*Data_Instances(113A9) 173r25
-118+12 Element_Type 121r48 126r7 129r7 132r7 135r7 138r7 141r7 144r7 147r7
-119E12 Index_Type 121r33 126r35 129r38 132r34 135r35 138r33 141r36 144r34
-. 147r34
-120k12*Array_Access_Types 118z12 119z12 123l8 123e26 125r49 128r41 131r41
-. 134r41 137r41 140r41 143r41 146r41
-121A12*Array_Type(118+12)<119E12> 122r39
-122P12*Array_Access(121A12) 154r44[128] 155r44[131] 156r44[134] 157r44[137]
-. 158r44[140] 159r44[143] 160r44[146]
-125K12*Unsigned_8_Array_Access_Types[120]
-128K12*Ft_Array_Access_Types[120] 154r22
-131K12*Fa_Array_Access_Types[120] 155r22
-134K12*Ta_Array_Access_Types[120] 156r22
-137K12*Ma_Array_Access_Types[120] 157r22
-140K12*Ga_Array_Access_Types[120] 158r22
-143K12*Ea_Array_Access_Types[120] 159r22
-146K12*Da_Array_Access_Types[120] 160r22
-149R9*Module_Instance 163e14 164r61 178r43 18|44r43 46r11
-150b7*Failed_To_Instatiate_Module{boolean}
-151m7*Store_Id{19|80M9}
-152i7*Module_Addr{26I12}
-154p7*Types{122P12[128]}
-155p7*Func_Addrs{122P12[131]}
-156p7*Table_Addrs{122P12[134]}
-157p7*Mem_Addrs{122P12[137]}
-158p7*Global_Addrs{122P12[140]}
-159p7*Elem_Addrs{122P12[143]}
-160p7*Data_Addrs{122P12[146]}
-161i7*Imports{integer}
-162i7*Exports{integer}
-164A9*Module_Instance_List(149R9)<integer> 165r40
-165P9*Module_Instances_Acc(164A9) 174r25
-167R9*Store_Type 175e14
-168p7*Funcs{104P9}
-169p7*Tables{106P9}
-170p7*Memories{108P9}
-171p7*Globals{110P9}
-172p7*Elements{112P9}
-173p7*Datas{114P9}
-174p7*Module_Instance{165P9}
-177V13*Get_Module_Instance{149R9} 178>7 18|43b13 50l8 50t27
-178i7 Addr{26I12} 18|44b7
-180U14*New_Data_Instance 180>33 180>49 18|30b14 34l8 34t25
-180i33 Data{integer} 18|30b33
-180i49 Owner{26I12} 18|30b49
-182V13*Func_Ty{41|52R9} 182>22 18|36b13 41l8 41t15
-182m22 Ty{19|80M9} 18|36b22
+21K9*Instances 200l5 200e14 18|1b14 52l5 52t14
+25I9*Address<short_short_integer> 26r25 27r26 28r24 29r27 30r25 31r25 32r27
+. 34r25 35r26 36r26 37r36
+26I12*Func_Addr{25I9} 56r20 143r23
+27I12*Table_Addr{25I9} 58r21 146r23
+28I12*Mem_Addr{25I9} 60r19 149r23
+29I12*Global_Addr{25I9} 62r22 152r23
+30I12*Elem_Addr{25I9} 155r23
+31I12*Data_Addr{25I9} 158r23
+32I12*Extern_Addr{25I9}
+34I12*Type_Addr{25I9}
+35I12*Local_Addr{25I9} 39r35
+36I12*Label_Addr{25I9}
+37I12*Module_Instance_Addr{25I9} 75r25 82r18 89r20 95r18 100r15 106r15 163r37
+. 194r14 196r57 18|30r57 44r14
+39A9*Val_Type_Vector(41|33R9)<25I9> 40r33
+40P9*Locals_Vector(39A9)
+42A9*Vector_Of_Bytes(19|69M9)<integer> 43r39
+43P9*Vector_Of_Bytes_Acc(42A9) 87r20 105r15
+45A9*Vector_Of_Table_Element(41|65R9)<integer> 46r47
+46P9*Vector_Of_Table_Element_Acc(45A9) 81r18 99r15
+48m4*PAGE_SIZE{19|80M9} 50r53 88r35
+49m4*MAX_PAGES{19|80M9} 50r65
+50m4*MAX_SIZE{19|83M9}
+52E9*External_Values_Type 52e59 53r30
+52n34*Func{52E9} 53r54 55r15
+52n40*Table{52E9} 57r15
+52n47*Mem{52E9} 59r15
+52n52*Global{52E9} 61r15
+53R9*External_Values 53d26 64e14 111r22
+53e26*T{52E9} 54r12
+56i13*Func{26I12}
+58i13*Table{27I12}
+60i13*Mem{28I12}
+62i13*Global{29I12}
+67E9*Func_Instance_Type 67e55 69r28
+67n32*Host_Func{67E9} 71r15
+67n43*Module_Func{67E9} 69r50 73r15
+69R9*Func_Instance 69d24 77e14 114r63
+69e24*T{67E9} 70r12
+74r13*Func_Type{41|52R9}
+75i13*Owner{37I12}
+79R9*Table_Instance 83e14 116r60
+80r7*Kind{41|65R9}
+81p7*Elements{46P9}
+82i7*Owner{37I12}
+85R9*Memory_Instance 90e14 118r59
+86r7*Kind{41|63R12}
+87p7*Data{43P9}
+88m7*Page_Count{19|80M9}
+89i7*Owner{37I12}
+92R9*Global_Instance 96e14 120r61
+93r7*Glb_Type{41|73R9}
+94i7*Value{integer}
+95i7*Owner{37I12}
+98R9*Element_Instance 102e14 122r59
+99p7*Items{46P9}
+100i7*Owner{37I12}
+101e7*Kind{41|30E9}
+104R9*Data_Instance 107e14 124r59
+105p7*Data{43P9}
+106i7*Owner{37I12}
+109R9*Export_Instance 112e14
+110e7*Name_export{42|6E12}
+111r7*External_Val{53R9}
+114A9*Function_Instance_List(69R9)<integer> 115r38
+115P9*Function_Instances(114A9) 184r25
+116A9*Table_Instance_List(79R9)<integer> 117r35
+117P9*Table_Instances(116A9) 185r25
+118A9*Mems_Instance_List(85R9)<integer> 119r33
+119P9*Mem_Instances(118A9) 186r25
+120A9*Global_Instance_List(92R9)<integer> 121r36
+121P9*Global_Instances(120A9) 187r25
+122A9*Elem_Instance_List(98R9)<integer> 123r34
+123P9*Elem_Instances(122A9) 188r25
+124A9*Data_Instance_List(104R9)<integer> 125r34
+125P9*Data_Instances(124A9) 189r25
+129+12 Element_Type 132r48 137r7 140r7 143r7 146r7 149r7 152r7 155r7 158r7
+130E12 Index_Type 132r33 137r35 140r38 143r34 146r35 149r33 152r36 155r34
+. 158r34
+131k12*Array_Access_Types 129z12 130z12 134l8 134e26 136r49 139r41 142r41
+. 145r41 148r41 151r41 154r41 157r41
+132A12*Array_Type(129+12)<130E12> 133r39
+133P12*Array_Access(132A12) 165r44[139] 166r44[142] 167r44[145] 168r44[148]
+. 169r44[151] 170r44[154] 171r44[157]
+136K12*Unsigned_8_Array_Access_Types[131]
+139K12*Ft_Array_Access_Types[131] 165r22
+142K12*Fa_Array_Access_Types[131] 166r22
+145K12*Ta_Array_Access_Types[131] 167r22
+148K12*Ma_Array_Access_Types[131] 168r22
+151K12*Ga_Array_Access_Types[131] 169r22
+154K12*Ea_Array_Access_Types[131] 170r22
+157K12*Da_Array_Access_Types[131] 171r22
+160R9*Module_Instance 174e14 176r61 194r43 18|44r43 46r11
+161b7*Failed_To_Instatiate_Module{boolean}
+162m7*Store_Id{19|80M9}
+163i7*Module_Addr{37I12}
+165p7*Types{133P12[139]}
+166p7*Func_Addrs{133P12[142]}
+167p7*Table_Addrs{133P12[145]}
+168p7*Mem_Addrs{133P12[148]}
+169p7*Global_Addrs{133P12[151]}
+170p7*Elem_Addrs{133P12[154]}
+171p7*Data_Addrs{133P12[157]}
+172i7*Imports{integer}
+173i7*Exports{integer}
+176A9*Module_Instance_List(160R9)<integer> 177r40
+177P9*Module_Instances_Acc(176A9) 190r25
+183R9*Store_Type 191e14
+184p7*Funcs{115P9}
+185p7*Tables{117P9}
+186p7*Memories{119P9}
+187p7*Globals{121P9}
+188p7*Elements{123P9}
+189p7*Datas{125P9}
+190p7*Module_Instance{177P9}
+193V13*Get_Module_Instance{160R9} 194>7 18|43b13 50l8 50t27
+194i7 Addr{37I12} 18|44b7
+196U14*New_Data_Instance 196>33 196>49 18|30b14 34l8 34t25
+196i33 Data{integer} 18|30b33
+196i49 Owner{37I12} 18|30b49
+198V13*Func_Ty{41|52R9} 198>22 18|36b13 41l8 41t15
+198m22 Ty{19|80M9} 18|36b22
 X 18 instances.adb
 3U14 Initialize_Frame 3b14 6l8 6t24 24s7
 8U14 Initialize_Configuration 8b14 11l8 11t32 27s7
@@ -331,12 +331,12 @@ X 18 instances.adb
 20U14 Instatiate_Module 20b14 28l8 28t25
 37r7 Params{41|50R12} 40r25
 38r7 Results{41|48R12} 40r44
-46r7 m{17|149R9} 48r14
+46r7 m{17|160R9} 48r14
 X 19 interfac.ads
-38K9*Interfaces 17|6w6 6r49 19|232e15
-69M9*Unsigned_8 17|31r56 126r23
-80M9*Unsigned_32 17|37r25 38r25 77r20 151r37 182r27 18|36r27
-83M9*Unsigned_64 17|39r25 39r40
+38K9*Interfaces 17|19w6 19r49 19|232e15
+69M9*Unsigned_8 17|42r56 137r23
+80M9*Unsigned_32 17|48r25 49r25 88r20 162r37 198r27 18|36r27
+83M9*Unsigned_64 17|50r25 50r40
 X 20 system.ads
 67M9*Address
 X 25 s-memory.ads
@@ -346,18 +346,18 @@ X 25 s-memory.ads
 X 34 s-stalib.adb
 87U14 Break_Start 88i<c,__gnat_break_start>22
 X 41 types.ads
-3K9*Types 17|1w6 1r49 41|78e10
-30E9*Reference_Type 17|90r15 41|30e59
-33R9*Value_Type 17|28r59 41|42e14
+3K9*Types 17|14w6 14r49 41|78e10
+30E9*Reference_Type 17|101r15 41|30e59
+33R9*Value_Type 17|39r59 41|42e14
 48R12*Result_Type{6|91R9[44]} 18|38r17
 50R12*Parameter_Type{6|91R9[44]} 18|37r17
-52R9*Function_Type 17|63r25 129r23 182r47 18|36r47 41|55e14
+52R9*Function_Type 17|74r25 140r23 198r47 18|36r47 41|55e14
 53r7*Params{50R12} 18|40m15
 54r7*Results{48R12} 18|40m33
-63R12*Memory_Type{57R9} 17|75r20
-65R9*Table_Type 17|34r64 69r18 41|68e14
-73R9*Global_Type 17|82r18 41|76e14
+63R12*Memory_Type{57R9} 17|86r20
+65R9*Table_Type 17|45r64 80r18 41|68e14
+73R9*Global_Type 17|93r18 41|76e14
 X 42 values.ads
-3K9*Values 17|2w6 2r49 42|15e11
-6E12*Name{character} 17|99r22
+3K9*Values 17|15w6 15r49 42|15e11
+6E12*Name{character} 17|110r22
 
