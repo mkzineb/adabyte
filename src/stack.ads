@@ -9,10 +9,10 @@ with Interfaces;   use Interfaces;
 with Types;        use Types;
 with Instances;    use Instances;
 with Wasm;         use Wasm;
-with Types;        use Types;
 with Instructions; use Instructions;
-with Ada.Containers;
+with Ada.Containers.Vectors;
 package Stack is
+   pragma Elaborate_Body;
    use Value_Type_Vectors;
    use Ada.Containers;
 
@@ -37,7 +37,28 @@ package Stack is
       Val : Value_Type;
    end record;
 
-   function Add_Elements_To_Call_Frame_Locals
-     (Func_Locals : Vector; params : Parameter_Type) return Vector;
+   type Element is (Value, Label, Activation_Call);
+
+   type Element_Variation (Elt : Element := Value) is record
+      case Elt is
+         when Value =>
+            Val : Value_Stack;
+         when Label =>
+            Special_Id : Unsigned_32;
+            Block      : Block_Frame;
+         when Activation_Call =>
+            Call : Call_Frame;
+      end case;
+   end record;
+
+   package Stack_Vector is new Ada.Containers.Vectors
+     (Index_Type => Natural, Element_Type => Element_Variation);
+   use Stack_Vector;
+
+   --  function Add_Elements_To_Call_Frame_Locals
+   --    (Func_Locals : Vector; params : Parameter_Type) return Vector;
+
+   --  procedure Push_Value_Type
+   --    (Stack : in out Stack_Vector.Vector; T : S_F; Value : Numeric_Type);
 
 end Stack;

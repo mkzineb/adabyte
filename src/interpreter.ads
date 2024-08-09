@@ -1,7 +1,8 @@
 ------------------------------------------------------------------------------
 --  Package: Interpreter
 --
---  comment...
+--  This package is the core of the interpreter, conatins all the logic for
+--  executing Wasm instructions and all environmenet data structures.
 --  Author: Moubarik Zineb
 --  Date: 24-07-2024
 ------------------------------------------------------------------------------
@@ -13,21 +14,39 @@ with Types;                                 use Types;
 with Stack;                                 use Stack;
 with Instances;                             use Instances;
 with Wasm;                                  use Wasm;
-
+with Ada.Containers.Vectors;
 package Interpreter is
+   use Stack_Vector;
+   use Ada.Containers;
 
-   type Element is (Value, Label, Activation_Call);
-   type Element_Variation (Elt : Element := Value) is record
-      case Elt is
-         when Value =>
-            Val : Value_Stack;
-         when Label =>
-            Special_Id : Unsigned_32;
-            Block      : Block_Frame;
-         when Activation_Call =>
-            Call : Call_Frame;
-      end case;
-   end record;
+   --  Generic For comparision instructions
+   type Comparison is
+     (Equal, Not_Equal, Less, Greater, Less_Equal, Greater_Equal);
+   generic
+      type T is private;
+      with function Compare (A, B : T; Op : Comparison) return Boolean;
+      with procedure Push_To_Stack (Stack : in out Vector; Value : Integer);
+   procedure Check_Push
+     (Stack      : in out Vector; A, B : T; Comp_True : Integer;
+      Comp_False :        Integer; Op : Comparison);
+
+   type Arithmetic is (Addition, Substraction, Division, Multiplication);
+   --  Generic for signed integers
+   generic
+      type S is private;
+      with function Calculate_Signed
+        (A, B : S; Op : Arithmetic; Size : Signed) return S;
+      with procedure Push_Signed (Stack : in out Vector; R : S);
+   procedure Calculate_Push_Signed
+     (Stack : in out Vector; A, B : S; Op : Arithmetic; Size : Signed);
+
+   --  Generic for floats
+   generic
+      type F is digits <>;
+      with function Calculate_Float (A, B : F; Op : Arithmetic) return F;
+      with procedure Push_Float (Stack : in out Vector; R : F);
+   procedure Calculate_Push_Float
+     (Stack : in out Vector; A, B : F; Op : Arithmetic);
 
    type Label_Info is record
       Arity    : Natural;
@@ -40,12 +59,9 @@ package Interpreter is
       Equivalent_Keys => "=");
 
    use Symbols_Table;
-   package Vectors is new Ada.Containers.Vectors
-     (Index_Type => Natural, Element_Type => Element_Variation);
-   use Vectors;
 
    type Env is record
-      Stack   : Vectors.Vector;
+      Stack   : Stack_Vector.Vector;
       Store   : Store_Type;
       Symbols : Symbols_Table.Map;
       Cf      : Call_Frame;
@@ -71,26 +87,5 @@ package Interpreter is
    type Binary_Op is
      (add, sub, mul, div, rem_s, and_op, or_op, xor_op, shl, shr_s, rotl,
       rotr);
-   type Comparison is
-     (Equal, Not_Equal, Less, Greater, Less_Equal, Greater_Equal);
-
-   generic
-      type T is private;
-      with function "=" (Left, Right : T) return Boolean;
-      with function "<" (Left, Right : T) return Boolean;
-      with function ">" (Left, Right : T) return Boolean;
-      with function "<=" (Left, Right : T) return Boolean;
-      with function ">=" (Left, Right : T) return Boolean;
-   procedure Compare_And_Push
-     (Stack : in out Vector; A, B : T; Op : Comparison);
-
-   --  generic
-   --     type T is private;
-   --     with function "=" (Left, Right : T) return Boolean;
-   --     with function "<" (Left, Right : T) return Boolean;
-   --     with function ">" (Left, Right : T) return Boolean;
-   --     with function "<=" (Left, Right : T) return Boolean;
-   --     with function ">=" (Left, Right : T) return Boolean;
-   --  -- procedure Push_Value_T (Stack : in out Vector; A : T);
 
 end Interpreter;

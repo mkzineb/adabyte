@@ -15,6 +15,50 @@ is
 
    type Number is (I_32, I_64, F_32, F_64, U_32, U_64);
 
+   type Signed is (I_32, I_64);
+   type Unsigned is (U_32, U_64);
+   type Floats is (F_32, F_64);
+
+   type S_F is (S, F);
+
+   -- type Signed_Type is range -2**31 .. 2**31 - 1;
+
+   type Signed_Type (Num : Signed := I_32) is record
+      case Num is
+         when I_32 =>
+            I_32 : Integer_32;
+         when I_64 =>
+            I_64 : Integer_64;
+      end case;
+   end record;
+
+   type Unsigned_Type (Num : Unsigned := U_32) is record
+      case Num is
+         when U_32 =>
+            U_32 : Unsigned_32;
+         when U_64 =>
+            U_64 : Unsigned_64;
+      end case;
+   end record;
+
+   type Float_Type (Num : Floats := F_32) is record
+      case Num is
+         when F_32 =>
+            F_32 : IEEE_Float_32;
+         when F_64 =>
+            F_64 : IEEE_Float_64;
+      end case;
+   end record;
+
+   type Numeric_Type (N : S_F := S) is record
+      case N is
+         when S =>
+            Num_S : Signed_Type;
+         when F =>
+            Num_F : Float_Type;
+      end case;
+   end record;
+
    type Number_Type (Num : Number := I_32) is record
       case Num is
          when I_32 =>
@@ -40,7 +84,7 @@ is
    type Value_Type (Val : Value_Posibilities := Number_Value) is record
       case Val is
          when Number_Value =>
-            Num_Value : Number_Type;
+            Num_Value : Numeric_Type;
          when Vector_Value =>
             Vec_Value : Vector_Type;
          when Reference_Value =>

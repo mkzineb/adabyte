@@ -14,7 +14,7 @@ with Instances;  use Instances;
 package Instructions with
   SPARK_Mode => On
 is
-
+   pragma Elaborate_Body;
    subtype End_Offset is Unsigned_32;
    subtype Else_Offset is Unsigned_32;
    subtype Br_Table_Default is Unsigned_32;
@@ -43,8 +43,6 @@ is
       Offset       : Unsigned_64;
       Arg_Mem_Addr : Mem_Addr;
    end record;
-
-   type Sign_Extension is (Signed, Unsigned);
 
    type Opcode is
      (Numeric, Reference, Parametric, Variable, Table, Memory, Control,
@@ -84,7 +82,7 @@ is
       Branch, Branch_If, Branch_Table, Return_Inst, Call, Call_Indirect);
 
    type Opcode_Parametric is (Drop, Select_Inst);
-   --  select possibly followed by a type notation
+
    type Opcode_Variable is
      (Local_Get, Local_Set, Local_Tee, Global_Get, Global_Set);
 
@@ -97,9 +95,7 @@ is
       I32_Load_16_S, I32_Load_16_U, I64_Load_8_S, I64_Load_8_U, I64_Load_16_S,
       I64_Load_16_U, I64_Load_32_S, I64_Load_32_U, I32_Store, I64_Store,
       F32_Store, F64_Store, I32_Store_8, I32_Store_16, I64_Store_8,
-      I64_Store_16, I64_Store_32, Mem_Size, Mem_Grow,
-                         --  bulk memory inst
-                         Mem_Init, Mem_Drop,
+      I64_Store_16, I64_Store_32, Mem_Size, Mem_Grow, Mem_Init, Mem_Drop,
       Mem_Copy, Mem_Fill);
 
    type Opcode_Vector is (Extract, Splat, Pmin, Pmax);
@@ -107,13 +103,13 @@ is
    type Numeric_Instruction (Op : Opcode_Numeric := I32_Const) is record
       case Op is
          when I32_Const =>
-            I32_Constant : Number_Type (Num => I_32);
+            I32_Constant : Numeric_Type;
          when I64_Const =>
-            I64_Constant : Number_Type (Num => I_64);
+            I64_Constant : Numeric_Type;
          when F32_Const =>
-            F32_Constant : Number_Type (Num => F_32);
+            F32_Constant : Numeric_Type (F);
          when F64_Const =>
-            F64_Constant : Number_Type (Num => F_64);
+            F64_Constant : Numeric_Type (F);
          when others =>
             null;
       end case;
@@ -346,7 +342,5 @@ is
    end record;
 
    subtype Constant_Expression is Instruction (Numeric);  --  todo
-
-   function Get_Block_Type return Block_Type;
 
 end Instructions;
