@@ -1,2 +1,2 @@
-wasm.ads:1:09: warning: unit "Ada.Containers" is not referenced [-gnatwu]
-wasm.ads:7:06: warning: redundant with clause [-gnatwr]
+wasm.ads:8:09: warning: unit "Ada.Containers" is not referenced [-gnatwu]
+wasm.ads:14:06: warning: redundant with clause [-gnatwr]

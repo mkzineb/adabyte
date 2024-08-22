@@ -128,7 +128,6 @@ package Instances is
    type Data_Instance_List is array (Natural range <>) of Data_Instance;
    type Data_Instances is access Data_Instance_List;
 
-   --  type Exec_Env is (modInstance, current_func, stack, frame_stt);
    generic
       type Element_Type is private;
       type Index_Type is (<>);

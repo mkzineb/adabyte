@@ -1,2 +1,2 @@
-values.ads:1:09: warning: no entities of "Ada.Wide_Characters" are referenced [-gnatwu]
-values.ads:1:27: warning: use clause for package "Wide_Characters" has no effect [-gnatwu]
+values.ads:8:09: warning: no entities of "Ada.Wide_Characters" are referenced [-gnatwu]
+values.ads:8:27: warning: use clause for package "Wide_Characters" has no effect [-gnatwu]

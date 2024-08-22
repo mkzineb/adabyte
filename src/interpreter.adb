@@ -3,6 +3,58 @@ with Ada.Unchecked_Deallocation;
 with Ada.Containers;
 package body Interpreter is
 
+   function Shift_Left
+     (Value : Integer_32; Amount : Natural) return Integer_32 with
+     Import, Convention => Intrinsic;
+
+   function Shift_Right
+     (Value : Integer_32; Amount : Natural) return Integer_32 with
+     Import, Convention => Intrinsic;
+
+   procedure Push_Value (Stack : in out Vector; Num : Numeric_Type) is
+   begin
+      case Num.N is
+         when S =>
+            case Num.Num_S.Num is
+               when I_32 =>
+                  Stack.Append
+                    ((Value,
+                      Val =>
+                        (Val =>
+                           (Number_Value,
+                            Num_Value =>
+                              (S, Num_S => (I_32, I_32 => Num.Num_S.I_32))))));
+               when I_64 =>
+                  Stack.Append
+                    ((Value,
+                      Val =>
+                        (Val =>
+                           (Number_Value,
+                            Num_Value =>
+                              (S, Num_S => (I_64, I_64 => Num.Num_S.I_64))))));
+            end case;
+         when F =>
+            case Num.Num_F.Num is
+               when F_32 =>
+                  Stack.Append
+                    ((Value,
+                      Val =>
+                        (Val =>
+                           (Number_Value,
+                            Num_Value =>
+                              (F, Num_F => (F_32, F_32 => Num.Num_F.F_32))))));
+               when F_64 =>
+                  Stack.Append
+                    ((Value,
+                      Val =>
+                        (Val =>
+                           (Number_Value,
+                            Num_Value =>
+                              (F, Num_F => (F_64, F_64 => Num.Num_F.F_64))))));
+            end case;
+      end case;
+   end Push_Value;
+
    procedure Free is new Ada.Unchecked_Deallocation
      (Chunk, Instruction_Sequence);
 
@@ -105,7 +157,7 @@ package body Interpreter is
      (Pos : Natural; Stack : Vector) return Unsigned_32
    is
    begin
-      if (Pos >= First_Index (Stack)) and (Pos <= Last_Index (Stack)) then
+      if (Pos >= First_Index (Stack)) and then (Pos <= Last_Index (Stack)) then
          pragma Assert
            (Stack (Pos).Element.Elt = Label,
             "Not a Label at Position: " & Pos'Img);
@@ -117,7 +169,7 @@ package body Interpreter is
 
    function Get_Block_Type (Pos : Natural; Stack : Vector) return Block_Type is
    begin
-      if (Pos >= First_Index (Stack)) and (Pos <= Last_Index (Stack)) then
+      if (Pos >= First_Index (Stack)) and then (Pos <= Last_Index (Stack)) then
          pragma Assert
            (Stack (Pos).Element.Elt = Label,
             "Not a Label at Position: " & Pos'Img);
@@ -187,454 +239,142 @@ package body Interpreter is
       return Continue;
    end Execute_Branching;
 
-   procedure Execute_Const (Stack : in out Vector; Var : Number_Type) is
+   procedure Execute_Const (Stack : in out Vector; Var : Numeric_Type) is
    begin
-      case Var.Num is
-         when I_32 =>
-            Stack.Append
-              ((Elt => Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (I_32, I_32 => Var.I_32)))));
-            Put_Line ("          pushed in the stack: " & Var.I_32'Img);
-         when I_64 =>
-            Stack.Append
-              ((Elt => Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (I_64, I_64 => Var.I_64)))));
-         when F_32 =>
-            Stack.Append
-              ((Elt => Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (F_32, F_32 => Var.F_32)))));
-         when F_64 =>
-            Stack.Append
-              ((Elt => Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (F_64, F_64 => Var.F_64)))));
-         when others =>
-            null;
-      end case;
+      Push_Value (Stack, Var);
    end Execute_Const;
 
-   procedure Execute_Compare_To_Zero (Stack : in out Vector; Var : Number_Type)
+   procedure Execute_Compare_To_Zero
+     (Stack : in out Vector; Var : Numeric_Type)
    is
    begin
-      --     pragma Assert
-      --       (Stack.Last_Element = Value_Type,
-      --        "Not 'Value Type' on top of the stack");
-
       Delete_Last (Stack);
-      if Var.I_32 = 0 or else Var.I_64 = 0 then
-         case Var.Num is
-            when I_32 =>
-               Stack.Append
-                 ((Elt => Value,
-                   Val =>
-                     (Val =>
-                        (Number_Value,
-                          Num_Value => (I_32, I_32 => Var.I_32)))));
-            when I_64 =>
-               Stack.Append
-                 ((Elt => Value,
-                   Val =>
-                     (Val =>
-                        (Number_Value,
-                          Num_Value => (I_64, I_64 => Var.I_64)))));
-            when others =>
-               null;
-         end case;
+      if Var.Num_S.I_32 = 0 or else Var.Num_S.I_64 = 0 then
+         Push_Value (Stack, Var);
       end if;
    end Execute_Compare_To_Zero;
 
-   procedure Push_Value (Stack : in out Vector; Num : Number_Type) is
-   begin
-      case Num.Num is
-         when I_32 =>
-            Stack.Append
-              ((Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (I_32, I_32 => Num.I_32)))));
-         when I_64 =>
-            Stack.Append
-              ((Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (I_64, I_64 => Num.I_64)))));
-         when F_32 =>
-            Stack.Append
-              ((Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (F_32, F_32 => Num.F_32)))));
-         when F_64 =>
-            Stack.Append
-              ((Value,
-                Val =>
-                  (Val =>
-                     (Number_Value, Num_Value => (F_64, F_64 => Num.F_64)))));
-         when others =>
-            null;
-      end case;
-   end Push_Value;
+   -------------------------------------------------------------
 
-   procedure Compare_And_Push
-     (Stack : in out Vector; A, B : T; Op : Comparison)
+   procedure Check_Push
+     (Stack      : in out Vector; A, B : T; Comp_True : Integer;
+      Comp_False :        Integer; Op : Comparison)
    is
-      Result : Boolean;
    begin
-      case Op is
-         when Equal =>
-            Result := (A = B);
-         when Not_Equal =>
-            Result := (A /= B);
-         when Less =>
-            Result := (A < B);
-         when Greater =>
-            Result := (A > B);
-         when Less_Equal =>
-            Result := (A <= B);
-         when Greater_Equal =>
-            Result := (A >= B);
-      end case;
-
-      if Result then
-         --Push_Value_T (Stack, (T, T => 0));
-         null;
+      if Compare (A, B, Op) then
+         Push_To_Stack (Stack, Comp_True);
       else
-         --Push_Value_T (Stack, (T, T => 1));
-         null;
+         Push_To_Stack (Stack, Comp_False);
       end if;
-   end Compare_And_Push;
+   end Check_Push;
 
-   function Pop_Value (Stack : in out Vector) return Number_Type is
-      Result : Number_Type;
+   function Compare_NT (A, B : Numeric_Type; Op : Comparison) return Boolean is
+   begin
+      if A.N = B.N then
+         case A.N is
+            when S =>
+               case A.Num_S.Num is
+                  when I_32 =>
+                     case Op is
+                        when Equal =>
+                           return (A.Num_S.I_32 = B.Num_S.I_32);
+                        when Not_Equal =>
+                           return (A.Num_S.I_32 /= B.Num_S.I_32);
+                        when Less =>
+                           return (A.Num_S.I_32 < B.Num_S.I_32);
+                        when Greater =>
+                           return (A.Num_S.I_32 > B.Num_S.I_32);
+                        when Less_Equal =>
+                           return (A.Num_S.I_32 <= B.Num_S.I_32);
+                        when Greater_Equal =>
+                           return (A.Num_S.I_32 >= B.Num_S.I_32);
+                     end case;
+                  when I_64 =>
+                     case Op is
+                        when Equal =>
+                           return (A.Num_S.I_64 = B.Num_S.I_64);
+                        when Not_Equal =>
+                           return (A.Num_S.I_64 /= B.Num_S.I_64);
+                        when Less =>
+                           return (A.Num_S.I_64 < B.Num_S.I_64);
+                        when Greater =>
+                           return (A.Num_S.I_64 > B.Num_S.I_64);
+                        when Less_Equal =>
+                           return (A.Num_S.I_64 <= B.Num_S.I_64);
+                        when Greater_Equal =>
+                           return (A.Num_S.I_64 >= B.Num_S.I_64);
+                     end case;
+               end case;
+
+            when F =>
+               case A.Num_F.Num is
+                  when F_32 =>
+
+                     case Op is
+                        when Equal =>
+                           return (A.Num_F.F_32 = B.Num_F.F_32);
+                        when Not_Equal =>
+                           return (A.Num_F.F_32 /= B.Num_F.F_32);
+                        when Less =>
+                           return (A.Num_F.F_32 < B.Num_F.F_32);
+                        when Greater =>
+                           return (A.Num_F.F_32 > B.Num_F.F_32);
+                        when Less_Equal =>
+                           return (A.Num_F.F_32 <= B.Num_F.F_32);
+                        when Greater_Equal =>
+                           return (A.Num_F.F_32 >= B.Num_F.F_32);
+                     end case;
+
+                  when F_64 =>
+                     case Op is
+                        when Equal =>
+                           return (A.Num_F.F_64 = B.Num_F.F_64);
+                        when Not_Equal =>
+                           return (A.Num_F.F_64 /= B.Num_F.F_64);
+                        when Less =>
+                           return (A.Num_F.F_64 < B.Num_F.F_64);
+                        when Greater =>
+                           return (A.Num_F.F_64 > B.Num_F.F_64);
+                        when Less_Equal =>
+                           return (A.Num_F.F_64 <= B.Num_F.F_64);
+                        when Greater_Equal =>
+                           return (A.Num_F.F_64 >= B.Num_F.F_64);
+                     end case;
+
+               end case;
+         end case;
+      else
+         raise Program_Error with "not same type";
+      end if;
+   end Compare_NT;
+
+   procedure Push_NT (Stack : in out Vector; Value : Integer) is
+   begin
+      Push_Value (Stack, (S, Num_S => (I_32, I_32 => Integer_32 (Value))));
+   end Push_NT;
+
+   procedure Check_Push_NT is new Check_Push
+     (T => Numeric_Type, Compare => Compare_NT, Push_To_Stack => Push_NT);
+   -------------------------------------------------------------
+
+   function Pop_Value (Stack : in out Vector) return Numeric_Type is
+      Result : Numeric_Type;
    begin
       Result := Last_Element (Stack).Val.Val.Num_Value;
       Delete_Last (Stack);
       return Result;
    end Pop_Value;
 
-   procedure Compare_And_Push_I32
-     (Stack : in out Vector; A, B : Integer_32; Op : String)
-   is
-   begin
-      if Op = "==" then
-         if A = B then
-            Push_Value (Stack, (I_32, I_32 => 0));
-         else
-            Push_Value (Stack, (I_32, I_32 => 1));
-         end if;
-      elsif Op = "!=" then
-         if A /= B then
-            Push_Value (Stack, (I_32, I_32 => 0));
-         else
-            Push_Value (Stack, (I_32, I_32 => 1));
-         end if;
-      elsif Op = "<" then
-         if A < B then
-            Push_Value (Stack, (I_32, I_32 => 0));
-         else
-            Push_Value (Stack, (I_32, I_32 => 1));
-         end if;
-      elsif Op = ">" then
-         if A > B then
-            Push_Value (Stack, (I_32, I_32 => 0));
-         else
-            Push_Value (Stack, (I_32, I_32 => 1));
-         end if;
-      elsif Op = "<=" then
-         if A <= B then
-            Push_Value (Stack, (I_32, I_32 => 0));
-         else
-            Push_Value (Stack, (I_32, I_32 => 1));
-         end if;
-      elsif Op = ">=" then
-         if A >= B then
-            Push_Value (Stack, (I_32, I_32 => 0));
-         else
-            Push_Value (Stack, (I_32, I_32 => 1));
-         end if;
-      elsif Op = "<<" then
-         if A < B and A /= B then
-            Push_Value (Stack, (I_32, I_32 => 0));
-            Put_Line ("False");
-         else
-            Push_Value (Stack, (I_32, I_32 => 1));
-            Put_Line ("True");
-         end if;
-      else
-         raise Program_Error with "Unsupported operation";
-      end if;
-   end Compare_And_Push_I32;
-
-   procedure Compare_And_Push_I64
-     (Stack : in out Vector; A, B : Integer_64; Op : String)
-   is
-   begin
-      if Op = "==" then
-         if A = B then
-            Push_Value (Stack, (I_64, I_64 => 0));
-         else
-            Push_Value (Stack, (I_64, I_64 => 1));
-         end if;
-      elsif Op = "!=" then
-         if A /= B then
-            Push_Value (Stack, (I_64, I_64 => 0));
-         else
-            Push_Value (Stack, (I_64, I_64 => 1));
-         end if;
-      elsif Op = "<" then
-         if A < B then
-            Push_Value (Stack, (I_64, I_64 => 0));
-         else
-            Push_Value (Stack, (I_64, I_64 => 1));
-         end if;
-      elsif Op = ">" then
-         if A > B then
-            Push_Value (Stack, (I_64, I_64 => 0));
-         else
-            Push_Value (Stack, (I_64, I_64 => 1));
-         end if;
-      elsif Op = "<=" then
-         if A <= B then
-            Push_Value (Stack, (I_64, I_64 => 0));
-         else
-            Push_Value (Stack, (I_64, I_64 => 1));
-         end if;
-      elsif Op = ">=" then
-         if A >= B then
-            Push_Value (Stack, (I_64, I_64 => 0));
-         else
-            Push_Value (Stack, (I_64, I_64 => 1));
-         end if;
-      else
-         raise Program_Error with "Unsupported operation";
-      end if;
-   end Compare_And_Push_I64;
-
-   procedure Compare_And_Push_F32
-     (Stack : in out Vector; A, B : IEEE_Float_32; Op : String)
-   is
-   begin
-      if Op = "==" then
-         if A = B then
-            Push_Value (Stack, (F_32, F_32 => 0.0));
-         else
-            Push_Value (Stack, (F_32, F_32 => 1.0));
-         end if;
-      elsif Op = "!=" then
-         if A /= B then
-            Push_Value (Stack, (F_32, F_32 => 0.0));
-         else
-            Push_Value (Stack, (F_32, F_32 => 1.0));
-         end if;
-      elsif Op = "<" then
-         if A < B then
-            Push_Value (Stack, (F_32, F_32 => 0.0));
-         else
-            Push_Value (Stack, (F_32, F_32 => 1.0));
-         end if;
-      elsif Op = ">" then
-         if A > B then
-            Push_Value (Stack, (F_32, F_32 => 0.0));
-         else
-            Push_Value (Stack, (F_32, F_32 => 1.0));
-         end if;
-      elsif Op = "<=" then
-         if A <= B then
-            Push_Value (Stack, (F_32, F_32 => 0.0));
-         else
-            Push_Value (Stack, (F_32, F_32 => 1.0));
-         end if;
-      elsif Op = ">=" then
-         if A >= B then
-            Push_Value (Stack, (F_32, F_32 => 0.0));
-         else
-            Push_Value (Stack, (F_32, F_32 => 1.0));
-         end if;
-      else
-         raise Program_Error with "Unsupported operation";
-      end if;
-   end Compare_And_Push_F32;
-
-   procedure Compare_And_Push_F64
-     (Stack : in out Vector; A, B : IEEE_Float_64; Op : String)
-   is
-   begin
-      if Op = "==" then
-         if A = B then
-            Push_Value (Stack, (F_64, F_64 => 0.0));
-         else
-            Push_Value (Stack, (F_64, F_64 => 1.0));
-         end if;
-      elsif Op = "!=" then
-         if A /= B then
-            Push_Value (Stack, (F_64, F_64 => 0.0));
-         else
-            Push_Value (Stack, (F_64, F_64 => 1.0));
-         end if;
-      elsif Op = "<" then
-         if A < B then
-            Push_Value (Stack, (F_64, F_64 => 0.0));
-         else
-            Push_Value (Stack, (F_64, F_64 => 1.0));
-         end if;
-      elsif Op = ">" then
-         if A > B then
-            Push_Value (Stack, (F_64, F_64 => 0.0));
-         else
-            Push_Value (Stack, (F_64, F_64 => 1.0));
-         end if;
-      elsif Op = "<=" then
-         if A <= B then
-            Push_Value (Stack, (F_64, F_64 => 0.0));
-         else
-            Push_Value (Stack, (F_64, F_64 => 1.0));
-         end if;
-      elsif Op = ">=" then
-         if A >= B then
-            Push_Value (Stack, (F_64, F_64 => 0.0));
-         else
-            Push_Value (Stack, (F_64, F_64 => 1.0));
-         end if;
-      else
-         raise Program_Error with "Unsupported operation";
-      end if;
-   end Compare_And_Push_F64;
-
-   procedure Compare_And_Push_U32
-     (Stack : in out Vector; A, B : Unsigned_32; Op : String)
-   is
-   begin
-      if Op = "==" then
-         if A = B then
-            Push_Value (Stack, (U_32, U_32 => 0));
-         else
-            Push_Value (Stack, (U_32, U_32 => 1));
-         end if;
-      elsif Op = "!=" then
-         if A /= B then
-            Push_Value (Stack, (U_32, U_32 => 0));
-         else
-            Push_Value (Stack, (U_32, U_32 => 1));
-         end if;
-      elsif Op = "<" then
-         if A < B then
-            Push_Value (Stack, (U_32, U_32 => 0));
-         else
-            Push_Value (Stack, (U_32, U_32 => 1));
-         end if;
-      elsif Op = ">" then
-         if A > B then
-            Push_Value (Stack, (U_32, U_32 => 0));
-         else
-            Push_Value (Stack, (U_32, U_32 => 1));
-         end if;
-      elsif Op = "<=" then
-         if A <= B then
-            Push_Value (Stack, (U_32, U_32 => 0));
-         else
-            Push_Value (Stack, (U_32, U_32 => 1));
-         end if;
-      elsif Op = ">=" then
-         if A >= B then
-            Push_Value (Stack, (U_32, U_32 => 0));
-         else
-            Push_Value (Stack, (U_32, U_32 => 1));
-         end if;
-      else
-         raise Program_Error with "Unsupported operation";
-      end if;
-   end Compare_And_Push_U32;
-
-   procedure Compare_And_Push_U64
-     (Stack : in out Vector; A, B : Unsigned_64; Op : String)
-   is
-   begin
-      if Op = "==" then
-         if A = B then
-            Push_Value (Stack, (U_64, U_64 => 0));
-         else
-            Push_Value (Stack, (U_64, U_64 => 1));
-         end if;
-      elsif Op = "!=" then
-         if A /= B then
-            Push_Value (Stack, (U_64, U_64 => 0));
-         else
-            Push_Value (Stack, (U_64, U_64 => 1));
-         end if;
-      elsif Op = "<" then
-         if A < B then
-            Push_Value (Stack, (U_64, U_64 => 0));
-         else
-            Push_Value (Stack, (U_64, U_64 => 1));
-         end if;
-      elsif Op = ">" then
-         if A > B then
-            Push_Value (Stack, (U_64, U_64 => 0));
-         else
-            Push_Value (Stack, (U_64, U_64 => 1));
-         end if;
-      elsif Op = "<=" then
-         if A <= B then
-            Push_Value (Stack, (U_64, U_64 => 0));
-         else
-            Push_Value (Stack, (U_64, U_64 => 1));
-         end if;
-      elsif Op = ">=" then
-         if A >= B then
-            Push_Value (Stack, (U_64, U_64 => 0));
-         else
-            Push_Value (Stack, (U_64, U_64 => 1));
-         end if;
-      else
-         raise Program_Error with "Unsupported operation";
-      end if;
-   end Compare_And_Push_U64;
-
-   procedure Execute_Compare (Stack : in out Vector; Nt : Number; Op : String)
-   is
-      A, B : Element_Variation;
-
+   procedure Execute_Compare (Stack : in out Vector; Op : Comparison) is
+      A, B : Value_Stack;
    begin
       pragma Assert (Stack.Length > 3);
 
-      A := Last_Element (Stack);
+      A := Last_Element (Stack).Val;
       Delete_Last (Stack);
-      B := Last_Element (Stack);
+      B := Last_Element (Stack).Val;
       Delete_Last (Stack);
-      case Nt is
-         when I_32 =>
-            Put_Line (Op);
-            Put_Line
-              (Integer_32'Image (A.Val.Val.Num_Value.I_32) & " element");
-            Put_Line
-              (Integer_32'Image (B.Val.Val.Num_Value.I_32) & " element - 1");
-
-            Compare_And_Push_I32
-              (Stack, Integer_32 (A.Val.Val.Num_Value.I_32),
-               Integer_32 (B.Val.Val.Num_Value.I_32), Op);
-         when I_64 =>
-            Compare_And_Push_I64
-              (Stack, A.Val.Val.Num_Value.I_64, B.Val.Val.Num_Value.I_64, Op);
-         when U_32 =>
-            Compare_And_Push_U32
-              (Stack, A.Val.Val.Num_Value.U_32, B.Val.Val.Num_Value.U_32, Op);
-         when U_64 =>
-            Compare_And_Push_U64
-              (Stack, A.Val.Val.Num_Value.U_64, B.Val.Val.Num_Value.U_64, Op);
-         when F_32 =>
-            Compare_And_Push_F32
-              (Stack, A.Val.Val.Num_Value.F_32, B.Val.Val.Num_Value.F_32, Op);
-         when F_64 =>
-            Compare_And_Push_F64
-              (Stack, A.Val.Val.Num_Value.F_64, B.Val.Val.Num_Value.F_64, Op);
-      end case;
+      Check_Push_NT (Stack, A.Val.Num_Value, B.Val.Num_Value, 1, 0, Op);
    end Execute_Compare;
 
    function Count_Leading_Zeroes_I32
@@ -708,42 +448,231 @@ package body Interpreter is
    procedure Execute_Count (Stack : in out Vector; Ty : Number; L_T : String)
    is
       Result_I32 : Integer_32;
-      Tmp        : Number_Type;
+      Tmp        : Numeric_Type;
    begin
       if L_T = "Leading_Zeroes" then
          if Ty = I_32 then
             Tmp        := Pop_Value (Stack);
-            Result_I32 := Count_Leading_Zeroes_I32 (Tmp.I_32);
-            Push_Value (Stack, (I_32, I_32 => Result_I32));
+            Result_I32 := Count_Leading_Zeroes_I32 (Tmp.Num_S.I_32);
+            Push_Value (Stack, (S, Num_S => (I_32, I_32 => Result_I32)));
          elsif Ty = I_64 then
             Tmp        := Pop_Value (Stack);
-            Result_I32 := Count_Leading_Zeroes_I64 (Tmp.I_64);
-            Push_Value (Stack, (I_32, I_32 => Result_I32));
+            Result_I32 := Count_Leading_Zeroes_I64 (Tmp.Num_S.I_64);
+            Push_Value (Stack, (S, Num_S => (I_32, I_32 => Result_I32)));
          end if;
       elsif L_T = "Trailing_Zeroes" then
          if Ty = I_32 then
             Tmp        := Pop_Value (Stack);
-            Result_I32 := Count_Trailing_Zeroes_I32 (Tmp.I_32);
-            Push_Value (Stack, (I_32, I_32 => Result_I32));
+            Result_I32 := Count_Trailing_Zeroes_I32 (Tmp.Num_S.I_32);
+            Push_Value (Stack, (S, Num_S => (I_32, I_32 => Result_I32)));
          elsif Ty = I_64 then
             Tmp        := Pop_Value (Stack);
-            Result_I32 := Count_Leading_Zeroes_I64 (Tmp.I_64);
-            Push_Value (Stack, (I_32, I_32 => Result_I32));
+            Result_I32 := Count_Leading_Zeroes_I64 (Tmp.Num_S.I_64);
+            Push_Value (Stack, (S, Num_S => (I_32, I_32 => Result_I32)));
          end if;
       end if;
    end Execute_Count;
 
-   procedure Execute_Addition (Stack : in out Vector; Ty : Number) is
+   ---------------------------------
+   procedure Calculate_Push_Signed
+     (Stack : in out Vector; A, B : S; Op : Binary_Op; Size : Numeric_Size)
+   is
+      Result : S;
+   begin
+      Result := Calculate_Signed (A, B, Op, Size);
+      Push_Signed (Stack, Result);
+   end Calculate_Push_Signed;
+
+   procedure Calculate_Push_Float
+     (Stack : in out Vector; A, B : F; Op : Binary_Op; Size : Numeric_Size)
+   is
+      Result : F;
+   begin
+      Result := Calculate_Float (A, B, Op, Size);
+      Push_Float (Stack, Result);
+   end Calculate_Push_Float;
+
+   function Clc_Signed
+     (A, B : Signed_Type; Op : Binary_Op; Size : Numeric_Size)
+      return Signed_Type
+   is
+   begin
+      case Size is
+         when S_F32 =>
+            case Op is
+               when Addition =>
+                  return (I_32, I_32 => A.I_32 + B.I_32);
+               when Subtraction =>
+                  return (I_32, I_32 => A.I_32 - B.I_32);
+               when Multiplication =>
+                  return (I_32, I_32 => A.I_32 * B.I_32);
+               when Division =>
+                  return (I_32, I_32 => A.I_32 / B.I_32);
+               when Remainder =>
+                  return (I_32, I_32 => A.I_32 mod B.I_32);
+                  --  when Logical_And =>
+                  --     return (I_32, I_32 => A.I_32 and B.I_32);
+                  --  when Logical_Or =>
+                  --     return (I_32, I_32 => A.I_32 or B.I_32);
+                  --  when Logical_Xor =>
+                  --     return (I_32, I_32 => A.I_32 xor B.I_32);
+                  --  when Shift_Left =>
+                  --     return (I_32, I_32 => Shift_Left (A.I_32, B.I_32));
+                  --  when Shift_Right =>
+                  --     return (I_32, I_32 => Shift_Right (A.I_32, B.I_32));
+                  --  when Rotate_Left =>
+                  --     return (I_32, I_32 => Rotate_Left (A.I_32, B.I_32));
+                  --  when Rotate_Right =>
+                  --     return (I_32, I_32 => Rotate_Right (A.I_32, B.I_32));
+               when Minimum | Maximum | Copy_Sign =>
+                  raise Program_Error;
+               when others =>
+                  return (I_32, I_32 => A.I_32 mod B.I_32);
+            end case;
+         when S_F64 =>
+            case Op is
+               when Addition =>
+                  return (I_64, I_64 => A.I_64 + B.I_64);
+               when Subtraction =>
+                  return (I_64, I_64 => A.I_64 - B.I_64);
+               when Multiplication =>
+                  return (I_64, I_64 => A.I_64 * B.I_64);
+               when Division =>
+                  return (I_64, I_64 => A.I_64 / B.I_64);
+               when Remainder =>
+                  return (I_64, I_64 => A.I_64 mod B.I_64);
+                  --  when Logical_And =>
+                  --     return (I_64, I_64 => A.I_64 and B.I_64);
+                  --  when Logical_Or =>
+                  --     return (I_64, I_64 => A.I_64 or B.I_64);
+                  --  when Logical_Xor =>
+                  --     return (I_64, I_64 => A.I_64 xor B.I_64);
+                  --  when Shift_Left =>
+                  --     return (I_64, I_64 => Shift_Left (A.I_64, B.I_64));
+                  --  when Shift_Right =>
+                  --     return (I_64, I_64 => Shift_Right (A.I_64, B.I_64));
+                  --  when Rotate_Left =>
+                  --     return (I_64, I_64 => Rotate_Left (A.I_64, B.I_64));
+                  --  when Rotate_Right =>
+                  --     return (I_64, I_64 => Rotate_Right (A.I_64, B.I_64));
+
+               when Minimum | Maximum | Copy_Sign =>
+                  raise Program_Error;
+               when others =>
+                  return (I_64, I_64 => A.I_64 mod B.I_64);
+            end case;
+      end case;
+   end Clc_Signed;
+
+   procedure Push_Signed (Stack : in out Vector; Result : Signed_Type) is
+   begin
+      Stack.Append
+        ((Value,
+          Val => (Val => (Number_Value, Num_Value => (S, Num_S => Result)))));
+   end Push_Signed;
+
+   --  function Copy_Sign (Magnitude, Sign_Source : Float_Type) return Float_Type
+   --  is
+   --  begin
+   --     case Magnitude.Num is
+   --        when F_32 =>
+   --           return
+   --             (F_32,
+   --              F_32 =>
+   --                (abs (Float'(Magnitude.F_32)) *
+   --                 (if Sign_Source.F_32 < 0.0 then -1.0 else 1.0)));
+   --        when F_64 =>
+   --           return
+   --             (F_64,
+   --              F_64 =>
+   --                (Float'(Magnitude.F_64) *
+   --                 (if Sign_Source.F_64 < 0.0 then -1.0 else 1.0)));
+   --     end case;
+   --  end Copy_Sign;
+
+   function Clc_Float
+     (A, B : Float_Type; Op : Binary_Op; Size : Numeric_Size) return Float_Type
+   is
+   begin
+      case Size is
+         when S_F32 =>
+            case Op is
+               when Addition =>
+                  return (F_32, F_32 => A.F_32 + B.F_32);
+               when Subtraction =>
+                  return (F_32, F_32 => A.F_32 - B.F_32);
+               when Multiplication =>
+                  return (F_32, F_32 => A.F_32 * B.F_32);
+               when Division =>
+                  return (F_32, F_32 => A.F_32 / B.F_32);
+                  --  when Minimum =>
+                  --     return (F_32, F_32 => Float'Min ((A.F_32), (B.F_32)));
+                  --  when Maximum =>
+                  --     return (F_32, F_32 => Float'Max ((A.F_32), (B.F_32)));
+                  --  when Copy_Sign =>
+                  --     return (F_32, F_32 => Copy_Sign (A.F_32, B.F_32));
+               when others =>
+                  null;
+            end case;
+         when S_F64 =>
+            case Op is
+               when Addition =>
+                  return (F_64, F_64 => A.F_64 + B.F_64);
+               when Subtraction =>
+                  return (F_64, F_64 => A.F_64 - B.F_64);
+               when Multiplication =>
+                  return (F_64, F_64 => A.F_64 * B.F_64);
+               when Division =>
+                  return (F_64, F_64 => A.F_64 / B.F_64);
+                  --  when Minimum =>
+                  --     return (F_64, F_64 => Float'Min ((A.F_64), (B.F_64)));
+                  --  when Maximum =>
+                  --     return (F_64, F_64 => Float'Max ((A.F_64), (B.F_64)));
+                  --  when Copy_Sign =>
+                  --     return (F_64, F_64 => Copy_Sign (A.F_64, B.F_64));
+               when others =>
+                  null;
+            end case;
+      end case;
+   end Clc_Float;
+
+   procedure Push_Float (Stack : in out Vector; Result : Float_Type) is
+   begin
+      Stack.Append
+        ((Value,
+          Val => (Val => (Number_Value, Num_Value => (F, Num_F => Result)))));
+   end Push_Float;
+
+   ---------------------------------
+   --  initaliztion of generic procedures
+   procedure Calculate_Signed is new Calculate_Push_Signed
+     (S           => Signed_Type, Calculate_Signed => Clc_Signed,
+      Push_Signed => Push_Signed);
+
+   procedure Calculate_Float is new Calculate_Push_Float
+     (F => Float_Type, Calculate_Float => Clc_Float, Push_Float => Push_Float);
+
+   procedure Execute_Binary_Op
+     (Stack : in out Vector; T : S_F; Op : Binary_Op; Size : Numeric_Size)
+   is
       A, B   : Element_Variation;
-      Result : Integer_32;
+      Result : Numeric_Type;
    begin
       A := Last_Element (Stack);
       Delete_Last (Stack);
       B := Last_Element (Stack);
       Delete_Last (Stack);
-      Result := A.Val.Val.Num_Value.I_32 + B.Val.Val.Num_Value.I_32;
-      Push_Value (Stack, (I_32, I_32 => Result));
-   end Execute_Addition;
+      case T is
+         when S =>
+            Calculate_Signed
+              (Stack, A.Val.Val.Num_Value.Num_S, B.Val.Val.Num_Value.Num_S, Op,
+               Size);
+         when F =>
+            Calculate_Float
+              (Stack, A.Val.Val.Num_Value.Num_F, B.Val.Val.Num_Value.Num_F, Op,
+               Size);
+      end case;
+   end Execute_Binary_Op;
 
    procedure Execute_Numeric_Instruction
      (Instr : Numeric_Instruction; Environment : in out Env)
@@ -761,107 +690,107 @@ package body Interpreter is
          when I32_Eqz =>
             Execute_Compare_To_Zero (Environment.Stack, Instr.I32_Constant);
          when I32_Eq =>
-            Execute_Compare (Environment.Stack, I_32, "==");
+            Execute_Compare (Environment.Stack, Equal);
          when I32_Ne =>
-            Execute_Compare (Environment.Stack, I_32, "!=");
+            Execute_Compare (Environment.Stack, Not_Equal);
          when I32_Lt_S =>
-            Execute_Compare (Environment.Stack, I_32, "<<");
+            Execute_Compare (Environment.Stack, Less);
          when I32_Lt_U =>
-            Execute_Compare (Environment.Stack, U_32, "<<");
+            Execute_Compare (Environment.Stack, Less);
          when I32_Gt_S =>
-            Execute_Compare (Environment.Stack, I_32, ">>");
+            Execute_Compare (Environment.Stack, Greater);
          when I32_Gt_U =>
-            Execute_Compare (Environment.Stack, U_32, ">>");
+            Execute_Compare (Environment.Stack, Greater);
          when I32_Le_S =>
-            Execute_Compare (Environment.Stack, I_32, "<=");
+            Execute_Compare (Environment.Stack, Less_Equal);
          when I32_Le_U =>
-            Execute_Compare (Environment.Stack, U_32, "<=");
+            Execute_Compare (Environment.Stack, Less_Equal);
          when I32_Ge_S =>
-            Execute_Compare (Environment.Stack, I_32, ">=");
+            Execute_Compare (Environment.Stack, Greater_Equal);
          when I32_Ge_U =>
-            Execute_Compare (Environment.Stack, U_32, ">=");
+            Execute_Compare (Environment.Stack, Greater_Equal);
          when I64_Eqz =>
             Execute_Compare_To_Zero (Environment.Stack, Instr.I64_Constant);
          when I64_Eq =>
-            Execute_Compare (Environment.Stack, I_64, "==");
+            Execute_Compare (Environment.Stack, Equal);
          when I64_Ne =>
-            Execute_Compare (Environment.Stack, I_64, "!=");
+            Execute_Compare (Environment.Stack, Not_Equal);
          when I64_Lt_S =>
-            Execute_Compare (Environment.Stack, I_64, "<<");
+            Execute_Compare (Environment.Stack, Less);
          when I64_Lt_U =>
-            Execute_Compare (Environment.Stack, U_64, "<<");
+            Execute_Compare (Environment.Stack, Less);
          when I64_Gt_S =>
-            Execute_Compare (Environment.Stack, I_64, ">>");
+            Execute_Compare (Environment.Stack, Less);
          when I64_Gt_U =>
-            Execute_Compare (Environment.Stack, U_64, ">>");
+            Execute_Compare (Environment.Stack, Greater);
          when I64_Le_S =>
-            Execute_Compare (Environment.Stack, I_64, "<=");
+            Execute_Compare (Environment.Stack, Less_Equal);
          when I64_Le_U =>
-            Execute_Compare (Environment.Stack, U_64, "<=");
+            Execute_Compare (Environment.Stack, Less_Equal);
          when I64_Ge_S =>
-            Execute_Compare (Environment.Stack, I_64, ">=");
+            Execute_Compare (Environment.Stack, Greater_Equal);
          when I64_Ge_U =>
-            Execute_Compare (Environment.Stack, U_64, ">=");
+            Execute_Compare (Environment.Stack, Greater_Equal);
          when F32_Eq =>
-            Execute_Compare (Environment.Stack, F_32, "==");
+            Execute_Compare (Environment.Stack, Equal);
          when F32_Ne =>
-            Execute_Compare (Environment.Stack, F_32, "!=");
+            Execute_Compare (Environment.Stack, Not_Equal);
          when F32_Lt =>
-            Execute_Compare (Environment.Stack, F_32, "<<");
+            Execute_Compare (Environment.Stack, Less);
          when F32_Gt =>
-            Execute_Compare (Environment.Stack, F_32, ">>");
+            Execute_Compare (Environment.Stack, Greater);
          when F32_Le =>
-            Execute_Compare (Environment.Stack, F_32, "<=");
+            Execute_Compare (Environment.Stack, Less_Equal);
          when F32_Ge =>
-            Execute_Compare (Environment.Stack, F_32, ">=");
+            Execute_Compare (Environment.Stack, Greater_Equal);
          when F64_Eq =>
-            Execute_Compare (Environment.Stack, F_64, "==");
+            Execute_Compare (Environment.Stack, Equal);
          when F64_Ne =>
-            Execute_Compare (Environment.Stack, F_64, "!=");
+            Execute_Compare (Environment.Stack, Not_Equal);
          when F64_Lt =>
-            Execute_Compare (Environment.Stack, F_64, "<<");
+            Execute_Compare (Environment.Stack, Less);
          when F64_Gt =>
-            Execute_Compare (Environment.Stack, F_64, ">>");
+            Execute_Compare (Environment.Stack, Greater);
          when F64_Le =>
-            Execute_Compare (Environment.Stack, F_64, "<=");
+            Execute_Compare (Environment.Stack, Less_Equal);
          when F64_Ge =>
-            Execute_Compare (Environment.Stack, F_64, ">=");
+            Execute_Compare (Environment.Stack, Greater_Equal);
          when I32_Clz =>
             Execute_Count (Environment.Stack, I_32, "Leading_Zeroes");
          when I32_Ctz =>
             Execute_Count (Environment.Stack, I_32, "Trailing_Zeroes");
          when I32_Popcnt =>
-            null;
+            Execute_Count (Environment.Stack, I_64, "Leading_Zeros");
          when I32_Add =>
-            Execute_Addition (Environment.Stack, I_32);
+            Execute_Binary_Op (Environment.Stack, S, Addition, S_F32);
          when I32_Sub =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Subtraction, S_F32);
          when I32_Mul =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Multiplication, S_F32);
          when I32_Div_S =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Division, S_F32);
          when I32_Div_U =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Division, S_F32); --  todo
          when I32_Rem_S =>
             null;
          when I32_Rem_U =>
             null;
          when I64_Clz =>
-            Execute_Count (Environment.Stack, I_64, "Leading_Zeros");
+            null;
          when I64_Ctz =>
             Execute_Count (Environment.Stack, I_64, "Trailing_Zeros");
          when I64_Popcnt =>
             null;
          when I64_Add =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Addition, S_F64);
          when I64_Sub =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Subtraction, S_F64);
          when I64_Mul =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Multiplication, S_F64);
          when I64_Div_S =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Division, S_F64);
          when I64_Div_U =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Division, S_F64);
          when I64_Rem_S =>
             null;
          when I64_Rem_U =>
@@ -913,13 +842,13 @@ package body Interpreter is
          when F32_Sqrt =>
             null;
          when F32_Add =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Addition, S_F32);
          when F32_Sub =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Subtraction, S_F32);
          when F32_Mul =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Multiplication, S_F32);
          when F32_Div =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Division, S_F32);
          when F32_Min =>
             null;
          when F32_Max =>
@@ -941,13 +870,13 @@ package body Interpreter is
          when F64_Sqrt =>
             null;
          when F64_Add =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Addition, S_F64);
          when F64_Sub =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Subtraction, S_F64);
          when F64_Mul =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Multiplication, S_F64);
          when F64_Div =>
-            null;
+            Execute_Binary_Op (Environment.Stack, F, Division, S_F64);
          when F64_Min =>
             null;
          when F64_Max =>
@@ -1068,7 +997,7 @@ package body Interpreter is
               ((Elt   => Label, Special_Id => Instr.Block_Label,
                 Block => New_Block_Frame));
             Put_Line
-              ("       Adding block label to the Symbols table & a block frame");
+              ("Adding block label to the Symbols table & a block frame");
             Environment.Symbols.Include
               (Instr.Block_Label, (Arity => Arity, Lab_Addr => Lab_Ad));
          when Loop_Inst =>
@@ -1076,7 +1005,7 @@ package body Interpreter is
               ((Elt   => Label, Special_Id => Instr.Loop_Label,
                 Block => New_Block_Frame));
             Put_Line
-              ("       Adding loop label to the Symbols table & a block frame");
+              ("Adding loop label to the Symbols table & a block frame");
             Environment.Symbols.Include
               (Instr.Loop_Label, (Arity => Arity, Lab_Addr => Lab_Ad));
          when If_Inst =>
@@ -1147,7 +1076,7 @@ package body Interpreter is
    begin
       --  always an integer_32
       Value_To_Evaluate :=
-        Environment.Stack.Last_Element.Val.Val.Num_Value.I_32;
+        Environment.Stack.Last_Element.Val.Val.Num_Value.Num_S.I_32;
 
       Delete_Last (Environment.Stack);
 
@@ -1165,7 +1094,6 @@ package body Interpreter is
       end if;
       --  save for block context
       Old := Environment.Cf.Instr_Ptr;
-      --  todo
       Execute_Block_Entry
         (Instr, Environment, Old + Else_Offset, End_Offset - Else_Offset,
          Else_Block, Args);
@@ -1182,10 +1110,10 @@ package body Interpreter is
    begin
       Value_To_Evaluate := Last_Element (Environment.Stack);
       Delete_Last (Environment.Stack);
-      Put_Line
-        ("Discriminant (Elt): " & Element'Image (Value_To_Evaluate.Elt));
+      --  Put_Line
+      --    ("Discriminant (Elt): " & Element'Image (Value_To_Evaluate.Elt));
 
-      Cond := Unsigned_32 (Value_To_Evaluate.Val.Val.Num_Value.I_32);
+      Cond := Unsigned_32 (Value_To_Evaluate.Val.Val.Num_Value.Num_S.I_32);
 
       if Cond /= 0 then
          return Execute_Branching (To, Environment);
@@ -1311,9 +1239,9 @@ package body Interpreter is
          Local_Var := Environment.Cf.Locals.Element (Natural (Addr));
          Put_Line ("Local Variable found.");
          Append (Environment.Stack, (Value, Val => (Val => Local_Var)));
-         Put_Line
-           (Integer_32'Image (Local_Var.Num_Value.I_32) &
-            "this is the variable to get and push in the stack");
+         --  Put_Line
+         --    (Integer_32'Image (Local_Var.Num_Value.I_32) &
+         --     "this is the variable to get and push in the stack");
       else
          Ada.Text_IO.Put_Line ("Invalid local variable address.");
       end if;
@@ -1328,12 +1256,11 @@ package body Interpreter is
             Value_Type_Vectors.Replace_Element
               (Environment.Cf.Locals, Natural (Addr),
                Last_Element (Environment.Stack).Val.Val);
-            Put_Line
-              ("Local variable successfully replaced. or is it !!!!!!!");
-            Put_Line
-              (Integer_32'Image
-                 (Last_Element (Environment.Stack).Val.Val.Num_Value.I_32) &
-               "this is the addition result");
+
+            --  Put_Line
+            --    (Integer_32'Image
+            --       (Last_Element (Environment.Stack).Val.Val.Num_Value.I_32) &
+            --     "this is the addition result");
             Delete_Last (Environment.Stack);
             Put_Line ("variable is deleted");
          end if;

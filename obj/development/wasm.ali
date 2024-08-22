@@ -47,7 +47,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 
-U wasm%s		wasm.ads		bd5bde88 EE OO PF PK
+U wasm%s		wasm.ads		714c1440 EE OO PF PK
 W ada%s			ada.ads			ada.ali
 W ada.containers%s	a-contai.ads		a-contai.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
@@ -71,20 +71,27 @@ D a-cihama.ads		20230727081303 42861819 ada.containers.indefinite_hashed_maps%s
 D a-convec.ads		20230727081304 91fb49f3 ada.containers.vectors%s
 D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
 D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-flteio.ads		20230727081304 e18a47a0 ada.float_text_io%s
+D a-ioexce.ads		20230727081304 40018c65 ada.io_exceptions%s
 D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
 D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
 D a-string.ads		20230727081304 90ac6797 ada.strings%s
 D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
 D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-textio.ads		20230727081304 5c2c6153 ada.text_io%s
+D a-tiflio.ads		20230727081304 9fe024a2 ada.text_io.float_io%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D instances.ads		20240724103528 71df3e22 instances%s
-D instructions.ads	20240708082418 35d285f4 instructions%s
+D instances.ads		20240813141303 71df3e22 instances%s
+D instructions.ads	20240808123754 f9c54f3c instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
+D i-cstrea.ads		20230727081304 e53d8b8e interfaces.c_streams%s
 D system.ads		20230727081304 426dafb8 system%s
 D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-crtl.ads		20230727081304 8a0692f8 system.crtl%s
 D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-ficobl.ads		20230727081304 dc5161d4 system.file_control_block%s
 D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
 D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
 D s-memory.ads		20230727081304 5b8432d0 system.memory%s
@@ -103,198 +110,199 @@ D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
 D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
 D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
 D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
-D types.ads		20240710083804 081cd40b types%s
-D values.ads		20240626123542 52cf5252 values%s
-D wasm.ads		20240709130541 8d441c15 wasm%s
+D s-wchcon.ads		20230727081304 d9032363 system.wch_con%s
+D types.ads		20240814125950 d5286669 types%s
+D values.ads		20240724121031 52cf5252 values%s
+D wasm.ads		20240724121048 8d441c15 wasm%s
 G a e
-G c Z s s [option_funcaddrIP wasm 12 9 none]
-G c Z s s [function_specDI wasm 21 9 none]
-G c Z s s [function_specDA wasm 21 9 none]
-G c Z s s [function_specDF wasm 21 9 none]
-G c Z s s [function_specIP wasm 21 9 none]
-G c Z s s [globalIP wasm 27 9 none]
-G c Z s s [exportIP wasm 32 9 none]
-G c Z s s [import_kindIP wasm 37 9 none]
-G c Z s s [importIP wasm 44 9 none]
-G c Z s s [dataIP wasm 52 9 none]
-G c Z s s [element_kind_recordIP wasm 59 9 none]
-G c Z s s [element_itemIP wasm 70 9 none]
-G c Z s s [elementIP wasm 79 9 none]
-G c Z s s [array_of_functionsIP wasm 85 9 none]
-G c Z s s [array_of_functionsDI wasm 85 9 none]
-G c Z s s [array_of_functionsDA wasm 85 9 none]
-G c Z s s [array_of_functionsDF wasm 85 9 none]
-G c Z s s [array_of_func_typesIP wasm 88 9 none]
-G c Z s s [array_of_func_typesDI wasm 88 9 none]
-G c Z s s [array_of_func_typesDA wasm 88 9 none]
-G c Z s s [array_of_func_typesDF wasm 88 9 none]
-G c Z s s [array_of_globalIP wasm 91 9 none]
-G c Z s s [array_of_table_typesIP wasm 94 9 none]
-G c Z s s [array_exportIP wasm 97 9 none]
-G c Z s s [array_memoryIP wasm 100 9 none]
-G c Z s s [array_importsIP wasm 103 9 none]
-G c Z s s [array_dataIP wasm 106 9 none]
-G c Z s s [array_elementsIP wasm 109 9 none]
-G c Z s s [wasm_moduleIP wasm 112 9 none]
-G r j function_type [function_specDA wasm 21 9 none] [function_typeDA types 52 9 none]
-G r k function_type [function_specDF wasm 21 9 none] [function_typeDF types 52 9 none]
-G r s function_type [function_specIP wasm 21 9 none] [function_typeIP types 52 9 none]
-G r l function_type [function_specIP wasm 21 9 none] [function_typeDI types 52 9 none]
-G r k function_type [function_specIP wasm 21 9 none] [function_typeDF types 52 9 none]
-G r s global_type [globalIP wasm 27 9 none] [global_typeIP types 73 9 none]
-G r s instruction [globalIP wasm 27 9 none] [instructionIP instructions 318 9 none]
-G r s table_type [import_kindIP wasm 37 9 none] [table_typeIP types 65 9 none]
-G r s limit_type [import_kindIP wasm 37 9 none] [limit_typeIP types 57 9 none]
-G r s global_type [import_kindIP wasm 37 9 none] [global_typeIP types 73 9 none]
-G r s table_type [importIP wasm 44 9 none] [table_typeIP types 65 9 none]
-G r s limit_type [importIP wasm 44 9 none] [limit_typeIP types 57 9 none]
-G r s global_type [importIP wasm 44 9 none] [global_typeIP types 73 9 none]
-G r s numeric_instruction [element_kind_recordIP wasm 59 9 none] [numeric_instructionIP instructions 98 9 none]
-G r s numeric_instruction [element_itemIP wasm 70 9 none] [numeric_instructionIP instructions 98 9 none]
-G r s value_type [elementIP wasm 79 9 none] [value_typeIP types 33 9 none]
-G r s function_type [array_of_functionsIP wasm 85 9 none] [function_typeIP types 52 9 none]
-G r l function_type [array_of_functionsIP wasm 85 9 none] [function_typeDI types 52 9 none]
-G r k function_type [array_of_functionsIP wasm 85 9 none] [function_typeDF types 52 9 none]
-G r k function_type [array_of_functionsDI wasm 85 9 none] [function_typeDF types 52 9 none]
-G r j function_type [array_of_functionsDA wasm 85 9 none] [function_typeDA types 52 9 none]
-G r k function_type [array_of_functionsDF wasm 85 9 none] [function_typeDF types 52 9 none]
-G r s function_type [array_of_func_typesIP wasm 88 9 none] [function_typeIP types 52 9 none]
-G r l function_type [array_of_func_typesDI wasm 88 9 none] [function_typeDI types 52 9 none]
-G r k function_type [array_of_func_typesDI wasm 88 9 none] [function_typeDF types 52 9 none]
-G r j function_type [array_of_func_typesDA wasm 88 9 none] [function_typeDA types 52 9 none]
-G r k function_type [array_of_func_typesDF wasm 88 9 none] [function_typeDF types 52 9 none]
-G r s global_type [array_of_globalIP wasm 91 9 none] [global_typeIP types 73 9 none]
-G r s instruction [array_of_globalIP wasm 91 9 none] [instructionIP instructions 318 9 none]
-G r s table_type [array_of_table_typesIP wasm 94 9 none] [table_typeIP types 65 9 none]
-G r s limit_type [array_memoryIP wasm 100 9 none] [limit_typeIP types 57 9 none]
-G r s table_type [array_importsIP wasm 103 9 none] [table_typeIP types 65 9 none]
-G r s limit_type [array_importsIP wasm 103 9 none] [limit_typeIP types 57 9 none]
-G r s global_type [array_importsIP wasm 103 9 none] [global_typeIP types 73 9 none]
-G r s value_type [array_elementsIP wasm 109 9 none] [value_typeIP types 33 9 none]
+G c Z s s [option_funcaddrIP wasm 19 9 none]
+G c Z s s [function_specDI wasm 28 9 none]
+G c Z s s [function_specDA wasm 28 9 none]
+G c Z s s [function_specDF wasm 28 9 none]
+G c Z s s [function_specIP wasm 28 9 none]
+G c Z s s [globalIP wasm 34 9 none]
+G c Z s s [exportIP wasm 39 9 none]
+G c Z s s [import_kindIP wasm 44 9 none]
+G c Z s s [importIP wasm 51 9 none]
+G c Z s s [dataIP wasm 59 9 none]
+G c Z s s [element_kind_recordIP wasm 66 9 none]
+G c Z s s [element_itemIP wasm 77 9 none]
+G c Z s s [elementIP wasm 86 9 none]
+G c Z s s [array_of_functionsIP wasm 92 9 none]
+G c Z s s [array_of_functionsDI wasm 92 9 none]
+G c Z s s [array_of_functionsDA wasm 92 9 none]
+G c Z s s [array_of_functionsDF wasm 92 9 none]
+G c Z s s [array_of_func_typesIP wasm 95 9 none]
+G c Z s s [array_of_func_typesDI wasm 95 9 none]
+G c Z s s [array_of_func_typesDA wasm 95 9 none]
+G c Z s s [array_of_func_typesDF wasm 95 9 none]
+G c Z s s [array_of_globalIP wasm 98 9 none]
+G c Z s s [array_of_table_typesIP wasm 101 9 none]
+G c Z s s [array_exportIP wasm 104 9 none]
+G c Z s s [array_memoryIP wasm 107 9 none]
+G c Z s s [array_importsIP wasm 110 9 none]
+G c Z s s [array_dataIP wasm 113 9 none]
+G c Z s s [array_elementsIP wasm 116 9 none]
+G c Z s s [wasm_moduleIP wasm 119 9 none]
+G r j function_type [function_specDA wasm 28 9 none] [function_typeDA types 129 9 none]
+G r k function_type [function_specDF wasm 28 9 none] [function_typeDF types 129 9 none]
+G r s function_type [function_specIP wasm 28 9 none] [function_typeIP types 129 9 none]
+G r l function_type [function_specIP wasm 28 9 none] [function_typeDI types 129 9 none]
+G r k function_type [function_specIP wasm 28 9 none] [function_typeDF types 129 9 none]
+G r s global_type [globalIP wasm 34 9 none] [global_typeIP types 150 9 none]
+G r s instruction [globalIP wasm 34 9 none] [instructionIP instructions 323 9 none]
+G r s table_type [import_kindIP wasm 44 9 none] [table_typeIP types 142 9 none]
+G r s limit_type [import_kindIP wasm 44 9 none] [limit_typeIP types 134 9 none]
+G r s global_type [import_kindIP wasm 44 9 none] [global_typeIP types 150 9 none]
+G r s table_type [importIP wasm 51 9 none] [table_typeIP types 142 9 none]
+G r s limit_type [importIP wasm 51 9 none] [limit_typeIP types 134 9 none]
+G r s global_type [importIP wasm 51 9 none] [global_typeIP types 150 9 none]
+G r s numeric_instruction [element_kind_recordIP wasm 66 9 none] [numeric_instructionIP instructions 103 9 none]
+G r s numeric_instruction [element_itemIP wasm 77 9 none] [numeric_instructionIP instructions 103 9 none]
+G r s value_type [elementIP wasm 86 9 none] [value_typeIP types 110 9 none]
+G r s function_type [array_of_functionsIP wasm 92 9 none] [function_typeIP types 129 9 none]
+G r l function_type [array_of_functionsIP wasm 92 9 none] [function_typeDI types 129 9 none]
+G r k function_type [array_of_functionsIP wasm 92 9 none] [function_typeDF types 129 9 none]
+G r k function_type [array_of_functionsDI wasm 92 9 none] [function_typeDF types 129 9 none]
+G r j function_type [array_of_functionsDA wasm 92 9 none] [function_typeDA types 129 9 none]
+G r k function_type [array_of_functionsDF wasm 92 9 none] [function_typeDF types 129 9 none]
+G r s function_type [array_of_func_typesIP wasm 95 9 none] [function_typeIP types 129 9 none]
+G r l function_type [array_of_func_typesDI wasm 95 9 none] [function_typeDI types 129 9 none]
+G r k function_type [array_of_func_typesDI wasm 95 9 none] [function_typeDF types 129 9 none]
+G r j function_type [array_of_func_typesDA wasm 95 9 none] [function_typeDA types 129 9 none]
+G r k function_type [array_of_func_typesDF wasm 95 9 none] [function_typeDF types 129 9 none]
+G r s global_type [array_of_globalIP wasm 98 9 none] [global_typeIP types 150 9 none]
+G r s instruction [array_of_globalIP wasm 98 9 none] [instructionIP instructions 323 9 none]
+G r s table_type [array_of_table_typesIP wasm 101 9 none] [table_typeIP types 142 9 none]
+G r s limit_type [array_memoryIP wasm 107 9 none] [limit_typeIP types 134 9 none]
+G r s table_type [array_importsIP wasm 110 9 none] [table_typeIP types 142 9 none]
+G r s limit_type [array_importsIP wasm 110 9 none] [limit_typeIP types 134 9 none]
+G r s global_type [array_importsIP wasm 110 9 none] [global_typeIP types 150 9 none]
+G r s value_type [array_elementsIP wasm 116 9 none] [value_typeIP types 110 9 none]
 X 1 ada.ads
-16K9*Ada 20e8 43|1r6
+16K9*Ada 20e8 51|8r6
 X 2 a-contai.ads
-16K13*Containers 28e19 43|1w10
+16K13*Containers 28e19 51|8w10
 X 6 a-convec.ads
-91R9*Vector<8|43R9> 43|23r22[41|44]
-X 9 a-iteint.ads
+91R9*Vector<8|43R9> 51|30r22[49|121]
+X 11 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
-X 17 instances.ads
-21K9*Instances 200e14 43|5w6 5r24
-25I9*Address<short_short_integer>
-26I12*Func_Addr{25I9} 43|15r26 73r20
-27I12*Table_Addr{25I9} 43|64r22
-34I12*Type_Addr{25I9} 43|38r16
-42A9*Vector_Of_Bytes(19|69M9)<integer>
-43P9*Vector_Of_Bytes_Acc(42A9) 43|53r14
-132A12*Array_Type(41|52R9)<integer>
-133P12*Array_Access(132A12[139]) 43|123r44[17|139]
-139K12*Ft_Array_Access_Types[131] 43|123r22
-X 18 instructions.ads
-5K9*Instructions 343e17 43|2w6 2r24
-15P9*Instruction_Acc(14R9)
-17A9*Chunk(15P9)<integer>
-18P9*Instruction_Sequence(17A9) 43|22r22
-98R9*Numeric_Instruction 111e14 43|65r22 75r20
-318R9*Instruction
-339R12*Constant_Expression{318R9} 43|29r18
-X 19 interfac.ads
-38K9*Interfaces 232e15 43|4w6 4r24
+X 21 instances.ads
+25K9*Instances 203e14 51|12w6 12r24
+29I9*Address<short_short_integer>
+30I12*Func_Addr{29I9} 51|22r26 80r20
+31I12*Table_Addr{29I9} 51|71r22
+38I12*Type_Addr{29I9} 51|45r16
+46A9*Vector_Of_Bytes(23|69M9)<integer>
+47P9*Vector_Of_Bytes_Acc(46A9) 51|60r14
+135A12*Array_Type(49|129R9)<integer>
+136P12*Array_Access(135A12[142]) 51|130r44[21|142]
+142K12*Ft_Array_Access_Types[134] 51|130r22
+X 22 instructions.ads
+14K9*Instructions 346e17 51|9w6 9r24
+24P9*Instruction_Acc(23R9)
+26A9*Chunk(24P9)<integer>
+27P9*Instruction_Sequence(26A9) 51|29r22
+103R9*Numeric_Instruction 116e14 51|72r22 82r20
+323R9*Instruction
+344R12*Constant_Expression{323R9} 51|36r18
+X 23 interfac.ads
+38K9*Interfaces 232e15 51|11w6 11r24
 69M9*Unsigned_8
-80M9*Unsigned_32 43|33r15 45r16 47r16
-X 20 system.ads
+80M9*Unsigned_32 51|40r15 52r16 54r16
+X 25 system.ads
 67M9*Address
-X 25 s-memory.ads
-51V13*Alloc{20|67M9} 101i<c,__gnat_malloc>22
+X 32 s-memory.ads
+51V13*Alloc{25|67M9} 101i<c,__gnat_malloc>22
 66U14*Free 102i<c,__gnat_free>22
-74V13*Realloc{20|67M9} 103i<c,__gnat_realloc>22
-X 34 s-stalib.adb
+74V13*Realloc{25|67M9} 103i<c,__gnat_realloc>22
+X 41 s-stalib.adb
 87U14 Break_Start 88i<c,__gnat_break_start>22
-X 41 types.ads
-3K9*Types 78e10 43|3w6 3r24 7w6 7r17
-33R9*Value_Type 42e14 43|82r15
-44K12*Value_Type_Vectors[6|74] 43|9r8
-52R9*Function_Type 55e14 43|24r22 88r60
-63R12*Memory_Type{57R9} 43|40r16 100r53
-65R9*Table_Type 68e14 43|39r16 94r61
-73R9*Global_Type 76e14 43|28r18 41r16
-X 43 wasm.ads
-8K9*Wasm 126l5 126e9
-12R9*Option_FuncAddr 12d26 19e14 113r22
-12b26*Is_Null{boolean} 13r12 113m42
-15i13*Satrt_Addr{17|26I12}
-21R9*Function_Spec 25e14 85r59
-22p7*Instructions{18|18P9}
-23r7*Locals{6|91R9[41|44]}
-24r7*Func_Ty{41|52R9}
-27R9*Global 30e14 91r56
-28r7*Glb_Type{41|73R9}
-29r7*Init{18|339R12}
-32R9*Export 34e14 97r53
-33m7*Index{19|80M9}
-37R9*Import_Kind 42e14 46r16
-38i7*Func{17|34I12}
-39r7*Table{41|65R9}
-40r7*Memory{41|63R12}
-41r7*Global{41|73R9}
-44R9*Import 48e14 103r54
-45m7*Name{19|80M9}
-46r7*kind{37R9}
-47m7*Module{19|80M9}
-50E9*Data_Kind 50e39 54r14
-50n23*Active{50E9}
-50n31*Passive{50E9}
-52R9*Data 56e14 106r51
-53p7*Data{17|43P9}
-54e7*Kind{50E9}
-58E9*Element_Kind 58e52 59r37 80r15
-58n26*Passive{58E9} 59r53 61r15
-58n35*Active{58E9} 63r15
-58n43*Declared{58E9} 61r25
-59R9*Element_Kind_Record 59d30 67e14
-59e30*Kind{58E9} 60r12
-64i13*Table{17|27I12}
-65r13*Offset{18|98R9}
-69E9*Inst_Seq 69e33 70r30
-69n22*Func{69E9} 70r42 72r15
-69n28*Expr{69E9} 74r15
-70R9*Element_Item 70d23 77e14
-70e23*Item{69E9} 71r12
-73i13*Func{17|26I12}
-75r13*Expr{18|98R9}
-79R9*Element 83e14 109r55
-80e7*Kind{58E9}
-81i7*Items{integer}
-82r7*Ty{41|33R9}
-85A9*Array_Of_Functions(21R9)<integer> 86r34
-86P9*Wasm_Functions(85A9) 115r22
-88A9*Array_Of_Func_Types(41|52R9)<integer> 89r40
-89P9*Wasm_Functions_Types(88A9) 114r22
-91A9*Array_Of_Global(27R9)<integer> 92r32
-92P9*Wasm_Globals(91A9) 116r22
-94A9*Array_Of_Table_Types(41|65R9)<integer> 95r34
-95P9*Wasm_Tab_Types(94A9) 117r22
-97A9*Array_Export(32R9)<integer> 98r31
-98P9*Wasm_Export(97A9) 118r22
-100A9*Array_Memory(41|63R12)<integer> 101r37
-101P9*Wasm_Memory_Types(100A9) 119r22
-103A9*Array_Imports(44R9)<integer> 104r32
-104P9*Wasm_Imports(103A9) 120r22
-106A9*Array_Data(52R9)<integer> 107r29
-107P9*Wasm_Data(106A9) 121r22
-109A9*Array_Elements(79R9)<integer> 110r33
-110P9*Wasm_Elements(109A9) 122r22
-112R9*Wasm_Module 124e14
-113r7*Start_Func{12R9}
-114p7*Funcs{89P9}
-115p7*Func_Types{86P9}
-116p7*Globals{92P9}
-117p7*Table_Types{95P9}
-118p7*Exports{98P9}
-119p7*Memory_Types{101P9}
-120p7*Imports{104P9}
-121p7*Data{107P9}
-122p7*Elements{110P9}
-123p7*l{17|133P12[17|139]}
+X 49 types.ads
+13K9*Types 155e10 51|10w6 10r24 14w6 14r17
+110R9*Value_Type 119e14 51|89r15
+121K12*Value_Type_Vectors[6|74] 51|16r8
+129R9*Function_Type 132e14 51|31r22 95r60
+140R12*Memory_Type{134R9} 51|47r16 107r53
+142R9*Table_Type 145e14 51|46r16 101r61
+150R9*Global_Type 153e14 51|35r18 48r16
+X 51 wasm.ads
+15K9*Wasm 133l5 133e9
+19R9*Option_FuncAddr 19d26 26e14 120r22
+19b26*Is_Null{boolean} 20r12 120m42
+22i13*Satrt_Addr{21|30I12}
+28R9*Function_Spec 32e14 92r59
+29p7*Instructions{22|27P9}
+30r7*Locals{6|91R9[49|121]}
+31r7*Func_Ty{49|129R9}
+34R9*Global 37e14 98r56
+35r7*Glb_Type{49|150R9}
+36r7*Init{22|344R12}
+39R9*Export 41e14 104r53
+40m7*Index{23|80M9}
+44R9*Import_Kind 49e14 53r16
+45i7*Func{21|38I12}
+46r7*Table{49|142R9}
+47r7*Memory{49|140R12}
+48r7*Global{49|150R9}
+51R9*Import 55e14 110r54
+52m7*Name{23|80M9}
+53r7*kind{44R9}
+54m7*Module{23|80M9}
+57E9*Data_Kind 57e39 61r14
+57n23*Active{57E9}
+57n31*Passive{57E9}
+59R9*Data 63e14 113r51
+60p7*Data{21|47P9}
+61e7*Kind{57E9}
+65E9*Element_Kind 65e52 66r37 87r15
+65n26*Passive{65E9} 66r53 68r15
+65n35*Active{65E9} 70r15
+65n43*Declared{65E9} 68r25
+66R9*Element_Kind_Record 66d30 74e14
+66e30*Kind{65E9} 67r12
+71i13*Table{21|31I12}
+72r13*Offset{22|103R9}
+76E9*Inst_Seq 76e33 77r30
+76n22*Func{76E9} 77r42 79r15
+76n28*Expr{76E9} 81r15
+77R9*Element_Item 77d23 84e14
+77e23*Item{76E9} 78r12
+80i13*Func{21|30I12}
+82r13*Expr{22|103R9}
+86R9*Element 90e14 116r55
+87e7*Kind{65E9}
+88i7*Items{integer}
+89r7*Ty{49|110R9}
+92A9*Array_Of_Functions(28R9)<integer> 93r34
+93P9*Wasm_Functions(92A9) 122r22
+95A9*Array_Of_Func_Types(49|129R9)<integer> 96r40
+96P9*Wasm_Functions_Types(95A9) 121r22
+98A9*Array_Of_Global(34R9)<integer> 99r32
+99P9*Wasm_Globals(98A9) 123r22
+101A9*Array_Of_Table_Types(49|142R9)<integer> 102r34
+102P9*Wasm_Tab_Types(101A9) 124r22
+104A9*Array_Export(39R9)<integer> 105r31
+105P9*Wasm_Export(104A9) 125r22
+107A9*Array_Memory(49|140R12)<integer> 108r37
+108P9*Wasm_Memory_Types(107A9) 126r22
+110A9*Array_Imports(51R9)<integer> 111r32
+111P9*Wasm_Imports(110A9) 127r22
+113A9*Array_Data(59R9)<integer> 114r29
+114P9*Wasm_Data(113A9) 128r22
+116A9*Array_Elements(86R9)<integer> 117r33
+117P9*Wasm_Elements(116A9) 129r22
+119R9*Wasm_Module 131e14
+120r7*Start_Func{19R9}
+121p7*Funcs{96P9}
+122p7*Func_Types{93P9}
+123p7*Globals{99P9}
+124p7*Table_Types{102P9}
+125p7*Exports{105P9}
+126p7*Memory_Types{108P9}
+127p7*Imports{111P9}
+128p7*Data{114P9}
+129p7*Elements{117P9}
+130p7*l{21|136P12[21|142]}
 

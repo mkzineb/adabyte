@@ -58,25 +58,32 @@ D a-cihama.ads		20230727081303 42861819 ada.containers.indefinite_hashed_maps%s
 D a-convec.ads		20230727081304 91fb49f3 ada.containers.vectors%s
 D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
 D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-flteio.ads		20230727081304 e18a47a0 ada.float_text_io%s
+D a-ioexce.ads		20230727081304 40018c65 ada.io_exceptions%s
 D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
 D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
 D a-string.ads		20230727081304 90ac6797 ada.strings%s
 D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
 D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-textio.ads		20230727081304 5c2c6153 ada.text_io%s
+D a-tiflio.ads		20230727081304 9fe024a2 ada.text_io.float_io%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20230727081304 c3a8ac65 ada.unchecked_deallocation%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
 D gnat.ads		20230727081304 b5988c27 gnat%s
 D g-os_lib.ads		20230727081304 0db74523 gnat.os_lib%s
-D instances.ads		20240724103528 71df3e22 instances%s
-D instructions.ads	20240708082418 35d285f4 instructions%s
+D instances.ads		20240813141303 71df3e22 instances%s
+D instructions.ads	20240808123754 f9c54f3c instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
-D module.ads		20240705094155 20562468 module%s
+D i-cstrea.ads		20230727081304 e53d8b8e interfaces.c_streams%s
+D module.ads		20240724120903 20562468 module%s
 D module.adb		20240705152954 4a485045 module%b
 D system.ads		20230727081304 426dafb8 system%s
 D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
+D s-crtl.ads		20230727081304 8a0692f8 system.crtl%s
 D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
+D s-ficobl.ads		20230727081304 dc5161d4 system.file_control_block%s
 D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
 D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
 D s-os_lib.ads		20230727081304 a2467c22 system.os_lib%s
@@ -95,48 +102,49 @@ D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
 D s-string.ads		20230727081304 582aac7d system.strings%s
 D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
 D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
-D types.ads		20240710083804 081cd40b types%s
-D values.ads		20240626123542 52cf5252 values%s
-D wasm.ads		20240709130541 8d441c15 wasm%s
+D s-wchcon.ads		20230727081304 d9032363 system.wch_con%s
+D types.ads		20240814125950 d5286669 types%s
+D values.ads		20240724121031 52cf5252 values%s
+D wasm.ads		20240724121048 8d441c15 wasm%s
 G a e
-G c Z s b [parse_file module 13 13 none]
-G c Z s b [instantiate_module module 15 13 none]
-G c Z s b [get_id module 18 13 none]
-G c Z s s [module_typeIP module 9 9 none]
-G r s wasm_module [parse_file module 13 13 none] [wasm_moduleIP wasm 112 9 none]
-G r s module_instance [instantiate_module module 15 13 none] [module_instanceIP instances 160 9 none]
-G r s wasm_module [module_typeIP module 9 9 none] [wasm_moduleIP wasm 112 9 none]
-X 9 a-iteint.ads
+G c Z s b [parse_file module 20 13 none]
+G c Z s b [instantiate_module module 22 13 none]
+G c Z s b [get_id module 25 13 none]
+G c Z s s [module_typeIP module 16 9 none]
+G r s wasm_module [parse_file module 20 13 none] [wasm_moduleIP wasm 119 9 none]
+G r s module_instance [instantiate_module module 22 13 none] [module_instanceIP instances 163 9 none]
+G r s wasm_module [module_typeIP module 16 9 none] [wasm_moduleIP wasm 119 9 none]
+X 11 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
-X 18 gnat.ads
-37K9*GNAT 60e9 23|2r6 2r23
-X 19 g-os_lib.ads
-51K14*OS_Lib=51:36 23|2w11 2r28
-X 20 instances.ads
-21K9*Instances 200e14 23|3w6 3r23
-25I9*Address<short_short_integer>
-37I12*Module_Instance_Addr{25I9} 23|18r54 24|17r54
-160R9*Module_Instance 174e14 23|16r56 18r30 24|10r56 12r21 17r30
-163i7*Module_Addr{37I12} 24|19r21
-183R9*Store_Type 191e14 23|16r37 24|10r37
-X 23 module.ads
-7K9*Module 20l5 20e11 24|1b14 21l5 21t11
-9R9*Module_Type 11e14 13r54 16r16 24|3r54 4r16 10r16
-10r7*Data{48|112R9}
-13V13*Parse_File{9R9} 13>25 24|3b13 7l8 7t18
-13i25 Fd{30|201I9} 24|3b25
-15V13*Instantiate_Module{20|160R9} 16>7 16>29 24|9b13 15l8 15t26
-16r7 Module{9R9} 24|10b7
-16r29 Store{20|183R9} 24|10b29
-18V13*Get_Id{20|37I12} 18>21 24|17b13 20l8 20t14
-18r21 Module{20|160R9} 24|17b21 19r14
-X 24 module.adb
-4r7 Module{23|9R9} 6r14
-12r7 Module_Inst{20|160R9} 14r14
-X 30 s-os_lib.ads
-201I9*File_Descriptor<integer> 23|13r30 24|3r30
-X 48 wasm.ads
-8K9*Wasm 23|1w6 1r23 48|126e9
-112R9*Wasm_Module 23|10r14 48|124e14
+X 22 gnat.ads
+37K9*GNAT 60e9 28|9r6 9r23
+X 23 g-os_lib.ads
+51K14*OS_Lib=51:36 28|9w11 9r28
+X 24 instances.ads
+25K9*Instances 203e14 28|10w6 10r23
+29I9*Address<short_short_integer>
+41I12*Module_Instance_Addr{29I9} 28|25r54 29|17r54
+163R9*Module_Instance 177e14 28|23r56 25r30 29|10r56 12r21 17r30
+166i7*Module_Addr{41I12} 29|19r21
+186R9*Store_Type 194e14 28|23r37 29|10r37
+X 28 module.ads
+14K9*Module 27l5 27e11 29|1b14 21l5 21t11
+16R9*Module_Type 18e14 20r54 23r16 29|3r54 4r16 10r16
+17r7*Data{56|119R9}
+20V13*Parse_File{16R9} 20>25 29|3b13 7l8 7t18
+20i25 Fd{37|201I9} 29|3b25
+22V13*Instantiate_Module{24|163R9} 23>7 23>29 29|9b13 15l8 15t26
+23r7 Module{16R9} 29|10b7
+23r29 Store{24|186R9} 29|10b29
+25V13*Get_Id{24|41I12} 25>21 29|17b13 20l8 20t14
+25r21 Module{24|163R9} 29|17b21 19r14
+X 29 module.adb
+4r7 Module{28|16R9} 6r14
+12r7 Module_Inst{24|163R9} 14r14
+X 37 s-os_lib.ads
+201I9*File_Descriptor<integer> 28|20r30 29|3r30
+X 56 wasm.ads
+15K9*Wasm 28|8w6 8r23 56|133e9
+119R9*Wasm_Module 28|17r14 56|131e14
 

@@ -1,0 +1,3 @@
+@startuml o
+Bob->Alice 
+@enduml

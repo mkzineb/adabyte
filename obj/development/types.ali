@@ -47,6 +47,7 @@ RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTION_PROPAGATION
 RV NO_EXCEPTIONS
 RV NO_FLOATING_POINT
+RV NO_IO
 RV NO_IMPLICIT_CONDITIONALS
 RV NO_LOCAL_ALLOCATORS
 RV NO_NESTED_FINALIZATION
@@ -63,7 +64,7 @@ RV NO_IMPLICIT_ALIASING
 RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 
-U types%s		types.ads		8c10043a EE OO PF PK
+U types%s		types.ads		ec8290ab EE OO PF PK
 W ada%s			ada.ads			ada.ali
 W ada.containers%s	a-contai.ads		a-contai.ali
 Z ada.containers.generic_array_sort%s
@@ -71,15 +72,16 @@ Z ada.containers.helpers%s  a-conhel.adb	a-conhel.ali
 W ada.containers.vectors%s
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.finalization%s	a-finali.ads		a-finali.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
 Z ada.iterator_interfaces%s
 Z ada.streams%s		a-stream.adb		a-stream.ali
 W ada.strings%s		a-string.ads		a-string.ali
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
 Z ada.unchecked_deallocation%s
 W interfaces%s		interfac.ads		interfac.ali
 Z system%s		system.ads		system.ali
-Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
 Z system.fat_lflt%s	s-fatlfl.ads		s-fatlfl.ali
 Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
 Z system.img_flt%s	s-imgflt.ads		s-imgflt.ali
@@ -105,6 +107,8 @@ D a-convec.ads		20230727081304 91fb49f3 ada.containers.vectors%s
 D a-convec.adb		20230727081304 b2ed0168 ada.containers.vectors%b
 D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
 D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-flteio.ads		20230727081304 e18a47a0 ada.float_text_io%s
+D a-ioexce.ads		20230727081304 40018c65 ada.io_exceptions%s
 D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
 D a-numeri.ads		20230727081304 84bea7a3 ada.numerics%s
 D a-nubinu.ads		20230727081304 93f1f3d1 ada.numerics.big_numbers%s
@@ -114,20 +118,24 @@ D a-string.ads		20230727081304 90ac6797 ada.strings%s
 D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
 D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
+D a-textio.ads		20230727081304 5c2c6153 ada.text_io%s
+D a-tiflio.ads		20230727081304 9fe024a2 ada.text_io.float_io%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20230727081304 c3a8ac65 ada.unchecked_deallocation%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
+D i-cstrea.ads		20230727081304 e53d8b8e interfaces.c_streams%s
 D system.ads		20230727081304 426dafb8 system%s
 D s-assert.ads		20230727081304 9c4520c7 system.assertions%s
 D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
 D s-atocou.adb		20230727081304 6fe685de system.atomic_counters%b
 D s-atopri.ads		20230727081304 1b132436 system.atomic_primitives%s
 D s-casuti.ads		20230727081304 cf13d755 system.case_util%s
+D s-crtl.ads		20230727081304 8a0692f8 system.crtl%s
 D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
-D s-fatflt.ads		20230727081304 11beb392 system.fat_flt%s
 D s-fatgen.ads		20230727081304 d28c6cfe system.fat_gen%s
 D s-fatlfl.ads		20230727081304 378cba9f system.fat_lflt%s
+D s-ficobl.ads		20230727081304 dc5161d4 system.file_control_block%s
 D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
 D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
 D s-imager.ads		20230727081304 45c7157d system.image_r%s
@@ -164,232 +172,298 @@ D s-wchstw.ads		20230727081304 2d112c01 system.wch_stw%s
 D s-widllu.ads		20230727081304 a6620b19 system.wid_llu%s
 D s-widuns.ads		20230727081304 866a5800 system.wid_uns%s
 D s-widthu.ads		20230727081304 b32f15e2 system.width_u%s
-D types.ads		20240710083804 081cd40b types%s
+D types.ads		20240814125950 d5286669 types%s
 G a e
-G c Z s s [number_typeIP types 11 9 none]
-G c Z s s [value_typeIP types 33 9 none]
-G c Z s s [has_element types__value_type_vectors 115 13 44_4]
-G c Z s s [empty types__value_type_vectors 125 13 44_4]
-G c Z s s [Oeq types__value_type_vectors 127 24 44_4]
-G c Z s s [to_vector types__value_type_vectors 136 13 44_4]
-G c Z s s [to_vector types__value_type_vectors 139 13 44_4]
-G c Z s s [Oconcat types__value_type_vectors 145 13 44_4]
-G c Z s s [Oconcat types__value_type_vectors 149 13 44_4]
-G c Z s s [Oconcat types__value_type_vectors 153 13 44_4]
-G c Z s s [Oconcat types__value_type_vectors 157 13 44_4]
-G c Z s s [capacity types__value_type_vectors 161 13 44_4]
-G c Z s s [reserve_capacity types__value_type_vectors 164 14 44_4]
-G c Z s s [length types__value_type_vectors 175 13 44_4]
-G c Z s s [set_length types__value_type_vectors 178 14 44_4]
-G c Z s s [is_empty types__value_type_vectors 187 13 44_4]
-G c Z s s [clear types__value_type_vectors 190 14 44_4]
-G c Z s s [to_cursor types__value_type_vectors 194 13 44_4]
-G c Z s s [to_index types__value_type_vectors 201 13 44_4]
-G c Z s s [element types__value_type_vectors 206 13 44_4]
-G c Z s s [element types__value_type_vectors 213 13 44_4]
-G c Z s s [replace_element types__value_type_vectors 217 14 44_4]
-G c Z s s [replace_element types__value_type_vectors 228 14 44_4]
-G c Z s s [query_element types__value_type_vectors 239 14 44_4]
-G c Z s s [query_element types__value_type_vectors 250 14 44_4]
-G c Z s s [update_element types__value_type_vectors 259 14 44_4]
-G c Z s s [update_element types__value_type_vectors 276 14 44_4]
-G c Z s s [constant_reference types__value_type_vectors 303 13 44_4]
-G c Z s s [reference types__value_type_vectors 308 13 44_4]
-G c Z s s [constant_reference types__value_type_vectors 313 13 44_4]
-G c Z s s [reference types__value_type_vectors 318 13 44_4]
-G c Z s s [assign types__value_type_vectors 323 14 44_4]
-G c Z s s [copy types__value_type_vectors 325 13 44_4]
-G c Z s s [move types__value_type_vectors 327 14 44_4]
-G c Z s s [new_vector types__value_type_vectors 333 13 44_4]
-G c Z s s [insert_vector types__value_type_vectors 337 14 44_4]
-G c Z s s [insert_vector types__value_type_vectors 361 14 44_4]
-G c Z s s [insert_vector types__value_type_vectors 378 14 44_4]
-G c Z s s [insert types__value_type_vectors 396 14 44_4]
-G c Z s s [insert types__value_type_vectors 404 14 44_4]
-G c Z s s [insert types__value_type_vectors 412 14 44_4]
-G c Z s s [insert types__value_type_vectors 421 14 44_4]
-G c Z s s [insert types__value_type_vectors 438 14 44_4]
-G c Z s s [prepend_vector types__value_type_vectors 449 14 44_4]
-G c Z s s [prepend types__value_type_vectors 459 14 44_4]
-G c Z s s [append_vector types__value_type_vectors 466 14 44_4]
-G c Z s s [append types__value_type_vectors 476 14 44_4]
-G c Z s s [append types__value_type_vectors 483 14 44_4]
-G c Z s s [insert_space types__value_type_vectors 486 14 44_4]
-G c Z s s [insert_space types__value_type_vectors 503 14 44_4]
-G c Z s s [delete types__value_type_vectors 514 14 44_4]
-G c Z s s [delete types__value_type_vectors 524 14 44_4]
-G c Z s s [delete_first types__value_type_vectors 533 14 44_4]
-G c Z s s [delete_last types__value_type_vectors 538 14 44_4]
-G c Z s s [reverse_elements types__value_type_vectors 546 14 44_4]
-G c Z s s [swap types__value_type_vectors 549 14 44_4]
-G c Z s s [swap types__value_type_vectors 554 14 44_4]
-G c Z s s [first_index types__value_type_vectors 560 13 44_4]
-G c Z s s [first types__value_type_vectors 563 13 44_4]
-G c Z s s [first_element types__value_type_vectors 567 13 44_4]
-G c Z s s [last_index types__value_type_vectors 570 13 44_4]
-G c Z s s [last types__value_type_vectors 574 13 44_4]
-G c Z s s [last_element types__value_type_vectors 578 13 44_4]
-G c Z s s [next types__value_type_vectors 581 13 44_4]
-G c Z s s [next types__value_type_vectors 587 14 44_4]
-G c Z s s [previous types__value_type_vectors 590 13 44_4]
-G c Z s s [previous types__value_type_vectors 596 14 44_4]
-G c Z s s [find_index types__value_type_vectors 599 13 44_4]
-G c Z s s [find types__value_type_vectors 609 13 44_4]
-G c Z s s [reverse_find_index types__value_type_vectors 623 13 44_4]
-G c Z s s [reverse_find types__value_type_vectors 635 13 44_4]
-G c Z s s [contains types__value_type_vectors 649 13 44_4]
-G c Z s s [iterate types__value_type_vectors 654 14 44_4]
-G c Z s s [reverse_iterate types__value_type_vectors 662 14 44_4]
-G c Z s s [iterate types__value_type_vectors 669 13 44_4]
-G c Z s s [iterate types__value_type_vectors 672 13 44_4]
-G c Z s s [adjust types__value_type_vectors__implementation 90 28 726_4_44_4]
-G c Z s s [finalize types__value_type_vectors__implementation 93 28 726_4_44_4]
-G c Z s s [zero_counts types__value_type_vectors__implementation 96 17 726_4_44_4]
-G c Z s s [busy types__value_type_vectors__implementation 100 17 726_4_44_4]
-G c Z s s [unbusy types__value_type_vectors__implementation 104 17 726_4_44_4]
-G c Z s s [lock types__value_type_vectors__implementation 108 17 726_4_44_4]
-G c Z s s [unlock types__value_type_vectors__implementation 112 17 726_4_44_4]
-G c Z s s [tc_check types__value_type_vectors__implementation 116 17 726_4_44_4]
-G c Z s s [te_check types__value_type_vectors__implementation 120 17 726_4_44_4]
-G c Z s s [is_busy types__value_type_vectors__implementation 136 16 726_4_44_4]
-G c Z s s [is_locked types__value_type_vectors__implementation 140 16 726_4_44_4]
-G c Z s s [initialize types__value_type_vectors__implementation 161 28 726_4_44_4]
-G c Z s s [finalize types__value_type_vectors__implementation 162 28 726_4_44_4]
-G c Z s s [initialize types__value_type_vectors__implementation 167 28 726_4_44_4]
-G c Z s s [finalize types__value_type_vectors__implementation 168 28 726_4_44_4]
-G c Z s s [reference_control_typeDA types__value_type_vectors__implementation 84 12 726_4_44_4]
-G c Z s s [reference_control_typeDF types__value_type_vectors__implementation 84 12 726_4_44_4]
-G c Z s s [reference_control_typeIP types__value_type_vectors__implementation 84 12 726_4_44_4]
-G c Z s s [with_busyDF types__value_type_vectors__implementation 158 12 726_4_44_4]
-G c Z s s [with_busyIP types__value_type_vectors__implementation 158 12 726_4_44_4]
-G c Z s s [with_lockDF types__value_type_vectors__implementation 164 12 726_4_44_4]
-G c Z s s [with_lockIP types__value_type_vectors__implementation 164 12 726_4_44_4]
-G c Z s s [put_image types__value_type_vectors 747 14 44_4]
-G c Z s s [adjust types__value_type_vectors 750 25 44_4]
-G c Z s s [finalize types__value_type_vectors 751 25 44_4]
-G c Z s s [write types__value_type_vectors 753 14 44_4]
-G c Z s s [read types__value_type_vectors 759 14 44_4]
-G c Z s s [read types__value_type_vectors 773 14 44_4]
-G c Z s s [write types__value_type_vectors 779 14 44_4]
-G c Z s s [write types__value_type_vectors 798 14 44_4]
-G c Z s s [read types__value_type_vectors 804 14 44_4]
-G c Z s s [write types__value_type_vectors 820 14 44_4]
-G c Z s s [read types__value_type_vectors 826 14 44_4]
-G c Z s s [pseudo_reference types__value_type_vectors 840 13 44_4]
-G c Z s s [get_element_access types__value_type_vectors 849 13 44_4]
-G c Z s s [cursorIP types__value_type_vectors 768 9 44_4]
-G c Z s s [vectorDA types__value_type_vectors 741 9 44_4]
-G c Z s s [vectorDF types__value_type_vectors 741 9 44_4]
-G c Z s s [vectorIP types__value_type_vectors 741 9 44_4]
-G c Z s s [finalize types__value_type_vectors 865 25 44_4]
-G c Z s s [first types__value_type_vectors 867 24 44_4]
-G c Z s s [last types__value_type_vectors 868 24 44_4]
-G c Z s s [next types__value_type_vectors 870 24 44_4]
-G c Z s s [previous types__value_type_vectors 874 24 44_4]
-G c Z s s [constant_reference_typeDI types__value_type_vectors 788 9 44_4]
-G c Z s s [constant_reference_typeDA types__value_type_vectors 788 9 44_4]
-G c Z s s [constant_reference_typeDF types__value_type_vectors 788 9 44_4]
-G c Z s s [constant_reference_typeIP types__value_type_vectors 788 9 44_4]
-G c Z s s [reference_typeDI types__value_type_vectors 810 9 44_4]
-G c Z s s [reference_typeDA types__value_type_vectors 810 9 44_4]
-G c Z s s [reference_typeDF types__value_type_vectors 810 9 44_4]
-G c Z s s [reference_typeIP types__value_type_vectors 810 9 44_4]
-G c Z s s [elements_arrayIP types__value_type_vectors 729 9 44_4]
-G c Z s s [elements_typeIP types__value_type_vectors 732 9 44_4]
-G c Z s s [iteratorDF types__value_type_vectors 857 9 44_4]
-G c Z s s [iteratorIP types__value_type_vectors 857 9 44_4]
-G c Z s s [free types__value_type_vectors 44 14 44_4]
-G c Z s s [append_slow_path types__value_type_vectors 47 14 44_4]
-G c Z s s [function_typeDI types 52 9 none]
-G c Z s s [function_typeDA types 52 9 none]
-G c Z s s [function_typeDF types 52 9 none]
-G c Z s s [function_typeIP types 52 9 none]
-G c Z s s [limit_typeIP types 57 9 none]
-G c Z s s [table_typeIP types 65 9 none]
-G c Z s s [global_typeIP types 73 9 none]
+G c Z s s [signed_typeIP types 52 9 none]
+G c Z s s [float_typeIP types 70 9 none]
+G c Z s s [numeric_typeIP types 79 9 none]
+G c Z s s [value_typeIP types 110 9 none]
+G c Z s s [has_element types__value_type_vectors 115 13 121_4]
+G c Z s s [empty types__value_type_vectors 125 13 121_4]
+G c Z s s [Oeq types__value_type_vectors 127 24 121_4]
+G c Z s s [to_vector types__value_type_vectors 136 13 121_4]
+G c Z s s [to_vector types__value_type_vectors 139 13 121_4]
+G c Z s s [Oconcat types__value_type_vectors 145 13 121_4]
+G c Z s s [Oconcat types__value_type_vectors 149 13 121_4]
+G c Z s s [Oconcat types__value_type_vectors 153 13 121_4]
+G c Z s s [Oconcat types__value_type_vectors 157 13 121_4]
+G c Z s s [capacity types__value_type_vectors 161 13 121_4]
+G c Z s s [reserve_capacity types__value_type_vectors 164 14 121_4]
+G c Z s s [length types__value_type_vectors 175 13 121_4]
+G c Z s s [set_length types__value_type_vectors 178 14 121_4]
+G c Z s s [is_empty types__value_type_vectors 187 13 121_4]
+G c Z s s [clear types__value_type_vectors 190 14 121_4]
+G c Z s s [to_cursor types__value_type_vectors 194 13 121_4]
+G c Z s s [to_index types__value_type_vectors 201 13 121_4]
+G c Z s s [element types__value_type_vectors 206 13 121_4]
+G c Z s s [element types__value_type_vectors 213 13 121_4]
+G c Z s s [replace_element types__value_type_vectors 217 14 121_4]
+G c Z s s [replace_element types__value_type_vectors 228 14 121_4]
+G c Z s s [query_element types__value_type_vectors 239 14 121_4]
+G c Z s s [query_element types__value_type_vectors 250 14 121_4]
+G c Z s s [update_element types__value_type_vectors 259 14 121_4]
+G c Z s s [update_element types__value_type_vectors 276 14 121_4]
+G c Z s s [constant_reference types__value_type_vectors 303 13 121_4]
+G c Z s s [reference types__value_type_vectors 308 13 121_4]
+G c Z s s [constant_reference types__value_type_vectors 313 13 121_4]
+G c Z s s [reference types__value_type_vectors 318 13 121_4]
+G c Z s s [assign types__value_type_vectors 323 14 121_4]
+G c Z s s [copy types__value_type_vectors 325 13 121_4]
+G c Z s s [move types__value_type_vectors 327 14 121_4]
+G c Z s s [new_vector types__value_type_vectors 333 13 121_4]
+G c Z s s [insert_vector types__value_type_vectors 337 14 121_4]
+G c Z s s [insert_vector types__value_type_vectors 361 14 121_4]
+G c Z s s [insert_vector types__value_type_vectors 378 14 121_4]
+G c Z s s [insert types__value_type_vectors 396 14 121_4]
+G c Z s s [insert types__value_type_vectors 404 14 121_4]
+G c Z s s [insert types__value_type_vectors 412 14 121_4]
+G c Z s s [insert types__value_type_vectors 421 14 121_4]
+G c Z s s [insert types__value_type_vectors 438 14 121_4]
+G c Z s s [prepend_vector types__value_type_vectors 449 14 121_4]
+G c Z s s [prepend types__value_type_vectors 459 14 121_4]
+G c Z s s [append_vector types__value_type_vectors 466 14 121_4]
+G c Z s s [append types__value_type_vectors 476 14 121_4]
+G c Z s s [append types__value_type_vectors 483 14 121_4]
+G c Z s s [insert_space types__value_type_vectors 486 14 121_4]
+G c Z s s [insert_space types__value_type_vectors 503 14 121_4]
+G c Z s s [delete types__value_type_vectors 514 14 121_4]
+G c Z s s [delete types__value_type_vectors 524 14 121_4]
+G c Z s s [delete_first types__value_type_vectors 533 14 121_4]
+G c Z s s [delete_last types__value_type_vectors 538 14 121_4]
+G c Z s s [reverse_elements types__value_type_vectors 546 14 121_4]
+G c Z s s [swap types__value_type_vectors 549 14 121_4]
+G c Z s s [swap types__value_type_vectors 554 14 121_4]
+G c Z s s [first_index types__value_type_vectors 560 13 121_4]
+G c Z s s [first types__value_type_vectors 563 13 121_4]
+G c Z s s [first_element types__value_type_vectors 567 13 121_4]
+G c Z s s [last_index types__value_type_vectors 570 13 121_4]
+G c Z s s [last types__value_type_vectors 574 13 121_4]
+G c Z s s [last_element types__value_type_vectors 578 13 121_4]
+G c Z s s [next types__value_type_vectors 581 13 121_4]
+G c Z s s [next types__value_type_vectors 587 14 121_4]
+G c Z s s [previous types__value_type_vectors 590 13 121_4]
+G c Z s s [previous types__value_type_vectors 596 14 121_4]
+G c Z s s [find_index types__value_type_vectors 599 13 121_4]
+G c Z s s [find types__value_type_vectors 609 13 121_4]
+G c Z s s [reverse_find_index types__value_type_vectors 623 13 121_4]
+G c Z s s [reverse_find types__value_type_vectors 635 13 121_4]
+G c Z s s [contains types__value_type_vectors 649 13 121_4]
+G c Z s s [iterate types__value_type_vectors 654 14 121_4]
+G c Z s s [reverse_iterate types__value_type_vectors 662 14 121_4]
+G c Z s s [iterate types__value_type_vectors 669 13 121_4]
+G c Z s s [iterate types__value_type_vectors 672 13 121_4]
+G c Z s s [adjust types__value_type_vectors__implementation 90 28 726_4_121_4]
+G c Z s s [finalize types__value_type_vectors__implementation 93 28 726_4_121_4]
+G c Z s s [zero_counts types__value_type_vectors__implementation 96 17 726_4_121_4]
+G c Z s s [busy types__value_type_vectors__implementation 100 17 726_4_121_4]
+G c Z s s [unbusy types__value_type_vectors__implementation 104 17 726_4_121_4]
+G c Z s s [lock types__value_type_vectors__implementation 108 17 726_4_121_4]
+G c Z s s [unlock types__value_type_vectors__implementation 112 17 726_4_121_4]
+G c Z s s [tc_check types__value_type_vectors__implementation 116 17 726_4_121_4]
+G c Z s s [te_check types__value_type_vectors__implementation 120 17 726_4_121_4]
+G c Z s s [is_busy types__value_type_vectors__implementation 136 16 726_4_121_4]
+G c Z s s [is_locked types__value_type_vectors__implementation 140 16 726_4_121_4]
+G c Z s s [initialize types__value_type_vectors__implementation 161 28 726_4_121_4]
+G c Z s s [finalize types__value_type_vectors__implementation 162 28 726_4_121_4]
+G c Z s s [initialize types__value_type_vectors__implementation 167 28 726_4_121_4]
+G c Z s s [finalize types__value_type_vectors__implementation 168 28 726_4_121_4]
+G c Z s s [reference_control_typeDA types__value_type_vectors__implementation 84 12 726_4_121_4]
+G c Z s s [reference_control_typeDF types__value_type_vectors__implementation 84 12 726_4_121_4]
+G c Z s s [reference_control_typeIP types__value_type_vectors__implementation 84 12 726_4_121_4]
+G c Z s s [with_busyDF types__value_type_vectors__implementation 158 12 726_4_121_4]
+G c Z s s [with_busyIP types__value_type_vectors__implementation 158 12 726_4_121_4]
+G c Z s s [with_lockDF types__value_type_vectors__implementation 164 12 726_4_121_4]
+G c Z s s [with_lockIP types__value_type_vectors__implementation 164 12 726_4_121_4]
+G c Z s s [put_image types__value_type_vectors 747 14 121_4]
+G c Z s s [adjust types__value_type_vectors 750 25 121_4]
+G c Z s s [finalize types__value_type_vectors 751 25 121_4]
+G c Z s s [write types__value_type_vectors 753 14 121_4]
+G c Z s s [read types__value_type_vectors 759 14 121_4]
+G c Z s s [read types__value_type_vectors 773 14 121_4]
+G c Z s s [write types__value_type_vectors 779 14 121_4]
+G c Z s s [write types__value_type_vectors 798 14 121_4]
+G c Z s s [read types__value_type_vectors 804 14 121_4]
+G c Z s s [write types__value_type_vectors 820 14 121_4]
+G c Z s s [read types__value_type_vectors 826 14 121_4]
+G c Z s s [pseudo_reference types__value_type_vectors 840 13 121_4]
+G c Z s s [get_element_access types__value_type_vectors 849 13 121_4]
+G c Z s s [cursorIP types__value_type_vectors 768 9 121_4]
+G c Z s s [vectorDA types__value_type_vectors 741 9 121_4]
+G c Z s s [vectorDF types__value_type_vectors 741 9 121_4]
+G c Z s s [vectorIP types__value_type_vectors 741 9 121_4]
+G c Z s s [finalize types__value_type_vectors 865 25 121_4]
+G c Z s s [first types__value_type_vectors 867 24 121_4]
+G c Z s s [last types__value_type_vectors 868 24 121_4]
+G c Z s s [next types__value_type_vectors 870 24 121_4]
+G c Z s s [previous types__value_type_vectors 874 24 121_4]
+G c Z s s [constant_reference_typeDI types__value_type_vectors 788 9 121_4]
+G c Z s s [constant_reference_typeDA types__value_type_vectors 788 9 121_4]
+G c Z s s [constant_reference_typeDF types__value_type_vectors 788 9 121_4]
+G c Z s s [constant_reference_typeIP types__value_type_vectors 788 9 121_4]
+G c Z s s [reference_typeDI types__value_type_vectors 810 9 121_4]
+G c Z s s [reference_typeDA types__value_type_vectors 810 9 121_4]
+G c Z s s [reference_typeDF types__value_type_vectors 810 9 121_4]
+G c Z s s [reference_typeIP types__value_type_vectors 810 9 121_4]
+G c Z s s [elements_arrayIP types__value_type_vectors 729 9 121_4]
+G c Z s s [elements_typeIP types__value_type_vectors 732 9 121_4]
+G c Z s s [iteratorDF types__value_type_vectors 857 9 121_4]
+G c Z s s [iteratorIP types__value_type_vectors 857 9 121_4]
+G c Z s s [free types__value_type_vectors 44 14 121_4]
+G c Z s s [append_slow_path types__value_type_vectors 47 14 121_4]
+G c Z s s [unsigned_typeIP types 61 9 none]
+G c Z s s [number_typeIP types 88 9 none]
+G c Z s s [function_typeDI types 129 9 none]
+G c Z s s [function_typeDA types 129 9 none]
+G c Z s s [function_typeDF types 129 9 none]
+G c Z s s [function_typeIP types 129 9 none]
+G c Z s s [limit_typeIP types 134 9 none]
+G c Z s s [table_typeIP types 142 9 none]
+G c Z s s [global_typeIP types 150 9 none]
 X 1 ada.ads
-16K9*Ada 20e8 70|2r6 44r38
+16K9*Ada 20e8 76|9r6 10r6 10r23 11r6 121r38
 X 3 a-contai.ads
-16K13*Containers 28e19 70|2r10 44r42
+16K13*Containers 28e19 76|9r10 121r42
 X 7 a-convec.ads
-62I9 Index_Type 70|45r7
-63+9 Element_Type 70|45r30
-74k24*Vectors 878e27 70|2w21 44r53
-91R9*Vector<10|43R9> 70|48r46[44] 50r49[44]
-X 11 a-iteint.ads
+62I9 Index_Type 76|122r7
+63+9 Element_Type 76|122r30
+74k24*Vectors 878e27 76|9w21 121r53
+91R9*Vector<10|43R9> 76|125r46[121] 127r49[121]
+X 11 a-flteio.ads
+20K13*Float_Text_IO[23|46] 76|11w10
+X 13 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[7|119]>
-X 22 interfac.ads
-38K9*Interfaces 232e15 70|1w6 1r22
-53I9*Integer_32<integer> 70|14r20
-56I9*Integer_64<long_long_integer> 70|16r20
-80M9*Unsigned_32 70|22r20
-83M9*Unsigned_64 70|24r20
-217F9*IEEE_Float_32<short_float> 70|18r20
-220F9*IEEE_Float_64<long_float> 70|20r20
-X 24 system.ads
+X 22 a-textio.ads
+58K13*Text_IO 787e16 76|10w10 10r27
+X 26 interfac.ads
+38K9*Interfaces 232e15 76|8w6 8r23
+53I9*Integer_32<integer> 76|55r20 91r20
+56I9*Integer_64<long_long_integer> 76|57r20 93r20
+80M9*Unsigned_32 76|64r20 99r20
+83M9*Unsigned_64 76|66r20 101r20
+217F9*IEEE_Float_32<short_float> 76|95r20
+220F9*IEEE_Float_64<long_float> 76|75r20 97r20
+X 29 system.ads
 67M9*Address
-X 42 s-memory.ads
-51V13*Alloc{24|67M9} 101i<c,__gnat_malloc>22
+X 48 s-memory.ads
+51V13*Alloc{29|67M9} 101i<c,__gnat_malloc>22
 66U14*Free 102i<c,__gnat_free>22
-74V13*Realloc{24|67M9} 103i<c,__gnat_realloc>22
-X 52 s-stalib.adb
+74V13*Realloc{29|67M9} 103i<c,__gnat_realloc>22
+X 58 s-stalib.adb
 87U14 Break_Start 88i<c,__gnat_break_start>22
-X 70 types.ads
-3K9*Types 78l5 78e10
-7E9*Block_Type 7e64
-7n24*Loop_Block{7E9}
-7n36*If_Block{7E9}
-7n46*Else_Block{7E9}
-7n58*Block{7E9}
-9E9*Number 9e55 11r28
-9n20*I_32{9E9} 11r38 13r15
-9n26*I_64{9E9} 15r15
-9n32*F_32{9E9} 17r15
-9n38*F_64{9E9} 19r15
-9n44*U_32{9E9} 21r15
-9n50*U_64{9E9} 23r15
-11R9*Number_Type 11d22 26e14 36r25
-11e22*Num{9E9} 12r12
-14i13*I_32{22|53I9}
-16i13*I_64{22|56I9}
-18f13*F_32{22|217F9}
-20f13*F_64{22|220F9}
-22m13*U_32{22|80M9}
-24m13*U_64{22|83M9}
-28E9*Vector_Type 28e31 38r25
-28n25*v_128{28E9}
-30E9*Reference_Type 30e59 40r25 66r19
-30n28*Null_Ref{30E9}
-30n38*Func_Ref{30E9}
-30n48*Extern_Ref{30E9}
-32E9*Value_Posibilities 32e76 33r27
-32n32*Number_Value{32E9} 33r49 35r15
-32n46*Vector_Value{32E9} 37r15
-32n60*Reference_Value{32E9} 39r15
-33R9*Value_Type 33d21 42e14 45r46 74r18
-33e21*Val{32E9} 34r12
-36r13*Num_Value{11R9}
-38e13*Vec_Value{28E9}
-40e13*Ref_Value{30E9}
-44K12*Value_Type_Vectors[7|74] 46r8 48r27 50r30
-48R12*Result_Type{7|91R9[44]} 54r17
-50R12*Parameter_Type{7|91R9[44]} 53r17
-52R9*Function_Type 55e14
-53r7*Params{50R12}
-54r7*Results{48R12}
-57R9*Limit_Type 61e14 63r27 67r19
-58i7*Min{natural}
-59i7*MAx{natural}
-60b7*Max_Exists{boolean}
-63R12*Memory_Type{57R9}
-65R9*Table_Type 68e14
-66e7*Reference{30E9}
-67r7*Limit{57R9}
-70E9*Mutable 70e32 71r8 75r18
-70n21*Const{70E9} 71r21
-70n28*Var{70E9} 71r33
-73R9*Global_Type 76e14
-74r7*Val_Type{33R9}
-75e7*Mut{70E9}
+X 76 types.ads
+13K9*Types 155l5 155e10
+28E9*Unary_Op 31e21
+29n7*Count_Leading_Zeroes{28E9}
+29n29*Count_Trailing_Zeroes{28E9}
+29n52*Population_Count{28E9}
+30n7*Absolute_Value{28E9}
+30n23*Negation{28E9}
+30n33*Square_Root{28E9}
+30n46*Ceiling{28E9}
+30n55*Floor{28E9}
+30n62*Truncation{28E9}
+31n7*Nearest_Round{28E9}
+33E9*Binary_Op 36e49
+34n7*Addition{33E9}
+34n17*Subtraction{33E9}
+34n30*Multiplication{33E9}
+34n46*Division{33E9}
+34n56*Remainder{33E9}
+34n67*Logical_And{33E9}
+35n7*Logical_Or{33E9}
+35n19*Logical_Xor{33E9}
+35n32*Shift_Left{33E9}
+35n44*Shift_Right{33E9}
+35n57*Rotate_Left{33E9}
+36n7*Rotate_Right{33E9}
+36n21*Minimum{33E9}
+36n30*Maximum{33E9}
+36n39*Copy_Sign{33E9}
+38E9*Block_Type 38e64
+38n24*Loop_Block{38E9}
+38n36*If_Block{38E9}
+38n46*Else_Block{38E9}
+38n58*Block{38E9}
+40E9*Number 40e55 88r28
+40n20*I_32{40E9} 88r38 90r15
+40n26*I_64{40E9} 92r15
+40n32*F_32{40E9} 94r15
+40n38*F_64{40E9} 96r15
+40n44*U_32{40E9} 98r15
+40n50*U_64{40E9} 100r15
+42E9*Signed 42e31 52r28
+42n20*I_32{42E9} 52r38 54r15
+42n26*I_64{42E9} 56r15
+43E9*Unsigned 43e33 61r30
+43n22*U_32{43E9} 61r42 63r15
+43n28*U_64{43E9} 65r15
+44E9*Floats 44e31 70r27
+44n20*F_32{44E9} 70r37 72r15
+44n26*F_64{44E9} 74r15
+46E9*S_F 46e22 79r27
+46n17*S{46E9} 79r34 81r15
+46n20*F{46E9} 83r15
+48E9*Numeric_Size 48e39
+48n26*S_F32{48E9}
+48n33*S_F64{48E9}
+52R9*Signed_Type 52d22 59e14 82r21
+52e22*Num{42E9} 53r12
+55i13*I_32{26|53I9}
+57i13*I_64{26|56I9}
+61R9*Unsigned_Type 61d24 68e14
+61e24*Num{43E9} 62r12
+64m13*U_32{26|80M9}
+66m13*U_64{26|83M9}
+70R9*Float_Type 70d21 77e14 84r21
+70e21*Num{44E9} 71r12
+73f13*F_32{float}
+75f13*F_64{26|220F9}
+79R9*Numeric_Type 79d23 86e14 113r25
+79e23*N{46E9} 80r12
+82r13*Num_S{52R9}
+84r13*Num_F{70R9}
+88R9*Number_Type 88d22 103e14
+88e22*Num{40E9} 89r12
+91i13*I_32{26|53I9}
+93i13*I_64{26|56I9}
+95f13*F_32{26|217F9}
+97f13*F_64{26|220F9}
+99m13*U_32{26|80M9}
+101m13*U_64{26|83M9}
+105E9*Vector_Type 105e31 115r25
+105n25*v_128{105E9}
+107E9*Reference_Type 107e59 117r25 143r19
+107n28*Null_Ref{107E9}
+107n38*Func_Ref{107E9}
+107n48*Extern_Ref{107E9}
+109E9*Value_Posibilities 109e76 110r27
+109n32*Number_Value{109E9} 110r49 112r15
+109n46*Vector_Value{109E9} 114r15
+109n60*Reference_Value{109E9} 116r15
+110R9*Value_Type 110d21 119e14 122r46 151r18
+110e21*Val{109E9} 111r12
+113r13*Num_Value{79R9}
+115e13*Vec_Value{105E9}
+117e13*Ref_Value{107E9}
+121K12*Value_Type_Vectors[7|74] 123r8 125r27 127r30
+125R12*Result_Type{7|91R9[121]} 131r17
+127R12*Parameter_Type{7|91R9[121]} 130r17
+129R9*Function_Type 132e14
+130r7*Params{127R12}
+131r7*Results{125R12}
+134R9*Limit_Type 138e14 140r27 144r19
+135i7*Min{natural}
+136i7*MAx{natural}
+137b7*Max_Exists{boolean}
+140R12*Memory_Type{134R9}
+142R9*Table_Type 145e14
+143e7*Reference{107E9}
+144r7*Limit{134R9}
+147E9*Mutable 147e32 148r8 152r18
+147n21*Const{147E9} 148r21
+147n28*Var{147E9} 148r33
+150R9*Global_Type 153e14
+151r7*Val_Type{110R9}
+152e7*Mut{147E9}
 

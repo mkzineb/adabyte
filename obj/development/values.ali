@@ -49,22 +49,22 @@ D ada.ads		20230727081304 76789da1 ada%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D system.ads		20230727081304 426dafb8 system%s
-D values.ads		20240626123542 52cf5252 values%s
+D values.ads		20240724121031 52cf5252 values%s
 G a e
-G c Z s s [byte_arrayIP values 8 9 none]
-G c Z s s [raw_wasm_valueIP values 11 9 none]
+G c Z s s [byte_arrayIP values 15 9 none]
+G c Z s s [raw_wasm_valueIP values 18 9 none]
 X 1 ada.ads
-16K9*Ada 20e8 5|1r6 1r31
+16K9*Ada 20e8 5|8r6 8r31
 X 2 a-widcha.ads
-19K13*Wide_Characters 21e24 5|1w10 1r35
+19K13*Wide_Characters 21e24 5|8w10 8r35
 X 3 interfac.ads
-38K9*Interfaces 232e15 5|2w6 2r31
-69M9*Unsigned_8 5|8r51
+38K9*Interfaces 232e15 5|9w6 9r31
+69M9*Unsigned_8 5|15r51
 X 5 values.ads
-3K9*Values 15l5 15e11
-6E12*Name{character}
-8A9*Byte_Array(3|69M9)<integer> 9r35
-9P9*Bytes_Array_Acc(8A9) 12r15
-11R9*Raw_Wasm_Value 13e14
-12p7*Bytes{9P9}
+10K9*Values 22l5 22e11
+13E12*Name{character}
+15A9*Byte_Array(3|69M9)<integer> 16r35
+16P9*Bytes_Array_Acc(15A9) 19r15
+18R9*Raw_Wasm_Value 20e14
+19p7*Bytes{16P9}
 

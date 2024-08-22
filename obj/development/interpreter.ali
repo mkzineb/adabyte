@@ -37,7 +37,6 @@ A -march=x86-64
 P SS ZX
 
 RN
-RV NO_DIRECT_BOOLEAN_OPERATORS
 RV NO_ENUMERATION_MAPS
 RV NO_EXCEPTION_HANDLERS
 RV NO_EXCEPTION_PROPAGATION
@@ -56,7 +55,7 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 
-U interpreter%b		interpreter.adb		30893935 NE OO PK
+U interpreter%b		interpreter.adb		e0848a0d NE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.containers%s	a-contai.ads		a-contai.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
@@ -67,17 +66,15 @@ W ada.unchecked_deallocation%s
 Z system%s		system.ads		system.ali
 Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
 Z system.fat_lflt%s	s-fatlfl.ads		s-fatlfl.ali
-Z system.img_int%s	s-imgint.ads		s-imgint.ali
 Z system.img_uns%s	s-imguns.ads		s-imguns.ali
 Z system.return_stack%s	s-retsta.ads		s-retsta.ali
 Z system.soft_links%s	s-soflin.adb		s-soflin.ali
 Z system.standard_library%s  s-stalib.adb	s-stalib.ali
 Z system.unsigned_types%s  s-unstyp.ads		s-unstyp.ali
 
-U interpreter%s		interpreter.ads		75582f93 BN EE OO PF PK
+U interpreter%s		interpreter.ads		919fbacc BN EE OO PF PK
 W ada%s			ada.ads			ada.ali
 W ada.containers%s	a-contai.ads		a-contai.ali
-Z ada.containers.generic_array_sort%s
 Z ada.containers.hash_tables%s  a-cohata.ads	a-cohata.ali
 Z ada.containers.hash_tables.generic_keys%s
 Z ada.containers.hash_tables.generic_operations%s
@@ -87,6 +84,7 @@ Z ada.containers.prime_numbers%s  a-coprnu.adb	a-coprnu.ali
 W ada.containers.vectors%s
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.finalization%s	a-finali.ads		a-finali.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
 Z ada.iterator_interfaces%s
 Z ada.streams%s		a-stream.adb		a-stream.ali
 W ada.strings%s		a-string.ads		a-string.ali
@@ -98,12 +96,7 @@ W instructions%s	instructions.adb	instructions.ali
 W interfaces%s		interfac.ads		interfac.ali
 W stack%s		stack.adb		stack.ali
 Z system%s		system.ads		system.ali
-Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
-Z system.fat_lflt%s	s-fatlfl.ads		s-fatlfl.ali
 Z system.finalization_masters%s  s-finmas.adb	s-finmas.ali
-Z system.img_flt%s	s-imgflt.ads		s-imgflt.ali
-Z system.img_lflt%s	s-imglfl.ads		s-imglfl.ali
-Z system.pool_global%s	s-pooglo.adb		s-pooglo.ali
 Z system.put_images%s	s-putima.adb		s-putima.ali
 Z system.return_stack%s	s-retsta.ads		s-retsta.ali
 Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
@@ -113,14 +106,12 @@ Z system.storage_elements%s  s-stoele.adb	s-stoele.ali
 Z system.storage_pools%s  s-stopoo.adb		s-stopoo.ali
 Z system.storage_pools.subpools%s  s-stposu.adb	s-stposu.ali
 Z system.stream_attributes%s  s-stratt.adb	s-stratt.ali
-Z system.wch_stw%s	s-wchstw.adb		s-wchstw.ali
 W types%s		types.ads		types.ali
 W wasm%s		wasm.ads		wasm.ali
 
 D ada.ads		20230727081304 76789da1 ada%s
 D a-assert.ads		20230727081303 ba465f5c ada.assertions%s
 D a-contai.ads		20230727081304 61e5e089 ada.containers%s
-D a-cgarso.ads		20230727081303 9129bfa8 ada.containers.generic_array_sort%s
 D a-cohata.ads		20230727081304 c4f77997 ada.containers.hash_tables%s
 D a-chtgke.ads		20230727081303 20177f7b ada.containers.hash_tables.generic_keys%s
 D a-chtgke.adb		20230727081303 fdf2dddc ada.containers.hash_tables.generic_keys%b
@@ -132,9 +123,9 @@ D a-cihama.ads		20230727081303 42861819 ada.containers.indefinite_hashed_maps%s
 D a-cihama.adb		20230727081303 1212fa7d ada.containers.indefinite_hashed_maps%b
 D a-coprnu.ads		20230727081304 24215258 ada.containers.prime_numbers%s
 D a-convec.ads		20230727081304 91fb49f3 ada.containers.vectors%s
-D a-convec.adb		20230727081304 b2ed0168 ada.containers.vectors%b
 D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
 D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-flteio.ads		20230727081304 e18a47a0 ada.float_text_io%s
 D a-ioexce.ads		20230727081304 40018c65 ada.io_exceptions%s
 D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
 D a-numeri.ads		20230727081304 84bea7a3 ada.numerics%s
@@ -146,17 +137,18 @@ D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
 D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
 D a-textio.ads		20230727081304 5c2c6153 ada.text_io%s
+D a-tiflio.ads		20230727081304 9fe024a2 ada.text_io.float_io%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20230727081304 c3a8ac65 ada.unchecked_deallocation%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D instances.ads		20240724103528 71df3e22 instances%s
-D instructions.ads	20240708082418 35d285f4 instructions%s
+D instances.ads		20240813141303 71df3e22 instances%s
+D instructions.ads	20240808123754 f9c54f3c instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
 D i-cstrea.ads		20230727081304 e53d8b8e interfaces.c_streams%s
-D interpreter.ads	20240724103619 d13d8fc3 interpreter%s
-D interpreter.adb	20240723083828 1fd59b49 interpreter%b
-D stack.ads		20240710132618 a3ba1bb0 stack%s
+D interpreter.ads	20240814102829 072867d3 interpreter%s
+D interpreter.adb	20240822094036 19cdc061 interpreter%b
+D stack.ads		20240809135240 f03a1006 stack%s
 D system.ads		20230727081304 426dafb8 system%s
 D s-assert.ads		20230727081304 9c4520c7 system.assertions%s
 D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
@@ -171,19 +163,11 @@ D s-fatlfl.ads		20230727081304 378cba9f system.fat_lflt%s
 D s-ficobl.ads		20230727081304 dc5161d4 system.file_control_block%s
 D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
 D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
-D s-imagei.ads		20230727081304 c707dfd0 system.image_i%s
-D s-imager.ads		20230727081304 45c7157d system.image_r%s
 D s-imageu.ads		20230727081304 631c6ed0 system.image_u%s
-D s-imgflt.ads		20230727081304 d12816b5 system.img_flt%s
-D s-imgint.ads		20230727081304 d4a52a9b system.img_int%s
-D s-imglfl.ads		20230727081304 941be202 system.img_lflt%s
-D s-imgllu.ads		20230727081304 ef081208 system.img_llu%s
 D s-imguns.ads		20230727081304 7867236f system.img_uns%s
 D s-memory.ads		20230727081304 5b8432d0 system.memory%s
 D s-parame.ads		20230727081304 d494a4a6 system.parameters%s
 D s-pooglo.ads		20230727081304 91708d21 system.pool_global%s
-D s-powflt.ads		20230727081304 a51ab9b8 system.powten_flt%s
-D s-powlfl.ads		20230727081304 ac0852c8 system.powten_lflt%s
 D s-putima.ads		20230727081304 17291fe4 system.put_images%s
 D s-retsta.ads		20230727081304 0f6b06cb system.return_stack%s
 D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
@@ -198,1246 +182,1139 @@ D s-stposu.ads		20230727081304 e251976f system.storage_pools.subpools%s
 D s-stratt.ads		20230727081304 f7dfd786 system.stream_attributes%s
 D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
 D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
-D s-valint.ads		20230727081304 1f610d7a system.val_int%s
-D s-valllu.ads		20230727081304 ca6e26ce system.val_llu%s
 D s-valuns.ads		20230727081304 e8a1f424 system.val_uns%s
 D s-valuti.ads		20230727081304 fcd603d8 system.val_util%s
-D s-valuei.ads		20230727081304 11081e09 system.value_i%s
-D s-vaispe.ads		20230727081304 44130d39 system.value_i_spec%s
 D s-valueu.ads		20230727081304 18770347 system.value_u%s
 D s-vauspe.ads		20230727081304 a67b2f28 system.value_u_spec%s
 D s-wchcon.ads		20230727081304 d9032363 system.wch_con%s
-D s-wchstw.ads		20230727081304 2d112c01 system.wch_stw%s
-D s-widllu.ads		20230727081304 a6620b19 system.wid_llu%s
 D s-widuns.ads		20230727081304 866a5800 system.wid_uns%s
 D s-widthu.ads		20230727081304 b32f15e2 system.width_u%s
-D types.ads		20240710083804 081cd40b types%s
-D values.ads		20240626123542 52cf5252 values%s
-D wasm.ads		20240709130541 8d441c15 wasm%s
+D types.ads		20240814125950 d5286669 types%s
+D values.ads		20240724121031 52cf5252 values%s
+D wasm.ads		20240724121048 8d441c15 wasm%s
 G a e
-G c Z s s [hash interpreter 30 13 none]
-G c Z s s [label_infoIP interpreter 25 9 none]
-G c Z s s [empty interpreter__symbols_table 73 13 31_4]
-G c Z s s [has_element interpreter__symbols_table 79 13 31_4]
-G c Z s s [Oeq interpreter__symbols_table 85 24 31_4]
-G c Z s s [capacity interpreter__symbols_table 96 13 31_4]
-G c Z s s [reserve_capacity interpreter__symbols_table 100 14 31_4]
-G c Z s s [length interpreter__symbols_table 110 13 31_4]
-G c Z s s [is_empty interpreter__symbols_table 113 13 31_4]
-G c Z s s [clear interpreter__symbols_table 116 14 31_4]
-G c Z s s [key interpreter__symbols_table 119 13 31_4]
-G c Z s s [element interpreter__symbols_table 122 13 31_4]
-G c Z s s [replace_element interpreter__symbols_table 125 14 31_4]
-G c Z s s [query_element interpreter__symbols_table 131 14 31_4]
-G c Z s s [update_element interpreter__symbols_table 138 14 31_4]
-G c Z s s [constant_reference interpreter__symbols_table 155 13 31_4]
-G c Z s s [reference interpreter__symbols_table 160 13 31_4]
-G c Z s s [constant_reference interpreter__symbols_table 165 13 31_4]
-G c Z s s [reference interpreter__symbols_table 170 13 31_4]
-G c Z s s [assign interpreter__symbols_table 175 14 31_4]
-G c Z s s [copy interpreter__symbols_table 177 13 31_4]
-G c Z s s [move interpreter__symbols_table 179 14 31_4]
-G c Z s s [insert interpreter__symbols_table 183 14 31_4]
-G c Z s s [insert interpreter__symbols_table 201 14 31_4]
-G c Z s s [include interpreter__symbols_table 212 14 31_4]
-G c Z s s [replace interpreter__symbols_table 223 14 31_4]
-G c Z s s [exclude interpreter__symbols_table 234 14 31_4]
-G c Z s s [delete interpreter__symbols_table 243 14 31_4]
-G c Z s s [delete interpreter__symbols_table 251 14 31_4]
-G c Z s s [first interpreter__symbols_table 257 13 31_4]
-G c Z s s [next interpreter__symbols_table 261 13 31_4]
-G c Z s s [next interpreter__symbols_table 269 14 31_4]
-G c Z s s [find interpreter__symbols_table 272 13 31_4]
-G c Z s s [contains interpreter__symbols_table 278 13 31_4]
-G c Z s s [element interpreter__symbols_table 281 13 31_4]
-G c Z s s [equivalent_keys interpreter__symbols_table 284 13 31_4]
-G c Z s s [equivalent_keys interpreter__symbols_table 288 13 31_4]
-G c Z s s [equivalent_keys interpreter__symbols_table 292 13 31_4]
-G c Z s s [iterate interpreter__symbols_table 296 14 31_4]
-G c Z s s [iterate interpreter__symbols_table 301 13 31_4]
-G c Z s s [node_typeIP interpreter__symbols_table 325 9 31_4]
-G c Z s s [adjust interpreter__symbols_table__ht_types__implementation 90 28 58_7_331_4_31_4]
-G c Z s s [finalize interpreter__symbols_table__ht_types__implementation 93 28 58_7_331_4_31_4]
-G c Z s s [zero_counts interpreter__symbols_table__ht_types__implementation 96 17 58_7_331_4_31_4]
-G c Z s s [busy interpreter__symbols_table__ht_types__implementation 100 17 58_7_331_4_31_4]
-G c Z s s [unbusy interpreter__symbols_table__ht_types__implementation 104 17 58_7_331_4_31_4]
-G c Z s s [lock interpreter__symbols_table__ht_types__implementation 108 17 58_7_331_4_31_4]
-G c Z s s [unlock interpreter__symbols_table__ht_types__implementation 112 17 58_7_331_4_31_4]
-G c Z s s [tc_check interpreter__symbols_table__ht_types__implementation 116 17 58_7_331_4_31_4]
-G c Z s s [te_check interpreter__symbols_table__ht_types__implementation 120 17 58_7_331_4_31_4]
-G c Z s s [is_busy interpreter__symbols_table__ht_types__implementation 136 16 58_7_331_4_31_4]
-G c Z s s [is_locked interpreter__symbols_table__ht_types__implementation 140 16 58_7_331_4_31_4]
-G c Z s s [initialize interpreter__symbols_table__ht_types__implementation 161 28 58_7_331_4_31_4]
-G c Z s s [finalize interpreter__symbols_table__ht_types__implementation 162 28 58_7_331_4_31_4]
-G c Z s s [initialize interpreter__symbols_table__ht_types__implementation 167 28 58_7_331_4_31_4]
-G c Z s s [finalize interpreter__symbols_table__ht_types__implementation 168 28 58_7_331_4_31_4]
-G c Z s s [reference_control_typeDA interpreter__symbols_table__ht_types__implementation 84 12 58_7_331_4_31_4]
-G c Z s s [reference_control_typeDF interpreter__symbols_table__ht_types__implementation 84 12 58_7_331_4_31_4]
-G c Z s s [reference_control_typeIP interpreter__symbols_table__ht_types__implementation 84 12 58_7_331_4_31_4]
-G c Z s s [with_busyDF interpreter__symbols_table__ht_types__implementation 158 12 58_7_331_4_31_4]
-G c Z s s [with_busyIP interpreter__symbols_table__ht_types__implementation 158 12 58_7_331_4_31_4]
-G c Z s s [with_lockDF interpreter__symbols_table__ht_types__implementation 164 12 58_7_331_4_31_4]
-G c Z s s [with_lockIP interpreter__symbols_table__ht_types__implementation 164 12 58_7_331_4_31_4]
-G c Z s s [buckets_typeIP interpreter__symbols_table__ht_types 46 12 331_4_31_4]
-G c Z s s [hash_table_typeDA interpreter__symbols_table__ht_types 52 12 331_4_31_4]
-G c Z s s [hash_table_typeDF interpreter__symbols_table__ht_types 52 12 331_4_31_4]
-G c Z s s [hash_table_typeIP interpreter__symbols_table__ht_types 52 12 331_4_31_4]
-G c Z s s [put_image interpreter__symbols_table 338 14 31_4]
-G c Z s s [adjust interpreter__symbols_table 341 25 31_4]
-G c Z s s [finalize interpreter__symbols_table 343 25 31_4]
-G c Z s s [write interpreter__symbols_table 349 14 31_4]
-G c Z s s [read interpreter__symbols_table 355 14 31_4]
-G c Z s s [write interpreter__symbols_table 384 14 31_4]
-G c Z s s [read interpreter__symbols_table 390 14 31_4]
-G c Z s s [write interpreter__symbols_table 409 14 31_4]
-G c Z s s [read interpreter__symbols_table 415 14 31_4]
-G c Z s s [write interpreter__symbols_table 431 14 31_4]
-G c Z s s [read interpreter__symbols_table 437 14 31_4]
-G c Z s s [pseudo_reference interpreter__symbols_table 447 13 31_4]
-G c Z s s [get_element_access interpreter__symbols_table 454 13 31_4]
-G c Z s s [mapDA interpreter__symbols_table 334 9 31_4]
-G c Z s s [mapDF interpreter__symbols_table 334 9 31_4]
-G c Z s s [mapIP interpreter__symbols_table 334 9 31_4]
-G c Z s s [cursorIP interpreter__symbols_table 364 9 31_4]
-G c Z s s [finalize interpreter__symbols_table 470 25 31_4]
-G c Z s s [first interpreter__symbols_table 472 24 31_4]
-G c Z s s [next interpreter__symbols_table 474 24 31_4]
-G c Z s s [constant_reference_typeDI interpreter__symbols_table 399 9 31_4]
-G c Z s s [constant_reference_typeDA interpreter__symbols_table 399 9 31_4]
-G c Z s s [constant_reference_typeDF interpreter__symbols_table 399 9 31_4]
-G c Z s s [constant_reference_typeIP interpreter__symbols_table 399 9 31_4]
-G c Z s s [reference_typeDI interpreter__symbols_table 421 9 31_4]
-G c Z s s [reference_typeDA interpreter__symbols_table 421 9 31_4]
-G c Z s s [reference_typeDF interpreter__symbols_table 421 9 31_4]
-G c Z s s [reference_typeIP interpreter__symbols_table 421 9 31_4]
-G c Z s s [iteratorDF interpreter__symbols_table 463 9 31_4]
-G c Z s s [iteratorIP interpreter__symbols_table 463 9 31_4]
-G c Z s s [free_key interpreter__symbols_table 51 14 31_4]
-G c Z s s [free_element interpreter__symbols_table 54 14 31_4]
-G c Z s s [copy_node interpreter__symbols_table 61 13 31_4]
-G c Z s s [equivalent_key_node interpreter__symbols_table 64 13 31_4]
-G c Z s s [find_equal_key interpreter__symbols_table 69 13 31_4]
-G c Z s s [free interpreter__symbols_table 73 14 31_4]
-G c Z s s [hash_node interpreter__symbols_table 76 13 31_4]
-G c Z s s [next interpreter__symbols_table 79 13 31_4]
-G c Z s s [read_node interpreter__symbols_table 82 13 31_4]
-G c Z s s [set_next interpreter__symbols_table 85 14 31_4]
-G c Z s s [vet interpreter__symbols_table 88 13 31_4]
-G c Z s s [write_node interpreter__symbols_table 90 14 31_4]
-G c Z s s [free_hash_table interpreter__symbols_table__ht_ops 57 14 98_4_31_4]
-G c Z s s [index interpreter__symbols_table__ht_ops 61 13 98_4_31_4]
-G c Z s s [index interpreter__symbols_table__ht_ops 67 13 98_4_31_4]
-G c Z s s [checked_index interpreter__symbols_table__ht_ops 74 13 98_4_31_4]
-G c Z s s [checked_index interpreter__symbols_table__ht_ops 81 13 98_4_31_4]
-G c Z s s [adjust interpreter__symbols_table__ht_ops 86 14 98_4_31_4]
-G c Z s s [finalize interpreter__symbols_table__ht_ops 92 14 98_4_31_4]
-G c Z s s [clear interpreter__symbols_table__ht_ops 108 14 98_4_31_4]
-G c Z s s [move interpreter__symbols_table__ht_ops 114 14 98_4_31_4]
-G c Z s s [capacity interpreter__symbols_table__ht_ops 120 13 98_4_31_4]
-G c Z s s [reserve_capacity interpreter__symbols_table__ht_ops 123 14 98_4_31_4]
-G c Z s s [delete_node_at_index interpreter__symbols_table__ht_ops 132 14 98_4_31_4]
-G c Z s s [delete_node_sans_free interpreter__symbols_table__ht_ops 141 14 98_4_31_4]
-G c Z s s [first interpreter__symbols_table__ht_ops 146 13 98_4_31_4]
-G c Z s s [first interpreter__symbols_table__ht_ops 148 13 98_4_31_4]
-G c Z s s [next interpreter__symbols_table__ht_ops 155 13 98_4_31_4]
-G c Z s s [next interpreter__symbols_table__ht_ops 158 13 98_4_31_4]
-G c Z s s [new_buckets interpreter__symbols_table__ht_ops 205 13 98_4_31_4]
-G c Z s s [free_buckets interpreter__symbols_table__ht_ops 209 14 98_4_31_4]
-G c Z s s [index interpreter__symbols_table__key_ops 56 13 106_4_31_4]
-G c Z s s [checked_index interpreter__symbols_table__key_ops 62 13 106_4_31_4]
-G c Z s s [checked_equivalent_keys interpreter__symbols_table__key_ops 69 13 106_4_31_4]
-G c Z s s [delete_key_sans_free interpreter__symbols_table__key_ops 76 14 106_4_31_4]
-G c Z s s [find interpreter__symbols_table__key_ops 84 13 106_4_31_4]
-G c Z s s [is_equalR interpreter__symbols_table__is_equalGP4730 118 13 31_4]
-G c Z s s [is_equal interpreter__symbols_table 118 13 31_4]
-G c Z s s [read_nodesR interpreter__symbols_table__read_nodesGP27037 1003 14 31_4]
-G c Z s s [read_nodes interpreter__symbols_table 1003 14 31_4]
-G c Z s s [write_nodesR interpreter__symbols_table__write_nodesGP36160 1367 14 31_4]
-G c Z s s [write_nodes interpreter__symbols_table 1367 14 31_4]
-G c Z s s [element_variationDI interpreter 13 9 none]
-G c Z s s [element_variationDA interpreter 13 9 none]
-G c Z s s [element_variationDF interpreter 13 9 none]
-G c Z s s [element_variationIP interpreter 13 9 none]
-G c Z s s [has_element interpreter__vectors 115 13 36_4]
-G c Z s s [empty interpreter__vectors 125 13 36_4]
-G c Z s s [Oeq interpreter__vectors 127 24 36_4]
-G c Z s s [to_vector interpreter__vectors 136 13 36_4]
-G c Z s s [to_vector interpreter__vectors 139 13 36_4]
-G c Z s s [Oconcat interpreter__vectors 145 13 36_4]
-G c Z s s [Oconcat interpreter__vectors 149 13 36_4]
-G c Z s s [Oconcat interpreter__vectors 153 13 36_4]
-G c Z s s [Oconcat interpreter__vectors 157 13 36_4]
-G c Z s s [capacity interpreter__vectors 161 13 36_4]
-G c Z s s [reserve_capacity interpreter__vectors 164 14 36_4]
-G c Z s s [length interpreter__vectors 175 13 36_4]
-G c Z s s [set_length interpreter__vectors 178 14 36_4]
-G c Z s s [is_empty interpreter__vectors 187 13 36_4]
-G c Z s s [clear interpreter__vectors 190 14 36_4]
-G c Z s s [to_cursor interpreter__vectors 194 13 36_4]
-G c Z s s [to_index interpreter__vectors 201 13 36_4]
-G c Z s s [element interpreter__vectors 206 13 36_4]
-G c Z s s [element interpreter__vectors 213 13 36_4]
-G c Z s s [replace_element interpreter__vectors 217 14 36_4]
-G c Z s s [replace_element interpreter__vectors 228 14 36_4]
-G c Z s s [query_element interpreter__vectors 239 14 36_4]
-G c Z s s [query_element interpreter__vectors 250 14 36_4]
-G c Z s s [update_element interpreter__vectors 259 14 36_4]
-G c Z s s [update_element interpreter__vectors 276 14 36_4]
-G c Z s s [constant_reference interpreter__vectors 303 13 36_4]
-G c Z s s [reference interpreter__vectors 308 13 36_4]
-G c Z s s [constant_reference interpreter__vectors 313 13 36_4]
-G c Z s s [reference interpreter__vectors 318 13 36_4]
-G c Z s s [assign interpreter__vectors 323 14 36_4]
-G c Z s s [copy interpreter__vectors 325 13 36_4]
-G c Z s s [move interpreter__vectors 327 14 36_4]
-G c Z s s [new_vector interpreter__vectors 333 13 36_4]
-G c Z s s [insert_vector interpreter__vectors 337 14 36_4]
-G c Z s s [insert_vector interpreter__vectors 361 14 36_4]
-G c Z s s [insert_vector interpreter__vectors 378 14 36_4]
-G c Z s s [insert interpreter__vectors 396 14 36_4]
-G c Z s s [insert interpreter__vectors 404 14 36_4]
-G c Z s s [insert interpreter__vectors 412 14 36_4]
-G c Z s s [insert interpreter__vectors 421 14 36_4]
-G c Z s s [insert interpreter__vectors 438 14 36_4]
-G c Z s s [prepend_vector interpreter__vectors 449 14 36_4]
-G c Z s s [prepend interpreter__vectors 459 14 36_4]
-G c Z s s [append_vector interpreter__vectors 466 14 36_4]
-G c Z s s [append interpreter__vectors 476 14 36_4]
-G c Z s s [append interpreter__vectors 483 14 36_4]
-G c Z s s [insert_space interpreter__vectors 486 14 36_4]
-G c Z s s [insert_space interpreter__vectors 503 14 36_4]
-G c Z s s [delete interpreter__vectors 514 14 36_4]
-G c Z s s [delete interpreter__vectors 524 14 36_4]
-G c Z s s [delete_first interpreter__vectors 533 14 36_4]
-G c Z s s [delete_last interpreter__vectors 538 14 36_4]
-G c Z s s [reverse_elements interpreter__vectors 546 14 36_4]
-G c Z s s [swap interpreter__vectors 549 14 36_4]
-G c Z s s [swap interpreter__vectors 554 14 36_4]
-G c Z s s [first_index interpreter__vectors 560 13 36_4]
-G c Z s s [first interpreter__vectors 563 13 36_4]
-G c Z s s [first_element interpreter__vectors 567 13 36_4]
-G c Z s s [last_index interpreter__vectors 570 13 36_4]
-G c Z s s [last interpreter__vectors 574 13 36_4]
-G c Z s s [last_element interpreter__vectors 578 13 36_4]
-G c Z s s [next interpreter__vectors 581 13 36_4]
-G c Z s s [next interpreter__vectors 587 14 36_4]
-G c Z s s [previous interpreter__vectors 590 13 36_4]
-G c Z s s [previous interpreter__vectors 596 14 36_4]
-G c Z s s [find_index interpreter__vectors 599 13 36_4]
-G c Z s s [find interpreter__vectors 609 13 36_4]
-G c Z s s [reverse_find_index interpreter__vectors 623 13 36_4]
-G c Z s s [reverse_find interpreter__vectors 635 13 36_4]
-G c Z s s [contains interpreter__vectors 649 13 36_4]
-G c Z s s [iterate interpreter__vectors 654 14 36_4]
-G c Z s s [reverse_iterate interpreter__vectors 662 14 36_4]
-G c Z s s [iterate interpreter__vectors 669 13 36_4]
-G c Z s s [iterate interpreter__vectors 672 13 36_4]
-G c Z s s [adjust interpreter__vectors__implementation 90 28 726_4_36_4]
-G c Z s s [finalize interpreter__vectors__implementation 93 28 726_4_36_4]
-G c Z s s [zero_counts interpreter__vectors__implementation 96 17 726_4_36_4]
-G c Z s s [busy interpreter__vectors__implementation 100 17 726_4_36_4]
-G c Z s s [unbusy interpreter__vectors__implementation 104 17 726_4_36_4]
-G c Z s s [lock interpreter__vectors__implementation 108 17 726_4_36_4]
-G c Z s s [unlock interpreter__vectors__implementation 112 17 726_4_36_4]
-G c Z s s [tc_check interpreter__vectors__implementation 116 17 726_4_36_4]
-G c Z s s [te_check interpreter__vectors__implementation 120 17 726_4_36_4]
-G c Z s s [is_busy interpreter__vectors__implementation 136 16 726_4_36_4]
-G c Z s s [is_locked interpreter__vectors__implementation 140 16 726_4_36_4]
-G c Z s s [initialize interpreter__vectors__implementation 161 28 726_4_36_4]
-G c Z s s [finalize interpreter__vectors__implementation 162 28 726_4_36_4]
-G c Z s s [initialize interpreter__vectors__implementation 167 28 726_4_36_4]
-G c Z s s [finalize interpreter__vectors__implementation 168 28 726_4_36_4]
-G c Z s s [reference_control_typeDA interpreter__vectors__implementation 84 12 726_4_36_4]
-G c Z s s [reference_control_typeDF interpreter__vectors__implementation 84 12 726_4_36_4]
-G c Z s s [reference_control_typeIP interpreter__vectors__implementation 84 12 726_4_36_4]
-G c Z s s [with_busyDF interpreter__vectors__implementation 158 12 726_4_36_4]
-G c Z s s [with_busyIP interpreter__vectors__implementation 158 12 726_4_36_4]
-G c Z s s [with_lockDF interpreter__vectors__implementation 164 12 726_4_36_4]
-G c Z s s [with_lockIP interpreter__vectors__implementation 164 12 726_4_36_4]
-G c Z s s [put_image interpreter__vectors 747 14 36_4]
-G c Z s s [adjust interpreter__vectors 750 25 36_4]
-G c Z s s [finalize interpreter__vectors 751 25 36_4]
-G c Z s s [write interpreter__vectors 753 14 36_4]
-G c Z s s [read interpreter__vectors 759 14 36_4]
-G c Z s s [read interpreter__vectors 773 14 36_4]
-G c Z s s [write interpreter__vectors 779 14 36_4]
-G c Z s s [write interpreter__vectors 798 14 36_4]
-G c Z s s [read interpreter__vectors 804 14 36_4]
-G c Z s s [write interpreter__vectors 820 14 36_4]
-G c Z s s [read interpreter__vectors 826 14 36_4]
-G c Z s s [pseudo_reference interpreter__vectors 840 13 36_4]
-G c Z s s [get_element_access interpreter__vectors 849 13 36_4]
-G c Z s s [cursorIP interpreter__vectors 768 9 36_4]
-G c Z s s [vectorDA interpreter__vectors 741 9 36_4]
-G c Z s s [vectorDF interpreter__vectors 741 9 36_4]
-G c Z s s [vectorIP interpreter__vectors 741 9 36_4]
-G c Z s s [finalize interpreter__vectors 865 25 36_4]
-G c Z s s [first interpreter__vectors 867 24 36_4]
-G c Z s s [last interpreter__vectors 868 24 36_4]
-G c Z s s [next interpreter__vectors 870 24 36_4]
-G c Z s s [previous interpreter__vectors 874 24 36_4]
-G c Z s s [constant_reference_typeDI interpreter__vectors 788 9 36_4]
-G c Z s s [constant_reference_typeDA interpreter__vectors 788 9 36_4]
-G c Z s s [constant_reference_typeDF interpreter__vectors 788 9 36_4]
-G c Z s s [constant_reference_typeIP interpreter__vectors 788 9 36_4]
-G c Z s s [reference_typeDI interpreter__vectors 810 9 36_4]
-G c Z s s [reference_typeDA interpreter__vectors 810 9 36_4]
-G c Z s s [reference_typeDF interpreter__vectors 810 9 36_4]
-G c Z s s [reference_typeIP interpreter__vectors 810 9 36_4]
-G c Z s s [elements_arrayIP interpreter__vectors 729 9 36_4]
-G c Z s s [elements_arrayDI interpreter__vectors 729 9 36_4]
-G c Z s s [elements_arrayDA interpreter__vectors 729 9 36_4]
-G c Z s s [elements_arrayDF interpreter__vectors 729 9 36_4]
-G c Z s s [elements_typeDI interpreter__vectors 732 9 36_4]
-G c Z s s [elements_typeDF interpreter__vectors 732 9 36_4]
-G c Z s s [elements_typeIP interpreter__vectors 732 9 36_4]
-G c Z s s [iteratorDF interpreter__vectors 857 9 36_4]
-G c Z s s [iteratorIP interpreter__vectors 857 9 36_4]
-G c Z s s [free interpreter__vectors 44 14 36_4]
-G c Z s s [append_slow_path interpreter__vectors 47 14 36_4]
-G c Z s b [count_labels interpreter 53 13 none]
-G c Z s b [init_environment interpreter 55 13 none]
-G c Z s b [run interpreter 59 13 none]
-G c Z s b [execute_next_instr interpreter 61 13 none]
-G c Z s s [envDI interpreter 40 9 none]
-G c Z s s [envDA interpreter 40 9 none]
-G c Z s s [envDF interpreter 40 9 none]
-G c Z s s [envIP interpreter 40 9 none]
-G c Z b b [free interpreter 6 14 none]
-G c Z b b [adding_start_call_frame interpreter 21 14 none]
-G c Z b b [count_values_top_stack interpreter 52 13 none]
-G c Z b b [pop_values interpreter 66 13 none]
-G c Z b b [pop_label_or_values interpreter 76 14 none]
-G c Z b b [push_values interpreter 82 14 none]
-G c Z b b [get_lab_position interpreter 88 13 none]
-G c Z b b [get_lab_from_position interpreter 104 13 none]
-G c Z b b [get_block_type interpreter 118 13 none]
-G c Z b b [pop_values_before_label interpreter 130 14 none]
-G c Z b b [jump_if_block_exists interpreter 138 14 none]
-G c Z b b [execute_branching interpreter 181 13 none]
-G c Z b b [execute_const interpreter 190 14 none]
-G c Z b b [execute_compare_to_zero interpreter 223 14 none]
-G c Z b b [push_value interpreter 253 14 none]
-G c Z b b [pop_value interpreter 314 13 none]
-G c Z b b [compare_and_push_i32 interpreter 322 14 none]
-G c Z b b [compare_and_push_i64 interpreter 375 14 none]
-G c Z b b [compare_and_push_f32 interpreter 420 14 none]
-G c Z b b [compare_and_push_f64 interpreter 465 14 none]
-G c Z b b [compare_and_push_u32 interpreter 510 14 none]
-G c Z b b [compare_and_push_u64 interpreter 555 14 none]
-G c Z b b [execute_compare interpreter 600 14 none]
-G c Z b b [count_leading_zeroes_i32 interpreter 640 13 none]
-G c Z b b [count_trailing_zeroes_i32 interpreter 657 13 none]
-G c Z b b [count_leading_zeroes_i64 interpreter 674 13 none]
-G c Z b b [count_trailing_zeroes_i64 interpreter 691 13 none]
-G c Z b b [execute_count interpreter 708 14 none]
-G c Z b b [execute_addition interpreter 736 14 none]
-G c Z b b [execute_numeric_instruction interpreter 748 14 none]
-G c Z b b [execute_block_entry interpreter 1036 14 none]
-G c Z b b [get_blocks_length interpreter 1095 13 none]
-G c Z b b [remove_last_block_label interpreter 1106 14 none]
-G c Z b b [execute_end_block interpreter 1117 14 none]
-G c Z b b [execute_if interpreter 1140 14 none]
-G c Z b b [execute_branching_if interpreter 1176 13 none]
-G c Z b b [execute_nop interpreter 1199 14 none]
-G c Z b b [execute_branching_table interpreter 1204 14 none]
-G c Z b b [execute_else interpreter 1211 14 none]
-G c Z b b [execute_unreachable interpreter 1220 13 none]
-G c Z b b [exec_return interpreter 1225 13 none]
-G c Z b b [execute_control_instruction interpreter 1237 13 none]
-G c Z b b [execute_reference_instruction interpreter 1284 14 none]
-G c Z b b [execute_table_instruction interpreter 1291 14 none]
-G c Z b b [execute_parametric_instruction interpreter 1298 14 none]
-G c Z b b [get_push_local_variable interpreter 1305 14 none]
-G c Z b b [set_pop_local_variable interpreter 1322 14 none]
-G c Z b b [duplicate_set_variable interpreter 1347 14 none]
-G c Z b b [get_push_global_variable interpreter 1352 14 none]
-G c Z b b [set_push_global_variable interpreter 1357 14 none]
-G c Z b b [execute_variable_instruction interpreter 1362 14 none]
-G c Z b b [execute_memory_instruction interpreter 1382 14 none]
-G c Z b b [execute_vector_128_instruction interpreter 1389 14 none]
-G c Z b b [get_instruction interpreter 1396 13 none]
-G r j call_frame [element_variationDA interpreter 13 9 none] [call_frameDA stack 21 9 none]
-G r k call_frame [element_variationDF interpreter 13 9 none] [call_frameDF stack 21 9 none]
-G r s value_stack [element_variationIP interpreter 13 9 none] [value_stackIP stack 29 9 none]
-G r s call_frame [element_variationIP interpreter 13 9 none] [call_frameIP stack 21 9 none]
-G r l call_frame [element_variationIP interpreter 13 9 none] [call_frameDI stack 21 9 none]
-G r k call_frame [element_variationIP interpreter 13 9 none] [call_frameDF stack 21 9 none]
-G r s call_frame [init_environment interpreter 55 13 none] [call_frameIP stack 21 9 none]
-G r l call_frame [init_environment interpreter 55 13 none] [call_frameDI stack 21 9 none]
-G r k call_frame [init_environment interpreter 55 13 none] [call_frameDF stack 21 9 none]
-G r s module_instance [init_environment interpreter 55 13 none] [module_instanceIP instances 160 9 none]
-G r j function_spec [init_environment interpreter 55 13 none] [function_specDA wasm 21 9 none]
-G r j call_frame [init_environment interpreter 55 13 none] [call_frameDA stack 21 9 none]
-G r c none [init_environment interpreter 55 13 none] [get_module_instance instances 193 13 none]
-G r s value_stack [run interpreter 59 13 none] [value_stackIP stack 29 9 none]
-G r s call_frame [run interpreter 59 13 none] [call_frameIP stack 21 9 none]
-G r l call_frame [run interpreter 59 13 none] [call_frameDI stack 21 9 none]
-G r k call_frame [run interpreter 59 13 none] [call_frameDF stack 21 9 none]
-G r j call_frame [run interpreter 59 13 none] [call_frameDA stack 21 9 none]
-G r s number_type [run interpreter 59 13 none] [number_typeIP types 11 9 none]
-G r s function_type [run interpreter 59 13 none] [function_typeIP types 52 9 none]
-G r l function_type [run interpreter 59 13 none] [function_typeDI types 52 9 none]
-G r k function_type [run interpreter 59 13 none] [function_typeDF types 52 9 none]
-G r c none [run interpreter 59 13 none] [func_ty instances 198 13 none]
-G r j function_type [run interpreter 59 13 none] [function_typeDA types 52 9 none]
-G r s value_type [run interpreter 59 13 none] [value_typeIP types 33 9 none]
-G r s value_stack [execute_next_instr interpreter 61 13 none] [value_stackIP stack 29 9 none]
-G r s call_frame [execute_next_instr interpreter 61 13 none] [call_frameIP stack 21 9 none]
-G r l call_frame [execute_next_instr interpreter 61 13 none] [call_frameDI stack 21 9 none]
-G r k call_frame [execute_next_instr interpreter 61 13 none] [call_frameDF stack 21 9 none]
-G r j call_frame [execute_next_instr interpreter 61 13 none] [call_frameDA stack 21 9 none]
-G r s number_type [execute_next_instr interpreter 61 13 none] [number_typeIP types 11 9 none]
-G r s function_type [execute_next_instr interpreter 61 13 none] [function_typeIP types 52 9 none]
-G r l function_type [execute_next_instr interpreter 61 13 none] [function_typeDI types 52 9 none]
-G r k function_type [execute_next_instr interpreter 61 13 none] [function_typeDF types 52 9 none]
-G r c none [execute_next_instr interpreter 61 13 none] [func_ty instances 198 13 none]
-G r j function_type [execute_next_instr interpreter 61 13 none] [function_typeDA types 52 9 none]
-G r s value_type [execute_next_instr interpreter 61 13 none] [value_typeIP types 33 9 none]
-G r j call_frame [envDA interpreter 40 9 none] [call_frameDA stack 21 9 none]
-G r k call_frame [envDF interpreter 40 9 none] [call_frameDF stack 21 9 none]
-G r s store_type [envIP interpreter 40 9 none] [store_typeIP instances 183 9 none]
-G r s call_frame [envIP interpreter 40 9 none] [call_frameIP stack 21 9 none]
-G r l call_frame [envIP interpreter 40 9 none] [call_frameDI stack 21 9 none]
-G r s module_instance [envIP interpreter 40 9 none] [module_instanceIP instances 160 9 none]
-G r k call_frame [envIP interpreter 40 9 none] [call_frameDF stack 21 9 none]
-G r s call_frame [adding_start_call_frame interpreter 21 14 none] [call_frameIP stack 21 9 none]
-G r l call_frame [adding_start_call_frame interpreter 21 14 none] [call_frameDI stack 21 9 none]
-G r k call_frame [adding_start_call_frame interpreter 21 14 none] [call_frameDF stack 21 9 none]
-G r j function_spec [adding_start_call_frame interpreter 21 14 none] [function_specDA wasm 21 9 none]
-G r j call_frame [adding_start_call_frame interpreter 21 14 none] [call_frameDA stack 21 9 none]
-G r k call_frame [pop_values interpreter 66 13 none] [call_frameDF stack 21 9 none]
-G r k call_frame [jump_if_block_exists interpreter 138 14 none] [call_frameDF stack 21 9 none]
-G r k call_frame [execute_branching interpreter 181 13 none] [call_frameDF stack 21 9 none]
-G r s number_type [pop_value interpreter 314 13 none] [number_typeIP types 11 9 none]
-G r k call_frame [pop_value interpreter 314 13 none] [call_frameDF stack 21 9 none]
-G r s value_stack [execute_compare interpreter 600 14 none] [value_stackIP stack 29 9 none]
-G r s call_frame [execute_compare interpreter 600 14 none] [call_frameIP stack 21 9 none]
-G r l call_frame [execute_compare interpreter 600 14 none] [call_frameDI stack 21 9 none]
-G r k call_frame [execute_compare interpreter 600 14 none] [call_frameDF stack 21 9 none]
-G r j call_frame [execute_compare interpreter 600 14 none] [call_frameDA stack 21 9 none]
-G r s number_type [execute_count interpreter 708 14 none] [number_typeIP types 11 9 none]
-G r k call_frame [execute_count interpreter 708 14 none] [call_frameDF stack 21 9 none]
-G r s value_stack [execute_addition interpreter 736 14 none] [value_stackIP stack 29 9 none]
-G r s call_frame [execute_addition interpreter 736 14 none] [call_frameIP stack 21 9 none]
-G r l call_frame [execute_addition interpreter 736 14 none] [call_frameDI stack 21 9 none]
-G r k call_frame [execute_addition interpreter 736 14 none] [call_frameDF stack 21 9 none]
-G r j call_frame [execute_addition interpreter 736 14 none] [call_frameDA stack 21 9 none]
-G r s value_stack [execute_numeric_instruction interpreter 748 14 none] [value_stackIP stack 29 9 none]
-G r s call_frame [execute_numeric_instruction interpreter 748 14 none] [call_frameIP stack 21 9 none]
-G r l call_frame [execute_numeric_instruction interpreter 748 14 none] [call_frameDI stack 21 9 none]
-G r k call_frame [execute_numeric_instruction interpreter 748 14 none] [call_frameDF stack 21 9 none]
-G r j call_frame [execute_numeric_instruction interpreter 748 14 none] [call_frameDA stack 21 9 none]
-G r s number_type [execute_numeric_instruction interpreter 748 14 none] [number_typeIP types 11 9 none]
-G r s function_type [execute_block_entry interpreter 1036 14 none] [function_typeIP types 52 9 none]
-G r l function_type [execute_block_entry interpreter 1036 14 none] [function_typeDI types 52 9 none]
-G r k function_type [execute_block_entry interpreter 1036 14 none] [function_typeDF types 52 9 none]
-G r c none [execute_block_entry interpreter 1036 14 none] [func_ty instances 198 13 none]
-G r j function_type [execute_block_entry interpreter 1036 14 none] [function_typeDA types 52 9 none]
-G r k call_frame [execute_block_entry interpreter 1036 14 none] [call_frameDF stack 21 9 none]
-G r k call_frame [execute_if interpreter 1140 14 none] [call_frameDF stack 21 9 none]
-G r s function_type [execute_if interpreter 1140 14 none] [function_typeIP types 52 9 none]
-G r l function_type [execute_if interpreter 1140 14 none] [function_typeDI types 52 9 none]
-G r k function_type [execute_if interpreter 1140 14 none] [function_typeDF types 52 9 none]
-G r c none [execute_if interpreter 1140 14 none] [func_ty instances 198 13 none]
-G r j function_type [execute_if interpreter 1140 14 none] [function_typeDA types 52 9 none]
-G r s value_stack [execute_branching_if interpreter 1176 13 none] [value_stackIP stack 29 9 none]
-G r s call_frame [execute_branching_if interpreter 1176 13 none] [call_frameIP stack 21 9 none]
-G r l call_frame [execute_branching_if interpreter 1176 13 none] [call_frameDI stack 21 9 none]
-G r k call_frame [execute_branching_if interpreter 1176 13 none] [call_frameDF stack 21 9 none]
-G r j call_frame [execute_branching_if interpreter 1176 13 none] [call_frameDA stack 21 9 none]
-G r s function_type [execute_control_instruction interpreter 1237 13 none] [function_typeIP types 52 9 none]
-G r l function_type [execute_control_instruction interpreter 1237 13 none] [function_typeDI types 52 9 none]
-G r k function_type [execute_control_instruction interpreter 1237 13 none] [function_typeDF types 52 9 none]
-G r c none [execute_control_instruction interpreter 1237 13 none] [func_ty instances 198 13 none]
-G r j function_type [execute_control_instruction interpreter 1237 13 none] [function_typeDA types 52 9 none]
-G r k call_frame [execute_control_instruction interpreter 1237 13 none] [call_frameDF stack 21 9 none]
-G r s value_stack [execute_control_instruction interpreter 1237 13 none] [value_stackIP stack 29 9 none]
-G r s call_frame [execute_control_instruction interpreter 1237 13 none] [call_frameIP stack 21 9 none]
-G r l call_frame [execute_control_instruction interpreter 1237 13 none] [call_frameDI stack 21 9 none]
-G r j call_frame [execute_control_instruction interpreter 1237 13 none] [call_frameDA stack 21 9 none]
-G r s value_type [get_push_local_variable interpreter 1305 14 none] [value_typeIP types 33 9 none]
-G r k call_frame [get_push_local_variable interpreter 1305 14 none] [call_frameDF stack 21 9 none]
-G r k call_frame [set_pop_local_variable interpreter 1322 14 none] [call_frameDF stack 21 9 none]
-G r s value_type [execute_variable_instruction interpreter 1362 14 none] [value_typeIP types 33 9 none]
-G r k call_frame [execute_variable_instruction interpreter 1362 14 none] [call_frameDF stack 21 9 none]
+G c Z s s [hash interpreter 57 13 none]
+G c Z s s [label_infoIP interpreter 52 9 none]
+G c Z s s [empty interpreter__symbols_table 73 13 58_4]
+G c Z s s [has_element interpreter__symbols_table 79 13 58_4]
+G c Z s s [Oeq interpreter__symbols_table 85 24 58_4]
+G c Z s s [capacity interpreter__symbols_table 96 13 58_4]
+G c Z s s [reserve_capacity interpreter__symbols_table 100 14 58_4]
+G c Z s s [length interpreter__symbols_table 110 13 58_4]
+G c Z s s [is_empty interpreter__symbols_table 113 13 58_4]
+G c Z s s [clear interpreter__symbols_table 116 14 58_4]
+G c Z s s [key interpreter__symbols_table 119 13 58_4]
+G c Z s s [element interpreter__symbols_table 122 13 58_4]
+G c Z s s [replace_element interpreter__symbols_table 125 14 58_4]
+G c Z s s [query_element interpreter__symbols_table 131 14 58_4]
+G c Z s s [update_element interpreter__symbols_table 138 14 58_4]
+G c Z s s [constant_reference interpreter__symbols_table 155 13 58_4]
+G c Z s s [reference interpreter__symbols_table 160 13 58_4]
+G c Z s s [constant_reference interpreter__symbols_table 165 13 58_4]
+G c Z s s [reference interpreter__symbols_table 170 13 58_4]
+G c Z s s [assign interpreter__symbols_table 175 14 58_4]
+G c Z s s [copy interpreter__symbols_table 177 13 58_4]
+G c Z s s [move interpreter__symbols_table 179 14 58_4]
+G c Z s s [insert interpreter__symbols_table 183 14 58_4]
+G c Z s s [insert interpreter__symbols_table 201 14 58_4]
+G c Z s s [include interpreter__symbols_table 212 14 58_4]
+G c Z s s [replace interpreter__symbols_table 223 14 58_4]
+G c Z s s [exclude interpreter__symbols_table 234 14 58_4]
+G c Z s s [delete interpreter__symbols_table 243 14 58_4]
+G c Z s s [delete interpreter__symbols_table 251 14 58_4]
+G c Z s s [first interpreter__symbols_table 257 13 58_4]
+G c Z s s [next interpreter__symbols_table 261 13 58_4]
+G c Z s s [next interpreter__symbols_table 269 14 58_4]
+G c Z s s [find interpreter__symbols_table 272 13 58_4]
+G c Z s s [contains interpreter__symbols_table 278 13 58_4]
+G c Z s s [element interpreter__symbols_table 281 13 58_4]
+G c Z s s [equivalent_keys interpreter__symbols_table 284 13 58_4]
+G c Z s s [equivalent_keys interpreter__symbols_table 288 13 58_4]
+G c Z s s [equivalent_keys interpreter__symbols_table 292 13 58_4]
+G c Z s s [iterate interpreter__symbols_table 296 14 58_4]
+G c Z s s [iterate interpreter__symbols_table 301 13 58_4]
+G c Z s s [node_typeIP interpreter__symbols_table 325 9 58_4]
+G c Z s s [adjust interpreter__symbols_table__ht_types__implementation 90 28 58_7_331_4_58_4]
+G c Z s s [finalize interpreter__symbols_table__ht_types__implementation 93 28 58_7_331_4_58_4]
+G c Z s s [zero_counts interpreter__symbols_table__ht_types__implementation 96 17 58_7_331_4_58_4]
+G c Z s s [busy interpreter__symbols_table__ht_types__implementation 100 17 58_7_331_4_58_4]
+G c Z s s [unbusy interpreter__symbols_table__ht_types__implementation 104 17 58_7_331_4_58_4]
+G c Z s s [lock interpreter__symbols_table__ht_types__implementation 108 17 58_7_331_4_58_4]
+G c Z s s [unlock interpreter__symbols_table__ht_types__implementation 112 17 58_7_331_4_58_4]
+G c Z s s [tc_check interpreter__symbols_table__ht_types__implementation 116 17 58_7_331_4_58_4]
+G c Z s s [te_check interpreter__symbols_table__ht_types__implementation 120 17 58_7_331_4_58_4]
+G c Z s s [is_busy interpreter__symbols_table__ht_types__implementation 136 16 58_7_331_4_58_4]
+G c Z s s [is_locked interpreter__symbols_table__ht_types__implementation 140 16 58_7_331_4_58_4]
+G c Z s s [initialize interpreter__symbols_table__ht_types__implementation 161 28 58_7_331_4_58_4]
+G c Z s s [finalize interpreter__symbols_table__ht_types__implementation 162 28 58_7_331_4_58_4]
+G c Z s s [initialize interpreter__symbols_table__ht_types__implementation 167 28 58_7_331_4_58_4]
+G c Z s s [finalize interpreter__symbols_table__ht_types__implementation 168 28 58_7_331_4_58_4]
+G c Z s s [reference_control_typeDA interpreter__symbols_table__ht_types__implementation 84 12 58_7_331_4_58_4]
+G c Z s s [reference_control_typeDF interpreter__symbols_table__ht_types__implementation 84 12 58_7_331_4_58_4]
+G c Z s s [reference_control_typeIP interpreter__symbols_table__ht_types__implementation 84 12 58_7_331_4_58_4]
+G c Z s s [with_busyDF interpreter__symbols_table__ht_types__implementation 158 12 58_7_331_4_58_4]
+G c Z s s [with_busyIP interpreter__symbols_table__ht_types__implementation 158 12 58_7_331_4_58_4]
+G c Z s s [with_lockDF interpreter__symbols_table__ht_types__implementation 164 12 58_7_331_4_58_4]
+G c Z s s [with_lockIP interpreter__symbols_table__ht_types__implementation 164 12 58_7_331_4_58_4]
+G c Z s s [buckets_typeIP interpreter__symbols_table__ht_types 46 12 331_4_58_4]
+G c Z s s [hash_table_typeDA interpreter__symbols_table__ht_types 52 12 331_4_58_4]
+G c Z s s [hash_table_typeDF interpreter__symbols_table__ht_types 52 12 331_4_58_4]
+G c Z s s [hash_table_typeIP interpreter__symbols_table__ht_types 52 12 331_4_58_4]
+G c Z s s [put_image interpreter__symbols_table 338 14 58_4]
+G c Z s s [adjust interpreter__symbols_table 341 25 58_4]
+G c Z s s [finalize interpreter__symbols_table 343 25 58_4]
+G c Z s s [write interpreter__symbols_table 349 14 58_4]
+G c Z s s [read interpreter__symbols_table 355 14 58_4]
+G c Z s s [write interpreter__symbols_table 384 14 58_4]
+G c Z s s [read interpreter__symbols_table 390 14 58_4]
+G c Z s s [write interpreter__symbols_table 409 14 58_4]
+G c Z s s [read interpreter__symbols_table 415 14 58_4]
+G c Z s s [write interpreter__symbols_table 431 14 58_4]
+G c Z s s [read interpreter__symbols_table 437 14 58_4]
+G c Z s s [pseudo_reference interpreter__symbols_table 447 13 58_4]
+G c Z s s [get_element_access interpreter__symbols_table 454 13 58_4]
+G c Z s s [mapDA interpreter__symbols_table 334 9 58_4]
+G c Z s s [mapDF interpreter__symbols_table 334 9 58_4]
+G c Z s s [mapIP interpreter__symbols_table 334 9 58_4]
+G c Z s s [cursorIP interpreter__symbols_table 364 9 58_4]
+G c Z s s [finalize interpreter__symbols_table 470 25 58_4]
+G c Z s s [first interpreter__symbols_table 472 24 58_4]
+G c Z s s [next interpreter__symbols_table 474 24 58_4]
+G c Z s s [constant_reference_typeDI interpreter__symbols_table 399 9 58_4]
+G c Z s s [constant_reference_typeDA interpreter__symbols_table 399 9 58_4]
+G c Z s s [constant_reference_typeDF interpreter__symbols_table 399 9 58_4]
+G c Z s s [constant_reference_typeIP interpreter__symbols_table 399 9 58_4]
+G c Z s s [reference_typeDI interpreter__symbols_table 421 9 58_4]
+G c Z s s [reference_typeDA interpreter__symbols_table 421 9 58_4]
+G c Z s s [reference_typeDF interpreter__symbols_table 421 9 58_4]
+G c Z s s [reference_typeIP interpreter__symbols_table 421 9 58_4]
+G c Z s s [iteratorDF interpreter__symbols_table 463 9 58_4]
+G c Z s s [iteratorIP interpreter__symbols_table 463 9 58_4]
+G c Z s s [free_key interpreter__symbols_table 51 14 58_4]
+G c Z s s [free_element interpreter__symbols_table 54 14 58_4]
+G c Z s s [copy_node interpreter__symbols_table 61 13 58_4]
+G c Z s s [equivalent_key_node interpreter__symbols_table 64 13 58_4]
+G c Z s s [find_equal_key interpreter__symbols_table 69 13 58_4]
+G c Z s s [free interpreter__symbols_table 73 14 58_4]
+G c Z s s [hash_node interpreter__symbols_table 76 13 58_4]
+G c Z s s [next interpreter__symbols_table 79 13 58_4]
+G c Z s s [read_node interpreter__symbols_table 82 13 58_4]
+G c Z s s [set_next interpreter__symbols_table 85 14 58_4]
+G c Z s s [vet interpreter__symbols_table 88 13 58_4]
+G c Z s s [write_node interpreter__symbols_table 90 14 58_4]
+G c Z s s [free_hash_table interpreter__symbols_table__ht_ops 57 14 98_4_58_4]
+G c Z s s [index interpreter__symbols_table__ht_ops 61 13 98_4_58_4]
+G c Z s s [index interpreter__symbols_table__ht_ops 67 13 98_4_58_4]
+G c Z s s [checked_index interpreter__symbols_table__ht_ops 74 13 98_4_58_4]
+G c Z s s [checked_index interpreter__symbols_table__ht_ops 81 13 98_4_58_4]
+G c Z s s [adjust interpreter__symbols_table__ht_ops 86 14 98_4_58_4]
+G c Z s s [finalize interpreter__symbols_table__ht_ops 92 14 98_4_58_4]
+G c Z s s [clear interpreter__symbols_table__ht_ops 108 14 98_4_58_4]
+G c Z s s [move interpreter__symbols_table__ht_ops 114 14 98_4_58_4]
+G c Z s s [capacity interpreter__symbols_table__ht_ops 120 13 98_4_58_4]
+G c Z s s [reserve_capacity interpreter__symbols_table__ht_ops 123 14 98_4_58_4]
+G c Z s s [delete_node_at_index interpreter__symbols_table__ht_ops 132 14 98_4_58_4]
+G c Z s s [delete_node_sans_free interpreter__symbols_table__ht_ops 141 14 98_4_58_4]
+G c Z s s [first interpreter__symbols_table__ht_ops 146 13 98_4_58_4]
+G c Z s s [first interpreter__symbols_table__ht_ops 148 13 98_4_58_4]
+G c Z s s [next interpreter__symbols_table__ht_ops 155 13 98_4_58_4]
+G c Z s s [next interpreter__symbols_table__ht_ops 158 13 98_4_58_4]
+G c Z s s [new_buckets interpreter__symbols_table__ht_ops 205 13 98_4_58_4]
+G c Z s s [free_buckets interpreter__symbols_table__ht_ops 209 14 98_4_58_4]
+G c Z s s [index interpreter__symbols_table__key_ops 56 13 106_4_58_4]
+G c Z s s [checked_index interpreter__symbols_table__key_ops 62 13 106_4_58_4]
+G c Z s s [checked_equivalent_keys interpreter__symbols_table__key_ops 69 13 106_4_58_4]
+G c Z s s [delete_key_sans_free interpreter__symbols_table__key_ops 76 14 106_4_58_4]
+G c Z s s [find interpreter__symbols_table__key_ops 84 13 106_4_58_4]
+G c Z s s [is_equalR interpreter__symbols_table__is_equalGP4730 118 13 58_4]
+G c Z s s [is_equal interpreter__symbols_table 118 13 58_4]
+G c Z s s [read_nodesR interpreter__symbols_table__read_nodesGP27037 1003 14 58_4]
+G c Z s s [read_nodes interpreter__symbols_table 1003 14 58_4]
+G c Z s s [write_nodesR interpreter__symbols_table__write_nodesGP36160 1367 14 58_4]
+G c Z s s [write_nodes interpreter__symbols_table 1367 14 58_4]
+G c Z s b [count_labels interpreter 77 13 none]
+G c Z s b [init_environment interpreter 79 13 none]
+G c Z s b [run interpreter 83 13 none]
+G c Z s b [execute_next_instr interpreter 85 13 none]
+G c Z s s [envDI interpreter 64 9 none]
+G c Z s s [envDA interpreter 64 9 none]
+G c Z s s [envDF interpreter 64 9 none]
+G c Z s s [envIP interpreter 64 9 none]
+G c Z b b [shift_left interpreter 6 13 none]
+G c Z b b [shift_right interpreter 10 13 none]
+G c Z b b [push_value interpreter 14 14 none]
+G c Z b b [free interpreter 58 14 none]
+G c Z b b [adding_start_call_frame interpreter 73 14 none]
+G c Z b b [count_values_top_stack interpreter 104 13 none]
+G c Z b b [pop_values interpreter 118 13 none]
+G c Z b b [pop_label_or_values interpreter 128 14 none]
+G c Z b b [push_values interpreter 134 14 none]
+G c Z b b [get_lab_position interpreter 140 13 none]
+G c Z b b [get_lab_from_position interpreter 156 13 none]
+G c Z b b [get_block_type interpreter 170 13 none]
+G c Z b b [pop_values_before_label interpreter 182 14 none]
+G c Z b b [jump_if_block_exists interpreter 190 14 none]
+G c Z b b [execute_branching interpreter 233 13 none]
+G c Z b b [execute_const interpreter 242 14 none]
+G c Z b b [execute_compare_to_zero interpreter 247 14 none]
+G c Z b b [compare_nt interpreter 271 13 none]
+G c Z b b [push_nt interpreter 351 14 none]
+G c Z b b [check_push_ntR interpreter__check_push_ntGP12222 356 14 none]
+G c Z b b [check_push_nt interpreter 356 14 none]
+G c Z b b [pop_value interpreter 360 13 none]
+G c Z b b [execute_compare interpreter 368 14 none]
+G c Z b b [count_leading_zeroes_i32 interpreter 380 13 none]
+G c Z b b [count_trailing_zeroes_i32 interpreter 397 13 none]
+G c Z b b [count_leading_zeroes_i64 interpreter 414 13 none]
+G c Z b b [count_trailing_zeroes_i64 interpreter 431 13 none]
+G c Z b b [execute_count interpreter 448 14 none]
+G c Z b b [clc_signed interpreter 495 13 none]
+G c Z b b [push_signed interpreter 567 14 none]
+G c Z b b [clc_float interpreter 593 13 none]
+G c Z b b [push_float interpreter 639 14 none]
+G c Z b b [calculate_signedR interpreter__calculate_signedGP22402 648 14 none]
+G c Z b b [calculate_signed interpreter 648 14 none]
+G c Z b b [calculate_floatR interpreter__calculate_floatGP22563 652 14 none]
+G c Z b b [calculate_float interpreter 652 14 none]
+G c Z b b [execute_binary_op interpreter 655 14 none]
+G c Z b b [execute_numeric_instruction interpreter 677 14 none]
+G c Z b b [execute_block_entry interpreter 965 14 none]
+G c Z b b [get_blocks_length interpreter 1024 13 none]
+G c Z b b [remove_last_block_label interpreter 1035 14 none]
+G c Z b b [execute_end_block interpreter 1046 14 none]
+G c Z b b [execute_if interpreter 1069 14 none]
+G c Z b b [execute_branching_if interpreter 1104 13 none]
+G c Z b b [execute_nop interpreter 1127 14 none]
+G c Z b b [execute_branching_table interpreter 1132 14 none]
+G c Z b b [execute_else interpreter 1139 14 none]
+G c Z b b [execute_unreachable interpreter 1148 13 none]
+G c Z b b [exec_return interpreter 1153 13 none]
+G c Z b b [execute_control_instruction interpreter 1165 13 none]
+G c Z b b [execute_reference_instruction interpreter 1212 14 none]
+G c Z b b [execute_table_instruction interpreter 1219 14 none]
+G c Z b b [execute_parametric_instruction interpreter 1226 14 none]
+G c Z b b [get_push_local_variable interpreter 1233 14 none]
+G c Z b b [set_pop_local_variable interpreter 1250 14 none]
+G c Z b b [duplicate_set_variable interpreter 1274 14 none]
+G c Z b b [get_push_global_variable interpreter 1279 14 none]
+G c Z b b [set_push_global_variable interpreter 1284 14 none]
+G c Z b b [execute_variable_instruction interpreter 1289 14 none]
+G c Z b b [execute_memory_instruction interpreter 1309 14 none]
+G c Z b b [execute_vector_128_instruction interpreter 1316 14 none]
+G c Z b b [get_instruction interpreter 1323 13 none]
+G r s call_frame [init_environment interpreter 79 13 none] [call_frameIP stack 28 9 none]
+G r l call_frame [init_environment interpreter 79 13 none] [call_frameDI stack 28 9 none]
+G r k call_frame [init_environment interpreter 79 13 none] [call_frameDF stack 28 9 none]
+G r s module_instance [init_environment interpreter 79 13 none] [module_instanceIP instances 163 9 none]
+G r j function_spec [init_environment interpreter 79 13 none] [function_specDA wasm 28 9 none]
+G r j call_frame [init_environment interpreter 79 13 none] [call_frameDA stack 28 9 none]
+G r k element_variation [init_environment interpreter 79 13 none] [element_variationDF stack 42 9 none]
+G r c none [init_environment interpreter 79 13 none] [get_module_instance instances 196 13 none]
+G r s value_stack [run interpreter 83 13 none] [value_stackIP stack 36 9 none]
+G r k element_variation [run interpreter 83 13 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [run interpreter 83 13 none] [numeric_typeIP types 79 9 none]
+G r s element_variation [run interpreter 83 13 none] [element_variationIP stack 42 9 none]
+G r l element_variation [run interpreter 83 13 none] [element_variationDI stack 42 9 none]
+G r j element_variation [run interpreter 83 13 none] [element_variationDA stack 42 9 none]
+G r s signed_type [run interpreter 83 13 none] [signed_typeIP types 52 9 none]
+G r s float_type [run interpreter 83 13 none] [float_typeIP types 70 9 none]
+G r s function_type [run interpreter 83 13 none] [function_typeIP types 129 9 none]
+G r l function_type [run interpreter 83 13 none] [function_typeDI types 129 9 none]
+G r k function_type [run interpreter 83 13 none] [function_typeDF types 129 9 none]
+G r c none [run interpreter 83 13 none] [func_ty instances 201 13 none]
+G r j function_type [run interpreter 83 13 none] [function_typeDA types 129 9 none]
+G r s value_type [run interpreter 83 13 none] [value_typeIP types 110 9 none]
+G r s value_stack [execute_next_instr interpreter 85 13 none] [value_stackIP stack 36 9 none]
+G r k element_variation [execute_next_instr interpreter 85 13 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [execute_next_instr interpreter 85 13 none] [numeric_typeIP types 79 9 none]
+G r s element_variation [execute_next_instr interpreter 85 13 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_next_instr interpreter 85 13 none] [element_variationDI stack 42 9 none]
+G r j element_variation [execute_next_instr interpreter 85 13 none] [element_variationDA stack 42 9 none]
+G r s signed_type [execute_next_instr interpreter 85 13 none] [signed_typeIP types 52 9 none]
+G r s float_type [execute_next_instr interpreter 85 13 none] [float_typeIP types 70 9 none]
+G r s function_type [execute_next_instr interpreter 85 13 none] [function_typeIP types 129 9 none]
+G r l function_type [execute_next_instr interpreter 85 13 none] [function_typeDI types 129 9 none]
+G r k function_type [execute_next_instr interpreter 85 13 none] [function_typeDF types 129 9 none]
+G r c none [execute_next_instr interpreter 85 13 none] [func_ty instances 201 13 none]
+G r j function_type [execute_next_instr interpreter 85 13 none] [function_typeDA types 129 9 none]
+G r s value_type [execute_next_instr interpreter 85 13 none] [value_typeIP types 110 9 none]
+G r j call_frame [envDA interpreter 64 9 none] [call_frameDA stack 28 9 none]
+G r k call_frame [envDF interpreter 64 9 none] [call_frameDF stack 28 9 none]
+G r s store_type [envIP interpreter 64 9 none] [store_typeIP instances 186 9 none]
+G r s call_frame [envIP interpreter 64 9 none] [call_frameIP stack 28 9 none]
+G r l call_frame [envIP interpreter 64 9 none] [call_frameDI stack 28 9 none]
+G r s module_instance [envIP interpreter 64 9 none] [module_instanceIP instances 163 9 none]
+G r k call_frame [envIP interpreter 64 9 none] [call_frameDF stack 28 9 none]
+G r s call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameIP stack 28 9 none]
+G r l call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameDI stack 28 9 none]
+G r k call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameDF stack 28 9 none]
+G r j function_spec [adding_start_call_frame interpreter 73 14 none] [function_specDA wasm 28 9 none]
+G r j call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameDA stack 28 9 none]
+G r k element_variation [adding_start_call_frame interpreter 73 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [pop_values interpreter 118 13 none] [element_variationDF stack 42 9 none]
+G r k element_variation [jump_if_block_exists interpreter 190 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [execute_branching interpreter 233 13 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [pop_value interpreter 360 13 none] [numeric_typeIP types 79 9 none]
+G r k element_variation [pop_value interpreter 360 13 none] [element_variationDF stack 42 9 none]
+G r s value_stack [execute_compare interpreter 368 14 none] [value_stackIP stack 36 9 none]
+G r k element_variation [execute_compare interpreter 368 14 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [execute_count interpreter 448 14 none] [numeric_typeIP types 79 9 none]
+G r k element_variation [execute_count interpreter 448 14 none] [element_variationDF stack 42 9 none]
+G r s signed_type [calculate_signedR interpreter__calculate_signedGP22402 648 14 none] [signed_typeIP types 52 9 none]
+G r s float_type [calculate_floatR interpreter__calculate_floatGP22563 652 14 none] [float_typeIP types 70 9 none]
+G r s element_variation [execute_binary_op interpreter 655 14 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_binary_op interpreter 655 14 none] [element_variationDI stack 42 9 none]
+G r k element_variation [execute_binary_op interpreter 655 14 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [execute_binary_op interpreter 655 14 none] [numeric_typeIP types 79 9 none]
+G r j element_variation [execute_binary_op interpreter 655 14 none] [element_variationDA stack 42 9 none]
+G r s signed_type [execute_binary_op interpreter 655 14 none] [signed_typeIP types 52 9 none]
+G r s float_type [execute_binary_op interpreter 655 14 none] [float_typeIP types 70 9 none]
+G r s value_stack [execute_numeric_instruction interpreter 677 14 none] [value_stackIP stack 36 9 none]
+G r k element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [execute_numeric_instruction interpreter 677 14 none] [numeric_typeIP types 79 9 none]
+G r s element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationDI stack 42 9 none]
+G r j element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationDA stack 42 9 none]
+G r s signed_type [execute_numeric_instruction interpreter 677 14 none] [signed_typeIP types 52 9 none]
+G r s float_type [execute_numeric_instruction interpreter 677 14 none] [float_typeIP types 70 9 none]
+G r s function_type [execute_block_entry interpreter 965 14 none] [function_typeIP types 129 9 none]
+G r l function_type [execute_block_entry interpreter 965 14 none] [function_typeDI types 129 9 none]
+G r k function_type [execute_block_entry interpreter 965 14 none] [function_typeDF types 129 9 none]
+G r c none [execute_block_entry interpreter 965 14 none] [func_ty instances 201 13 none]
+G r j function_type [execute_block_entry interpreter 965 14 none] [function_typeDA types 129 9 none]
+G r k element_variation [execute_block_entry interpreter 965 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [execute_if interpreter 1069 14 none] [element_variationDF stack 42 9 none]
+G r s function_type [execute_if interpreter 1069 14 none] [function_typeIP types 129 9 none]
+G r l function_type [execute_if interpreter 1069 14 none] [function_typeDI types 129 9 none]
+G r k function_type [execute_if interpreter 1069 14 none] [function_typeDF types 129 9 none]
+G r c none [execute_if interpreter 1069 14 none] [func_ty instances 201 13 none]
+G r j function_type [execute_if interpreter 1069 14 none] [function_typeDA types 129 9 none]
+G r s element_variation [execute_branching_if interpreter 1104 13 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_branching_if interpreter 1104 13 none] [element_variationDI stack 42 9 none]
+G r k element_variation [execute_branching_if interpreter 1104 13 none] [element_variationDF stack 42 9 none]
+G r j element_variation [execute_branching_if interpreter 1104 13 none] [element_variationDA stack 42 9 none]
+G r s function_type [execute_control_instruction interpreter 1165 13 none] [function_typeIP types 129 9 none]
+G r l function_type [execute_control_instruction interpreter 1165 13 none] [function_typeDI types 129 9 none]
+G r k function_type [execute_control_instruction interpreter 1165 13 none] [function_typeDF types 129 9 none]
+G r c none [execute_control_instruction interpreter 1165 13 none] [func_ty instances 201 13 none]
+G r j function_type [execute_control_instruction interpreter 1165 13 none] [function_typeDA types 129 9 none]
+G r k element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationDF stack 42 9 none]
+G r s element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationDI stack 42 9 none]
+G r j element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationDA stack 42 9 none]
+G r s value_type [get_push_local_variable interpreter 1233 14 none] [value_typeIP types 110 9 none]
+G r k element_variation [get_push_local_variable interpreter 1233 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [set_pop_local_variable interpreter 1250 14 none] [element_variationDF stack 42 9 none]
+G r s value_type [execute_variable_instruction interpreter 1289 14 none] [value_typeIP types 110 9 none]
+G r k element_variation [execute_variable_instruction interpreter 1289 14 none] [element_variationDF stack 42 9 none]
 X 1 ada.ads
-16K9*Ada 20e8 38|3r6 4r6 4r49 31r33 36r27 39|1r6 1r23 2r6 3r6 6r26 79r17
-. 135r17 1318r10
+16K9*Ada 20e8 38|11r6 12r6 12r49 17r6 18r6 21r8 58r33 39|1r6 1r23 2r6 3r6
+. 58r26 131r17 187r17 1246r10
 X 3 a-contai.ads
-16K13*Containers 28e19 38|3r10 4r10 4r53 31r37 36r31 39|3w10 79r21 135r21
-19M9*Hash_Type 38|30r43 30r57
-22I9*Count_Type<integer> 39|79r32 135r32
-X 12 a-cihama.ads
-42+9 Key_Type 38|32r7
-43+9 Element_Type 38|32r39
-45V18 Hash{3|19M9} 38|32r67
-46V18 Equivalent_Keys{boolean} 38|33r7
-49k24*Indefinite_Hashed_Maps 478e42 38|4w21 31r48
-56R9*Map<18|43R9> 38|43r31[31] 39|38r38[38|31]
-212U14*Include 39|1072s33[38|31] 1080s33[38|31]
-278V13*Contains{boolean} 39|151s24[38|31]
-281V13*Element{38|25R9} 39|157s26[38|31] 174s29[38|31]
-X 15 a-convec.ads
-62I9 Index_Type 38|37r7
-63+9 Element_Type 38|37r30
-74k24*Vectors 878e27 38|3w21 36r42
+16K13*Containers 28e19 38|11r10 12r10 12r53 17r10 21r12 58r37 39|3w10 131r21
+. 187r21
+19M9*Hash_Type 38|57r43 57r57
+22I9*Count_Type<integer> 39|131r32 187r32
+X 11 a-cihama.ads
+42+9 Key_Type 38|59r7
+43+9 Element_Type 38|59r39
+45V18 Hash{3|19M9} 38|59r67
+46V18 Equivalent_Keys{boolean} 38|60r7
+49k24*Indefinite_Hashed_Maps 478e42 38|12w21 58r48
+56R9*Map<16|43R9> 38|67r31[58] 39|90r38[38|58]
+212U14*Include 39|1001s33[38|58] 1009s33[38|58]
+278V13*Contains{boolean} 39|203s24[38|58]
+281V13*Element{38|52R9} 39|209s26[38|58] 226s29[38|58]
+X 14 a-convec.ads
+74k24*Vectors 878e27 38|11w21 17w21
 81I12*Extended_Index{integer}
-91R9*Vector<18|43R9> 38|41r25[36] 56r38[36] 78r22[36] 39|22r45[38|36] 33r38[38|36]
-. 66r71[38|36] 67r23[38|36] 76r70[38|36] 82r34[38|36] 88r57[38|36] 105r30[38|36]
-. 118r52[38|36] 131r42[38|36] 143r21[38|36] 190r44[38|36] 223r54[38|36] 253r41[38|36]
-. 286r22[38|36] 314r39[38|36] 323r22[38|36] 376r22[38|36] 421r22[38|36] 466r22[38|36]
-. 511r22[38|36] 556r22[38|36] 600r46[38|36] 708r44[38|36] 736r47[38|36] 1095r40[38|36]
-. 1106r54[38|36] 1292r42[38|36] 1299r47[38|36] 1383r43[38|36] 1390r43[38|36]
-175V13*Length{3|22I9} 39|605s28[38|36] 1056s48[95|44] 1057s49[95|44] 1310s64[95|44]
-. 1326s64[95|44]
-206V13*Element{95|33R9} 39|1311s45[95|44]
-217U14*Replace_Element 39|1328s32[95|44]
-459U14*Prepend 39|70s24[38|36]
-466U14*Append_Vector 39|85s25[38|36]
-483U14*Append 39|29s13[38|36] 194s19[38|36] 201s19[38|36] 207s19[38|36] 213s19[38|36]
-. 234s22[38|36] 241s22[38|36] 257s19[38|36] 263s19[38|36] 269s19[38|36] 275s19[38|36]
-. 1067s31[38|36] 1075s31[38|36] 1083s31[38|36] 1313s10[38|36]
-514U14*Delete 39|1111s13[38|36]
-538U14*Delete_Last 39|71s10[38|36] 78s7[38|36] 134s7[38|36] 230s7[38|36]
-. 318s7[38|36] 608s7[38|36] 610s7[38|36] 741s7[38|36] 743s7[38|36] 1152s7[38|36]
-. 1184s7[38|36] 1337s13[38|36]
-560V13*First_Index{integer} 39|12s34[38|36] 55s34[38|36] 92s34[38|36] 108s18[38|36]
-. 120s18[38|36] 1098s22[38|36] 1109s30[38|36] 1126s45[38|36]
-570V13*Last_Index{81I12[38|36]} 39|12s67[38|36] 55s67[38|36] 79s50[38|36]
-. 92s55[38|36] 108s51[38|36] 120s51[38|36] 135s50[38|36] 1098s43[38|36] 1109s51[38|36]
-. 1125s42[38|36]
-578V13*Last_Element{38|13R9} 39|45s25[38|36] 70s33[38|36] 317s17[38|36] 607s12[38|36]
-. 609s12[38|36] 740s12[38|36] 742s12[38|36] 1150s27[38|36] 1183s28[38|36]
-. 1327s13[38|36] 1330s16[38|36] 1335s19[38|36]
-X 20 a-iteint.ads
+91R9*Vector<16|43R9> 38|29r52[40|54] 31r27[40|54] 39r50[40|54] 41r22[40|54]
+. 48r49[40|54] 50r22[40|54] 65r30[40|54] 80r38[40|54] 39|14r41[40|54] 74r45[40|54]
+. 85r38[40|54] 118r71[40|54] 119r23[40|54] 128r70[40|54] 134r34[40|54] 140r57[40|54]
+. 157r30[40|54] 170r52[40|54] 183r42[40|54] 195r21[40|54] 242r44[40|54] 248r22[40|54]
+. 260r27[40|54] 351r38[40|54] 360r39[40|54] 368r46[40|54] 448r44[40|54] 478r22[40|54]
+. 487r22[40|54] 567r42[40|54] 639r41[40|54] 656r22[40|54] 1024r40[40|54]
+. 1035r54[40|54] 1220r42[40|54] 1227r47[40|54] 1310r43[40|54] 1317r43[40|54]
+175V13*Length{3|22I9} 39|371s28[40|54] 985s48[81|121] 986s49[81|121] 1238s64[81|121]
+. 1254s64[81|121]
+206V13*Element{81|110R9} 39|1239s45[81|121]
+217U14*Replace_Element 39|1256s32[81|121]
+459U14*Prepend 39|122s24[40|54]
+466U14*Append_Vector 39|137s25[40|54]
+483U14*Append 39|20s25[40|54] 28s25[40|54] 39s25[40|54] 47s25[40|54] 81s13[40|54]
+. 569s13[40|54] 641s13[40|54] 996s31[40|54] 1004s31[40|54] 1012s31[40|54]
+. 1241s10[40|54]
+514U14*Delete 39|1040s13[40|54]
+538U14*Delete_Last 39|123s10[40|54] 130s7[40|54] 186s7[40|54] 251s7[40|54]
+. 364s7[40|54] 374s7[40|54] 376s7[40|54] 662s7[40|54] 664s7[40|54] 1081s7[40|54]
+. 1112s7[40|54] 1264s13[40|54]
+560V13*First_Index{integer} 39|64s34[40|54] 107s34[40|54] 144s34[40|54] 160s18[40|54]
+. 172s18[40|54] 1027s22[40|54] 1038s30[40|54] 1055s45[40|54]
+570V13*Last_Index{81I12[40|54]} 39|64s67[40|54] 107s67[40|54] 131s50[40|54]
+. 144s55[40|54] 160s56[40|54] 172s56[40|54] 187s50[40|54] 1027s43[40|54]
+. 1038s51[40|54] 1054s42[40|54]
+578V13*Last_Element{40|42R9} 39|97s25[40|54] 122s33[40|54] 363s17[40|54]
+. 373s12[40|54] 375s12[40|54] 661s12[40|54] 663s12[40|54] 1079s27[40|54]
+. 1111s28[40|54] 1255s13[40|54] 1258s16[40|54]
+X 17 a-flteio.ads
+20K13*Float_Text_IO[29|46] 38|18w10
+X 19 a-iteint.ads
 24h9 Forward_Iterator
-32h9 Reversible_Iterator<24R9[15|119]>
-X 29 a-textio.ads
-58K13*Text_IO 787e16 39|1w10 1r27 1318r14
-566U14*Put_Line 39|150s7 199s13 365s13 368s13 613s13 614s13 616s13 1064s7
-. 1070s13 1078s13 1088s13 1155s10 1172s7 1185s7 1244s13 1251s13 1254s13 1261s13
-. 1312s10 1314s10 1318s22 1331s13 1333s13 1338s13 1368s13 1371s13 1415s7
-. 1416s7 1419s13 1422s13
+32h9 Reversible_Iterator<24R9[14|119]>
+X 28 a-textio.ads
+58K13*Text_IO 787e16 39|1w10 1r27 1246r14
+566U14*Put_Line 39|202s7 993s7 999s13 1007s13 1017s13 1084s10 1100s7 1172s13
+. 1179s13 1182s13 1189s13 1240s10 1246s22 1265s13 1295s13 1298s13 1342s7
+. 1343s7 1346s13 1349s13
 X 31 a-uncdea.ads
-20u15*Unchecked_Deallocation 39|2w10 6r30
+20u15*Unchecked_Deallocation 39|2w10 58r30
 X 33 instances.ads
-21K9*Instances 200e14 38|7w6 7r49
-25I9*Address<short_short_integer> 39|1044r25
-29I12*Global_Addr{25I9}
-35I12*Local_Addr{25I9} 39|1306r14 1323r14 1347r45 1352r47 1357r47
-36I12*Label_Addr{25I9} 38|27r18
-37I12*Module_Instance_Addr{25I9}
-160R9*Module_Instance 174e14 38|45r17 39|37r24
-183R9*Store_Type 191e14 38|42r17 56r11 39|33r11
-193V13*Get_Module_Instance{160R9} 39|44s25
-198V13*Func_Ty{95|52R9} 39|1055s24
+25K9*Instances 203e14 38|15w6 15r49
+29I9*Address<short_short_integer> 39|973r25
+33I12*Global_Addr{29I9}
+39I12*Local_Addr{29I9} 39|1234r14 1251r14 1274r45 1279r47 1284r47
+40I12*Label_Addr{29I9} 38|54r18
+41I12*Module_Instance_Addr{29I9}
+163R9*Module_Instance 177e14 38|69r17 39|89r24
+186R9*Store_Type 194e14 38|66r17 80r11 39|85r11
+196V13*Get_Module_Instance{163R9} 39|96s25
+201V13*Func_Ty{81|129R9} 39|984s24
 X 34 instructions.ads
-5K9*Instructions 343e17 38|2w6 2r49
-15P9*Instruction_Acc(14R9) 39|1396r56 1412r14
-17A9*Chunk(15P9)<integer> 39|7r7
-18P9*Instruction_Sequence(17A9) 39|7r14
-20n30*Empty{20E9} 39|1048r15
-20n37*TType{20E9} 39|1051r15
-20n44*Func_Type{20E9} 39|1054r15
-22R9*Block_Args 31e14 39|1039r19 1141r56
-22e21*B{20E9} 39|1047r17
-41n7*Numeric{40E9} 39|1418r15
-41n16*Reference{40E9} 39|1425r15
-41n27*Parametric{40E9} 39|1429r15
-41n39*Variable{40E9} 39|1432r15
-41n49*Table{40E9} 39|1427r15
-41n56*Memory{40E9} 39|1434r15
-41n64*Control{40E9} 39|1421r15
-42n7*Vector_128{40E9} 39|1436r15
-45n7*I32_Const{44E9} 39|753r15
-45n18*I64_Const{44E9} 39|755r15
-45n29*F32_Const{44E9} 39|757r15
-45n40*F64_Const{44E9} 39|759r15
-45n51*I32_Eqz{44E9} 39|761r15
-45n60*I32_Eq{44E9} 39|763r15
-45n68*I32_Ne{44E9} 39|765r15
-46n7*I32_Lt_S{44E9} 39|767r15
-46n17*I32_Lt_U{44E9} 39|769r15
-46n27*I32_Gt_S{44E9} 39|771r15
-46n37*I32_Gt_U{44E9} 39|773r15
-46n47*I32_Le_S{44E9} 39|775r15
-46n57*I32_Le_U{44E9} 39|777r15
-46n67*I32_Ge_S{44E9} 39|779r15
-47n7*I32_Ge_U{44E9} 39|781r15
-47n17*I64_Eqz{44E9} 39|783r15
-47n26*I64_Eq{44E9} 39|785r15
-47n34*I64_Ne{44E9} 39|787r15
-47n42*I64_Lt_S{44E9} 39|789r15
-47n52*I64_Lt_U{44E9} 39|791r15
-47n62*I64_Gt_S{44E9} 39|793r15
-48n7*I64_Gt_U{44E9} 39|795r15
-48n17*I64_Le_S{44E9} 39|797r15
-48n27*I64_Le_U{44E9} 39|799r15
-48n37*I64_Ge_S{44E9} 39|801r15
-48n47*I64_Ge_U{44E9} 39|803r15
-48n57*F32_Eq{44E9} 39|805r15
-48n65*F32_Ne{44E9} 39|807r15
-48n73*F32_Lt{44E9} 39|809r15
-49n7*F32_Gt{44E9} 39|811r15
-49n15*F32_Le{44E9} 39|813r15
-49n23*F32_Ge{44E9} 39|815r15
-49n31*F64_Eq{44E9} 39|817r15
-49n39*F64_Ne{44E9} 39|819r15
-49n47*F64_Lt{44E9} 39|821r15
-49n55*F64_Gt{44E9} 39|823r15
-49n63*F64_Le{44E9} 39|825r15
-49n71*F64_Ge{44E9} 39|827r15
-50n7*I32_Clz{44E9} 39|829r15
-50n16*I32_Ctz{44E9} 39|831r15
-50n25*I32_Popcnt{44E9} 39|833r15
-50n37*I32_Add{44E9} 39|835r15
-50n46*I32_Sub{44E9} 39|837r15
-50n55*I32_Mul{44E9} 39|839r15
-50n64*I32_Div_S{44E9} 39|841r15
-51n7*I32_Div_U{44E9} 39|843r15
-51n18*I32_Rem_S{44E9} 39|845r15
-51n29*I32_Rem_U{44E9} 39|847r15
-51n40*I64_Clz{44E9} 39|849r15
-51n49*I64_Ctz{44E9} 39|851r15
-51n58*I64_Popcnt{44E9} 39|853r15
-51n70*I64_Add{44E9} 39|855r15
-52n7*I64_Sub{44E9} 39|857r15
-52n16*I64_Mul{44E9} 39|859r15
-52n25*I64_Div_S{44E9} 39|861r15
-52n36*I64_Div_U{44E9} 39|863r15
-52n47*I64_Rem_S{44E9} 39|865r15
-52n58*I64_Rem_U{44E9} 39|867r15
-52n69*I32_And{44E9} 39|869r15
-53n7*I32_Or{44E9} 39|871r15
-53n15*I32_Xor{44E9} 39|873r15
-53n24*I32_Shl{44E9} 39|875r15
-53n33*I32_Shr_S{44E9} 39|877r15
-53n44*I32_Shr_U{44E9} 39|879r15
-53n55*I32_Rotl{44E9} 39|881r15
-53n65*I32_Rotr{44E9} 39|883r15
-54n7*I64_And{44E9} 39|885r15
-54n16*I64_Or{44E9} 39|887r15
-54n24*I64_Xor{44E9} 39|889r15
-54n33*I64_Shl{44E9} 39|891r15
-54n42*I64_Shr_S{44E9} 39|893r15
-54n53*I64_Shr_U{44E9} 39|895r15
-54n64*I64_Rotl{44E9} 39|897r15
-55n7*I64_Rotr{44E9} 39|899r15
-55n17*F32_Abs{44E9} 39|901r15
-55n26*F32_Neg{44E9} 39|903r15
-55n35*F32_Ceil{44E9} 39|905r15
-55n45*F32_Floor{44E9} 39|907r15
-55n56*F32_Trunc{44E9} 39|909r15
-55n67*F32_Nearest{44E9} 39|911r15
-56n7*F32_Sqrt{44E9} 39|913r15
-56n17*F32_Add{44E9} 39|915r15
-56n26*F32_Sub{44E9} 39|917r15
-56n35*F32_Mul{44E9} 39|919r15
-56n44*F32_Div{44E9} 39|921r15
-56n53*F32_Min{44E9} 39|923r15
-56n62*F32_Max{44E9} 39|925r15
-57n7*F32_Copysign{44E9} 39|927r15
-57n21*F64_Abs{44E9} 39|929r15
-57n30*F64_Neg{44E9} 39|931r15
-57n39*F64_Ceil{44E9} 39|933r15
-57n49*F64_Floor{44E9} 39|935r15
-57n60*F64_Trunc{44E9} 39|937r15
-58n7*F64_Nearest{44E9} 39|939r15
-58n20*F64_Sqrt{44E9} 39|941r15
-58n30*F64_Add{44E9} 39|943r15
-58n39*F64_Sub{44E9} 39|945r15
-58n48*F64_Mul{44E9} 39|947r15
-58n57*F64_Div{44E9} 39|949r15
-58n66*F64_Min{44E9} 39|951r15
-59n7*F64_Max{44E9} 39|953r15
-59n16*F64_Copysign{44E9} 39|955r15
-59n30*I32_Wrap_I64{44E9} 39|957r15
-59n44*I32_Trunc_F32_S{44E9} 39|959r15
-59n61*I32_Trunc_F32_U{44E9} 39|961r15
-60n7*I32_Trunc_F64_S{44E9} 39|963r15
-60n24*I32_Trunc_F64_U{44E9} 39|965r15
-60n41*I32_Extend_8_S{44E9} 39|967r15
-60n57*I32_Extend_16_S{44E9} 39|969r15
-61n7*I64_Extend_8_S{44E9} 39|971r15
-61n23*I64_Extend_16_S{44E9} 39|973r15
-61n40*I64_Extend_32_S{44E9} 39|975r15
-61n57*I64_Extend_I32_S{44E9} 39|977r15
-62n7*I64_Extend_I32_U{44E9} 39|979r15
-62n25*I64_Trunc_F32_S{44E9} 39|981r15
-62n42*I64_Trunc_F32_U{44E9} 39|983r15
-62n59*I64_Trunc_F64_S{44E9} 39|985r15
-63n7*I64_Trunc_F64_U{44E9} 39|987r15
-63n24*F32_Convert_I32_S{44E9} 39|989r15
-63n43*F32_Convert_I32_U{44E9} 39|991r15
-63n62*F32_Convert_I64_S{44E9} 39|993r15
-64n7*F32_Convert_I64_U{44E9} 39|995r15
-64n26*F32_Demote_F64{44E9} 39|997r15
-64n42*F64_Convert_I32_S{44E9} 39|999r15
-64n61*F64_Convert_I32_U{44E9} 39|1001r15
-65n7*F64_Convert_I64_S{44E9} 39|1003r15
-65n26*F64_Convert_I64_U{44E9} 39|1005r15
-65n45*F64_Promote_F32{44E9} 39|1007r15
-66n7*I32_Reinterpret_F32{44E9} 39|1009r15
-66n28*I64_Reinterpret_F64{44E9} 39|1011r15
-66n49*F32_Reinterpret_I32{44E9} 39|1013r15
-67n7*F64_Reinterpret_I64{44E9} 39|1015r15
-67n28*I32_Trunc_Sat_F32_S{44E9} 39|1017r15
-67n49*I32_Trunc_Sat_F32_U{44E9} 39|1019r15
-68n7*I32_Trunc_Sat_F64_S{44E9} 39|1021r15
-68n28*I32_Trunc_Sat_F64_U{44E9} 39|1023r15
-68n49*I64_Trunc_Sat_F32_S{44E9} 39|1025r15
-69n7*I64_Trunc_Sat_F32_U{44E9} 39|1027r15
-69n28*I64_Trunc_Sat_F64_S{44E9} 39|1029r15
-69n49*I64_Trunc_Sat_F64_U{44E9} 39|1031r15
-74n7*Unreachable{73E9} 39|1278r15
-74n20*NOP{73E9} 39|1268r15
-74n25*Block{73E9} 39|1066r15 1243r15
-74n32*Loop_Inst{73E9} 39|1074r15 1260r15
-74n43*If_Inst{73E9} 39|1082r15 1253r15
-74n52*Else_Inst{73E9} 39|1258r15
-74n63*End_Block{73E9} 39|1248r15
-75n7*Branch{73E9} 39|1250r15
-75n15*Branch_If{73E9} 39|1265r15
-75n26*Branch_Table{73E9} 39|1270r15
-75n40*Return_Inst{73E9} 39|1272r15
-75n53*Call{73E9} 39|1274r15
-75n59*Call_Indirect{73E9} 39|1276r15
-80n7*Local_Get{79E9} 39|1367r15
-80n18*Local_Set{79E9} 39|1370r15
-80n29*Local_Tee{79E9} 39|1373r15
-80n40*Global_Get{79E9} 39|1375r15
-80n52*Global_Set{79E9} 39|1377r15
-98R9*Numeric_Instruction 111e14 39|749r15
-98e30*Op{44E9} 39|752r18
-101r13*I32_Constant{95|11R9} 39|754r53 762r63
-103r13*I64_Constant{95|11R9} 39|756r53 784r63
-105r13*F32_Constant{95|11R9} 39|758r53
-107r13*F64_Constant{95|11R9} 39|760r53
-113R9*Reference_Instruction 122e14 39|1285r15
-124R9*Control_Instruction 161e14 39|1037r19 1118r15 1141r28 1177r33 1205r15
-. 1212r20 1238r15
-124e30*Op{73E9} 39|1065r18 1242r18
-127m13*Block_Label{35|80M9} 39|1068r53 1073r22
-128r13*Block_Arguments{22R9} 39|1247r50
-129m13*End_Block_Ptr{9M12} 39|1247r22
-133r13*If_Block_Args{22R9} 39|1256r29
-134m13*Else_If_Offset{10M12} 39|1256r50
-135m13*End_If_Offset{9M12} 39|1257r22
-137m13*End_Else_Offset{9M12} 39|1259r53
-139m13*Loop_Label{35|80M9} 39|1076r53 1081r22
-140r13*Loop_Arguments{22R9} 39|1264r56
-141m13*End_Loop_Block{9M12} 39|1264r22
-143m13*Label_Br_If{35|80M9} 39|1267r43
-145m13*Label_Br{35|80M9} 39|1252r45
-163R9*Table_Instruction 184e14 39|1292r15
-186R9*Variable_Instruction 199e14 39|1363r15
-186e31*Op{79E9} 39|1366r18
-189i13*Local_Get_Id{33|35I12} 39|1369r44
-191i13*Local_Set_Id{33|35I12} 39|1372r43
-193i13*Local_Tee_Id{33|35I12} 39|1374r43
-195i13*Glb_Get_Addr{33|29I12} 39|1376r45
-197i13*Glb_Set_Addr{33|29I12} 39|1378r45
-201R9*Parametric_Instruction 208e14 39|1299r15
-210R9*Memory_Instruction 300e14 39|1383r15
-302R9*Vector_Instruction 307e14 39|1390r15
-318e22*Op{40E9} 39|1417r17
-321r13*Numeric_Inst{98R9} 39|1420r47
-323r13*Reference_Inst{113R9} 39|1426r49
-325r13*Control_Inst{124R9} 39|1424r49
-327r13*Table_Inst{163R9} 39|1428r45
-329r13*Parametric_Inst{201R9} 39|1431r21
-331r13*Variable_Inst{186R9} 39|1433r48
-333r13*Memory_Inst{210R9} 39|1435r46
-335r13*Vector_Inst{302R9} 39|1438r21
+14K9*Instructions 346e17 38|10w6 10r49
+24P9*Instruction_Acc(23R9) 39|1323r56 1339r14
+26A9*Chunk(24P9)<integer> 39|59r7
+27P9*Instruction_Sequence(26A9) 39|59r14
+29n30*Empty{29E9} 39|977r15
+29n37*TType{29E9} 39|980r15
+29n44*Func_Type{29E9} 39|983r15
+31R9*Block_Args 40e14 39|968r19 1070r56
+31e21*B{29E9} 39|976r17
+48n7*Numeric{47E9} 39|1345r15
+48n16*Reference{47E9} 39|1352r15
+48n27*Parametric{47E9} 39|1356r15
+48n39*Variable{47E9} 39|1359r15
+48n49*Table{47E9} 39|1354r15
+48n56*Memory{47E9} 39|1361r15
+48n64*Control{47E9} 39|1348r15
+49n7*Vector_128{47E9} 39|1363r15
+52n7*I32_Const{51E9} 39|682r15
+52n18*I64_Const{51E9} 39|684r15
+52n29*F32_Const{51E9} 39|686r15
+52n40*F64_Const{51E9} 39|688r15
+52n51*I32_Eqz{51E9} 39|690r15
+52n60*I32_Eq{51E9} 39|692r15
+52n68*I32_Ne{51E9} 39|694r15
+53n7*I32_Lt_S{51E9} 39|696r15
+53n17*I32_Lt_U{51E9} 39|698r15
+53n27*I32_Gt_S{51E9} 39|700r15
+53n37*I32_Gt_U{51E9} 39|702r15
+53n47*I32_Le_S{51E9} 39|704r15
+53n57*I32_Le_U{51E9} 39|706r15
+53n67*I32_Ge_S{51E9} 39|708r15
+54n7*I32_Ge_U{51E9} 39|710r15
+54n17*I64_Eqz{51E9} 39|712r15
+54n26*I64_Eq{51E9} 39|714r15
+54n34*I64_Ne{51E9} 39|716r15
+54n42*I64_Lt_S{51E9} 39|718r15
+54n52*I64_Lt_U{51E9} 39|720r15
+54n62*I64_Gt_S{51E9} 39|722r15
+55n7*I64_Gt_U{51E9} 39|724r15
+55n17*I64_Le_S{51E9} 39|726r15
+55n27*I64_Le_U{51E9} 39|728r15
+55n37*I64_Ge_S{51E9} 39|730r15
+55n47*I64_Ge_U{51E9} 39|732r15
+55n57*F32_Eq{51E9} 39|734r15
+55n65*F32_Ne{51E9} 39|736r15
+55n73*F32_Lt{51E9} 39|738r15
+56n7*F32_Gt{51E9} 39|740r15
+56n15*F32_Le{51E9} 39|742r15
+56n23*F32_Ge{51E9} 39|744r15
+56n31*F64_Eq{51E9} 39|746r15
+56n39*F64_Ne{51E9} 39|748r15
+56n47*F64_Lt{51E9} 39|750r15
+56n55*F64_Gt{51E9} 39|752r15
+56n63*F64_Le{51E9} 39|754r15
+56n71*F64_Ge{51E9} 39|756r15
+57n7*I32_Clz{51E9} 39|758r15
+57n16*I32_Ctz{51E9} 39|760r15
+57n25*I32_Popcnt{51E9} 39|762r15
+57n37*I32_Add{51E9} 39|764r15
+57n46*I32_Sub{51E9} 39|766r15
+57n55*I32_Mul{51E9} 39|768r15
+57n64*I32_Div_S{51E9} 39|770r15
+58n7*I32_Div_U{51E9} 39|772r15
+58n18*I32_Rem_S{51E9} 39|774r15
+58n29*I32_Rem_U{51E9} 39|776r15
+58n40*I64_Clz{51E9} 39|778r15
+58n49*I64_Ctz{51E9} 39|780r15
+58n58*I64_Popcnt{51E9} 39|782r15
+58n70*I64_Add{51E9} 39|784r15
+59n7*I64_Sub{51E9} 39|786r15
+59n16*I64_Mul{51E9} 39|788r15
+59n25*I64_Div_S{51E9} 39|790r15
+59n36*I64_Div_U{51E9} 39|792r15
+59n47*I64_Rem_S{51E9} 39|794r15
+59n58*I64_Rem_U{51E9} 39|796r15
+59n69*I32_And{51E9} 39|798r15
+60n7*I32_Or{51E9} 39|800r15
+60n15*I32_Xor{51E9} 39|802r15
+60n24*I32_Shl{51E9} 39|804r15
+60n33*I32_Shr_S{51E9} 39|806r15
+60n44*I32_Shr_U{51E9} 39|808r15
+60n55*I32_Rotl{51E9} 39|810r15
+60n65*I32_Rotr{51E9} 39|812r15
+61n7*I64_And{51E9} 39|814r15
+61n16*I64_Or{51E9} 39|816r15
+61n24*I64_Xor{51E9} 39|818r15
+61n33*I64_Shl{51E9} 39|820r15
+61n42*I64_Shr_S{51E9} 39|822r15
+61n53*I64_Shr_U{51E9} 39|824r15
+61n64*I64_Rotl{51E9} 39|826r15
+62n7*I64_Rotr{51E9} 39|828r15
+62n17*F32_Abs{51E9} 39|830r15
+62n26*F32_Neg{51E9} 39|832r15
+62n35*F32_Ceil{51E9} 39|834r15
+62n45*F32_Floor{51E9} 39|836r15
+62n56*F32_Trunc{51E9} 39|838r15
+62n67*F32_Nearest{51E9} 39|840r15
+63n7*F32_Sqrt{51E9} 39|842r15
+63n17*F32_Add{51E9} 39|844r15
+63n26*F32_Sub{51E9} 39|846r15
+63n35*F32_Mul{51E9} 39|848r15
+63n44*F32_Div{51E9} 39|850r15
+63n53*F32_Min{51E9} 39|852r15
+63n62*F32_Max{51E9} 39|854r15
+64n7*F32_Copysign{51E9} 39|856r15
+64n21*F64_Abs{51E9} 39|858r15
+64n30*F64_Neg{51E9} 39|860r15
+64n39*F64_Ceil{51E9} 39|862r15
+64n49*F64_Floor{51E9} 39|864r15
+64n60*F64_Trunc{51E9} 39|866r15
+65n7*F64_Nearest{51E9} 39|868r15
+65n20*F64_Sqrt{51E9} 39|870r15
+65n30*F64_Add{51E9} 39|872r15
+65n39*F64_Sub{51E9} 39|874r15
+65n48*F64_Mul{51E9} 39|876r15
+65n57*F64_Div{51E9} 39|878r15
+65n66*F64_Min{51E9} 39|880r15
+66n7*F64_Max{51E9} 39|882r15
+66n16*F64_Copysign{51E9} 39|884r15
+66n30*I32_Wrap_I64{51E9} 39|886r15
+66n44*I32_Trunc_F32_S{51E9} 39|888r15
+66n61*I32_Trunc_F32_U{51E9} 39|890r15
+67n7*I32_Trunc_F64_S{51E9} 39|892r15
+67n24*I32_Trunc_F64_U{51E9} 39|894r15
+67n41*I32_Extend_8_S{51E9} 39|896r15
+67n57*I32_Extend_16_S{51E9} 39|898r15
+68n7*I64_Extend_8_S{51E9} 39|900r15
+68n23*I64_Extend_16_S{51E9} 39|902r15
+68n40*I64_Extend_32_S{51E9} 39|904r15
+68n57*I64_Extend_I32_S{51E9} 39|906r15
+69n7*I64_Extend_I32_U{51E9} 39|908r15
+69n25*I64_Trunc_F32_S{51E9} 39|910r15
+69n42*I64_Trunc_F32_U{51E9} 39|912r15
+69n59*I64_Trunc_F64_S{51E9} 39|914r15
+70n7*I64_Trunc_F64_U{51E9} 39|916r15
+70n24*F32_Convert_I32_S{51E9} 39|918r15
+70n43*F32_Convert_I32_U{51E9} 39|920r15
+70n62*F32_Convert_I64_S{51E9} 39|922r15
+71n7*F32_Convert_I64_U{51E9} 39|924r15
+71n26*F32_Demote_F64{51E9} 39|926r15
+71n42*F64_Convert_I32_S{51E9} 39|928r15
+71n61*F64_Convert_I32_U{51E9} 39|930r15
+72n7*F64_Convert_I64_S{51E9} 39|932r15
+72n26*F64_Convert_I64_U{51E9} 39|934r15
+72n45*F64_Promote_F32{51E9} 39|936r15
+73n7*I32_Reinterpret_F32{51E9} 39|938r15
+73n28*I64_Reinterpret_F64{51E9} 39|940r15
+73n49*F32_Reinterpret_I32{51E9} 39|942r15
+74n7*F64_Reinterpret_I64{51E9} 39|944r15
+74n28*I32_Trunc_Sat_F32_S{51E9} 39|946r15
+74n49*I32_Trunc_Sat_F32_U{51E9} 39|948r15
+75n7*I32_Trunc_Sat_F64_S{51E9} 39|950r15
+75n28*I32_Trunc_Sat_F64_U{51E9} 39|952r15
+75n49*I64_Trunc_Sat_F32_S{51E9} 39|954r15
+76n7*I64_Trunc_Sat_F32_U{51E9} 39|956r15
+76n28*I64_Trunc_Sat_F64_S{51E9} 39|958r15
+76n49*I64_Trunc_Sat_F64_U{51E9} 39|960r15
+81n7*Unreachable{80E9} 39|1206r15
+81n20*NOP{80E9} 39|1196r15
+81n25*Block{80E9} 39|995r15 1171r15
+81n32*Loop_Inst{80E9} 39|1003r15 1188r15
+81n43*If_Inst{80E9} 39|1011r15 1181r15
+81n52*Else_Inst{80E9} 39|1186r15
+81n63*End_Block{80E9} 39|1176r15
+82n7*Branch{80E9} 39|1178r15
+82n15*Branch_If{80E9} 39|1193r15
+82n26*Branch_Table{80E9} 39|1198r15
+82n40*Return_Inst{80E9} 39|1200r15
+82n53*Call{80E9} 39|1202r15
+82n59*Call_Indirect{80E9} 39|1204r15
+87n7*Local_Get{86E9} 39|1294r15
+87n18*Local_Set{86E9} 39|1297r15
+87n29*Local_Tee{86E9} 39|1300r15
+87n40*Global_Get{86E9} 39|1302r15
+87n52*Global_Set{86E9} 39|1304r15
+103R9*Numeric_Instruction 116e14 39|678r15
+103e30*Op{51E9} 39|681r18
+106r13*I32_Constant{81|79R9} 39|683r53 691r63
+108r13*I64_Constant{81|79R9} 39|685r53 713r63
+110r13*F32_Constant{81|79R9} 39|687r53
+112r13*F64_Constant{81|79R9} 39|689r53
+118R9*Reference_Instruction 127e14 39|1213r15
+129R9*Control_Instruction 166e14 39|966r19 1047r15 1070r28 1105r33 1133r15
+. 1140r20 1166r15
+129e30*Op{80E9} 39|994r18 1170r18
+132m13*Block_Label{35|80M9} 39|997r53 1002r22
+133r13*Block_Arguments{31R9} 39|1175r50
+134m13*End_Block_Ptr{18M12} 39|1175r22
+138r13*If_Block_Args{31R9} 39|1184r29
+139m13*Else_If_Offset{19M12} 39|1184r50
+140m13*End_If_Offset{18M12} 39|1185r22
+142m13*End_Else_Offset{18M12} 39|1187r53
+144m13*Loop_Label{35|80M9} 39|1005r53 1010r22
+145r13*Loop_Arguments{31R9} 39|1192r56
+146m13*End_Loop_Block{18M12} 39|1192r22
+148m13*Label_Br_If{35|80M9} 39|1195r43
+150m13*Label_Br{35|80M9} 39|1180r45
+168R9*Table_Instruction 189e14 39|1220r15
+191R9*Variable_Instruction 204e14 39|1290r15
+191e31*Op{86E9} 39|1293r18
+194i13*Local_Get_Id{33|39I12} 39|1296r44
+196i13*Local_Set_Id{33|39I12} 39|1299r43
+198i13*Local_Tee_Id{33|39I12} 39|1301r43
+200i13*Glb_Get_Addr{33|33I12} 39|1303r45
+202i13*Glb_Set_Addr{33|33I12} 39|1305r45
+206R9*Parametric_Instruction 213e14 39|1227r15
+215R9*Memory_Instruction 305e14 39|1310r15
+307R9*Vector_Instruction 312e14 39|1317r15
+323e22*Op{47E9} 39|1344r17
+326r13*Numeric_Inst{103R9} 39|1347r47
+328r13*Reference_Inst{118R9} 39|1353r49
+330r13*Control_Inst{129R9} 39|1351r49
+332r13*Table_Inst{168R9} 39|1355r45
+334r13*Parametric_Inst{206R9} 39|1358r21
+336r13*Variable_Inst{191R9} 39|1360r48
+338r13*Memory_Inst{215R9} 39|1362r46
+340r13*Vector_Inst{307R9} 39|1365r21
 X 35 interfac.ads
-38K9*Interfaces 232e15 38|1w6 1r49
-53I9*Integer_32<integer> 39|323r37 615r16 617r16 620r23 621r16 641r22 641r41
-. 643r16 658r22 658r41 660r16 675r41 677r16 692r41 694r16 710r20 738r16 1145r27
-. 1315r13 1334r16
-56I9*Integer_64<long_long_integer> 39|376r37 675r22 692r22
-69M9*Unsigned_8 39|1041r25 1056r24 1057r24
-80M9*Unsigned_32 38|18r26 30r23 32r26 39|88r36 90r17 105r45 138r41 142r21
-. 173r12 182r12 511r37 1038r19 1038r51 1142r28 1142r54 1146r27 1177r12 1181r27
-. 1188r15 1213r20 1226r13
-83M9*Unsigned_64 39|556r37
-217F9*IEEE_Float_32<short_float> 39|421r37
-220F9*IEEE_Float_64<long_float> 39|466r37
+38K9*Interfaces 232e15 38|9w6 9r49
+53I9*Integer_32<integer> 39|7r15 7r52 11r15 11r52 353r54 381r22 381r41 383r16
+. 398r22 398r41 400r16 415r41 417r16 432r41 434r16 450r20 1074r27
+56I9*Integer_64<long_long_integer> 39|415r22 432r22
+69M9*Unsigned_8 39|970r25 985r24 986r24
+80M9*Unsigned_32 38|57r23 59r26 39|140r36 142r17 157r45 190r41 194r21 225r12
+. 234r12 967r19 967r51 1071r28 1071r54 1075r27 1105r12 1109r27 1116r15 1141r20
+. 1154r13
+220F9*IEEE_Float_64<long_float>
 X 38 interpreter.ads
-10K9*Interpreter 89l5 89e16 39|4b14 1460l5 1460t16
-12E9*Element 12e51 13r34 39|1186r35
-12n21*Value{12E9} 13r45 15r15 39|57r41 195r24 202r24 208r24 214r24 235r27
-. 242r27 258r17 264r17 270r17 276r17 1313r38 1327r52
-12n28*Label{12E9} 17r15 39|14r41 93r33 110r39 122r39 1068r26 1076r26 1085r31
-. 1099r37 1110r37 1127r52
-12n35*Activation_Call{12E9} 20r15 39|29r22
-13R9*Element_Variation 13d28 23e14 37r46 39|602r14 737r16 1180r27
-13e28*Elt{12E9} 14r12 39|14r35 57r35 93r27 110r33 122r33 195m17 202m17 208m17
-. 214m17 235m20 242m20 1068m17 1076m17 1085m17 1099r31 1110r31 1127r46 1186r68
-. 1327r46
-16r13*Val{40|29R9} 39|196m17 203m17 209m17 215m17 236m20 243m20 259m17 265m17
-. 271m17 277m17 317r38 615r36 617r36 620r37 621r30 624r25 624r51 627r25 627r51
-. 630r25 630r51 633r25 633r51 636r25 636r51 744r19 744r46 1150r40 1188r46
-. 1313m45 1330r49 1335r52
-18m13*Special_Id{35|80M9} 39|112r29 1068m33 1076m33 1086m17
-19r13*Block{40|13R9} 39|124r29 1069m17 1077m17 1087m17 1128r55
-21r13*Call{40|21R9} 39|29m39 45r46
-25R9*Label_Info 28e14 32r55
-26i7*Arity{natural} 39|157r64 1073m36 1081m35
-27i7*Lab_Addr{33|36I12} 39|174r67 1073m52 1081m51
-30V13*Hash{3|19M9} 30>19 32r75
-30m19 x{35|80M9} 30r68
-31K12*Symbols_Table[12|49] 35r8 43r17 39|38r24 151r10 157r12 174r15
-36K12*Vectors[15|74] 38r8 41r17
-40R9*Env 46e14 53r41 57r14 59r39 61r54 39|9r41 34r14 52r51 66r59 82r76 138r75
-. 182r46 749r57 1037r61 1118r57 1143r28 1177r75 1205r57 1212r62 1225r47 1238r57
-. 1285r59 1306r47 1323r47 1363r58 1396r44 1410r54 1444r39
-41r7*Stack{15|91R9[36]} 39|12r28 12r61 14r25 48m10 55r28 55r61 57r25 70r59
-. 71m35 85m19 147r53 148r64 149r57 165m63 167m59 754m40 756m40 758m40 760m40
-. 762m50 764m42 766m42 768m42 770m42 772m42 774m42 776m42 778m42 780m42 782m42
-. 784m50 786m42 788m42 790m42 792m42 794m42 796m42 798m42 800m42 802m42 804m42
-. 806m42 808m42 810m42 812m42 814m42 816m42 818m42 820m42 822m42 824m42 826m42
-. 828m42 830m40 832m40 836m43 850m40 852m40 1067m25 1075m25 1083m25 1124r41
-. 1125r36 1126r39 1127r28 1128r37 1135m44 1150r21 1152m32 1183r54 1184m32
-. 1313m30 1327r39 1330r42 1335r45 1337m38 1428r69 1431r50 1435r71 1438r46
-42r7*Store{33|183R9} 39|48m27
-43r7*Symbols{12|56R9[31]} 39|48m39 151r46 157r47 174r50 1072m25 1080m25
-44r7*Cf{40|21R9} 39|48m55 172m22 186m19 186r47 1092m19 1092r47 1136m19 1136r47
-. 1157r45 1163m22 1163r50 1167r26 1194m19 1194r47 1217m19 1217r47 1228r26
-. 1246r48 1263r48 1310r54 1311r35 1326r54 1329r28 1398r31 1399r38 1400r23
-. 1405r24 1406r36 1416r49 1440m19 1440r47
-45r7*Module{33|160R9} 39|49m10
-48E9*Interpret_Result 49e70 59r51 39|1444r51
-49n7*INTERPRET_OK{48E9} 39|1451r23
-49n21*INTERPRET_COMPILE_ERROR{48E9}
-49n46*INTERPRET_RUNTIME_ERROR{48E9} 39|1455r23
-51E9*Control_Flow 51e48 61r66 39|182r58 1178r14 1220r40 1225r59 1239r14 1410r66
-. 1445r17
-51n26*Break{51E9} 39|1234r14 1450r18
-51n33*Continue{51E9} 39|187r14 1196r14 1281r14 1441r14 1452r18
-51n43*Trap{51E9} 39|1222r14 1454r18
-53V13*Count_Labels{natural} 53>27 39|9b13 19l8 19t20 153s13
-53r27 Environment{40R9} 39|9b27 12r16 12r49 14r13
-55V13*Init_Environment{40R9} 56>7 56=23 56>46 39|32b13 50l8 50t24
-56r7 S{33|183R9} 39|33b7 48r36
-56r23 Stack{15|91R9[36]} 39|33b23 42m44 45r39 48r20
-56r46 Start_Func{97|21R9} 39|33b46 42r32
-59V13*Run{48E9} 59=18 39|1444b13 1459l8 1459t11
-59r18 Environment{40R9} 39|1444b18 1448m41 1448r41
-61V13*Execute_Next_Instr{51E9} 61=33 39|1410b13 1442l8 1442t26 1448s21
-61r33 Environment{40R9} 39|1410b33 1414r32 1416r37 1420m61 1424m63 1424r63
-. 1426m65 1428r57 1431r38 1433m63 1435r59 1438r34 1440m7 1440r35
-63E9*Unary_Op 63e39
-63n22*clz{63E9}
-63n27*ctz{63E9}
-63n32*popcnt{63E9}
-64E9*Binary_Op 66e12
-65n7*add{64E9}
-65n12*sub{64E9}
-65n17*mul{64E9}
-65n22*div{64E9}
-65n27*rem_s{64E9}
-65n34*and_op{64E9}
-65n42*or_op{64E9}
-65n49*xor_op{64E9}
-65n57*shl{64E9}
-65n62*shr_s{64E9}
-65n69*rotl{64E9}
-66n7*rotr{64E9}
-67E9*Comparison 68e66 78r45 39|286r45
-68n7*Equal{67E9} 39|291r15
-68n14*Not_Equal{67E9} 39|293r15
-68n25*Less{67E9} 39|295r15
-68n31*Greater{67E9} 39|297r15
-68n40*Less_Equal{67E9} 39|299r15
-68n52*Greater_Equal{67E9} 39|301r15
-71+12 T 72r40 73r40 74r40 75r41 76r41 78r37 39|286r37
-72V22 "="{boolean} 72>26 72>32 39|292s26 294r26
-72*26 Left{71+12}
-72*32 Right{71+12}
-73V22 "<"{boolean} 73>26 73>32 39|296s26
-73*26 Left{71+12}
-73*32 Right{71+12}
-74V22 ">"{boolean} 74>26 74>32 39|298s26
-74*26 Left{71+12}
-74*32 Right{71+12}
-75V22 "<="{boolean} 75>27 75>33 39|300s26
-75*27 Left{71+12}
-75*33 Right{71+12}
-76V22 ">="{boolean} 76>27 76>33 39|302s26
-76*27 Left{71+12}
-76*33 Right{71+12}
-77u14*Compare_And_Push 78=7 78>30 78>33 78>40 39|285b14 312l8 312t24
-78r7 Stack{15|91R9[36]} 39|286b7
-78*30 A{71+12} 39|286b30 292r24 294r24 296r24 298r24 300r24 302r24
-78*33 B{71+12} 39|286b33 292r28 294r29 296r28 298r28 300r29 302r29
-78e40 Op{67E9} 39|286b40 290r12
+19K9*Interpreter 87l5 87e16 39|4b14 1387l5 1387t16
+24E9*Comparison 25e66 28r45 32r41 39|261r41 271r51 368r59
+25n7*Equal{24E9} 39|279r30 294r30 314r30 330r30 693r49 715r49 735r49 747r49
+25n14*Not_Equal{24E9} 39|281r30 296r30 316r30 332r30 695r49 717r49 737r49
+. 749r49
+25n25*Less{24E9} 39|283r30 298r30 318r30 334r30 697r49 699r49 719r49 721r49
+. 723r49 739r49 751r49
+25n31*Greater{24E9} 39|285r30 300r30 320r30 336r30 701r49 703r49 725r49 741r49
+. 753r49
+25n40*Less_Equal{24E9} 39|287r30 302r30 322r30 338r30 705r49 707r49 727r49
+. 729r49 743r49 755r49
+25n52*Greater_Equal{24E9} 39|289r30 304r30 324r30 340r30 709r49 711r49 731r49
+. 733r49 745r49 757r49
+27+12 T 28r37 31r42 39|260r42 357r7
+28V21 Compare{boolean} 28>30 28>33 28>40 39|264s10 357r26
+28*30 A{27+12}
+28*33 B{27+12}
+28e40 Op{24E9}
+29U22 Push_To_Stack 29=37 29>60 39|265s10 267s10 357r49
+29r37 Stack{14|91R9[40|54]}
+29i60 Value{integer}
+30u14*Check_Push 31=7 31>35 31>38 31>45 32>7 32>36 39|259b14 269l8 269t18
+. 356r35
+31r7 Stack{14|91R9[40|54]} 39|260b7 265m25 267m25
+31*35 A{27+12} 39|260b35 264r19
+31*38 B{27+12} 39|260b38 264r22
+31i45 Comp_True{integer} 39|260b45 265r32
+32i7 Comp_False{integer} 39|261b7 267r32
+32e36 Op{24E9} 39|261b36 264r25
+36+12 S 38r17 38r64 39r62 41r37 39|478r37 480r16 649r7
+37V21 Calculate_Signed{36+12} 38>10 38>13 38>20 38>36 39|482s17 649r35
+38*10 A{36+12}
+38*13 B{36+12}
+38e20 Op{81|33E9}
+38e36 Size{81|48E9}
+39U22 Push_Signed 39=35 39>58 39|483s7 650r7
+39r35 Stack{14|91R9[40|54]}
+39*58 R{36+12}
+40u14*Calculate_Push_Signed 41=7 41>30 41>33 41>40 41>56 39|477b14 484l8
+. 484t29 648r38
+41r7 Stack{14|91R9[40|54]} 39|478b7 483m20
+41*30 A{36+12} 39|478b30 482r35
+41*33 B{36+12} 39|478b33 482r38
+41e40 Op{81|33E9} 39|478b40 482r41
+41e56 Size{81|48E9} 39|478b56 482r45
+45+12 F 47r17 47r64 48r61 50r37 39|487r37 489r16 653r7
+46V21 Calculate_Float{45+12} 47>10 47>13 47>20 47>36 39|491s17 653r24
+47*10 A{45+12}
+47*13 B{45+12}
+47e20 Op{81|33E9}
+47e36 Size{81|48E9}
+48U22 Push_Float 48=34 48>57 39|492s7 653r54
+48r34 Stack{14|91R9[40|54]}
+48*57 R{45+12}
+49u14*Calculate_Push_Float 50=7 50>30 50>33 50>40 50>56 39|486b14 493l8 493t28
+. 652r37
+50r7 Stack{14|91R9[40|54]} 39|487b7 492m19
+50*30 A{45+12} 39|487b30 491r34
+50*33 B{45+12} 39|487b33 491r37
+50e40 Op{81|33E9} 39|487b40 491r40
+50e56 Size{81|48E9} 39|487b56 491r44
+52R9*Label_Info 55e14 59r55
+53i7*Arity{natural} 39|209r64 1002m36 1010m35
+54i7*Lab_Addr{33|40I12} 39|226r67 1002m52 1010m51
+57V13*Hash{3|19M9} 57>19 59r75
+57m19 x{35|80M9} 57r68
+58K12*Symbols_Table[11|49] 62r8 67r17 39|90r24 203r10 209r12 226r15
+64R9*Env 70e14 77r41 81r14 83r39 85r54 39|61r41 86r14 104r51 118r59 134r76
+. 190r75 234r46 678r57 966r61 1047r57 1072r28 1105r75 1133r57 1140r62 1153r47
+. 1166r57 1213r59 1234r47 1251r47 1290r58 1323r44 1337r54 1371r39
+65r7*Stack{14|91R9[40|54]} 39|64r28 64r61 66r25 100m10 107r28 107r61 109r25
+. 122r59 123m35 137m19 199r53 200r64 201r57 217m63 219m59 683m40 685m40 687m40
+. 689m40 691m50 693m42 695m42 697m42 699m42 701m42 703m42 705m42 707m42 709m42
+. 711m42 713m50 715m42 717m42 719m42 721m42 723m42 725m42 727m42 729m42 731m42
+. 733m42 735m42 737m42 739m42 741m42 743m42 745m42 747m42 749m42 751m42 753m42
+. 755m42 757m42 759m40 761m40 763m40 765m44 767m44 769m44 771m44 773m44 781m40
+. 785m44 787m44 789m44 791m44 793m44 845m44 847m44 849m44 851m44 873m44 875m44
+. 877m44 879m44 996m25 1004m25 1012m25 1053r41 1054r36 1055r39 1056r28 1057r37
+. 1064m44 1079r21 1081m32 1111r54 1112m32 1241m30 1255r39 1258r42 1264m38
+. 1355r69 1358r50 1362r71 1365r46
+66r7*Store{33|186R9} 39|100m27
+67r7*Symbols{11|56R9[58]} 39|100m39 203r46 209r47 226r50 1001m25 1009m25
+68r7*Cf{40|28R9} 39|100m55 224m22 238m19 238r47 1021m19 1021r47 1065m19 1065r47
+. 1086r45 1092m22 1092r50 1096r26 1122m19 1122r47 1145m19 1145r47 1156r26
+. 1174r48 1191r48 1238r54 1239r35 1254r54 1257r28 1325r31 1326r38 1327r23
+. 1332r24 1333r36 1343r49 1367m19 1367r47
+69r7*Module{33|163R9} 39|101m10
+72E9*Interpret_Result 73e70 83r51 39|1371r51
+73n7*INTERPRET_OK{72E9} 39|1378r23
+73n21*INTERPRET_COMPILE_ERROR{72E9}
+73n46*INTERPRET_RUNTIME_ERROR{72E9} 39|1382r23
+75E9*Control_Flow 75e48 85r66 39|234r58 1106r14 1148r40 1153r59 1167r14 1337r66
+. 1372r17
+75n26*Break{75E9} 39|1162r14 1377r18
+75n33*Continue{75E9} 39|239r14 1124r14 1209r14 1368r14 1379r18
+75n43*Trap{75E9} 39|1150r14 1381r18
+77V13*Count_Labels{natural} 77>27 39|61b13 71l8 71t20 205s13
+77r27 Environment{64R9} 39|61b27 64r16 64r49 66r13
+79V13*Init_Environment{64R9} 80>7 80=23 80>46 39|84b13 102l8 102t24
+80r7 S{33|186R9} 39|85b7 100r36
+80r23 Stack{14|91R9[40|54]} 39|85b23 94m44 97r39 100r20
+80r46 Start_Func{83|28R9} 39|85b46 94r32
+83V13*Run{72E9} 83=18 39|1371b13 1386l8 1386t11
+83r18 Environment{64R9} 39|1371b18 1375m41 1375r41
+85V13*Execute_Next_Instr{75E9} 85=33 39|1337b13 1369l8 1369t26 1375s21
+85r33 Environment{64R9} 39|1337b33 1341r32 1343r37 1347m61 1351m63 1351r63
+. 1353m65 1355r57 1358r38 1360m63 1362r59 1365r34 1367m7 1367r35
 X 39 interpreter.adb
-6U14 Free[31|20]
-10i7 Label_Count{natural} 15m13 15r28 18r14
-12i11 I{integer} 14r32
-21U14 Adding_Start_Call_Frame 21b14 22>7 22=30 30l8 30t31 42s7
-22r7 start{97|21R9} 27r55 28r23
-22r30 Stack{15|91R9[38|36]} 29m7 29r7
-24r7 Current_Frame{40|21R9} 26m7 26r7 29r47
-36r7 Current_Frame{40|21R9} 44r46 45m7 45r7 48r61
-37r7 Current_Module{33|160R9} 44m7 49r20
-38r7 Tab{12|56R9[38|31]} 48r50
-52V13 Count_Values_Top_Stack{natural} 52b13 52>37 64l8 64t30 159s25
-52r37 Environment{38|40R9} 55r16 55r49 57r13
-53i7 Value_Size{natural} 58m13 58r27 63r14
-55i11 I{integer} 57r32
-66V13 Pop_Values{15|91R9[38|36]} 66b13 66>25 66=38 74l8 74t18 161s25
-66i25 N{natural} 69r21
-66r38 Environment{38|40R9} 70r47 71m23 71r23
-67r7 Popped_Values{15|91R9[38|36]} 70m10 70r10 73r14
-69i11 i{integer}
-76U14 Pop_Label_Or_Values 76b14 76>35 76=55 80l8 80t27 167s16
-76i35 Position{natural} 79r63
-76r55 Stack{15|91R9[38|36]} 79m10 79r44
-82U14 Push_Values 82b14 82>27 82>42 82=55 86l8 86t19 170s10
-82r27 Temp{15|91R9[38|36]} 85r40
-82i42 N{natural}
-82r55 Environment{38|40R9} 85m7 85r7
-88V13 Get_Lab_Position{natural} 88b13 88>31 88>49 102l8 102t24 147s19
-88m31 To{35|80M9} 90r32 101r65
-88r49 Stack{15|91R9[38|36]} 92r28 92r49 93r13
-90m7 Counter{35|80M9} 94r16 97m16 97r27
-92i11 Index{integer} 93r20 95r23
-104V13 Get_Lab_From_Position{35|80M9} 104b13 105>7 105>22 116l8 116t29 148s19
-105i7 Pos{natural} 108r11 108r44 110r20 111r43 112r24
-105r22 Stack{15|91R9[38|36]} 108r31 108r63 110r13 112r17
-118V13 Get_Block_Type{95|7E9} 118b13 118>29 118>44 128l8 128t22 149s19
-118i29 Pos{natural} 120r11 120r44 122r20 123r43 124r24
-118r44 Stack{15|91R9[38|36]} 120r31 120r63 122r13 124r17
-130U14 Pop_Values_Before_Label 130b14 131>7 131=27 136l8 136t31 165s16
-131i7 Position{natural} 135r63
-131r27 Stack{15|91R9[38|36]} 135m10 135r44
-138U14 Jump_If_Block_Exists 138b14 138>36 138=54 179l8 179t28 185s7
-138m36 To{35|80M9} 147r37
-138r54 Environment{38|40R9} 147r41 148r52 149r45 151r34 153r27 157r35 159r49
-. 161m48 161r48 165m51 165r51 167m47 167r47 170m47 172m10 174r38
-140i7 Lab_Arity{natural} 156m10 159r65 161r37 170r36
-141i7 Position{natural} 147m7 148r42 149r35 153r43 165r41 167r37
-142m7 Lab_Id{35|80M9} 148m7 151r55 157r56 174r59
-143r7 Tmp_Storage{15|91R9[38|36]} 161m10 170r23
-144e7 Block_Ty{95|7E9} 149m7 150r17 163r15
-181V13 Execute_Branching{38|51E9} 181b13 182>7 182=25 188l8 188t25 1191s17
-. 1252s20
-182m7 To{35|80M9} 185r29
-182r25 Environment{38|40R9} 185m33 186m7 186r35
-190U14 Execute_Const 190b14 190=29 190>52 221l8 221t21 754s13 756s13 758s13
-. 760s13
-190r29 Stack{15|91R9[38|36]} 194m13 194r13 201m13 201r13 207m13 207r13 213m13
-. 213r13
-190r52 Var{95|11R9} 192r12 198r65 199r59 205r65 211r65 217r65
-223U14 Execute_Compare_To_Zero 223b14 223=39 223>62 251l8 251t31 762s13 784s13
-223r39 Stack{15|91R9[38|36]} 230m20 234m16 234r16 241m16 241r16
-223r62 Var{95|11R9} 231r10 231r31 232r15 239r55 246r55
-253U14 Push_Value 253b14 253=26 253>49 283l8 283t18 328s13 330s13 334s13
-. 336s13 340s13 342s13 346s13 348s13 352s13 354s13 358s13 360s13 364s13 367s13
-. 381s13 383s13 387s13 389s13 393s13 395s13 399s13 401s13 405s13 407s13 411s13
-. 413s13 426s13 428s13 432s13 434s13 438s13 440s13 444s13 446s13 450s13 452s13
-. 456s13 458s13 471s13 473s13 477s13 479s13 483s13 485s13 489s13 491s13 495s13
-. 497s13 501s13 503s13 516s13 518s13 522s13 524s13 528s13 530s13 534s13 536s13
-. 540s13 542s13 546s13 548s13 561s13 563s13 567s13 569s13 573s13 575s13 579s13
-. 581s13 585s13 587s13 591s13 593s13 717s13 721s13 727s13 731s13 745s7
-253r26 Stack{15|91R9[38|36]} 257m13 257r13 263m13 263r13 269m13 269r13 275m13
-. 275r13
-253r49 Num{95|11R9} 255r12 261r65 267r65 273r65 279r65
-288b7 Result{boolean} 292m13 294m13 296m13 298m13 300m13 302m13 305r10
-314V13 Pop_Value{95|11R9} 314b13 314=24 320l8 320t17 715s27 719s27 725s27
-. 729s27
-314r24 Stack{15|91R9[38|36]} 317r31 318m20
-315r7 Result{95|11R9} 317m7 319r14
-322U14 Compare_And_Push_I32 322b14 323=7 323>30 323>33 323>49 373l8 373t28
-. 619s13
-323r7 Stack{15|91R9[38|36]} 328m25 330m25 334m25 336m25 340m25 342m25 346m25
-. 348m25 352m25 354m25 358m25 360m25 364m25 367m25
-323i30 A{35|53I9} 327r13 333r13 339r13 345r13 351r13 357r13 363r13 363r23
-323i33 B{35|53I9} 327r17 333r18 339r17 345r17 351r18 357r18 363r17 363r28
-323a49 Op{string} 326r10 332r13 338r13 344r13 350r13 356r13 362r13
-375U14 Compare_And_Push_I64 375b14 376=7 376>30 376>33 376>49 418l8 418t28
-. 623s13
-376r7 Stack{15|91R9[38|36]} 381m25 383m25 387m25 389m25 393m25 395m25 399m25
-. 401m25 405m25 407m25 411m25 413m25
-376i30 A{35|56I9} 380r13 386r13 392r13 398r13 404r13 410r13
-376i33 B{35|56I9} 380r17 386r18 392r17 398r17 404r18 410r18
-376a49 Op{string} 379r10 385r13 391r13 397r13 403r13 409r13
-420U14 Compare_And_Push_F32 420b14 421=7 421>30 421>33 421>52 463l8 463t28
-. 632s13
-421r7 Stack{15|91R9[38|36]} 426m25 428m25 432m25 434m25 438m25 440m25 444m25
-. 446m25 450m25 452m25 456m25 458m25
-421f30 A{35|217F9} 425r13 431r13 437r13 443r13 449r13 455r13
-421f33 B{35|217F9} 425r17 431r18 437r17 443r17 449r18 455r18
-421a52 Op{string} 424r10 430r13 436r13 442r13 448r13 454r13
-465U14 Compare_And_Push_F64 465b14 466=7 466>30 466>33 466>52 508l8 508t28
-. 635s13
-466r7 Stack{15|91R9[38|36]} 471m25 473m25 477m25 479m25 483m25 485m25 489m25
-. 491m25 495m25 497m25 501m25 503m25
-466f30 A{35|220F9} 470r13 476r13 482r13 488r13 494r13 500r13
-466f33 B{35|220F9} 470r17 476r18 482r17 488r17 494r18 500r18
-466a52 Op{string} 469r10 475r13 481r13 487r13 493r13 499r13
-510U14 Compare_And_Push_U32 510b14 511=7 511>30 511>33 511>50 553l8 553t28
-. 626s13
-511r7 Stack{15|91R9[38|36]} 516m25 518m25 522m25 524m25 528m25 530m25 534m25
-. 536m25 540m25 542m25 546m25 548m25
-511m30 A{35|80M9} 515r13 521r13 527r13 533r13 539r13 545r13
-511m33 B{35|80M9} 515r17 521r18 527r17 533r17 539r18 545r18
-511a50 Op{string} 514r10 520r13 526r13 532r13 538r13 544r13
-555U14 Compare_And_Push_U64 555b14 556=7 556>30 556>33 556>50 598l8 598t28
-. 629s13
-556r7 Stack{15|91R9[38|36]} 561m25 563m25 567m25 569m25 573m25 575m25 579m25
-. 581m25 585m25 587m25 591m25 593m25
-556m30 A{35|83M9} 560r13 566r13 572r13 578r13 584r13 590r13
-556m33 B{35|83M9} 560r17 566r18 572r17 578r17 584r18 590r18
-556a50 Op{string} 559r10 565r13 571r13 577r13 583r13 589r13
-600U14 Execute_Compare 600b14 600=31 600>54 600>67 638l8 638t23 764s13 766s13
-. 768s13 770s13 772s13 774s13 776s13 778s13 780s13 782s13 786s13 788s13 790s13
-. 792s13 794s13 796s13 798s13 800s13 802s13 804s13 806s13 808s13 810s13 812s13
-. 814s13 816s13 818s13 820s13 822s13 824s13 826s13 828s13
-600r31 Stack{15|91R9[38|36]} 605r22 607r26 608m20 609r26 610m20 620m16 624m16
-. 627m16 630m16 633m16 636m16
-600e54 Nt{95|9E9} 611r12
-600a67 Op{string} 613r23 621r55 624r75 627r75 630r75 633r75 636r75
-602r7 A{38|13R9} 607m7 607r7 615r34 620r35 624r23 627r23 630r23 633r23 636r23
-602r10 B{38|13R9} 609m7 609r7 617r34 621r28 624r49 627r49 630r49 633r49 636r49
-640V13 Count_Leading_Zeroes_I32{35|53I9} 640b13 641=7 655l8 655t32 716s27
-641i7 Value{35|53I9} 645r10 649r13 650m10 650r20
-643i7 Result{35|53I9} 646m10 651m10 651r20 654r14
-657V13 Count_Trailing_Zeroes_I32{35|53I9} 657b13 658=7 672l8 672t33 726s27
-658i7 Value{35|53I9} 662r10 666r14 667m10 667r20
-660i7 Result{35|53I9} 663m10 668m10 668r20 671r14
-674V13 Count_Leading_Zeroes_I64{35|53I9} 674b13 675=7 689l8 689t32 720s27
-. 730s27
-675i7 Value{35|56I9} 679r10 683r13 684m10 684r20
-677i7 Result{35|53I9} 680m10 685m10 685r20 688r14
-691V13 Count_Trailing_Zeroes_I64{35|53I9} 691b13 692=7 706l8 706t33
-692i7 Value{35|56I9} 696r10 700r14 701m10 701r20
-694i7 Result{35|53I9} 697m10 702m10 702r20 705r14
-708U14 Execute_Count 708b14 708=29 708>52 708>65 734l8 734t21 830s13 832s13
-. 850s13 852s13
-708r29 Stack{15|91R9[38|36]} 715m38 715r38 717m25 719m38 719r38 721m25 725m38
-. 725r38 727m25 729m38 729r38 731m25
-708e52 Ty{95|9E9} 714r13 718r16 724r13 728r16
-708a65 L_T{string} 713r10 723r13
-710i7 Result_I32{35|53I9} 716m13 717r47 720m13 721r47 726m13 727r47 730m13
-. 731r47
-711r7 Tmp{95|11R9} 715m13 716m53 716r53 719m13 720m53 720r53 725m13 726m54
-. 726r54 729m13 730m53 730r53
-736U14 Execute_Addition 736b14 736=32 736>55 746l8 746t24 836s13
-736r32 Stack{15|91R9[38|36]} 740r26 741m20 742r26 743m20 745m19
-736e55 Ty{95|9E9}
-737r7 A{38|13R9} 740m7 740r7 744r17
-737r10 B{38|13R9} 742m7 742r7 744r44
-738i7 Result{35|53I9} 744m7 745r41
-748U14 Execute_Numeric_Instruction 748b14 749>7 749=36 1034l8 1034t35 1420s13
-749r7 Instr{34|98R9} 752r12 754r47 756r47 758r47 760r47 762r57 784r57
-749r36 Environment{38|40R9} 754m28 754r28 756m28 756r28 758m28 758r28 760m28
-. 760r28 762m38 762r38 764m30 764r30 766m30 766r30 768m30 768r30 770m30 770r30
-. 772m30 772r30 774m30 774r30 776m30 776r30 778m30 778r30 780m30 780r30 782m30
-. 782r30 784m38 784r38 786m30 786r30 788m30 788r30 790m30 790r30 792m30 792r30
-. 794m30 794r30 796m30 796r30 798m30 798r30 800m30 800r30 802m30 802r30 804m30
-. 804r30 806m30 806r30 808m30 808r30 810m30 810r30 812m30 812r30 814m30 814r30
-. 816m30 816r30 818m30 818r30 820m30 820r30 822m30 822r30 824m30 824r30 826m30
-. 826r30 828m30 828r30 830m28 830r28 832m28 832r28 836m31 836r31 850m28 850r28
-. 852m28 852r28
-1036U14 Execute_Block_Entry 1036b14 1037>7 1037=40 1038>7 1038>32 1038>64
-. 1039>7 1093l8 1093t27 1156s10 1169s7 1245s13 1262s13
-1037r7 Instr{34|124R9} 1065r12 1068r47 1073r16 1076r47 1081r16
-1037r40 Environment{38|40R9} 1067m13 1067r13 1072m13 1072r13 1075m13 1075r13
-. 1080m13 1080r13 1083m13 1083r13 1092m7 1092r35
-1038m7 Instr_Ptr{35|80M9} 1060r23
-1038m32 End_Instr_Offset{35|80M9} 1060r54
-1038e64 Ty{95|7E9} 1061r60
-1039r7 Args{34|22R9} 1047r12
-1041m7 Params{35|69M9} 1049m13 1052m13 1056m13 1061r42
-1041m15 Results{35|69M9} 1050m13 1053m13 1057m13 1061r23
-1042r7 New_Block_Frame{40|13R9} 1059m7 1069r26 1077r26 1087r31
-1043i7 Arity{natural} 1073r45 1081r44
-1044i7 Lab_Ad{33|25I9} 1073r64 1081r63
-1045r7 Func{95|52R9} 1055m13 1055r13 1056r36 1057r36
-1095V13 Get_Blocks_Length{natural} 1095b13 1095>32 1104l8 1104t25 1124s10
-1095r32 Stack{15|91R9[38|36]} 1098r16 1098r37 1099r13
-1096i7 Length{natural} 1100m13 1100r23 1103r14
-1098i11 I{integer} 1099r20
-1106U14 Remove_Last_Block_Label 1106b14 1106=39 1115l8 1115t31 1135s7
-1106r39 Stack{15|91R9[38|36]} 1109r24 1109r45 1110r13 1111m21
-1109i11 I{integer} 1110r20 1111r28
-1117U14 Execute_End_Block 1117b14 1118>7 1118=36 1138l8 1138t25 1216s7 1249s13
-1118r7 Instr{34|124R9}
-1118r36 Environment{38|40R9} 1124r29 1125r24 1126r27 1127r16 1128r25 1135m32
-. 1135r32 1136m7 1136r35
-1120r7 Block{40|13R9} 1128m16
-1121i7 Last_Index{natural} 1125m10 1126r60
-1126i14 I{integer} 1127r35 1128r44
-1140U14 Execute_If 1140b14 1141>7 1141>49 1142>7 1142>41 1143=7 1174l8 1174t18
-. 1255s13
-1141r7 Instr{34|124R9} 1157r13 1170r10
-1141r49 Args{34|22R9} 1158r13 1171r22
-1142m7 Else_Offset{35|80M9} 1162r10 1170r36 1170r62
-1142m41 End_Offset{35|80M9} 1157r59 1163r65 1170r49
-1143r7 Environment{38|40R9} 1150r9 1152m20 1152r20 1157m20 1157r33 1163m10
-. 1163r38 1167r14 1170m17
-1145i7 Value_To_Evaluate{35|53I9} 1149m7 1154r10
-1146m7 Old{35|80M9} 1167m7 1170r30
-1176V13 Execute_Branching_If{38|51E9} 1176b13 1177>7 1177>25 1177=54 1197l8
-. 1197t28 1267s15
-1177m7 To{35|80M9} 1191r36
-1177r25 Instr{34|124R9}
-1177r54 Environment{38|40R9} 1183r42 1184m20 1184r20 1191m40 1191r40 1194m7
-. 1194r35
-1180r7 Value_To_Evaluate{38|13R9} 1183m7 1183r7 1186r50 1188r28
-1181m7 Cond{35|80M9} 1188m7 1190r10
-1199U14 Execute_Nop 1199b14 1202l8 1202t19 1269s13
-1204U14 Execute_Branching_Table 1204b14 1205>7 1205=36 1209l8 1209t31 1271s13
-1205r7 Instr{34|124R9}
-1205r36 Environment{38|40R9}
-1211U14 Execute_Else 1211b14 1212>7 1212=41 1213>7 1218l8 1218t20 1259s13
-1212r7 Instr{34|124R9} 1216r26
-1212r41 Environment{38|40R9} 1216m33 1217m7 1217r35
-1213m7 End_Offset{35|80M9} 1217r62
-1220V13 Execute_Unreachable{38|51E9} 1220b13 1223l8 1223t27 1279s20
-1225V13 Exec_Return{38|51E9} 1225b13 1225=26 1235l8 1235t19 1273s20
-1225r26 Environment{38|40R9} 1228r14
-1226m7 Old{35|80M9} 1228m7
-1237V13 Execute_Control_Instruction{38|51E9} 1237b13 1238>7 1238=36 1282l8
-. 1282t35 1424s15
-1238r7 Instr{34|124R9} 1242r12 1246r16 1247r16 1247r44 1249r32 1252r39 1256r16
-. 1256r23 1256r44 1257r16 1259r27 1259r47 1263r16 1264r16 1264r50 1267r37
-. 1267r56 1271r38
-1238r36 Environment{38|40R9} 1246m23 1246r36 1249m39 1252m55 1252r55 1257m37
-. 1259m34 1263m23 1263r36 1267m63 1267r63 1271m45 1273m33 1273r33
-1284U14 Execute_Reference_Instruction 1284b14 1285>7 1285=38 1289l8 1289t37
-. 1426s13
-1285r7 Instr{34|113R9}
-1285r38 Environment{38|40R9}
-1291U14 Execute_Table_Instruction 1291b14 1292>7 1292>34 1296l8 1296t33 1428s13
-1292r7 Instr{34|163R9}
-1292r34 Stack{15|91R9[38|36]}
-1298U14 Execute_Parametric_Instruction 1298b14 1299>7 1299>39 1303l8 1303t38
-. 1430s13
-1299r7 Instr{34|201R9}
-1299r39 Stack{15|91R9[38|36]}
-1305U14 Get_Push_Local_Variable 1305b14 1306>7 1306=26 1320l8 1320t31 1369s13
-1306i7 Addr{33|35I12} 1310r19 1311r63
-1306r26 Environment{38|40R9} 1310r42 1311r23 1313m18 1313r18
-1308r7 Local_Var{95|33R9} 1311m10 1313r60 1315r31
-1322U14 Set_Pop_Local_Variable 1322b14 1323>7 1323=26 1345l8 1345t30 1372s13
-1323i7 Addr{33|35I12} 1326r19 1329r48
-1323r26 Environment{38|40R9} 1326r42 1327r27 1329m16 1329r16 1330r30 1335r33
-. 1337m26 1337r26
-1347U14 Duplicate_Set_Variable 1347b14 1347>38 1350l8 1350t30 1374s13
-1347i38 Addr{33|35I12}
-1352U14 Get_Push_Global_Variable 1352b14 1352>40 1355l8 1355t32 1376s13
-1352i40 Addr{33|35I12}
-1357U14 Set_Push_Global_Variable 1357b14 1357>40 1360l8 1360t32 1378s13
-1357i40 Addr{33|35I12}
-1362U14 Execute_Variable_Instruction 1362b14 1363>7 1363=37 1380l8 1380t36
-. 1433s13
-1363r7 Instr{34|186R9} 1366r12 1369r38 1372r37 1374r37 1376r39 1378r39
-1363r37 Environment{38|40R9} 1369m58 1372m57
-1382U14 Execute_Memory_Instruction 1382b14 1383>7 1383>35 1387l8 1387t34
-. 1435s13
-1383r7 Instr{34|210R9}
-1383r35 Stack{15|91R9[38|36]}
-1389U14 Execute_Vector_128_Instruction 1389b14 1390>7 1390>35 1394l8 1394t38
-. 1437s13
-1390r7 Instr{34|302R9}
-1390r35 Stack{15|91R9[38|36]}
-1396V13 Get_Instruction{34|15P9} 1396b13 1396>30 1408l8 1408t23 1414s15
-1396r30 Environment{38|40R9} 1398r19 1399r26 1400r11 1405r12 1406r24
-1412p7 Inst{34|15P9} 1414m7 1417r12 1420r42 1424r44 1426r44 1428r40 1431r16
-. 1433r43 1435r41 1438r16
-1445e7 Control{38|51E9} 1448m10 1449r15
+6V13 Shift_Left{35|53I9} 7>7 7>27
+7i7 Value{35|53I9}
+7i27 Amount{natural}
+10V13 Shift_Right{35|53I9} 11>7 11>27
+11i7 Value{35|53I9}
+11i27 Amount{natural}
+14U14 Push_Value 14b14 14=26 14>49 56l8 56t18 244s7 253s10 353s7 457s13 461s13
+. 467s13 471s13
+14r26 Stack{14|91R9[40|54]} 20m19 20r19 28m19 28r19 39m19 39r19 47m19 47r19
+14r49 Num{81|79R9} 16r12 18r18 26r59 34r59 37r18 45r59 53r59
+58U14 Free[31|20]
+62i7 Label_Count{natural} 67m13 67r28 70r14
+64i11 I{integer} 66r32
+73U14 Adding_Start_Call_Frame 73b14 74>7 74=30 82l8 82t31 94s7
+74r7 start{83|28R9} 79r55 80r23
+74r30 Stack{14|91R9[40|54]} 81m7 81r7
+76r7 Current_Frame{40|28R9} 78m7 78r7 81r47
+88r7 Current_Frame{40|28R9} 96r46 97m7 97r7 100r61
+89r7 Current_Module{33|163R9} 96m7 101r20
+90r7 Tab{11|56R9[38|58]} 100r50
+104V13 Count_Values_Top_Stack{natural} 104b13 104>37 116l8 116t30 211s25
+104r37 Environment{38|64R9} 107r16 107r49 109r13
+105i7 Value_Size{natural} 110m13 110r27 115r14
+107i11 I{integer} 109r32
+118V13 Pop_Values{14|91R9[40|54]} 118b13 118>25 118=38 126l8 126t18 213s25
+118i25 N{natural} 121r21
+118r38 Environment{38|64R9} 122r47 123m23 123r23
+119r7 Popped_Values{14|91R9[40|54]} 122m10 122r10 125r14
+121i11 i{integer}
+128U14 Pop_Label_Or_Values 128b14 128>35 128=55 132l8 132t27 219s16
+128i35 Position{natural} 131r63
+128r55 Stack{14|91R9[40|54]} 131m10 131r44
+134U14 Push_Values 134b14 134>27 134>42 134=55 138l8 138t19 222s10
+134r27 Temp{14|91R9[40|54]} 137r40
+134i42 N{natural}
+134r55 Environment{38|64R9} 137m7 137r7
+140V13 Get_Lab_Position{natural} 140b13 140>31 140>49 154l8 154t24 199s19
+140m31 To{35|80M9} 142r32 153r65
+140r49 Stack{14|91R9[40|54]} 144r28 144r49 145r13
+142m7 Counter{35|80M9} 146r16 149m16 149r27
+144i11 Index{integer} 145r20 147r23
+156V13 Get_Lab_From_Position{35|80M9} 156b13 157>7 157>22 168l8 168t29 200s19
+157i7 Pos{natural} 160r11 160r49 162r20 163r43 164r24
+157r22 Stack{14|91R9[40|54]} 160r31 160r68 162r13 164r17
+170V13 Get_Block_Type{81|38E9} 170b13 170>29 170>44 180l8 180t22 201s19
+170i29 Pos{natural} 172r11 172r49 174r20 175r43 176r24
+170r44 Stack{14|91R9[40|54]} 172r31 172r68 174r13 176r17
+182U14 Pop_Values_Before_Label 182b14 183>7 183=27 188l8 188t31 217s16
+183i7 Position{natural} 187r63
+183r27 Stack{14|91R9[40|54]} 187m10 187r44
+190U14 Jump_If_Block_Exists 190b14 190>36 190=54 231l8 231t28 237s7
+190m36 To{35|80M9} 199r37
+190r54 Environment{38|64R9} 199r41 200r52 201r45 203r34 205r27 209r35 211r49
+. 213m48 213r48 217m51 217r51 219m47 219r47 222m47 224m10 226r38
+192i7 Lab_Arity{natural} 208m10 211r65 213r37 222r36
+193i7 Position{natural} 199m7 200r42 201r35 205r43 217r41 219r37
+194m7 Lab_Id{35|80M9} 200m7 203r55 209r56 226r59
+195r7 Tmp_Storage{14|91R9[40|54]} 213m10 222r23
+196e7 Block_Ty{81|38E9} 201m7 202r17 215r15
+233V13 Execute_Branching{38|75E9} 233b13 234>7 234=25 240l8 240t25 1119s17
+. 1180s20
+234m7 To{35|80M9} 237r29
+234r25 Environment{38|64R9} 237m33 238m7 238r35
+242U14 Execute_Const 242b14 242=29 242>52 245l8 245t21 683s13 685s13 687s13
+. 689s13
+242r29 Stack{14|91R9[40|54]} 244m19
+242r52 Var{81|79R9} 244r26
+247U14 Execute_Compare_To_Zero 247b14 248=7 248>30 255l8 255t31 691s13 713s13
+248r7 Stack{14|91R9[40|54]} 251m20 253m22
+248r30 Var{81|79R9} 252r10 252r37 253r29
+271V13 Compare_NT{boolean} 271b13 271>25 271>28 271>46 349l8 349t18 357r37
+271r25 A{81|79R9} 273r10 274r15 276r21 280r36 282r36 284r36 286r36 288r36
+. 290r36 295r36 297r36 299r36 301r36 303r36 305r36 310r21 315r36 317r36 319r36
+. 321r36 323r36 325r36 331r36 333r36 335r36 337r36 339r36 341r36
+271r28 B{81|79R9} 273r16 280r51 282r52 284r51 286r51 288r52 290r52 295r51
+. 297r52 299r51 301r51 303r52 305r52 315r51 317r52 319r51 321r51 323r52 325r52
+. 331r51 333r52 335r51 337r51 339r52 341r52
+271e46 Op{38|24E9} 278r27 293r27 313r27 329r27
+351U14 Push_NT 351b14 351=23 351>46 354l8 354t15 357r66
+351r23 Stack{14|91R9[40|54]} 353m19
+351i46 Value{integer} 353r66
+356U14 Check_Push_NT[38|30] 259b14 377s7
+360V13 Pop_Value{81|79R9} 360b13 360=24 366l8 366t17 455s27 459s27 465s27
+. 469s27
+360r24 Stack{14|91R9[40|54]} 363r31 364m20
+361r7 Result{81|79R9} 363m7 365r14
+368U14 Execute_Compare 368b14 368=31 368>54 378l8 378t23 693s13 695s13 697s13
+. 699s13 701s13 703s13 705s13 707s13 709s13 711s13 715s13 717s13 719s13 721s13
+. 723s13 725s13 727s13 729s13 731s13 733s13 735s13 737s13 739s13 741s13 743s13
+. 745s13 747s13 749s13 751s13 753s13 755s13 757s13
+368r31 Stack{14|91R9[40|54]} 371r22 373r26 374m20 375r26 376m20 377m22
+368e54 Op{38|24E9} 377r69
+369r7 A{40|36R9} 373m7 377r29
+369r10 B{40|36R9} 375m7 377r46
+380V13 Count_Leading_Zeroes_I32{35|53I9} 380b13 381=7 395l8 395t32 456s27
+381i7 Value{35|53I9} 385r10 389r13 390m10 390r20
+383i7 Result{35|53I9} 386m10 391m10 391r20 394r14
+397V13 Count_Trailing_Zeroes_I32{35|53I9} 397b13 398=7 412l8 412t33 466s27
+398i7 Value{35|53I9} 402r10 406r14 407m10 407r20
+400i7 Result{35|53I9} 403m10 408m10 408r20 411r14
+414V13 Count_Leading_Zeroes_I64{35|53I9} 414b13 415=7 429l8 429t32 460s27
+. 470s27
+415i7 Value{35|56I9} 419r10 423r13 424m10 424r20
+417i7 Result{35|53I9} 420m10 425m10 425r20 428r14
+431V13 Count_Trailing_Zeroes_I64{35|53I9} 431b13 432=7 446l8 446t33
+432i7 Value{35|56I9} 436r10 440r14 441m10 441r20
+434i7 Result{35|53I9} 437m10 442m10 442r20 445r14
+448U14 Execute_Count 448b14 448=29 448>52 448>65 474l8 474t21 759s13 761s13
+. 763s13 781s13
+448r29 Stack{14|91R9[40|54]} 455m38 455r38 457m25 459m38 459r38 461m25 465m38
+. 465r38 467m25 469m38 469r38 471m25
+448e52 Ty{81|40E9} 454r13 458r16 464r13 468r16
+448a65 L_T{string} 453r10 463r13
+450i7 Result_I32{35|53I9} 456m13 457r60 460m13 461r60 466m13 467r60 470m13
+. 471r60
+451r7 Tmp{81|79R9} 455m13 456m53 456r53 459m13 460m53 460r53 465m13 466m54
+. 466r54 469m13 470m53 470r53
+480*7 Result{38|36+12} 482m7 483r27
+489*7 Result{38|45+12} 491m7 492r26
+495V13 Clc_Signed{81|52R9} 495b13 496>7 496>10 496>27 496>43 565l8 565t18
+. 649r55
+496r7 A{81|52R9} 504r41 506r41 508r41 510r41 512r41 530r41 535r41 537r41
+. 539r41 541r41 543r41 562r41
+496r10 B{81|52R9} 504r50 506r50 508r50 510r50 512r52 530r52 535r50 537r50
+. 539r50 541r50 543r52 562r52
+496e27 Op{81|33E9} 502r18 533r18
+496e43 Size{81|48E9} 500r12
+567U14 Push_Signed 567b14 567=27 567>50 572l8 572t19 650r22
+567r27 Stack{14|91R9[40|54]} 569m7 569r7
+567r50 Result{81|52R9} 571r67
+593V13 Clc_Float{81|70R9} 593b13 594>7 594>10 594>26 594>42 637l8 637t17
+. 653r43
+594r7 A{81|70R9} 601r41 603r41 605r41 607r41 620r41 622r41 624r41 626r41
+594r10 B{81|70R9} 601r50 603r50 605r50 607r50 620r50 622r50 624r50 626r50
+594e26 Op{81|33E9} 599r18 618r18
+594e42 Size{81|48E9} 597r12
+639U14 Push_Float 639b14 639=26 639>49 644l8 644t18 653r68
+639r26 Stack{14|91R9[40|54]} 641m7 641r7
+639r49 Result{81|70R9} 643r67
+648U14 Calculate_Signed[38|40] 477b14 667s13
+652U14 Calculate_Float[38|49] 486b14 671s13
+655U14 Execute_Binary_Op 655b14 656=7 656>30 656>39 656>55 675l8 675t25 765s13
+. 767s13 769s13 771s13 773s13 785s13 787s13 789s13 791s13 793s13 845s13 847s13
+. 849s13 851s13 873s13 875s13 877s13 879s13
+656r7 Stack{14|91R9[40|54]} 661r26 662m20 663r26 664m20 668m16 672m16
+656e30 T{81|46E9} 665r12
+656e39 Op{81|33E9} 668r77 672r77
+656e55 Size{81|48E9} 669r16 673r16
+658r7 A{40|42R9} 661m7 661r7 668r23 672r23
+658r10 B{40|42R9} 663m7 663r7 668r50 672r50
+659r7 Result{81|79R9}
+677U14 Execute_Numeric_Instruction 677b14 678>7 678=36 963l8 963t35 1347s13
+678r7 Instr{34|103R9} 681r12 683r47 685r47 687r47 689r47 691r57 713r57
+678r36 Environment{38|64R9} 683m28 683r28 685m28 685r28 687m28 687r28 689m28
+. 689r28 691m38 691r38 693m30 693r30 695m30 695r30 697m30 697r30 699m30 699r30
+. 701m30 701r30 703m30 703r30 705m30 705r30 707m30 707r30 709m30 709r30 711m30
+. 711r30 713m38 713r38 715m30 715r30 717m30 717r30 719m30 719r30 721m30 721r30
+. 723m30 723r30 725m30 725r30 727m30 727r30 729m30 729r30 731m30 731r30 733m30
+. 733r30 735m30 735r30 737m30 737r30 739m30 739r30 741m30 741r30 743m30 743r30
+. 745m30 745r30 747m30 747r30 749m30 749r30 751m30 751r30 753m30 753r30 755m30
+. 755r30 757m30 757r30 759m28 759r28 761m28 761r28 763m28 763r28 765m32 765r32
+. 767m32 767r32 769m32 769r32 771m32 771r32 773m32 773r32 781m28 781r28 785m32
+. 785r32 787m32 787r32 789m32 789r32 791m32 791r32 793m32 793r32 845m32 845r32
+. 847m32 847r32 849m32 849r32 851m32 851r32 873m32 873r32 875m32 875r32 877m32
+. 877r32 879m32 879r32
+965U14 Execute_Block_Entry 965b14 966>7 966=40 967>7 967>32 967>64 968>7
+. 1022l8 1022t27 1085s10 1097s7 1173s13 1190s13
+966r7 Instr{34|129R9} 994r12 997r47 1002r16 1005r47 1010r16
+966r40 Environment{38|64R9} 996m13 996r13 1001m13 1001r13 1004m13 1004r13
+. 1009m13 1009r13 1012m13 1012r13 1021m7 1021r35
+967m7 Instr_Ptr{35|80M9} 989r23
+967m32 End_Instr_Offset{35|80M9} 989r54
+967e64 Ty{81|38E9} 990r60
+968r7 Args{34|31R9} 976r12
+970m7 Params{35|69M9} 978m13 981m13 985m13 990r42
+970m15 Results{35|69M9} 979m13 982m13 986m13 990r23
+971r7 New_Block_Frame{40|20R9} 988m7 998r26 1006r26 1016r31
+972i7 Arity{natural} 1002r45 1010r44
+973i7 Lab_Ad{33|29I9} 1002r64 1010r63
+974r7 Func{81|129R9} 984m13 984r13 985r36 986r36
+1024V13 Get_Blocks_Length{natural} 1024b13 1024>32 1033l8 1033t25 1053s10
+1024r32 Stack{14|91R9[40|54]} 1027r16 1027r37 1028r13
+1025i7 Length{natural} 1029m13 1029r23 1032r14
+1027i11 I{integer} 1028r20
+1035U14 Remove_Last_Block_Label 1035b14 1035=39 1044l8 1044t31 1064s7
+1035r39 Stack{14|91R9[40|54]} 1038r24 1038r45 1039r13 1040m21
+1038i11 I{integer} 1039r20 1040r28
+1046U14 Execute_End_Block 1046b14 1047>7 1047=36 1067l8 1067t25 1144s7 1177s13
+1047r7 Instr{34|129R9}
+1047r36 Environment{38|64R9} 1053r29 1054r24 1055r27 1056r16 1057r25 1064m32
+. 1064r32 1065m7 1065r35
+1049r7 Block{40|20R9} 1057m16
+1050i7 Last_Index{natural} 1054m10 1055r60
+1055i14 I{integer} 1056r35 1057r44
+1069U14 Execute_If 1069b14 1070>7 1070>49 1071>7 1071>41 1072=7 1102l8 1102t18
+. 1183s13
+1070r7 Instr{34|129R9} 1086r13 1098r10
+1070r49 Args{34|31R9} 1087r13 1099r22
+1071m7 Else_Offset{35|80M9} 1091r10 1098r36 1098r62
+1071m41 End_Offset{35|80M9} 1086r59 1092r65 1098r49
+1072r7 Environment{38|64R9} 1079r9 1081m20 1081r20 1086m20 1086r33 1092m10
+. 1092r38 1096r14 1098m17
+1074i7 Value_To_Evaluate{35|53I9} 1078m7 1083r10
+1075m7 Old{35|80M9} 1096m7 1098r30
+1104V13 Execute_Branching_If{38|75E9} 1104b13 1105>7 1105>25 1105=54 1125l8
+. 1125t28 1195s15
+1105m7 To{35|80M9} 1119r36
+1105r25 Instr{34|129R9}
+1105r54 Environment{38|64R9} 1111r42 1112m20 1112r20 1119m40 1119r40 1122m7
+. 1122r35
+1108r7 Value_To_Evaluate{40|42R9} 1111m7 1111r7 1116r28
+1109m7 Cond{35|80M9} 1116m7 1118r10
+1127U14 Execute_Nop 1127b14 1130l8 1130t19 1197s13
+1132U14 Execute_Branching_Table 1132b14 1133>7 1133=36 1137l8 1137t31 1199s13
+1133r7 Instr{34|129R9}
+1133r36 Environment{38|64R9}
+1139U14 Execute_Else 1139b14 1140>7 1140=41 1141>7 1146l8 1146t20 1187s13
+1140r7 Instr{34|129R9} 1144r26
+1140r41 Environment{38|64R9} 1144m33 1145m7 1145r35
+1141m7 End_Offset{35|80M9} 1145r62
+1148V13 Execute_Unreachable{38|75E9} 1148b13 1151l8 1151t27 1207s20
+1153V13 Exec_Return{38|75E9} 1153b13 1153=26 1163l8 1163t19 1201s20
+1153r26 Environment{38|64R9} 1156r14
+1154m7 Old{35|80M9} 1156m7
+1165V13 Execute_Control_Instruction{38|75E9} 1165b13 1166>7 1166=36 1210l8
+. 1210t35 1351s15
+1166r7 Instr{34|129R9} 1170r12 1174r16 1175r16 1175r44 1177r32 1180r39 1184r16
+. 1184r23 1184r44 1185r16 1187r27 1187r47 1191r16 1192r16 1192r50 1195r37
+. 1195r56 1199r38
+1166r36 Environment{38|64R9} 1174m23 1174r36 1177m39 1180m55 1180r55 1185m37
+. 1187m34 1191m23 1191r36 1195m63 1195r63 1199m45 1201m33 1201r33
+1212U14 Execute_Reference_Instruction 1212b14 1213>7 1213=38 1217l8 1217t37
+. 1353s13
+1213r7 Instr{34|118R9}
+1213r38 Environment{38|64R9}
+1219U14 Execute_Table_Instruction 1219b14 1220>7 1220>34 1224l8 1224t33 1355s13
+1220r7 Instr{34|168R9}
+1220r34 Stack{14|91R9[40|54]}
+1226U14 Execute_Parametric_Instruction 1226b14 1227>7 1227>39 1231l8 1231t38
+. 1357s13
+1227r7 Instr{34|206R9}
+1227r39 Stack{14|91R9[40|54]}
+1233U14 Get_Push_Local_Variable 1233b14 1234>7 1234=26 1248l8 1248t31 1296s13
+1234i7 Addr{33|39I12} 1238r19 1239r63
+1234r26 Environment{38|64R9} 1238r42 1239r23 1241m18 1241r18
+1236r7 Local_Var{81|110R9} 1239m10 1241r60
+1250U14 Set_Pop_Local_Variable 1250b14 1251>7 1251=26 1272l8 1272t30 1299s13
+1251i7 Addr{33|39I12} 1254r19 1257r48
+1251r26 Environment{38|64R9} 1254r42 1255r27 1257m16 1257r16 1258r30 1264m26
+. 1264r26
+1274U14 Duplicate_Set_Variable 1274b14 1274>38 1277l8 1277t30 1301s13
+1274i38 Addr{33|39I12}
+1279U14 Get_Push_Global_Variable 1279b14 1279>40 1282l8 1282t32 1303s13
+1279i40 Addr{33|39I12}
+1284U14 Set_Push_Global_Variable 1284b14 1284>40 1287l8 1287t32 1305s13
+1284i40 Addr{33|39I12}
+1289U14 Execute_Variable_Instruction 1289b14 1290>7 1290=37 1307l8 1307t36
+. 1360s13
+1290r7 Instr{34|191R9} 1293r12 1296r38 1299r37 1301r37 1303r39 1305r39
+1290r37 Environment{38|64R9} 1296m58 1299m57
+1309U14 Execute_Memory_Instruction 1309b14 1310>7 1310>35 1314l8 1314t34
+. 1362s13
+1310r7 Instr{34|215R9}
+1310r35 Stack{14|91R9[40|54]}
+1316U14 Execute_Vector_128_Instruction 1316b14 1317>7 1317>35 1321l8 1321t38
+. 1364s13
+1317r7 Instr{34|307R9}
+1317r35 Stack{14|91R9[40|54]}
+1323V13 Get_Instruction{34|24P9} 1323b13 1323>30 1335l8 1335t23 1341s15
+1323r30 Environment{38|64R9} 1325r19 1326r26 1327r11 1332r12 1333r24
+1339p7 Inst{34|24P9} 1341m7 1344r12 1347r42 1351r44 1353r44 1355r40 1358r16
+. 1360r43 1362r41 1365r16
+1372e7 Control{38|75E9} 1375m10 1376r15
 X 40 stack.ads
-8K9*Stack 38|6w6 6r49 40|36e10
-13R9*Block_Frame 38|19r26 39|1042r25 1120r20 40|19e14
-14m7*Instr_ptr{35|80M9} 39|1060m10
-15m7*End_Instr_Offset{35|80M9} 39|1060m34
-16m7*Results{35|69M9} 39|1061m10
-17m7*Params{35|69M9} 39|1061m32
-18e7*B_Type{95|7E9} 39|124r35 1061m50
-21R9*Call_Frame 38|21r20 44r17 39|24r23 36r24 40|27e14
-22m7*Instr_Ptr{35|80M9} 39|27m10 172m25 186m22 186r50 1092m22 1092r50 1136m22
-. 1136r50 1157r48 1163m25 1163r53 1167r29 1194m22 1194r50 1217m22 1217r50
-. 1246r51 1263r51 1398r34 1399r41 1406r39 1416r52 1440m22 1440r50
-23m7*Block_Ptr{35|80M9} 39|27m26 1228r29
-24r7*Func_Inst{97|21R9} 39|27m42 1400r26 1405r27
-25i7*Module_Addr{33|37I12} 39|27m62 44r60
-26r7*Locals{15|91R9[95|44]} 39|28m10 1310r57 1311r38 1326r57 1329m31
-29R9*Value_Stack 38|16r19 40|31e14
-30r7*Val{95|33R9} 39|197m20 204m20 210m20 216m20 237m23 244m23 260m20 266m20
-. 272m20 278m20 317r42 615r40 617r40 620r41 621r34 624r29 624r55 627r29 627r55
-. 630r29 630r55 633r29 633r55 636r29 636r55 744r23 744r50 1150r44 1188r50
-. 1313m53 1330r53 1335r56
+14K9*Stack 38|14w6 14r49 40|64e10
+20R9*Block_Frame 39|971r25 1049r20 40|26e14
+21m7*Instr_ptr{35|80M9} 39|989m10
+22m7*End_Instr_Offset{35|80M9} 39|989m34
+23m7*Results{35|69M9} 39|990m10
+24m7*Params{35|69M9} 39|990m32
+25e7*B_Type{81|38E9} 39|176r35 990m50
+28R9*Call_Frame 38|68r17 39|76r23 88r24 40|34e14
+29m7*Instr_Ptr{35|80M9} 39|79m10 224m25 238m22 238r50 1021m22 1021r50 1065m22
+. 1065r50 1086r48 1092m25 1092r53 1096r29 1122m22 1122r50 1145m22 1145r50
+. 1174r51 1191r51 1325r34 1326r41 1333r39 1343r52 1367m22 1367r50
+30m7*Block_Ptr{35|80M9} 39|79m26 1156r29
+31r7*Func_Inst{83|28R9} 39|79m42 1327r26 1332r27
+32i7*Module_Addr{33|41I12} 39|79m62 96r60
+33r7*Locals{14|91R9[81|121]} 39|80m10 1238r57 1239r38 1254r57 1257m31
+36R9*Value_Stack 39|369r14 40|38e14
+37r7*Val{81|110R9} 39|23m26 31m26 42m26 50m26 363r42 377r31 377r48 571m19
+. 643m19 668r29 668r56 672r29 672r56 1079r44 1116r50 1241m53 1258r53
+40n21*Value{40E9} 39|21r23 29r23 40r23 48r23 109r41 570r11 642r11 1241r38
+. 1255r52
+40n28*Label{40E9} 39|66r41 145r33 162r39 174r39 997r26 1005r26 1014r31 1028r37
+. 1039r37 1056r52
+40n35*Activation_Call{40E9} 39|81r22
+42R9*Element_Variation 39|658r16 1108r27 40|52e14
+42e28*Elt{40E9} 39|66r35 109r35 145r27 162r33 174r33 997m17 1005m17 1014m17
+. 1028r31 1039r31 1056r46 1255r46
+45r13*Val{36R9} 39|22m23 30m23 41m23 49m23 363r38 373r33 375r33 571m11 643m11
+. 668r25 668r52 672r25 672r52 1079r40 1116r46 1241m45 1258r49
+47m13*Special_Id{35|80M9} 39|164r29 997m33 1005m33 1015m17
+48r13*Block{20R9} 39|176r29 998m17 1006m17 1016m17 1057r55
+50r13*Call{28R9} 39|81m39 97r46
+54K12*Stack_Vector[14|74] 38|20r8 65r17
 X 41 system.ads
 67M9*Address
-X 63 s-memory.ads
+X 57 s-memory.ads
 51V13*Alloc{41|67M9} 101i<c,__gnat_malloc>22
 66U14*Free 102i<c,__gnat_free>22
 74V13*Realloc{41|67M9} 103i<c,__gnat_realloc>22
-X 74 s-stalib.adb
+X 66 s-stalib.adb
 87U14 Break_Start 88i<c,__gnat_break_start>22
-X 95 types.ads
-3K9*Types 38|5w6 5r49 95|78e10
-7E9*Block_Type 39|118r67 144r21 1038r69 95|7e64
-7n24*Loop_Block{7E9} 39|164r18 1264r38
-7n36*If_Block{7E9} 39|166r26 1157r71
-7n46*Else_Block{7E9} 39|166r37 1171r10
-7n58*Block{7E9} 39|166r18 1247r37
-9E9*Number 39|600r59 708r57 736r60 95|9e55
-9n20*I_32{9E9} 39|193r15 198r51 233r18 239r41 256r15 261r51 328r33 330r33
-. 334r33 336r33 340r33 342r33 346r33 348r33 352r33 354r33 358r33 360r33 364r33
-. 367r33 612r15 714r18 717r33 721r33 724r18 727r33 731r33 745r27 764r49 766r49
-. 768r49 772r49 776r49 780r49 830r47 832r47 836r50
-9n26*I_64{9E9} 39|200r15 205r51 240r18 246r41 262r15 267r51 381r33 383r33
-. 387r33 389r33 393r33 395r33 399r33 401r33 405r33 407r33 411r33 413r33 622r15
-. 718r21 728r21 786r49 788r49 790r49 794r49 798r49 802r49 850r47 852r47
-9n32*F_32{9E9} 39|206r15 211r51 268r15 273r51 426r33 428r33 432r33 434r33
-. 438r33 440r33 444r33 446r33 450r33 452r33 456r33 458r33 631r15 806r49 808r49
-. 810r49 812r49 814r49 816r49
-9n38*F_64{9E9} 39|212r15 217r51 274r15 279r51 471r33 473r33 477r33 479r33
-. 483r33 485r33 489r33 491r33 495r33 497r33 501r33 503r33 634r15 818r49 820r49
-. 822r49 824r49 826r49 828r49
-9n44*U_32{9E9} 39|516r33 518r33 522r33 524r33 528r33 530r33 534r33 536r33
-. 540r33 542r33 546r33 548r33 625r15 770r49 774r49 778r49 782r49
-9n50*U_64{9E9} 39|561r33 563r33 567r33 569r33 573r33 575r33 579r33 581r33
-. 585r33 587r33 591r33 593r33 628r15 792r49 796r49 800r49 804r49
-11R9*Number_Type 39|190r58 223r68 253r55 314r54 315r16 711r20 95|26e14
-11e22*Num{9E9} 39|192r16 232r19 255r16
-14i13*I_32{35|53I9} 39|198m57 198r69 199r63 231r14 239m47 239r59 261m57 261r69
-. 328m39 330m39 334m39 336m39 340m39 342m39 346m39 348m39 352m39 354m39 358m39
-. 360m39 364m39 367m39 615r54 617r54 620r55 621r48 716m57 716r57 717m39 721m39
-. 726m58 726r58 727m39 731m39 744r37 744r64 745m33 1150r58 1188r64 1315r51
-. 1335r70
-16i13*I_64{35|56I9} 39|205m57 205r69 231r35 246m47 246r59 267m57 267r69 381m39
-. 383m39 387m39 389m39 393m39 395m39 399m39 401m39 405m39 407m39 411m39 413m39
-. 624r43 624r69 720m57 730m57
-18f13*F_32{35|217F9} 39|211m57 211r69 273m57 273r69 426m39 428m39 432m39
-. 434m39 438m39 440m39 444m39 446m39 450m39 452m39 456m39 458m39 633r43 633r69
-20f13*F_64{35|220F9} 39|217m57 217r69 279m57 279r69 471m39 473m39 477m39
-. 479m39 483m39 485m39 489m39 491m39 495m39 497m39 501m39 503m39 636r43 636r69
-22m13*U_32{35|80M9} 39|516m39 518m39 522m39 524m39 528m39 530m39 534m39 536m39
-. 540m39 542m39 546m39 548m39 627r43 627r69
-24m13*U_64{35|83M9} 39|561m39 563m39 567m39 569m39 573m39 575m39 579m39 581m39
-. 585m39 587m39 591m39 593m39 630r43 630r69
-32n32*Number_Value{32E9} 39|198r23 205r23 211r23 217r23 238r26 245r26 261r23
-. 267r23 273r23 279r23
-33R9*Value_Type 39|1308r19 95|42e14
-36r13*Num_Value{11R9} 39|198m37 205m37 211m37 217m37 239m27 246m27 261m37
-. 267m37 273m37 279m37 317r46 615r44 617r44 620r45 621r38 624r33 624r59 627r33
-. 627r59 630r33 630r59 633r33 633r59 636r33 636r59 744r27 744r54 1150r48
-. 1188r54 1315r41 1335r60
-44K12*Value_Type_Vectors[15|74] 39|1328r13
-48R12*Result_Type{15|91R9[44]}
-50R12*Parameter_Type{15|91R9[44]}
-52R9*Function_Type 39|1045r25 95|55e14
-53r7*Params{50R12} 39|1056r41
-54r7*Results{48R12} 39|1057r41
-X 97 wasm.ads
-8K9*Wasm 38|8w6 8r49 97|126e9
-21R9*Function_Spec 38|56r59 39|22r15 33r59 97|25e14
-22p7*Instructions{34|18P9} 39|1400r36 1405r37
-23r7*Locals{15|91R9[95|44]} 39|28r29
+X 81 types.ads
+13K9*Types 38|13w6 13r49 81|155e10
+33E9*Binary_Op 38|38r25 41r45 47r25 50r45 39|478r45 487r45 496r32 594r31
+. 656r44 81|36e49
+34n7*Addition{33E9} 39|503r21 534r21 600r21 619r21 765r54 785r54 845r54 873r54
+34n17*Subtraction{33E9} 39|505r21 536r21 602r21 621r21 767r54 787r54 847r54
+. 875r54
+34n30*Multiplication{33E9} 39|507r21 538r21 604r21 623r21 769r54 789r54 849r54
+. 877r54
+34n46*Division{33E9} 39|509r21 540r21 606r21 625r21 771r54 773r54 791r54
+. 793r54 851r54 879r54
+34n56*Remainder{33E9} 39|511r21 542r21
+36n21*Minimum{33E9} 39|527r21 559r21
+36n30*Maximum{33E9} 39|527r31 559r31
+36n39*Copy_Sign{33E9} 39|527r41 559r41
+38E9*Block_Type 39|170r67 196r21 967r69 81|38e64
+38n24*Loop_Block{38E9} 39|216r18 1192r38
+38n36*If_Block{38E9} 39|218r26 1086r71
+38n46*Else_Block{38E9} 39|218r37 1099r10
+38n58*Block{38E9} 39|218r18 1175r37
+40E9*Number 39|448r57 81|40e55
+40n20*I_32{40E9} 39|454r18 464r18 759r47 761r47
+40n26*I_64{40E9} 39|458r21 468r21 763r47 781r47
+42n20*I_32{42E9} 39|19r21 26r45 277r24 353r40 457r46 461r46 467r46 471r46
+. 504r27 506r27 508r27 510r27 512r27 530r27
+42n26*I_64{42E9} 39|27r21 34r45 292r24 535r27 537r27 539r27 541r27 543r27
+. 562r27
+44n20*F_32{44E9} 39|38r21 45r45 311r24 601r27 603r27 605r27 607r27
+44n26*F_64{44E9} 39|46r21 53r45 328r24 620r27 622r27 624r27 626r27
+46E9*S_F 39|656r34 81|46e22
+46n17*S{46E9} 39|17r15 26r32 34r32 275r18 353r27 457r33 461r33 467r33 471r33
+. 571r55 666r15 765r51 767r51 769r51 771r51 773r51 785r51 787r51 789r51 791r51
+. 793r51
+46n20*F{46E9} 39|36r15 45r32 53r32 309r18 643r55 670r15 845r51 847r51 849r51
+. 851r51 873r51 875r51 877r51 879r51
+48E9*Numeric_Size 38|38r43 41r63 47r43 50r63 39|478r63 487r63 496r50 594r49
+. 656r62 81|48e39
+48n26*S_F32{48E9} 39|501r15 598r15 765r64 767r67 769r70 771r64 773r64 845r64
+. 847r67 849r70 851r64
+48n33*S_F64{48E9} 39|532r15 617r15 785r64 787r67 789r70 791r64 793r64 873r64
+. 875r67 877r70 879r64
+52R9*Signed_Type 39|496r14 497r14 567r59 649r22 81|59e14
+52e22*Num{42E9} 39|18r28 276r29
+55i13*I_32{35|53I9} 39|26m51 26r69 252r20 280r44 280r59 282r44 282r60 284r44
+. 284r59 286r44 286r59 288r44 288r60 290r44 290r60 353m46 456m63 456r63 457m52
+. 461m52 466m64 466r64 467m52 471m52 504m33 504r43 504r52 506m33 506r43 506r52
+. 508m33 508r43 508r52 510m33 510r43 510r52 512m33 512r43 512r54 530m33 530r43
+. 530r54 1079r64 1116r70
+57i13*I_64{35|56I9} 39|34m51 34r69 252r47 295r44 295r59 297r44 297r60 299r44
+. 299r59 301r44 301r59 303r44 303r60 305r44 305r60 460m63 470m63 535m33 535r43
+. 535r52 537m33 537r43 537r52 539m33 539r43 539r52 541m33 541r43 541r52 543m33
+. 543r43 543r54 562m33 562r43 562r54
+70R9*Float_Type 39|594r14 594r70 639r58 653r12 81|77e14
+70e21*Num{44E9} 39|37r28 310r29
+73f13*F_32{float} 39|45m51 45r69 315r44 315r59 317r44 317r60 319r44 319r59
+. 321r44 321r59 323r44 323r60 325r44 325r60 601m33 601r43 601r52 603m33 603r43
+. 603r52 605m33 605r43 605r52 607m33 607r43 607r52
+75f13*F_64{35|220F9} 39|53m51 53r69 331r44 331r59 333r44 333r60 335r44 335r59
+. 337r44 337r59 339r44 339r60 341r44 341r60 620m33 620r43 620r52 622m33 622r43
+. 622r52 624m33 624r43 624r52 626m33 626r43 626r52
+79R9*Numeric_Type 39|14r55 242r58 248r36 271r32 357r12 360r54 361r16 451r20
+. 659r16 81|86e14
+79e23*N{46E9} 39|16r16 273r12 273r18 274r17
+82r13*Num_S{52R9} 39|18r22 26m35 26r63 34m35 34r63 252r14 252r41 276r23 280r38
+. 280r53 282r38 282r54 284r38 284r53 286r38 286r53 288r38 288r54 290r38 290r54
+. 295r38 295r53 297r38 297r54 299r38 299r53 301r38 301r53 303r38 303r54 305r38
+. 305r54 353m30 456m57 456r57 457m36 460m57 461m36 466m58 466r58 467m36 470m57
+. 471m36 571m58 668r43 668r70 1079r58 1116r64
+84r13*Num_F{70R9} 39|37r22 45m35 45r63 53m35 53r63 310r23 315r38 315r53 317r38
+. 317r54 319r38 319r53 321r38 321r53 323r38 323r54 325r38 325r54 331r38 331r53
+. 333r38 333r54 335r38 335r53 337r38 337r53 339r38 339r54 341r38 341r54 643m58
+. 672r43 672r70
+109n32*Number_Value{109E9} 39|24r29 32r29 43r29 51r29 571r27 643r27
+110R9*Value_Type 39|1236r19 81|119e14
+113r13*Num_Value{79R9} 39|25m29 33m29 44m29 52m29 363r46 377r35 377r52 571m41
+. 643m41 668r33 668r60 672r33 672r60 1079r48 1116r54
+121K12*Value_Type_Vectors[14|74] 39|1256r13
+125R12*Result_Type{14|91R9[121]}
+127R12*Parameter_Type{14|91R9[121]}
+129R9*Function_Type 39|974r25 81|132e14
+130r7*Params{127R12} 39|985r41
+131r7*Results{125R12} 39|986r41
+X 83 wasm.ads
+15K9*Wasm 38|16w6 16r49 83|133e9
+28R9*Function_Spec 38|80r59 39|74r15 85r59 83|32e14
+29p7*Instructions{34|27P9} 39|1327r36 1332r37
+30r7*Locals{14|91R9[81|121]} 39|80r29
 

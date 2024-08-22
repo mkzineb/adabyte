@@ -38,24 +38,12 @@ A -march=x86-64
 P SS ZX
 
 RN
-RV NO_ALLOCATORS
-RV NO_EXCEPTION_HANDLERS
-RV NO_EXCEPTION_PROPAGATION
-RV NO_EXCEPTIONS
 RV NO_IO
-RV NO_IMPLICIT_CONDITIONALS
-RV NO_LOCAL_ALLOCATORS
-RV NO_NESTED_FINALIZATION
-RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
-RV NO_STANDARD_STORAGE_POOLS
-RV NO_DEFAULT_INITIALIZATION
 RV NO_IMPLEMENTATION_PRAGMAS
 
-U adabyte%b		adabyte.adb		907dead1 NE OO SU
+U adabyte%b		adabyte.adb		1d89c403 NE OO SU
 W ada%s			ada.ads			ada.ali
-Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
-Z ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 W instances%s		instances.adb		instances.ali
 W instructions%s	instructions.adb	instructions.ali
@@ -64,9 +52,6 @@ W interpreter%s		interpreter.adb		interpreter.ali
 W module%s		module.adb		module.ali
 W parser%s		parser.adb		parser.ali
 W stack%s		stack.adb		stack.ali
-Z system%s		system.ads		system.ali
-Z system.soft_links%s	s-soflin.adb		s-soflin.ali
-Z system.standard_library%s  s-stalib.adb	s-stalib.ali
 W types%s		types.ads		types.ali
 W values%s		values.ads		values.ali
 W wasm%s		wasm.ads		wasm.ali
@@ -79,6 +64,7 @@ D a-cihama.ads		20230727081303 42861819 ada.containers.indefinite_hashed_maps%s
 D a-convec.ads		20230727081304 91fb49f3 ada.containers.vectors%s
 D a-except.ads		20230727081304 2a7d8d70 ada.exceptions%s
 D a-finali.ads		20230727081304 bf4f806b ada.finalization%s
+D a-flteio.ads		20230727081304 e18a47a0 ada.float_text_io%s
 D a-ioexce.ads		20230727081304 40018c65 ada.io_exceptions%s
 D a-iteint.ads		20230727081304 49a8bee2 ada.iterator_interfaces%s
 D a-stream.ads		20230727081304 119b8fb3 ada.streams%s
@@ -87,20 +73,21 @@ D a-sttebu.ads		20230727081304 f1ad67a2 ada.strings.text_buffers%s
 D a-stuten.ads		20230727081304 c6ced0ae ada.strings.utf_encoding%s
 D a-tags.ads		20230727081304 9eaa38c6 ada.tags%s
 D a-textio.ads		20230727081304 5c2c6153 ada.text_io%s
+D a-tiflio.ads		20230727081304 9fe024a2 ada.text_io.float_io%s
 D a-unccon.ads		20230727081304 0e9b276f ada.unchecked_conversion%s
 D a-uncdea.ads		20230727081304 c3a8ac65 ada.unchecked_deallocation%s
 D a-widcha.ads		20230727081304 a2b85d3d ada.wide_characters%s
-D adabyte.adb		20240711095813 bbab7d7d adabyte%b
+D adabyte.adb		20240813141144 a2e9c8a3 adabyte%b
 D gnat.ads		20230727081304 b5988c27 gnat%s
 D g-os_lib.ads		20230727081304 0db74523 gnat.os_lib%s
-D instances.ads		20240724103528 71df3e22 instances%s
-D instructions.ads	20240708082418 35d285f4 instructions%s
+D instances.ads		20240813141303 71df3e22 instances%s
+D instructions.ads	20240808123754 f9c54f3c instructions%s
 D interfac.ads		20230727081304 15f799c2 interfaces%s
 D i-cstrea.ads		20230727081304 e53d8b8e interfaces.c_streams%s
-D interpreter.ads	20240724103619 d13d8fc3 interpreter%s
-D module.ads		20240705094155 20562468 module%s
-D parser.ads		20240702084253 a346febc parser%s
-D stack.ads		20240710132618 a3ba1bb0 stack%s
+D interpreter.ads	20240814102829 072867d3 interpreter%s
+D module.ads		20240724120903 20562468 module%s
+D parser.ads		20240724120914 a346febc parser%s
+D stack.ads		20240809135240 f03a1006 stack%s
 D system.ads		20230727081304 426dafb8 system%s
 D s-atocou.ads		20230727081304 dc18efc3 system.atomic_counters%s
 D s-crtl.ads		20230727081304 8a0692f8 system.crtl%s
@@ -108,7 +95,6 @@ D s-exctab.ads		20230727081304 91bef6ef system.exception_table%s
 D s-ficobl.ads		20230727081304 dc5161d4 system.file_control_block%s
 D s-finmas.ads		20230727081304 bd688734 system.finalization_masters%s
 D s-finroo.ads		20230727081304 4ff27390 system.finalization_root%s
-D s-memory.ads		20230727081304 5b8432d0 system.memory%s
 D s-os_lib.ads		20230727081304 a2467c22 system.os_lib%s
 D s-parame.ads		20230727081304 d494a4a6 system.parameters%s
 D s-pooglo.ads		20230727081304 91708d21 system.pool_global%s
@@ -118,7 +104,6 @@ D s-secsta.ads		20230727081304 578279f5 system.secondary_stack%s
 D s-soflin.ads		20230727081304 df77073e system.soft_links%s
 D s-stache.ads		20230727081304 0b81c1fe system.stack_checking%s
 D s-stalib.ads		20230727081304 1c9580f6 system.standard_library%s
-D s-stalib.adb		20230727081304 eb464a47 system.standard_library%b
 D s-stoele.ads		20230727081304 ab5468e4 system.storage_elements%s
 D s-stoele.adb		20230727081304 8f5a9db6 system.storage_elements%b
 D s-stopoo.ads		20230727081304 e9fa2dd8 system.storage_pools%s
@@ -127,153 +112,38 @@ D s-string.ads		20230727081304 582aac7d system.strings%s
 D s-traent.ads		20230727081304 c81cbf8c system.traceback_entries%s
 D s-unstyp.ads		20230727081304 fa2a7f59 system.unsigned_types%s
 D s-wchcon.ads		20230727081304 d9032363 system.wch_con%s
-D types.ads		20240710083804 081cd40b types%s
-D values.ads		20240626123542 52cf5252 values%s
-D wasm.ads		20240709130541 8d441c15 wasm%s
+D types.ads		20240814125950 d5286669 types%s
+D values.ads		20240724121031 52cf5252 values%s
+D wasm.ads		20240724121048 8d441c15 wasm%s
 G a e
 G c Z b b [adabyte standard 12 11 none]
-G r s env [adabyte standard 12 11 none] [envIP interpreter 40 9 none]
-G r l env [adabyte standard 12 11 none] [envDI interpreter 40 9 none]
-G r k env [adabyte standard 12 11 none] [envDF interpreter 40 9 none]
-G r s store_type [adabyte standard 12 11 none] [store_typeIP instances 183 9 none]
-G r s chunk [adabyte standard 12 11 none] [chunkIP instructions 17 9 none]
-G r s function_spec [adabyte standard 12 11 none] [function_specIP wasm 21 9 none]
-G r l function_spec [adabyte standard 12 11 none] [function_specDI wasm 21 9 none]
-G r k function_spec [adabyte standard 12 11 none] [function_specDF wasm 21 9 none]
-G r c none [adabyte standard 12 11 none] [add_elements_to_call_frame_locals stack 33 13 none]
-G r j function_spec [adabyte standard 12 11 none] [function_specDA wasm 21 9 none]
-G r c none [adabyte standard 12 11 none] [init_environment interpreter 55 13 none]
-G r j env [adabyte standard 12 11 none] [envDA interpreter 40 9 none]
-G r c none [adabyte standard 12 11 none] [run interpreter 59 13 none]
 X 1 ada.ads
-16K9*Ada 20e8 20|1r6 1r24
-X 6 a-convec.ads
-91R9*Vector<8|43R9> 20|145r29[27|36] 147r40[57|44]
-125V13*Empty{91R9[57|44]} 20|147s50[57|44]
-483U14*Append 20|154s4[57|44] 157s4[57|44] 160s4[57|44]
-X 10 a-iteint.ads
+16K9*Ada 20e8 22|1r6 1r24
+X 11 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[6|119]>
-X 16 a-textio.ads
-58K13*Text_IO 787e16 20|1w10 1r28
-X 20 adabyte.adb
-12U11*Adabyte 12b11 175l5 175t12
-14U14 Build_Instruction_Sequence_Loop 14b14 14>47 52l8 52t39
-14p47 Seq{24|18P9} 16r7 24r7 32r7 37r7 42r7 47r7 50r7
-54V13 Build_Instruction_Sequence_If{24|18P9} 54b13 55>7 90l8 90t37
-55p7 Seq{24|18P9} 58r7 63r7 70r7 74r7 79r7 84r7 87r7 89r14
-92V13 Build_loop_cr{24|18P9} 92b13 93>7 139l8 139t21 163s23
-93p7 Seq{24|18P9} 96r7 104r7 108r7 113r7 115r7 119r7 123r7 128r7 130r7 134r7
-. 136r7 138r14
-142r4 Executor{27|40R9} 167m4 167r4 169m27 169r27
-143r4 Store{23|183R9} 167r34
-144p4 Seq{24|18P9} 163r38
-145r4 Stack{6|91R9[27|36]} 167m41 167r41
-146r4 Start_function{59|21R9} 162m4 162r4 167r48
-147r4 Locals_func{6|91R9[57|44]} 154m12 154r12 164r58
-148r4 Params{57|50R12} 157m12 157r12 164r71 165r34
-149r4 Results{57|48R12} 160m12 160r12 165r53
-150p4 Inst_Seq{24|18P9}
-151e4 Return_Message{27|48E9} 169m4
-X 23 instances.ads
-21K9*Instances 20|2w6 2r24 23|200e14
-25I9*Address<short_short_integer>
-35I12*Local_Addr{25I9}
-183R9*Store_Type 20|143r21 23|191e14
-X 24 instructions.ads
-5K9*Instructions 20|3w6 3r24 24|343e17
-14R9*Instruction 20|17r14 25r14 33r14 38r14 43r14 48r14 51r14 59r14 64r14
-. 71r14 75r14 80r14 85r14 88r14 97r13 105r13 109r13 113r22 116r13 120r13
-. 124r13 128r22 131r13 134r22 137r13 24|337e14
-15P9*Instruction_Acc(14R9)
-17A9*Chunk(15P9)<integer> 20|144r54
-18P9*Instruction_Sequence(17A9) 20|14r53 55r13 55r42 93r13 93r42 144r21 150r21
-20n30*Empty{20E9} 20|67r66
-20n44*Func_Type{20E9} 20|21r39 29r42 101r34
-22e21*B{20E9} 20|67m61
-29m13*Func_Ty{25|80M9} 20|21m50 29m53 101m45
-41n7*Numeric{40E9} 20|34r13 39r13 44r13 60r13 76r13 81r13 110r12 113r35 125r12
-. 128r35
-41n39*Variable{40E9} 20|72r13 106r12 117r12 121r12
-41n64*Control{40E9} 20|18r13 26r13 48r27 51r27 65r13 85r27 88r27 98r12 132r12
-. 134r35 137r26
-45n7*I32_Const{44E9} 20|35r30 40r30 45r30 61r30 77r30 82r30 111r29 126r29
-46n7*I32_Lt_S{44E9} 20|128r67
-50n37*I32_Add{44E9} 20|113r67
-74n25*Block{73E9} 20|20r16
-74n32*Loop_Inst{73E9} 20|28r16 100r33
-74n43*If_Inst{73E9} 20|67r34
-74n63*End_Block{73E9} 20|48r59 85r59 134r67
-75n15*Branch_If{73E9} 20|132r38
-75n40*Return_Inst{73E9} 20|51r59 88r59 137r58
-80n7*Local_Get{79E9} 20|72r41 106r40 121r40
-80n18*Local_Set{79E9} 20|117r40
-98e30*Op{44E9} 20|113m61 128m61
-101r13*I32_Constant{57|11R9} 20|35m41 40m41 45m41 61m41 77m41 82m41 111m40
-. 126m40
-124e30*Op{73E9} 20|48m53 51m53 67m16 85m53 88m53 100m15 134m61 137m52
-127m13*Block_Label{25|80M9} 20|20m23
-128r13*Block_Arguments{22R9} 20|21m16
-129m13*End_Block_Ptr{9M12} 20|22m16
-133r13*If_Block_Args{22R9} 20|67m43
-134m13*Else_If_Offset{10M12} 20|68m16
-135m13*End_If_Offset{9M12} 20|68m37
-139m13*Loop_Label{25|80M9} 20|28m27 100m44
-140r13*Loop_Arguments{22R9} 20|29m16 101m15
-141m13*End_Loop_Block{9M12} 20|30m16 102m15
-143m13*Label_Br_If{25|80M9} 20|132m49
-189i13*Local_Get_Id{23|35I12} 20|72m52 106m51 121m51
-191i13*Local_Set_Id{23|35I12} 20|117m51
-321r13*Numeric_Inst{98R9} 20|35m13 40m13 45m13 61m13 77m13 82m13 111m12 113m44
-. 126m12 128m44
-325r13*Control_Inst{124R9} 20|19m13 27m13 48m36 51m36 66m13 85m36 88m36 99m12
-. 132m21 134m44 137m35
-331r13*Variable_Inst{186R9} 20|72m23 106m22 117m22 121m22
-X 25 interfac.ads
-38K9*Interfaces 20|6w6 6r24 25|232e15
-53I9*Integer_32<integer>
-80M9*Unsigned_32
-X 27 interpreter.ads
-10K9*Interpreter 20|4w6 4r24 27|89e16
-36K12*Vectors[6|74] 20|145r21
-40R9*Env 20|142r21 27|46e14
-48E9*Interpret_Result 20|151r21 27|49e70
-55V13*Init_Environment{40R9} 20|167s16
-59V13*Run{48E9} 20|169s22
-X 28 module.ads
-7K9*Module 20|11w6 11r24 28|20e11
-X 29 parser.ads
-6K9*Parser 20|8w6 8r24 29|18e11
-X 30 stack.ads
-8K9*Stack 20|7w6 7r24 30|36e10
-33V13*Add_Elements_To_Call_Frame_Locals{6|91R9[57|44]} 20|164s23
-X 31 system.ads
-67M9*Address
-X 38 s-memory.ads
-51V13*Alloc{31|67M9} 101i<c,__gnat_malloc>22
-66U14*Free 102i<c,__gnat_free>22
-74V13*Realloc{31|67M9} 103i<c,__gnat_realloc>22
-X 48 s-stalib.adb
-87U14 Break_Start 88i<c,__gnat_break_start>22
+X 17 a-textio.ads
+58K13*Text_IO 787e16 22|1w10 1r28
+X 22 adabyte.adb
+12U11*Adabyte 12b11 15l5 15t12
+X 25 instances.ads
+25K9*Instances 22|2w6 2r24 25|203e14
+X 26 instructions.ads
+14K9*Instructions 22|3w6 3r24 26|346e17
+X 27 interfac.ads
+38K9*Interfaces 22|6w6 6r24 27|232e15
+X 29 interpreter.ads
+19K9*Interpreter 22|4w6 4r24 29|87e16
+X 30 module.ads
+14K9*Module 22|11w6 11r24 30|27e11
+X 31 parser.ads
+13K9*Parser 22|8w6 8r24 31|25e11
+X 32 stack.ads
+14K9*Stack 22|7w6 7r24 32|64e10
 X 57 types.ads
-3K9*Types 20|5w6 5r24 57|78e10
-9n20*I_32{9E9} 20|35r58 40r58 45r58 61r58 77r58 82r58 111r57 126r57 154r54
-. 157r49 160r50
-14i13*I_32{25|53I9} 20|35m64 40m64 45m64 61m64 77m64 82m64 111m63 126m63
-. 154m60 157m55 160m56
-32n32*Number_Value{32E9} 20|154r26 157r21 160r22
-36r13*Num_Value{11R9} 20|154m40 157m35 160m36
-44K12*Value_Type_Vectors[6|74] 20|141r8 147r21
-48R12*Result_Type{6|91R9[44]} 20|149r21
-50R12*Parameter_Type{6|91R9[44]} 20|148r21
-53r7*Params{50R12} 20|165m24
-54r7*Results{48R12} 20|165m42
+13K9*Types 22|5w6 5r24 57|155e10
 X 58 values.ads
-3K9*Values 20|9w6 9r24 58|15e11
+10K9*Values 22|9w6 9r24 58|22e11
 X 59 wasm.ads
-8K9*Wasm 20|10w6 10r24 59|126e9
-21R9*Function_Spec 20|146r21 59|25e14
-22p7*Instructions{24|18P9} 20|163m7
-23r7*Locals{6|91R9[57|44]} 20|164m7
-24r7*Func_Ty{57|52R9} 20|165m7
+15K9*Wasm 22|10w6 10r24 59|133e9
 

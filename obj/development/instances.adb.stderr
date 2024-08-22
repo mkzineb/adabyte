@@ -2,10 +2,10 @@ instances.adb:20:14: warning: procedure "Instatiate_Module" is not referenced [-
 instances.adb:36:22: warning: formal parameter "Ty" is not referenced [-gnatwf]
 instances.adb:44:07: warning: formal parameter "Addr" is not referenced [-gnatwf]
 instances.adb:46:07: warning: variable "m" is read but never assigned [-gnatwv]
-instances.ads:16:09: warning: no entities of "Ada.Containers" are referenced [-gnatwu]
-instances.ads:16:45: warning: use clause for package "Containers" has no effect [-gnatwu]
-instances.ads:17:20: warning: unit "Ada.Containers.Vectors" is not referenced [-gnatwu]
-instances.ads:18:20: warning: unit "Ada.Containers.Indefinite_Hashed_Maps" is not referenced [-gnatwu]
-instances.ads:18:45: warning: use clause for package "Containers" has no effect [-gnatwu]
-instances.ads:18:52: warning: "Containers" is already use-visible through previous use_clause at line 16 [-gnatwr]
-instances.ads:172:30: (style) space required
+instances.ads:20:09: warning: no entities of "Ada.Containers" are referenced [-gnatwu]
+instances.ads:20:45: warning: use clause for package "Containers" has no effect [-gnatwu]
+instances.ads:21:20: warning: unit "Ada.Containers.Vectors" is not referenced [-gnatwu]
+instances.ads:22:20: warning: unit "Ada.Containers.Indefinite_Hashed_Maps" is not referenced [-gnatwu]
+instances.ads:22:45: warning: use clause for package "Containers" has no effect [-gnatwu]
+instances.ads:22:52: warning: "Containers" is already use-visible through previous use_clause at line 20 [-gnatwr]
+instances.ads:175:30: (style) space required
