@@ -1,15 +1,17 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Unchecked_Deallocation;
 with Ada.Containers;
+with Ada.Unchecked_Conversion;
+
 package body Interpreter is
 
-   function Shift_Left
-     (Value : Integer_32; Amount : Natural) return Integer_32 with
-     Import, Convention => Intrinsic;
+   function Uns_64 is new Ada.Unchecked_Conversion (Integer_64, Unsigned_64);
 
-   function Shift_Right
-     (Value : Integer_32; Amount : Natural) return Integer_32 with
-     Import, Convention => Intrinsic;
+   function Int_64 is new Ada.Unchecked_Conversion (Unsigned_64, Integer_64);
+
+   function Uns_32 is new Ada.Unchecked_Conversion (Integer_32, Unsigned_32);
+
+   function Int_32 is new Ada.Unchecked_Conversion (Unsigned_32, Integer_32);
 
    procedure Push_Value (Stack : in out Vector; Num : Numeric_Type) is
    begin
@@ -510,20 +512,42 @@ package body Interpreter is
                   return (I_32, I_32 => A.I_32 / B.I_32);
                when Remainder =>
                   return (I_32, I_32 => A.I_32 mod B.I_32);
-                  --  when Logical_And =>
-                  --     return (I_32, I_32 => A.I_32 and B.I_32);
-                  --  when Logical_Or =>
-                  --     return (I_32, I_32 => A.I_32 or B.I_32);
-                  --  when Logical_Xor =>
-                  --     return (I_32, I_32 => A.I_32 xor B.I_32);
-                  --  when Shift_Left =>
-                  --     return (I_32, I_32 => Shift_Left (A.I_32, B.I_32));
-                  --  when Shift_Right =>
-                  --     return (I_32, I_32 => Shift_Right (A.I_32, B.I_32));
-                  --  when Rotate_Left =>
-                  --     return (I_32, I_32 => Rotate_Left (A.I_32, B.I_32));
-                  --  when Rotate_Right =>
-                  --     return (I_32, I_32 => Rotate_Right (A.I_32, B.I_32));
+               when Logical_And =>
+                  return
+                    (I_32,
+                     I_32 => Int_32 (Uns_32 (A.I_32) and Uns_32 (B.I_32)));
+               when Logical_Or =>
+                  return
+                    (I_32,
+                     I_32 => Int_32 (Uns_32 (A.I_32) or Uns_32 (B.I_32)));
+               when Logical_Xor =>
+                  return
+                    (I_32,
+                     I_32 => Int_32 (Uns_32 (A.I_32) xor Uns_32 (B.I_32)));
+               when Shift_Left =>
+                  return
+                    (I_32,
+                     I_32 =>
+                       Int_32
+                         (Shift_Left (Uns_32 (A.I_32), Natural (B.I_32))));
+               when Shift_Right =>
+                  return
+                    (I_32,
+                     I_32 =>
+                       Int_32
+                         (Shift_Right (Uns_32 (A.I_32), Natural (B.I_32))));
+               when Rotate_Left =>
+                  return
+                    (I_32,
+                     I_32 =>
+                       Int_32
+                         (Rotate_Left (Uns_32 (A.I_32), Natural (B.I_32))));
+               when Rotate_Right =>
+                  return
+                    (I_32,
+                     I_32 =>
+                       Int_32
+                         (Rotate_Right (Uns_32 (A.I_32), Natural (B.I_32))));
                when Minimum | Maximum | Copy_Sign =>
                   raise Program_Error;
                when others =>
@@ -541,21 +565,42 @@ package body Interpreter is
                   return (I_64, I_64 => A.I_64 / B.I_64);
                when Remainder =>
                   return (I_64, I_64 => A.I_64 mod B.I_64);
-                  --  when Logical_And =>
-                  --     return (I_64, I_64 => A.I_64 and B.I_64);
-                  --  when Logical_Or =>
-                  --     return (I_64, I_64 => A.I_64 or B.I_64);
-                  --  when Logical_Xor =>
-                  --     return (I_64, I_64 => A.I_64 xor B.I_64);
-                  --  when Shift_Left =>
-                  --     return (I_64, I_64 => Shift_Left (A.I_64, B.I_64));
-                  --  when Shift_Right =>
-                  --     return (I_64, I_64 => Shift_Right (A.I_64, B.I_64));
-                  --  when Rotate_Left =>
-                  --     return (I_64, I_64 => Rotate_Left (A.I_64, B.I_64));
-                  --  when Rotate_Right =>
-                  --     return (I_64, I_64 => Rotate_Right (A.I_64, B.I_64));
-
+               when Logical_And =>
+                  return
+                    (I_64,
+                     I_64 => Int_64 (Uns_64 (A.I_64) and Uns_64 (B.I_64)));
+               when Logical_Or =>
+                  return
+                    (I_64,
+                     I_64 => Int_64 (Uns_64 (A.I_64) or Uns_64 (B.I_64)));
+               when Logical_Xor =>
+                  return
+                    (I_64,
+                     I_64 => Int_64 (Uns_64 (A.I_64) xor Uns_64 (B.I_64)));
+               when Shift_Left =>
+                  return
+                    (I_64,
+                     I_64 =>
+                       Int_64
+                         (Shift_Left (Uns_64 (A.I_64), Natural (B.I_64))));
+               when Shift_Right =>
+                  return
+                    (I_64,
+                     I_64 =>
+                       Int_64
+                         (Shift_Right (Uns_64 (A.I_64), Natural (B.I_64))));
+               when Rotate_Left =>
+                  return
+                    (I_64,
+                     I_64 =>
+                       Int_64
+                         (Rotate_Left (Uns_64 (A.I_64), Natural (B.I_64))));
+               when Rotate_Right =>
+                  return
+                    (I_64,
+                     I_64 =>
+                       Int_64
+                         (Rotate_Right (Uns_64 (A.I_64), Natural (B.I_64))));
                when Minimum | Maximum | Copy_Sign =>
                   raise Program_Error;
                when others =>
@@ -772,11 +817,11 @@ package body Interpreter is
          when I32_Div_U =>
             Execute_Binary_Op (Environment.Stack, S, Division, S_F32); --  todo
          when I32_Rem_S =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Remainder, S_F32);
          when I32_Rem_U =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Remainder, S_F32);
          when I64_Clz =>
-            null;
+            Execute_Count (Environment.Stack, I_64, "Leading_Zeroes");
          when I64_Ctz =>
             Execute_Count (Environment.Stack, I_64, "Trailing_Zeros");
          when I64_Popcnt =>
@@ -792,41 +837,41 @@ package body Interpreter is
          when I64_Div_U =>
             Execute_Binary_Op (Environment.Stack, S, Division, S_F64);
          when I64_Rem_S =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Remainder, S_F64);
          when I64_Rem_U =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Remainder, S_F64);
          when I32_And =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Logical_And, S_F32);
          when I32_Or =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Logical_Or, S_F32);
          when I32_Xor =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Logical_Xor, S_F32);
          when I32_Shl =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Shift_Left, S_F32);
          when I32_Shr_S =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Shift_Right, S_F32);
          when I32_Shr_U =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Shift_Right, S_F32);
          when I32_Rotl =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Rotate_Left, S_F32);
          when I32_Rotr =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Rotate_Right, S_F32);
          when I64_And =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Logical_And, S_F64);
          when I64_Or =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Logical_Or, S_F64);
          when I64_Xor =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Logical_Xor, S_F64);
          when I64_Shl =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Shift_Left, S_F64);
          when I64_Shr_S =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Shift_Right, S_F64);
          when I64_Shr_U =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Shift_Right, S_F64);
          when I64_Rotl =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Rotate_Left, S_F64);
          when I64_Rotr =>
-            null;
+            Execute_Binary_Op (Environment.Stack, S, Rotate_Right, S_F64);
          when F32_Abs =>
             null;
          when F32_Neg =>

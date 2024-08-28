@@ -46,6 +46,7 @@ RV NO_IO
 RV NO_IMPLICIT_CONDITIONALS
 RV NO_NESTED_FINALIZATION
 RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_CONVERSION
 RV NO_UNCHECKED_DEALLOCATION
 RV NO_DEFAULT_INITIALIZATION
 RV NO_DYNAMIC_SIZED_OBJECTS
@@ -55,13 +56,14 @@ RV NO_IMPLEMENTATION_PRAGMAS
 RV NO_IMPLICIT_LOOPS
 RV NO_ELABORATION_CODE
 
-U interpreter%b		interpreter.adb		e0848a0d NE OO PK
+U interpreter%b		interpreter.adb		b89189bc NE OO PK
 W ada%s			ada.ads			ada.ali
 W ada.containers%s	a-contai.ads		a-contai.ali
 Z ada.exceptions%s	a-except.adb		a-except.ali
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 Z ada.tags%s		a-tags.adb		a-tags.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.unchecked_conversion%s
 W ada.unchecked_deallocation%s
 Z system%s		system.ads		system.ali
 Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
@@ -147,7 +149,7 @@ D interfac.ads		20230727081304 15f799c2 interfaces%s
 D i-c.ads		20230727081304 5c5a6c17 interfaces.c%s
 D i-cstrea.ads		20230727081304 e53d8b8e interfaces.c_streams%s
 D interpreter.ads	20240814102829 072867d3 interpreter%s
-D interpreter.adb	20240822094036 19cdc061 interpreter%b
+D interpreter.adb	20240827135810 4f43e4bf interpreter%b
 D stack.ads		20240809135240 f03a1006 stack%s
 D system.ads		20230727081304 426dafb8 system%s
 D s-assert.ads		20230727081304 9c4520c7 system.assertions%s
@@ -340,68 +342,70 @@ G c Z s s [envDI interpreter 64 9 none]
 G c Z s s [envDA interpreter 64 9 none]
 G c Z s s [envDF interpreter 64 9 none]
 G c Z s s [envIP interpreter 64 9 none]
-G c Z b b [shift_left interpreter 6 13 none]
-G c Z b b [shift_right interpreter 10 13 none]
-G c Z b b [push_value interpreter 14 14 none]
-G c Z b b [free interpreter 58 14 none]
-G c Z b b [adding_start_call_frame interpreter 73 14 none]
-G c Z b b [count_values_top_stack interpreter 104 13 none]
-G c Z b b [pop_values interpreter 118 13 none]
-G c Z b b [pop_label_or_values interpreter 128 14 none]
-G c Z b b [push_values interpreter 134 14 none]
-G c Z b b [get_lab_position interpreter 140 13 none]
-G c Z b b [get_lab_from_position interpreter 156 13 none]
-G c Z b b [get_block_type interpreter 170 13 none]
-G c Z b b [pop_values_before_label interpreter 182 14 none]
-G c Z b b [jump_if_block_exists interpreter 190 14 none]
-G c Z b b [execute_branching interpreter 233 13 none]
-G c Z b b [execute_const interpreter 242 14 none]
-G c Z b b [execute_compare_to_zero interpreter 247 14 none]
-G c Z b b [compare_nt interpreter 271 13 none]
-G c Z b b [push_nt interpreter 351 14 none]
-G c Z b b [check_push_ntR interpreter__check_push_ntGP12222 356 14 none]
-G c Z b b [check_push_nt interpreter 356 14 none]
-G c Z b b [pop_value interpreter 360 13 none]
-G c Z b b [execute_compare interpreter 368 14 none]
-G c Z b b [count_leading_zeroes_i32 interpreter 380 13 none]
-G c Z b b [count_trailing_zeroes_i32 interpreter 397 13 none]
-G c Z b b [count_leading_zeroes_i64 interpreter 414 13 none]
-G c Z b b [count_trailing_zeroes_i64 interpreter 431 13 none]
-G c Z b b [execute_count interpreter 448 14 none]
-G c Z b b [clc_signed interpreter 495 13 none]
-G c Z b b [push_signed interpreter 567 14 none]
-G c Z b b [clc_float interpreter 593 13 none]
-G c Z b b [push_float interpreter 639 14 none]
-G c Z b b [calculate_signedR interpreter__calculate_signedGP22402 648 14 none]
-G c Z b b [calculate_signed interpreter 648 14 none]
-G c Z b b [calculate_floatR interpreter__calculate_floatGP22563 652 14 none]
-G c Z b b [calculate_float interpreter 652 14 none]
-G c Z b b [execute_binary_op interpreter 655 14 none]
-G c Z b b [execute_numeric_instruction interpreter 677 14 none]
-G c Z b b [execute_block_entry interpreter 965 14 none]
-G c Z b b [get_blocks_length interpreter 1024 13 none]
-G c Z b b [remove_last_block_label interpreter 1035 14 none]
-G c Z b b [execute_end_block interpreter 1046 14 none]
-G c Z b b [execute_if interpreter 1069 14 none]
-G c Z b b [execute_branching_if interpreter 1104 13 none]
-G c Z b b [execute_nop interpreter 1127 14 none]
-G c Z b b [execute_branching_table interpreter 1132 14 none]
-G c Z b b [execute_else interpreter 1139 14 none]
-G c Z b b [execute_unreachable interpreter 1148 13 none]
-G c Z b b [exec_return interpreter 1153 13 none]
-G c Z b b [execute_control_instruction interpreter 1165 13 none]
-G c Z b b [execute_reference_instruction interpreter 1212 14 none]
-G c Z b b [execute_table_instruction interpreter 1219 14 none]
-G c Z b b [execute_parametric_instruction interpreter 1226 14 none]
-G c Z b b [get_push_local_variable interpreter 1233 14 none]
-G c Z b b [set_pop_local_variable interpreter 1250 14 none]
-G c Z b b [duplicate_set_variable interpreter 1274 14 none]
-G c Z b b [get_push_global_variable interpreter 1279 14 none]
-G c Z b b [set_push_global_variable interpreter 1284 14 none]
-G c Z b b [execute_variable_instruction interpreter 1289 14 none]
-G c Z b b [execute_memory_instruction interpreter 1309 14 none]
-G c Z b b [execute_vector_128_instruction interpreter 1316 14 none]
-G c Z b b [get_instruction interpreter 1323 13 none]
+G c Z b b [uns_64 interpreter 8 13 none]
+G c Z b b [int_64 interpreter 10 13 none]
+G c Z b b [uns_32 interpreter 12 13 none]
+G c Z b b [int_32 interpreter 14 13 none]
+G c Z b b [push_value interpreter 16 14 none]
+G c Z b b [free interpreter 60 14 none]
+G c Z b b [adding_start_call_frame interpreter 75 14 none]
+G c Z b b [count_values_top_stack interpreter 106 13 none]
+G c Z b b [pop_values interpreter 120 13 none]
+G c Z b b [pop_label_or_values interpreter 130 14 none]
+G c Z b b [push_values interpreter 136 14 none]
+G c Z b b [get_lab_position interpreter 142 13 none]
+G c Z b b [get_lab_from_position interpreter 158 13 none]
+G c Z b b [get_block_type interpreter 172 13 none]
+G c Z b b [pop_values_before_label interpreter 184 14 none]
+G c Z b b [jump_if_block_exists interpreter 192 14 none]
+G c Z b b [execute_branching interpreter 235 13 none]
+G c Z b b [execute_const interpreter 244 14 none]
+G c Z b b [execute_compare_to_zero interpreter 249 14 none]
+G c Z b b [compare_nt interpreter 273 13 none]
+G c Z b b [push_nt interpreter 353 14 none]
+G c Z b b [check_push_ntR interpreter__check_push_ntGP12311 358 14 none]
+G c Z b b [check_push_nt interpreter 358 14 none]
+G c Z b b [pop_value interpreter 362 13 none]
+G c Z b b [execute_compare interpreter 370 14 none]
+G c Z b b [count_leading_zeroes_i32 interpreter 382 13 none]
+G c Z b b [count_trailing_zeroes_i32 interpreter 399 13 none]
+G c Z b b [count_leading_zeroes_i64 interpreter 416 13 none]
+G c Z b b [count_trailing_zeroes_i64 interpreter 433 13 none]
+G c Z b b [execute_count interpreter 450 14 none]
+G c Z b b [clc_signed interpreter 497 13 none]
+G c Z b b [push_signed interpreter 612 14 none]
+G c Z b b [clc_float interpreter 638 13 none]
+G c Z b b [push_float interpreter 684 14 none]
+G c Z b b [calculate_signedR interpreter__calculate_signedGP23638 693 14 none]
+G c Z b b [calculate_signed interpreter 693 14 none]
+G c Z b b [calculate_floatR interpreter__calculate_floatGP23799 697 14 none]
+G c Z b b [calculate_float interpreter 697 14 none]
+G c Z b b [execute_binary_op interpreter 700 14 none]
+G c Z b b [execute_numeric_instruction interpreter 722 14 none]
+G c Z b b [execute_block_entry interpreter 1010 14 none]
+G c Z b b [get_blocks_length interpreter 1069 13 none]
+G c Z b b [remove_last_block_label interpreter 1080 14 none]
+G c Z b b [execute_end_block interpreter 1091 14 none]
+G c Z b b [execute_if interpreter 1114 14 none]
+G c Z b b [execute_branching_if interpreter 1149 13 none]
+G c Z b b [execute_nop interpreter 1172 14 none]
+G c Z b b [execute_branching_table interpreter 1177 14 none]
+G c Z b b [execute_else interpreter 1184 14 none]
+G c Z b b [execute_unreachable interpreter 1193 13 none]
+G c Z b b [exec_return interpreter 1198 13 none]
+G c Z b b [execute_control_instruction interpreter 1210 13 none]
+G c Z b b [execute_reference_instruction interpreter 1257 14 none]
+G c Z b b [execute_table_instruction interpreter 1264 14 none]
+G c Z b b [execute_parametric_instruction interpreter 1271 14 none]
+G c Z b b [get_push_local_variable interpreter 1278 14 none]
+G c Z b b [set_pop_local_variable interpreter 1295 14 none]
+G c Z b b [duplicate_set_variable interpreter 1319 14 none]
+G c Z b b [get_push_global_variable interpreter 1324 14 none]
+G c Z b b [set_push_global_variable interpreter 1329 14 none]
+G c Z b b [execute_variable_instruction interpreter 1334 14 none]
+G c Z b b [execute_memory_instruction interpreter 1354 14 none]
+G c Z b b [execute_vector_128_instruction interpreter 1361 14 none]
+G c Z b b [get_instruction interpreter 1368 13 none]
 G r s call_frame [init_environment interpreter 79 13 none] [call_frameIP stack 28 9 none]
 G r l call_frame [init_environment interpreter 79 13 none] [call_frameDI stack 28 9 none]
 G r k call_frame [init_environment interpreter 79 13 none] [call_frameDF stack 28 9 none]
@@ -445,782 +449,803 @@ G r s call_frame [envIP interpreter 64 9 none] [call_frameIP stack 28 9 none]
 G r l call_frame [envIP interpreter 64 9 none] [call_frameDI stack 28 9 none]
 G r s module_instance [envIP interpreter 64 9 none] [module_instanceIP instances 163 9 none]
 G r k call_frame [envIP interpreter 64 9 none] [call_frameDF stack 28 9 none]
-G r s call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameIP stack 28 9 none]
-G r l call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameDI stack 28 9 none]
-G r k call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameDF stack 28 9 none]
-G r j function_spec [adding_start_call_frame interpreter 73 14 none] [function_specDA wasm 28 9 none]
-G r j call_frame [adding_start_call_frame interpreter 73 14 none] [call_frameDA stack 28 9 none]
-G r k element_variation [adding_start_call_frame interpreter 73 14 none] [element_variationDF stack 42 9 none]
-G r k element_variation [pop_values interpreter 118 13 none] [element_variationDF stack 42 9 none]
-G r k element_variation [jump_if_block_exists interpreter 190 14 none] [element_variationDF stack 42 9 none]
-G r k element_variation [execute_branching interpreter 233 13 none] [element_variationDF stack 42 9 none]
-G r s numeric_type [pop_value interpreter 360 13 none] [numeric_typeIP types 79 9 none]
-G r k element_variation [pop_value interpreter 360 13 none] [element_variationDF stack 42 9 none]
-G r s value_stack [execute_compare interpreter 368 14 none] [value_stackIP stack 36 9 none]
-G r k element_variation [execute_compare interpreter 368 14 none] [element_variationDF stack 42 9 none]
-G r s numeric_type [execute_count interpreter 448 14 none] [numeric_typeIP types 79 9 none]
-G r k element_variation [execute_count interpreter 448 14 none] [element_variationDF stack 42 9 none]
-G r s signed_type [calculate_signedR interpreter__calculate_signedGP22402 648 14 none] [signed_typeIP types 52 9 none]
-G r s float_type [calculate_floatR interpreter__calculate_floatGP22563 652 14 none] [float_typeIP types 70 9 none]
-G r s element_variation [execute_binary_op interpreter 655 14 none] [element_variationIP stack 42 9 none]
-G r l element_variation [execute_binary_op interpreter 655 14 none] [element_variationDI stack 42 9 none]
-G r k element_variation [execute_binary_op interpreter 655 14 none] [element_variationDF stack 42 9 none]
-G r s numeric_type [execute_binary_op interpreter 655 14 none] [numeric_typeIP types 79 9 none]
-G r j element_variation [execute_binary_op interpreter 655 14 none] [element_variationDA stack 42 9 none]
-G r s signed_type [execute_binary_op interpreter 655 14 none] [signed_typeIP types 52 9 none]
-G r s float_type [execute_binary_op interpreter 655 14 none] [float_typeIP types 70 9 none]
-G r s value_stack [execute_numeric_instruction interpreter 677 14 none] [value_stackIP stack 36 9 none]
-G r k element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationDF stack 42 9 none]
-G r s numeric_type [execute_numeric_instruction interpreter 677 14 none] [numeric_typeIP types 79 9 none]
-G r s element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationIP stack 42 9 none]
-G r l element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationDI stack 42 9 none]
-G r j element_variation [execute_numeric_instruction interpreter 677 14 none] [element_variationDA stack 42 9 none]
-G r s signed_type [execute_numeric_instruction interpreter 677 14 none] [signed_typeIP types 52 9 none]
-G r s float_type [execute_numeric_instruction interpreter 677 14 none] [float_typeIP types 70 9 none]
-G r s function_type [execute_block_entry interpreter 965 14 none] [function_typeIP types 129 9 none]
-G r l function_type [execute_block_entry interpreter 965 14 none] [function_typeDI types 129 9 none]
-G r k function_type [execute_block_entry interpreter 965 14 none] [function_typeDF types 129 9 none]
-G r c none [execute_block_entry interpreter 965 14 none] [func_ty instances 201 13 none]
-G r j function_type [execute_block_entry interpreter 965 14 none] [function_typeDA types 129 9 none]
-G r k element_variation [execute_block_entry interpreter 965 14 none] [element_variationDF stack 42 9 none]
-G r k element_variation [execute_if interpreter 1069 14 none] [element_variationDF stack 42 9 none]
-G r s function_type [execute_if interpreter 1069 14 none] [function_typeIP types 129 9 none]
-G r l function_type [execute_if interpreter 1069 14 none] [function_typeDI types 129 9 none]
-G r k function_type [execute_if interpreter 1069 14 none] [function_typeDF types 129 9 none]
-G r c none [execute_if interpreter 1069 14 none] [func_ty instances 201 13 none]
-G r j function_type [execute_if interpreter 1069 14 none] [function_typeDA types 129 9 none]
-G r s element_variation [execute_branching_if interpreter 1104 13 none] [element_variationIP stack 42 9 none]
-G r l element_variation [execute_branching_if interpreter 1104 13 none] [element_variationDI stack 42 9 none]
-G r k element_variation [execute_branching_if interpreter 1104 13 none] [element_variationDF stack 42 9 none]
-G r j element_variation [execute_branching_if interpreter 1104 13 none] [element_variationDA stack 42 9 none]
-G r s function_type [execute_control_instruction interpreter 1165 13 none] [function_typeIP types 129 9 none]
-G r l function_type [execute_control_instruction interpreter 1165 13 none] [function_typeDI types 129 9 none]
-G r k function_type [execute_control_instruction interpreter 1165 13 none] [function_typeDF types 129 9 none]
-G r c none [execute_control_instruction interpreter 1165 13 none] [func_ty instances 201 13 none]
-G r j function_type [execute_control_instruction interpreter 1165 13 none] [function_typeDA types 129 9 none]
-G r k element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationDF stack 42 9 none]
-G r s element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationIP stack 42 9 none]
-G r l element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationDI stack 42 9 none]
-G r j element_variation [execute_control_instruction interpreter 1165 13 none] [element_variationDA stack 42 9 none]
-G r s value_type [get_push_local_variable interpreter 1233 14 none] [value_typeIP types 110 9 none]
-G r k element_variation [get_push_local_variable interpreter 1233 14 none] [element_variationDF stack 42 9 none]
-G r k element_variation [set_pop_local_variable interpreter 1250 14 none] [element_variationDF stack 42 9 none]
-G r s value_type [execute_variable_instruction interpreter 1289 14 none] [value_typeIP types 110 9 none]
-G r k element_variation [execute_variable_instruction interpreter 1289 14 none] [element_variationDF stack 42 9 none]
+G r s call_frame [adding_start_call_frame interpreter 75 14 none] [call_frameIP stack 28 9 none]
+G r l call_frame [adding_start_call_frame interpreter 75 14 none] [call_frameDI stack 28 9 none]
+G r k call_frame [adding_start_call_frame interpreter 75 14 none] [call_frameDF stack 28 9 none]
+G r j function_spec [adding_start_call_frame interpreter 75 14 none] [function_specDA wasm 28 9 none]
+G r j call_frame [adding_start_call_frame interpreter 75 14 none] [call_frameDA stack 28 9 none]
+G r k element_variation [adding_start_call_frame interpreter 75 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [pop_values interpreter 120 13 none] [element_variationDF stack 42 9 none]
+G r k element_variation [jump_if_block_exists interpreter 192 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [execute_branching interpreter 235 13 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [pop_value interpreter 362 13 none] [numeric_typeIP types 79 9 none]
+G r k element_variation [pop_value interpreter 362 13 none] [element_variationDF stack 42 9 none]
+G r s value_stack [execute_compare interpreter 370 14 none] [value_stackIP stack 36 9 none]
+G r k element_variation [execute_compare interpreter 370 14 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [execute_count interpreter 450 14 none] [numeric_typeIP types 79 9 none]
+G r k element_variation [execute_count interpreter 450 14 none] [element_variationDF stack 42 9 none]
+G r s signed_type [calculate_signedR interpreter__calculate_signedGP23638 693 14 none] [signed_typeIP types 52 9 none]
+G r s float_type [calculate_floatR interpreter__calculate_floatGP23799 697 14 none] [float_typeIP types 70 9 none]
+G r s element_variation [execute_binary_op interpreter 700 14 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_binary_op interpreter 700 14 none] [element_variationDI stack 42 9 none]
+G r k element_variation [execute_binary_op interpreter 700 14 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [execute_binary_op interpreter 700 14 none] [numeric_typeIP types 79 9 none]
+G r j element_variation [execute_binary_op interpreter 700 14 none] [element_variationDA stack 42 9 none]
+G r s signed_type [execute_binary_op interpreter 700 14 none] [signed_typeIP types 52 9 none]
+G r s float_type [execute_binary_op interpreter 700 14 none] [float_typeIP types 70 9 none]
+G r s value_stack [execute_numeric_instruction interpreter 722 14 none] [value_stackIP stack 36 9 none]
+G r k element_variation [execute_numeric_instruction interpreter 722 14 none] [element_variationDF stack 42 9 none]
+G r s numeric_type [execute_numeric_instruction interpreter 722 14 none] [numeric_typeIP types 79 9 none]
+G r s element_variation [execute_numeric_instruction interpreter 722 14 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_numeric_instruction interpreter 722 14 none] [element_variationDI stack 42 9 none]
+G r j element_variation [execute_numeric_instruction interpreter 722 14 none] [element_variationDA stack 42 9 none]
+G r s signed_type [execute_numeric_instruction interpreter 722 14 none] [signed_typeIP types 52 9 none]
+G r s float_type [execute_numeric_instruction interpreter 722 14 none] [float_typeIP types 70 9 none]
+G r s function_type [execute_block_entry interpreter 1010 14 none] [function_typeIP types 129 9 none]
+G r l function_type [execute_block_entry interpreter 1010 14 none] [function_typeDI types 129 9 none]
+G r k function_type [execute_block_entry interpreter 1010 14 none] [function_typeDF types 129 9 none]
+G r c none [execute_block_entry interpreter 1010 14 none] [func_ty instances 201 13 none]
+G r j function_type [execute_block_entry interpreter 1010 14 none] [function_typeDA types 129 9 none]
+G r k element_variation [execute_block_entry interpreter 1010 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [execute_if interpreter 1114 14 none] [element_variationDF stack 42 9 none]
+G r s function_type [execute_if interpreter 1114 14 none] [function_typeIP types 129 9 none]
+G r l function_type [execute_if interpreter 1114 14 none] [function_typeDI types 129 9 none]
+G r k function_type [execute_if interpreter 1114 14 none] [function_typeDF types 129 9 none]
+G r c none [execute_if interpreter 1114 14 none] [func_ty instances 201 13 none]
+G r j function_type [execute_if interpreter 1114 14 none] [function_typeDA types 129 9 none]
+G r s element_variation [execute_branching_if interpreter 1149 13 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_branching_if interpreter 1149 13 none] [element_variationDI stack 42 9 none]
+G r k element_variation [execute_branching_if interpreter 1149 13 none] [element_variationDF stack 42 9 none]
+G r j element_variation [execute_branching_if interpreter 1149 13 none] [element_variationDA stack 42 9 none]
+G r s function_type [execute_control_instruction interpreter 1210 13 none] [function_typeIP types 129 9 none]
+G r l function_type [execute_control_instruction interpreter 1210 13 none] [function_typeDI types 129 9 none]
+G r k function_type [execute_control_instruction interpreter 1210 13 none] [function_typeDF types 129 9 none]
+G r c none [execute_control_instruction interpreter 1210 13 none] [func_ty instances 201 13 none]
+G r j function_type [execute_control_instruction interpreter 1210 13 none] [function_typeDA types 129 9 none]
+G r k element_variation [execute_control_instruction interpreter 1210 13 none] [element_variationDF stack 42 9 none]
+G r s element_variation [execute_control_instruction interpreter 1210 13 none] [element_variationIP stack 42 9 none]
+G r l element_variation [execute_control_instruction interpreter 1210 13 none] [element_variationDI stack 42 9 none]
+G r j element_variation [execute_control_instruction interpreter 1210 13 none] [element_variationDA stack 42 9 none]
+G r s value_type [get_push_local_variable interpreter 1278 14 none] [value_typeIP types 110 9 none]
+G r k element_variation [get_push_local_variable interpreter 1278 14 none] [element_variationDF stack 42 9 none]
+G r k element_variation [set_pop_local_variable interpreter 1295 14 none] [element_variationDF stack 42 9 none]
+G r s value_type [execute_variable_instruction interpreter 1334 14 none] [value_typeIP types 110 9 none]
+G r k element_variation [execute_variable_instruction interpreter 1334 14 none] [element_variationDF stack 42 9 none]
 X 1 ada.ads
 16K9*Ada 20e8 38|11r6 12r6 12r49 17r6 18r6 21r8 58r33 39|1r6 1r23 2r6 3r6
-. 58r26 131r17 187r17 1246r10
+. 4r6 8r27 10r27 12r27 14r27 60r26 133r17 189r17 1291r10
 X 3 a-contai.ads
-16K13*Containers 28e19 38|11r10 12r10 12r53 17r10 21r12 58r37 39|3w10 131r21
-. 187r21
+16K13*Containers 28e19 38|11r10 12r10 12r53 17r10 21r12 58r37 39|3w10 133r21
+. 189r21
 19M9*Hash_Type 38|57r43 57r57
-22I9*Count_Type<integer> 39|131r32 187r32
+22I9*Count_Type<integer> 39|133r32 189r32
 X 11 a-cihama.ads
 42+9 Key_Type 38|59r7
 43+9 Element_Type 38|59r39
 45V18 Hash{3|19M9} 38|59r67
 46V18 Equivalent_Keys{boolean} 38|60r7
 49k24*Indefinite_Hashed_Maps 478e42 38|12w21 58r48
-56R9*Map<16|43R9> 38|67r31[58] 39|90r38[38|58]
-212U14*Include 39|1001s33[38|58] 1009s33[38|58]
-278V13*Contains{boolean} 39|203s24[38|58]
-281V13*Element{38|52R9} 39|209s26[38|58] 226s29[38|58]
+56R9*Map<16|43R9> 38|67r31[58] 39|92r38[38|58]
+212U14*Include 39|1046s33[38|58] 1054s33[38|58]
+278V13*Contains{boolean} 39|205s24[38|58]
+281V13*Element{38|52R9} 39|211s26[38|58] 228s29[38|58]
 X 14 a-convec.ads
 74k24*Vectors 878e27 38|11w21 17w21
 81I12*Extended_Index{integer}
 91R9*Vector<16|43R9> 38|29r52[40|54] 31r27[40|54] 39r50[40|54] 41r22[40|54]
-. 48r49[40|54] 50r22[40|54] 65r30[40|54] 80r38[40|54] 39|14r41[40|54] 74r45[40|54]
-. 85r38[40|54] 118r71[40|54] 119r23[40|54] 128r70[40|54] 134r34[40|54] 140r57[40|54]
-. 157r30[40|54] 170r52[40|54] 183r42[40|54] 195r21[40|54] 242r44[40|54] 248r22[40|54]
-. 260r27[40|54] 351r38[40|54] 360r39[40|54] 368r46[40|54] 448r44[40|54] 478r22[40|54]
-. 487r22[40|54] 567r42[40|54] 639r41[40|54] 656r22[40|54] 1024r40[40|54]
-. 1035r54[40|54] 1220r42[40|54] 1227r47[40|54] 1310r43[40|54] 1317r43[40|54]
-175V13*Length{3|22I9} 39|371s28[40|54] 985s48[81|121] 986s49[81|121] 1238s64[81|121]
-. 1254s64[81|121]
-206V13*Element{81|110R9} 39|1239s45[81|121]
-217U14*Replace_Element 39|1256s32[81|121]
-459U14*Prepend 39|122s24[40|54]
-466U14*Append_Vector 39|137s25[40|54]
-483U14*Append 39|20s25[40|54] 28s25[40|54] 39s25[40|54] 47s25[40|54] 81s13[40|54]
-. 569s13[40|54] 641s13[40|54] 996s31[40|54] 1004s31[40|54] 1012s31[40|54]
-. 1241s10[40|54]
-514U14*Delete 39|1040s13[40|54]
-538U14*Delete_Last 39|123s10[40|54] 130s7[40|54] 186s7[40|54] 251s7[40|54]
-. 364s7[40|54] 374s7[40|54] 376s7[40|54] 662s7[40|54] 664s7[40|54] 1081s7[40|54]
-. 1112s7[40|54] 1264s13[40|54]
-560V13*First_Index{integer} 39|64s34[40|54] 107s34[40|54] 144s34[40|54] 160s18[40|54]
-. 172s18[40|54] 1027s22[40|54] 1038s30[40|54] 1055s45[40|54]
-570V13*Last_Index{81I12[40|54]} 39|64s67[40|54] 107s67[40|54] 131s50[40|54]
-. 144s55[40|54] 160s56[40|54] 172s56[40|54] 187s50[40|54] 1027s43[40|54]
-. 1038s51[40|54] 1054s42[40|54]
-578V13*Last_Element{40|42R9} 39|97s25[40|54] 122s33[40|54] 363s17[40|54]
-. 373s12[40|54] 375s12[40|54] 661s12[40|54] 663s12[40|54] 1079s27[40|54]
-. 1111s28[40|54] 1255s13[40|54] 1258s16[40|54]
+. 48r49[40|54] 50r22[40|54] 65r30[40|54] 80r38[40|54] 39|16r41[40|54] 76r45[40|54]
+. 87r38[40|54] 120r71[40|54] 121r23[40|54] 130r70[40|54] 136r34[40|54] 142r57[40|54]
+. 159r30[40|54] 172r52[40|54] 185r42[40|54] 197r21[40|54] 244r44[40|54] 250r22[40|54]
+. 262r27[40|54] 353r38[40|54] 362r39[40|54] 370r46[40|54] 450r44[40|54] 480r22[40|54]
+. 489r22[40|54] 612r42[40|54] 684r41[40|54] 701r22[40|54] 1069r40[40|54]
+. 1080r54[40|54] 1265r42[40|54] 1272r47[40|54] 1355r43[40|54] 1362r43[40|54]
+175V13*Length{3|22I9} 39|373s28[40|54] 1030s48[81|121] 1031s49[81|121] 1283s64[81|121]
+. 1299s64[81|121]
+206V13*Element{81|110R9} 39|1284s45[81|121]
+217U14*Replace_Element 39|1301s32[81|121]
+459U14*Prepend 39|124s24[40|54]
+466U14*Append_Vector 39|139s25[40|54]
+483U14*Append 39|22s25[40|54] 30s25[40|54] 41s25[40|54] 49s25[40|54] 83s13[40|54]
+. 614s13[40|54] 686s13[40|54] 1041s31[40|54] 1049s31[40|54] 1057s31[40|54]
+. 1286s10[40|54]
+514U14*Delete 39|1085s13[40|54]
+538U14*Delete_Last 39|125s10[40|54] 132s7[40|54] 188s7[40|54] 253s7[40|54]
+. 366s7[40|54] 376s7[40|54] 378s7[40|54] 707s7[40|54] 709s7[40|54] 1126s7[40|54]
+. 1157s7[40|54] 1309s13[40|54]
+560V13*First_Index{integer} 39|66s34[40|54] 109s34[40|54] 146s34[40|54] 162s18[40|54]
+. 174s18[40|54] 1072s22[40|54] 1083s30[40|54] 1100s45[40|54]
+570V13*Last_Index{81I12[40|54]} 39|66s67[40|54] 109s67[40|54] 133s50[40|54]
+. 146s55[40|54] 162s56[40|54] 174s56[40|54] 189s50[40|54] 1072s43[40|54]
+. 1083s51[40|54] 1099s42[40|54]
+578V13*Last_Element{40|42R9} 39|99s25[40|54] 124s33[40|54] 365s17[40|54]
+. 375s12[40|54] 377s12[40|54] 706s12[40|54] 708s12[40|54] 1124s27[40|54]
+. 1156s28[40|54] 1300s13[40|54] 1303s16[40|54]
 X 17 a-flteio.ads
 20K13*Float_Text_IO[29|46] 38|18w10
 X 19 a-iteint.ads
 24h9 Forward_Iterator
 32h9 Reversible_Iterator<24R9[14|119]>
 X 28 a-textio.ads
-58K13*Text_IO 787e16 39|1w10 1r27 1246r14
-566U14*Put_Line 39|202s7 993s7 999s13 1007s13 1017s13 1084s10 1100s7 1172s13
-. 1179s13 1182s13 1189s13 1240s10 1246s22 1265s13 1295s13 1298s13 1342s7
-. 1343s7 1346s13 1349s13
+58K13*Text_IO 787e16 39|1w10 1r27 1291r14
+566U14*Put_Line 39|204s7 1038s7 1044s13 1052s13 1062s13 1129s10 1145s7 1217s13
+. 1224s13 1227s13 1234s13 1285s10 1291s22 1310s13 1340s13 1343s13 1387s7
+. 1388s7 1391s13 1394s13
+X 30 a-unccon.ads
+20v14*Unchecked_Conversion 39|4w10 8r31 10r31 12r31 14r31
 X 31 a-uncdea.ads
-20u15*Unchecked_Deallocation 39|2w10 58r30
+20u15*Unchecked_Deallocation 39|2w10 60r30
 X 33 instances.ads
 25K9*Instances 203e14 38|15w6 15r49
-29I9*Address<short_short_integer> 39|973r25
+29I9*Address<short_short_integer> 39|1018r25
 33I12*Global_Addr{29I9}
-39I12*Local_Addr{29I9} 39|1234r14 1251r14 1274r45 1279r47 1284r47
+39I12*Local_Addr{29I9} 39|1279r14 1296r14 1319r45 1324r47 1329r47
 40I12*Label_Addr{29I9} 38|54r18
 41I12*Module_Instance_Addr{29I9}
-163R9*Module_Instance 177e14 38|69r17 39|89r24
-186R9*Store_Type 194e14 38|66r17 80r11 39|85r11
-196V13*Get_Module_Instance{163R9} 39|96s25
-201V13*Func_Ty{81|129R9} 39|984s24
+163R9*Module_Instance 177e14 38|69r17 39|91r24
+186R9*Store_Type 194e14 38|66r17 80r11 39|87r11
+196V13*Get_Module_Instance{163R9} 39|98s25
+201V13*Func_Ty{81|129R9} 39|1029s24
 X 34 instructions.ads
 14K9*Instructions 346e17 38|10w6 10r49
-24P9*Instruction_Acc(23R9) 39|1323r56 1339r14
-26A9*Chunk(24P9)<integer> 39|59r7
-27P9*Instruction_Sequence(26A9) 39|59r14
-29n30*Empty{29E9} 39|977r15
-29n37*TType{29E9} 39|980r15
-29n44*Func_Type{29E9} 39|983r15
-31R9*Block_Args 40e14 39|968r19 1070r56
-31e21*B{29E9} 39|976r17
-48n7*Numeric{47E9} 39|1345r15
-48n16*Reference{47E9} 39|1352r15
-48n27*Parametric{47E9} 39|1356r15
-48n39*Variable{47E9} 39|1359r15
-48n49*Table{47E9} 39|1354r15
-48n56*Memory{47E9} 39|1361r15
-48n64*Control{47E9} 39|1348r15
-49n7*Vector_128{47E9} 39|1363r15
-52n7*I32_Const{51E9} 39|682r15
-52n18*I64_Const{51E9} 39|684r15
-52n29*F32_Const{51E9} 39|686r15
-52n40*F64_Const{51E9} 39|688r15
-52n51*I32_Eqz{51E9} 39|690r15
-52n60*I32_Eq{51E9} 39|692r15
-52n68*I32_Ne{51E9} 39|694r15
-53n7*I32_Lt_S{51E9} 39|696r15
-53n17*I32_Lt_U{51E9} 39|698r15
-53n27*I32_Gt_S{51E9} 39|700r15
-53n37*I32_Gt_U{51E9} 39|702r15
-53n47*I32_Le_S{51E9} 39|704r15
-53n57*I32_Le_U{51E9} 39|706r15
-53n67*I32_Ge_S{51E9} 39|708r15
-54n7*I32_Ge_U{51E9} 39|710r15
-54n17*I64_Eqz{51E9} 39|712r15
-54n26*I64_Eq{51E9} 39|714r15
-54n34*I64_Ne{51E9} 39|716r15
-54n42*I64_Lt_S{51E9} 39|718r15
-54n52*I64_Lt_U{51E9} 39|720r15
-54n62*I64_Gt_S{51E9} 39|722r15
-55n7*I64_Gt_U{51E9} 39|724r15
-55n17*I64_Le_S{51E9} 39|726r15
-55n27*I64_Le_U{51E9} 39|728r15
-55n37*I64_Ge_S{51E9} 39|730r15
-55n47*I64_Ge_U{51E9} 39|732r15
-55n57*F32_Eq{51E9} 39|734r15
-55n65*F32_Ne{51E9} 39|736r15
-55n73*F32_Lt{51E9} 39|738r15
-56n7*F32_Gt{51E9} 39|740r15
-56n15*F32_Le{51E9} 39|742r15
-56n23*F32_Ge{51E9} 39|744r15
-56n31*F64_Eq{51E9} 39|746r15
-56n39*F64_Ne{51E9} 39|748r15
-56n47*F64_Lt{51E9} 39|750r15
-56n55*F64_Gt{51E9} 39|752r15
-56n63*F64_Le{51E9} 39|754r15
-56n71*F64_Ge{51E9} 39|756r15
-57n7*I32_Clz{51E9} 39|758r15
-57n16*I32_Ctz{51E9} 39|760r15
-57n25*I32_Popcnt{51E9} 39|762r15
-57n37*I32_Add{51E9} 39|764r15
-57n46*I32_Sub{51E9} 39|766r15
-57n55*I32_Mul{51E9} 39|768r15
-57n64*I32_Div_S{51E9} 39|770r15
-58n7*I32_Div_U{51E9} 39|772r15
-58n18*I32_Rem_S{51E9} 39|774r15
-58n29*I32_Rem_U{51E9} 39|776r15
-58n40*I64_Clz{51E9} 39|778r15
-58n49*I64_Ctz{51E9} 39|780r15
-58n58*I64_Popcnt{51E9} 39|782r15
-58n70*I64_Add{51E9} 39|784r15
-59n7*I64_Sub{51E9} 39|786r15
-59n16*I64_Mul{51E9} 39|788r15
-59n25*I64_Div_S{51E9} 39|790r15
-59n36*I64_Div_U{51E9} 39|792r15
-59n47*I64_Rem_S{51E9} 39|794r15
-59n58*I64_Rem_U{51E9} 39|796r15
-59n69*I32_And{51E9} 39|798r15
-60n7*I32_Or{51E9} 39|800r15
-60n15*I32_Xor{51E9} 39|802r15
-60n24*I32_Shl{51E9} 39|804r15
-60n33*I32_Shr_S{51E9} 39|806r15
-60n44*I32_Shr_U{51E9} 39|808r15
-60n55*I32_Rotl{51E9} 39|810r15
-60n65*I32_Rotr{51E9} 39|812r15
-61n7*I64_And{51E9} 39|814r15
-61n16*I64_Or{51E9} 39|816r15
-61n24*I64_Xor{51E9} 39|818r15
-61n33*I64_Shl{51E9} 39|820r15
-61n42*I64_Shr_S{51E9} 39|822r15
-61n53*I64_Shr_U{51E9} 39|824r15
-61n64*I64_Rotl{51E9} 39|826r15
-62n7*I64_Rotr{51E9} 39|828r15
-62n17*F32_Abs{51E9} 39|830r15
-62n26*F32_Neg{51E9} 39|832r15
-62n35*F32_Ceil{51E9} 39|834r15
-62n45*F32_Floor{51E9} 39|836r15
-62n56*F32_Trunc{51E9} 39|838r15
-62n67*F32_Nearest{51E9} 39|840r15
-63n7*F32_Sqrt{51E9} 39|842r15
-63n17*F32_Add{51E9} 39|844r15
-63n26*F32_Sub{51E9} 39|846r15
-63n35*F32_Mul{51E9} 39|848r15
-63n44*F32_Div{51E9} 39|850r15
-63n53*F32_Min{51E9} 39|852r15
-63n62*F32_Max{51E9} 39|854r15
-64n7*F32_Copysign{51E9} 39|856r15
-64n21*F64_Abs{51E9} 39|858r15
-64n30*F64_Neg{51E9} 39|860r15
-64n39*F64_Ceil{51E9} 39|862r15
-64n49*F64_Floor{51E9} 39|864r15
-64n60*F64_Trunc{51E9} 39|866r15
-65n7*F64_Nearest{51E9} 39|868r15
-65n20*F64_Sqrt{51E9} 39|870r15
-65n30*F64_Add{51E9} 39|872r15
-65n39*F64_Sub{51E9} 39|874r15
-65n48*F64_Mul{51E9} 39|876r15
-65n57*F64_Div{51E9} 39|878r15
-65n66*F64_Min{51E9} 39|880r15
-66n7*F64_Max{51E9} 39|882r15
-66n16*F64_Copysign{51E9} 39|884r15
-66n30*I32_Wrap_I64{51E9} 39|886r15
-66n44*I32_Trunc_F32_S{51E9} 39|888r15
-66n61*I32_Trunc_F32_U{51E9} 39|890r15
-67n7*I32_Trunc_F64_S{51E9} 39|892r15
-67n24*I32_Trunc_F64_U{51E9} 39|894r15
-67n41*I32_Extend_8_S{51E9} 39|896r15
-67n57*I32_Extend_16_S{51E9} 39|898r15
-68n7*I64_Extend_8_S{51E9} 39|900r15
-68n23*I64_Extend_16_S{51E9} 39|902r15
-68n40*I64_Extend_32_S{51E9} 39|904r15
-68n57*I64_Extend_I32_S{51E9} 39|906r15
-69n7*I64_Extend_I32_U{51E9} 39|908r15
-69n25*I64_Trunc_F32_S{51E9} 39|910r15
-69n42*I64_Trunc_F32_U{51E9} 39|912r15
-69n59*I64_Trunc_F64_S{51E9} 39|914r15
-70n7*I64_Trunc_F64_U{51E9} 39|916r15
-70n24*F32_Convert_I32_S{51E9} 39|918r15
-70n43*F32_Convert_I32_U{51E9} 39|920r15
-70n62*F32_Convert_I64_S{51E9} 39|922r15
-71n7*F32_Convert_I64_U{51E9} 39|924r15
-71n26*F32_Demote_F64{51E9} 39|926r15
-71n42*F64_Convert_I32_S{51E9} 39|928r15
-71n61*F64_Convert_I32_U{51E9} 39|930r15
-72n7*F64_Convert_I64_S{51E9} 39|932r15
-72n26*F64_Convert_I64_U{51E9} 39|934r15
-72n45*F64_Promote_F32{51E9} 39|936r15
-73n7*I32_Reinterpret_F32{51E9} 39|938r15
-73n28*I64_Reinterpret_F64{51E9} 39|940r15
-73n49*F32_Reinterpret_I32{51E9} 39|942r15
-74n7*F64_Reinterpret_I64{51E9} 39|944r15
-74n28*I32_Trunc_Sat_F32_S{51E9} 39|946r15
-74n49*I32_Trunc_Sat_F32_U{51E9} 39|948r15
-75n7*I32_Trunc_Sat_F64_S{51E9} 39|950r15
-75n28*I32_Trunc_Sat_F64_U{51E9} 39|952r15
-75n49*I64_Trunc_Sat_F32_S{51E9} 39|954r15
-76n7*I64_Trunc_Sat_F32_U{51E9} 39|956r15
-76n28*I64_Trunc_Sat_F64_S{51E9} 39|958r15
-76n49*I64_Trunc_Sat_F64_U{51E9} 39|960r15
-81n7*Unreachable{80E9} 39|1206r15
-81n20*NOP{80E9} 39|1196r15
-81n25*Block{80E9} 39|995r15 1171r15
-81n32*Loop_Inst{80E9} 39|1003r15 1188r15
-81n43*If_Inst{80E9} 39|1011r15 1181r15
-81n52*Else_Inst{80E9} 39|1186r15
-81n63*End_Block{80E9} 39|1176r15
-82n7*Branch{80E9} 39|1178r15
-82n15*Branch_If{80E9} 39|1193r15
-82n26*Branch_Table{80E9} 39|1198r15
-82n40*Return_Inst{80E9} 39|1200r15
-82n53*Call{80E9} 39|1202r15
-82n59*Call_Indirect{80E9} 39|1204r15
-87n7*Local_Get{86E9} 39|1294r15
-87n18*Local_Set{86E9} 39|1297r15
-87n29*Local_Tee{86E9} 39|1300r15
-87n40*Global_Get{86E9} 39|1302r15
-87n52*Global_Set{86E9} 39|1304r15
-103R9*Numeric_Instruction 116e14 39|678r15
-103e30*Op{51E9} 39|681r18
-106r13*I32_Constant{81|79R9} 39|683r53 691r63
-108r13*I64_Constant{81|79R9} 39|685r53 713r63
-110r13*F32_Constant{81|79R9} 39|687r53
-112r13*F64_Constant{81|79R9} 39|689r53
-118R9*Reference_Instruction 127e14 39|1213r15
-129R9*Control_Instruction 166e14 39|966r19 1047r15 1070r28 1105r33 1133r15
-. 1140r20 1166r15
-129e30*Op{80E9} 39|994r18 1170r18
-132m13*Block_Label{35|80M9} 39|997r53 1002r22
-133r13*Block_Arguments{31R9} 39|1175r50
-134m13*End_Block_Ptr{18M12} 39|1175r22
-138r13*If_Block_Args{31R9} 39|1184r29
-139m13*Else_If_Offset{19M12} 39|1184r50
-140m13*End_If_Offset{18M12} 39|1185r22
-142m13*End_Else_Offset{18M12} 39|1187r53
-144m13*Loop_Label{35|80M9} 39|1005r53 1010r22
-145r13*Loop_Arguments{31R9} 39|1192r56
-146m13*End_Loop_Block{18M12} 39|1192r22
-148m13*Label_Br_If{35|80M9} 39|1195r43
-150m13*Label_Br{35|80M9} 39|1180r45
-168R9*Table_Instruction 189e14 39|1220r15
-191R9*Variable_Instruction 204e14 39|1290r15
-191e31*Op{86E9} 39|1293r18
-194i13*Local_Get_Id{33|39I12} 39|1296r44
-196i13*Local_Set_Id{33|39I12} 39|1299r43
-198i13*Local_Tee_Id{33|39I12} 39|1301r43
-200i13*Glb_Get_Addr{33|33I12} 39|1303r45
-202i13*Glb_Set_Addr{33|33I12} 39|1305r45
-206R9*Parametric_Instruction 213e14 39|1227r15
-215R9*Memory_Instruction 305e14 39|1310r15
-307R9*Vector_Instruction 312e14 39|1317r15
-323e22*Op{47E9} 39|1344r17
-326r13*Numeric_Inst{103R9} 39|1347r47
-328r13*Reference_Inst{118R9} 39|1353r49
-330r13*Control_Inst{129R9} 39|1351r49
-332r13*Table_Inst{168R9} 39|1355r45
-334r13*Parametric_Inst{206R9} 39|1358r21
-336r13*Variable_Inst{191R9} 39|1360r48
-338r13*Memory_Inst{215R9} 39|1362r46
-340r13*Vector_Inst{307R9} 39|1365r21
+24P9*Instruction_Acc(23R9) 39|1368r56 1384r14
+26A9*Chunk(24P9)<integer> 39|61r7
+27P9*Instruction_Sequence(26A9) 39|61r14
+29n30*Empty{29E9} 39|1022r15
+29n37*TType{29E9} 39|1025r15
+29n44*Func_Type{29E9} 39|1028r15
+31R9*Block_Args 40e14 39|1013r19 1115r56
+31e21*B{29E9} 39|1021r17
+48n7*Numeric{47E9} 39|1390r15
+48n16*Reference{47E9} 39|1397r15
+48n27*Parametric{47E9} 39|1401r15
+48n39*Variable{47E9} 39|1404r15
+48n49*Table{47E9} 39|1399r15
+48n56*Memory{47E9} 39|1406r15
+48n64*Control{47E9} 39|1393r15
+49n7*Vector_128{47E9} 39|1408r15
+52n7*I32_Const{51E9} 39|727r15
+52n18*I64_Const{51E9} 39|729r15
+52n29*F32_Const{51E9} 39|731r15
+52n40*F64_Const{51E9} 39|733r15
+52n51*I32_Eqz{51E9} 39|735r15
+52n60*I32_Eq{51E9} 39|737r15
+52n68*I32_Ne{51E9} 39|739r15
+53n7*I32_Lt_S{51E9} 39|741r15
+53n17*I32_Lt_U{51E9} 39|743r15
+53n27*I32_Gt_S{51E9} 39|745r15
+53n37*I32_Gt_U{51E9} 39|747r15
+53n47*I32_Le_S{51E9} 39|749r15
+53n57*I32_Le_U{51E9} 39|751r15
+53n67*I32_Ge_S{51E9} 39|753r15
+54n7*I32_Ge_U{51E9} 39|755r15
+54n17*I64_Eqz{51E9} 39|757r15
+54n26*I64_Eq{51E9} 39|759r15
+54n34*I64_Ne{51E9} 39|761r15
+54n42*I64_Lt_S{51E9} 39|763r15
+54n52*I64_Lt_U{51E9} 39|765r15
+54n62*I64_Gt_S{51E9} 39|767r15
+55n7*I64_Gt_U{51E9} 39|769r15
+55n17*I64_Le_S{51E9} 39|771r15
+55n27*I64_Le_U{51E9} 39|773r15
+55n37*I64_Ge_S{51E9} 39|775r15
+55n47*I64_Ge_U{51E9} 39|777r15
+55n57*F32_Eq{51E9} 39|779r15
+55n65*F32_Ne{51E9} 39|781r15
+55n73*F32_Lt{51E9} 39|783r15
+56n7*F32_Gt{51E9} 39|785r15
+56n15*F32_Le{51E9} 39|787r15
+56n23*F32_Ge{51E9} 39|789r15
+56n31*F64_Eq{51E9} 39|791r15
+56n39*F64_Ne{51E9} 39|793r15
+56n47*F64_Lt{51E9} 39|795r15
+56n55*F64_Gt{51E9} 39|797r15
+56n63*F64_Le{51E9} 39|799r15
+56n71*F64_Ge{51E9} 39|801r15
+57n7*I32_Clz{51E9} 39|803r15
+57n16*I32_Ctz{51E9} 39|805r15
+57n25*I32_Popcnt{51E9} 39|807r15
+57n37*I32_Add{51E9} 39|809r15
+57n46*I32_Sub{51E9} 39|811r15
+57n55*I32_Mul{51E9} 39|813r15
+57n64*I32_Div_S{51E9} 39|815r15
+58n7*I32_Div_U{51E9} 39|817r15
+58n18*I32_Rem_S{51E9} 39|819r15
+58n29*I32_Rem_U{51E9} 39|821r15
+58n40*I64_Clz{51E9} 39|823r15
+58n49*I64_Ctz{51E9} 39|825r15
+58n58*I64_Popcnt{51E9} 39|827r15
+58n70*I64_Add{51E9} 39|829r15
+59n7*I64_Sub{51E9} 39|831r15
+59n16*I64_Mul{51E9} 39|833r15
+59n25*I64_Div_S{51E9} 39|835r15
+59n36*I64_Div_U{51E9} 39|837r15
+59n47*I64_Rem_S{51E9} 39|839r15
+59n58*I64_Rem_U{51E9} 39|841r15
+59n69*I32_And{51E9} 39|843r15
+60n7*I32_Or{51E9} 39|845r15
+60n15*I32_Xor{51E9} 39|847r15
+60n24*I32_Shl{51E9} 39|849r15
+60n33*I32_Shr_S{51E9} 39|851r15
+60n44*I32_Shr_U{51E9} 39|853r15
+60n55*I32_Rotl{51E9} 39|855r15
+60n65*I32_Rotr{51E9} 39|857r15
+61n7*I64_And{51E9} 39|859r15
+61n16*I64_Or{51E9} 39|861r15
+61n24*I64_Xor{51E9} 39|863r15
+61n33*I64_Shl{51E9} 39|865r15
+61n42*I64_Shr_S{51E9} 39|867r15
+61n53*I64_Shr_U{51E9} 39|869r15
+61n64*I64_Rotl{51E9} 39|871r15
+62n7*I64_Rotr{51E9} 39|873r15
+62n17*F32_Abs{51E9} 39|875r15
+62n26*F32_Neg{51E9} 39|877r15
+62n35*F32_Ceil{51E9} 39|879r15
+62n45*F32_Floor{51E9} 39|881r15
+62n56*F32_Trunc{51E9} 39|883r15
+62n67*F32_Nearest{51E9} 39|885r15
+63n7*F32_Sqrt{51E9} 39|887r15
+63n17*F32_Add{51E9} 39|889r15
+63n26*F32_Sub{51E9} 39|891r15
+63n35*F32_Mul{51E9} 39|893r15
+63n44*F32_Div{51E9} 39|895r15
+63n53*F32_Min{51E9} 39|897r15
+63n62*F32_Max{51E9} 39|899r15
+64n7*F32_Copysign{51E9} 39|901r15
+64n21*F64_Abs{51E9} 39|903r15
+64n30*F64_Neg{51E9} 39|905r15
+64n39*F64_Ceil{51E9} 39|907r15
+64n49*F64_Floor{51E9} 39|909r15
+64n60*F64_Trunc{51E9} 39|911r15
+65n7*F64_Nearest{51E9} 39|913r15
+65n20*F64_Sqrt{51E9} 39|915r15
+65n30*F64_Add{51E9} 39|917r15
+65n39*F64_Sub{51E9} 39|919r15
+65n48*F64_Mul{51E9} 39|921r15
+65n57*F64_Div{51E9} 39|923r15
+65n66*F64_Min{51E9} 39|925r15
+66n7*F64_Max{51E9} 39|927r15
+66n16*F64_Copysign{51E9} 39|929r15
+66n30*I32_Wrap_I64{51E9} 39|931r15
+66n44*I32_Trunc_F32_S{51E9} 39|933r15
+66n61*I32_Trunc_F32_U{51E9} 39|935r15
+67n7*I32_Trunc_F64_S{51E9} 39|937r15
+67n24*I32_Trunc_F64_U{51E9} 39|939r15
+67n41*I32_Extend_8_S{51E9} 39|941r15
+67n57*I32_Extend_16_S{51E9} 39|943r15
+68n7*I64_Extend_8_S{51E9} 39|945r15
+68n23*I64_Extend_16_S{51E9} 39|947r15
+68n40*I64_Extend_32_S{51E9} 39|949r15
+68n57*I64_Extend_I32_S{51E9} 39|951r15
+69n7*I64_Extend_I32_U{51E9} 39|953r15
+69n25*I64_Trunc_F32_S{51E9} 39|955r15
+69n42*I64_Trunc_F32_U{51E9} 39|957r15
+69n59*I64_Trunc_F64_S{51E9} 39|959r15
+70n7*I64_Trunc_F64_U{51E9} 39|961r15
+70n24*F32_Convert_I32_S{51E9} 39|963r15
+70n43*F32_Convert_I32_U{51E9} 39|965r15
+70n62*F32_Convert_I64_S{51E9} 39|967r15
+71n7*F32_Convert_I64_U{51E9} 39|969r15
+71n26*F32_Demote_F64{51E9} 39|971r15
+71n42*F64_Convert_I32_S{51E9} 39|973r15
+71n61*F64_Convert_I32_U{51E9} 39|975r15
+72n7*F64_Convert_I64_S{51E9} 39|977r15
+72n26*F64_Convert_I64_U{51E9} 39|979r15
+72n45*F64_Promote_F32{51E9} 39|981r15
+73n7*I32_Reinterpret_F32{51E9} 39|983r15
+73n28*I64_Reinterpret_F64{51E9} 39|985r15
+73n49*F32_Reinterpret_I32{51E9} 39|987r15
+74n7*F64_Reinterpret_I64{51E9} 39|989r15
+74n28*I32_Trunc_Sat_F32_S{51E9} 39|991r15
+74n49*I32_Trunc_Sat_F32_U{51E9} 39|993r15
+75n7*I32_Trunc_Sat_F64_S{51E9} 39|995r15
+75n28*I32_Trunc_Sat_F64_U{51E9} 39|997r15
+75n49*I64_Trunc_Sat_F32_S{51E9} 39|999r15
+76n7*I64_Trunc_Sat_F32_U{51E9} 39|1001r15
+76n28*I64_Trunc_Sat_F64_S{51E9} 39|1003r15
+76n49*I64_Trunc_Sat_F64_U{51E9} 39|1005r15
+81n7*Unreachable{80E9} 39|1251r15
+81n20*NOP{80E9} 39|1241r15
+81n25*Block{80E9} 39|1040r15 1216r15
+81n32*Loop_Inst{80E9} 39|1048r15 1233r15
+81n43*If_Inst{80E9} 39|1056r15 1226r15
+81n52*Else_Inst{80E9} 39|1231r15
+81n63*End_Block{80E9} 39|1221r15
+82n7*Branch{80E9} 39|1223r15
+82n15*Branch_If{80E9} 39|1238r15
+82n26*Branch_Table{80E9} 39|1243r15
+82n40*Return_Inst{80E9} 39|1245r15
+82n53*Call{80E9} 39|1247r15
+82n59*Call_Indirect{80E9} 39|1249r15
+87n7*Local_Get{86E9} 39|1339r15
+87n18*Local_Set{86E9} 39|1342r15
+87n29*Local_Tee{86E9} 39|1345r15
+87n40*Global_Get{86E9} 39|1347r15
+87n52*Global_Set{86E9} 39|1349r15
+103R9*Numeric_Instruction 116e14 39|723r15
+103e30*Op{51E9} 39|726r18
+106r13*I32_Constant{81|79R9} 39|728r53 736r63
+108r13*I64_Constant{81|79R9} 39|730r53 758r63
+110r13*F32_Constant{81|79R9} 39|732r53
+112r13*F64_Constant{81|79R9} 39|734r53
+118R9*Reference_Instruction 127e14 39|1258r15
+129R9*Control_Instruction 166e14 39|1011r19 1092r15 1115r28 1150r33 1178r15
+. 1185r20 1211r15
+129e30*Op{80E9} 39|1039r18 1215r18
+132m13*Block_Label{35|80M9} 39|1042r53 1047r22
+133r13*Block_Arguments{31R9} 39|1220r50
+134m13*End_Block_Ptr{18M12} 39|1220r22
+138r13*If_Block_Args{31R9} 39|1229r29
+139m13*Else_If_Offset{19M12} 39|1229r50
+140m13*End_If_Offset{18M12} 39|1230r22
+142m13*End_Else_Offset{18M12} 39|1232r53
+144m13*Loop_Label{35|80M9} 39|1050r53 1055r22
+145r13*Loop_Arguments{31R9} 39|1237r56
+146m13*End_Loop_Block{18M12} 39|1237r22
+148m13*Label_Br_If{35|80M9} 39|1240r43
+150m13*Label_Br{35|80M9} 39|1225r45
+168R9*Table_Instruction 189e14 39|1265r15
+191R9*Variable_Instruction 204e14 39|1335r15
+191e31*Op{86E9} 39|1338r18
+194i13*Local_Get_Id{33|39I12} 39|1341r44
+196i13*Local_Set_Id{33|39I12} 39|1344r43
+198i13*Local_Tee_Id{33|39I12} 39|1346r43
+200i13*Glb_Get_Addr{33|33I12} 39|1348r45
+202i13*Glb_Set_Addr{33|33I12} 39|1350r45
+206R9*Parametric_Instruction 213e14 39|1272r15
+215R9*Memory_Instruction 305e14 39|1355r15
+307R9*Vector_Instruction 312e14 39|1362r15
+323e22*Op{47E9} 39|1389r17
+326r13*Numeric_Inst{103R9} 39|1392r47
+328r13*Reference_Inst{118R9} 39|1398r49
+330r13*Control_Inst{129R9} 39|1396r49
+332r13*Table_Inst{168R9} 39|1400r45
+334r13*Parametric_Inst{206R9} 39|1403r21
+336r13*Variable_Inst{191R9} 39|1405r48
+338r13*Memory_Inst{215R9} 39|1407r46
+340r13*Vector_Inst{307R9} 39|1410r21
 X 35 interfac.ads
 38K9*Interfaces 232e15 38|9w6 9r49
-53I9*Integer_32<integer> 39|7r15 7r52 11r15 11r52 353r54 381r22 381r41 383r16
-. 398r22 398r41 400r16 415r41 417r16 432r41 434r16 450r20 1074r27
-56I9*Integer_64<long_long_integer> 39|415r22 432r22
-69M9*Unsigned_8 39|970r25 985r24 986r24
-80M9*Unsigned_32 38|57r23 59r26 39|140r36 142r17 157r45 190r41 194r21 225r12
-. 234r12 967r19 967r51 1071r28 1071r54 1075r27 1105r12 1109r27 1116r15 1141r20
-. 1154r13
+53I9*Integer_32<integer> 39|12r53 14r66 355r54 383r22 383r41 385r16 400r22
+. 400r41 402r16 417r41 419r16 434r41 436r16 452r20 1119r27
+56I9*Integer_64<long_long_integer> 39|8r53 10r66 417r22 434r22
+69M9*Unsigned_8 39|1015r25 1030r24 1031r24
+80M9*Unsigned_32 38|57r23 59r26 39|12r65 14r53 142r36 144r17 159r45 192r41
+. 196r21 227r12 236r12 1012r19 1012r51 1116r28 1116r54 1120r27 1150r12 1154r27
+. 1161r15 1186r20 1199r13
+83M9*Unsigned_64 39|8r65 10r53
+140V13*Shift_Left{80M9} 39|532s27
+145V13*Shift_Right{80M9} 39|538s27
+155V13*Rotate_Left{80M9} 39|544s27
+160V13*Rotate_Right{80M9} 39|550s27
+165V13*Shift_Left{83M9} 39|585s27
+170V13*Shift_Right{83M9} 39|591s27
+180V13*Rotate_Left{83M9} 39|597s27
+185V13*Rotate_Right{83M9} 39|603s27
 220F9*IEEE_Float_64<long_float>
 X 38 interpreter.ads
-19K9*Interpreter 87l5 87e16 39|4b14 1387l5 1387t16
-24E9*Comparison 25e66 28r45 32r41 39|261r41 271r51 368r59
-25n7*Equal{24E9} 39|279r30 294r30 314r30 330r30 693r49 715r49 735r49 747r49
-25n14*Not_Equal{24E9} 39|281r30 296r30 316r30 332r30 695r49 717r49 737r49
-. 749r49
-25n25*Less{24E9} 39|283r30 298r30 318r30 334r30 697r49 699r49 719r49 721r49
-. 723r49 739r49 751r49
-25n31*Greater{24E9} 39|285r30 300r30 320r30 336r30 701r49 703r49 725r49 741r49
-. 753r49
-25n40*Less_Equal{24E9} 39|287r30 302r30 322r30 338r30 705r49 707r49 727r49
-. 729r49 743r49 755r49
-25n52*Greater_Equal{24E9} 39|289r30 304r30 324r30 340r30 709r49 711r49 731r49
-. 733r49 745r49 757r49
-27+12 T 28r37 31r42 39|260r42 357r7
-28V21 Compare{boolean} 28>30 28>33 28>40 39|264s10 357r26
+19K9*Interpreter 87l5 87e16 39|6b14 1432l5 1432t16
+24E9*Comparison 25e66 28r45 32r41 39|263r41 273r51 370r59
+25n7*Equal{24E9} 39|281r30 296r30 316r30 332r30 738r49 760r49 780r49 792r49
+25n14*Not_Equal{24E9} 39|283r30 298r30 318r30 334r30 740r49 762r49 782r49
+. 794r49
+25n25*Less{24E9} 39|285r30 300r30 320r30 336r30 742r49 744r49 764r49 766r49
+. 768r49 784r49 796r49
+25n31*Greater{24E9} 39|287r30 302r30 322r30 338r30 746r49 748r49 770r49 786r49
+. 798r49
+25n40*Less_Equal{24E9} 39|289r30 304r30 324r30 340r30 750r49 752r49 772r49
+. 774r49 788r49 800r49
+25n52*Greater_Equal{24E9} 39|291r30 306r30 326r30 342r30 754r49 756r49 776r49
+. 778r49 790r49 802r49
+27+12 T 28r37 31r42 39|262r42 359r7
+28V21 Compare{boolean} 28>30 28>33 28>40 39|266s10 359r26
 28*30 A{27+12}
 28*33 B{27+12}
 28e40 Op{24E9}
-29U22 Push_To_Stack 29=37 29>60 39|265s10 267s10 357r49
+29U22 Push_To_Stack 29=37 29>60 39|267s10 269s10 359r49
 29r37 Stack{14|91R9[40|54]}
 29i60 Value{integer}
-30u14*Check_Push 31=7 31>35 31>38 31>45 32>7 32>36 39|259b14 269l8 269t18
-. 356r35
-31r7 Stack{14|91R9[40|54]} 39|260b7 265m25 267m25
-31*35 A{27+12} 39|260b35 264r19
-31*38 B{27+12} 39|260b38 264r22
-31i45 Comp_True{integer} 39|260b45 265r32
-32i7 Comp_False{integer} 39|261b7 267r32
-32e36 Op{24E9} 39|261b36 264r25
-36+12 S 38r17 38r64 39r62 41r37 39|478r37 480r16 649r7
-37V21 Calculate_Signed{36+12} 38>10 38>13 38>20 38>36 39|482s17 649r35
+30u14*Check_Push 31=7 31>35 31>38 31>45 32>7 32>36 39|261b14 271l8 271t18
+. 358r35
+31r7 Stack{14|91R9[40|54]} 39|262b7 267m25 269m25
+31*35 A{27+12} 39|262b35 266r19
+31*38 B{27+12} 39|262b38 266r22
+31i45 Comp_True{integer} 39|262b45 267r32
+32i7 Comp_False{integer} 39|263b7 269r32
+32e36 Op{24E9} 39|263b36 266r25
+36+12 S 38r17 38r64 39r62 41r37 39|480r37 482r16 694r7
+37V21 Calculate_Signed{36+12} 38>10 38>13 38>20 38>36 39|484s17 694r35
 38*10 A{36+12}
 38*13 B{36+12}
 38e20 Op{81|33E9}
 38e36 Size{81|48E9}
-39U22 Push_Signed 39=35 39>58 39|483s7 650r7
+39U22 Push_Signed 39=35 39>58 39|485s7 695r7
 39r35 Stack{14|91R9[40|54]}
 39*58 R{36+12}
-40u14*Calculate_Push_Signed 41=7 41>30 41>33 41>40 41>56 39|477b14 484l8
-. 484t29 648r38
-41r7 Stack{14|91R9[40|54]} 39|478b7 483m20
-41*30 A{36+12} 39|478b30 482r35
-41*33 B{36+12} 39|478b33 482r38
-41e40 Op{81|33E9} 39|478b40 482r41
-41e56 Size{81|48E9} 39|478b56 482r45
-45+12 F 47r17 47r64 48r61 50r37 39|487r37 489r16 653r7
-46V21 Calculate_Float{45+12} 47>10 47>13 47>20 47>36 39|491s17 653r24
+40u14*Calculate_Push_Signed 41=7 41>30 41>33 41>40 41>56 39|479b14 486l8
+. 486t29 693r38
+41r7 Stack{14|91R9[40|54]} 39|480b7 485m20
+41*30 A{36+12} 39|480b30 484r35
+41*33 B{36+12} 39|480b33 484r38
+41e40 Op{81|33E9} 39|480b40 484r41
+41e56 Size{81|48E9} 39|480b56 484r45
+45+12 F 47r17 47r64 48r61 50r37 39|489r37 491r16 698r7
+46V21 Calculate_Float{45+12} 47>10 47>13 47>20 47>36 39|493s17 698r24
 47*10 A{45+12}
 47*13 B{45+12}
 47e20 Op{81|33E9}
 47e36 Size{81|48E9}
-48U22 Push_Float 48=34 48>57 39|492s7 653r54
+48U22 Push_Float 48=34 48>57 39|494s7 698r54
 48r34 Stack{14|91R9[40|54]}
 48*57 R{45+12}
-49u14*Calculate_Push_Float 50=7 50>30 50>33 50>40 50>56 39|486b14 493l8 493t28
-. 652r37
-50r7 Stack{14|91R9[40|54]} 39|487b7 492m19
-50*30 A{45+12} 39|487b30 491r34
-50*33 B{45+12} 39|487b33 491r37
-50e40 Op{81|33E9} 39|487b40 491r40
-50e56 Size{81|48E9} 39|487b56 491r44
+49u14*Calculate_Push_Float 50=7 50>30 50>33 50>40 50>56 39|488b14 495l8 495t28
+. 697r37
+50r7 Stack{14|91R9[40|54]} 39|489b7 494m19
+50*30 A{45+12} 39|489b30 493r34
+50*33 B{45+12} 39|489b33 493r37
+50e40 Op{81|33E9} 39|489b40 493r40
+50e56 Size{81|48E9} 39|489b56 493r44
 52R9*Label_Info 55e14 59r55
-53i7*Arity{natural} 39|209r64 1002m36 1010m35
-54i7*Lab_Addr{33|40I12} 39|226r67 1002m52 1010m51
+53i7*Arity{natural} 39|211r64 1047m36 1055m35
+54i7*Lab_Addr{33|40I12} 39|228r67 1047m52 1055m51
 57V13*Hash{3|19M9} 57>19 59r75
 57m19 x{35|80M9} 57r68
-58K12*Symbols_Table[11|49] 62r8 67r17 39|90r24 203r10 209r12 226r15
-64R9*Env 70e14 77r41 81r14 83r39 85r54 39|61r41 86r14 104r51 118r59 134r76
-. 190r75 234r46 678r57 966r61 1047r57 1072r28 1105r75 1133r57 1140r62 1153r47
-. 1166r57 1213r59 1234r47 1251r47 1290r58 1323r44 1337r54 1371r39
-65r7*Stack{14|91R9[40|54]} 39|64r28 64r61 66r25 100m10 107r28 107r61 109r25
-. 122r59 123m35 137m19 199r53 200r64 201r57 217m63 219m59 683m40 685m40 687m40
-. 689m40 691m50 693m42 695m42 697m42 699m42 701m42 703m42 705m42 707m42 709m42
-. 711m42 713m50 715m42 717m42 719m42 721m42 723m42 725m42 727m42 729m42 731m42
-. 733m42 735m42 737m42 739m42 741m42 743m42 745m42 747m42 749m42 751m42 753m42
-. 755m42 757m42 759m40 761m40 763m40 765m44 767m44 769m44 771m44 773m44 781m40
-. 785m44 787m44 789m44 791m44 793m44 845m44 847m44 849m44 851m44 873m44 875m44
-. 877m44 879m44 996m25 1004m25 1012m25 1053r41 1054r36 1055r39 1056r28 1057r37
-. 1064m44 1079r21 1081m32 1111r54 1112m32 1241m30 1255r39 1258r42 1264m38
-. 1355r69 1358r50 1362r71 1365r46
-66r7*Store{33|186R9} 39|100m27
-67r7*Symbols{11|56R9[58]} 39|100m39 203r46 209r47 226r50 1001m25 1009m25
-68r7*Cf{40|28R9} 39|100m55 224m22 238m19 238r47 1021m19 1021r47 1065m19 1065r47
-. 1086r45 1092m22 1092r50 1096r26 1122m19 1122r47 1145m19 1145r47 1156r26
-. 1174r48 1191r48 1238r54 1239r35 1254r54 1257r28 1325r31 1326r38 1327r23
-. 1332r24 1333r36 1343r49 1367m19 1367r47
-69r7*Module{33|163R9} 39|101m10
-72E9*Interpret_Result 73e70 83r51 39|1371r51
-73n7*INTERPRET_OK{72E9} 39|1378r23
+58K12*Symbols_Table[11|49] 62r8 67r17 39|92r24 205r10 211r12 228r15
+64R9*Env 70e14 77r41 81r14 83r39 85r54 39|63r41 88r14 106r51 120r59 136r76
+. 192r75 236r46 723r57 1011r61 1092r57 1117r28 1150r75 1178r57 1185r62 1198r47
+. 1211r57 1258r59 1279r47 1296r47 1335r58 1368r44 1382r54 1416r39
+65r7*Stack{14|91R9[40|54]} 39|66r28 66r61 68r25 102m10 109r28 109r61 111r25
+. 124r59 125m35 139m19 201r53 202r64 203r57 219m63 221m59 728m40 730m40 732m40
+. 734m40 736m50 738m42 740m42 742m42 744m42 746m42 748m42 750m42 752m42 754m42
+. 756m42 758m50 760m42 762m42 764m42 766m42 768m42 770m42 772m42 774m42 776m42
+. 778m42 780m42 782m42 784m42 786m42 788m42 790m42 792m42 794m42 796m42 798m42
+. 800m42 802m42 804m40 806m40 808m40 810m44 812m44 814m44 816m44 818m44 820m44
+. 822m44 824m40 826m40 830m44 832m44 834m44 836m44 838m44 840m44 842m44 844m44
+. 846m44 848m44 850m44 852m44 854m44 856m44 858m44 860m44 862m44 864m44 866m44
+. 868m44 870m44 872m44 874m44 890m44 892m44 894m44 896m44 918m44 920m44 922m44
+. 924m44 1041m25 1049m25 1057m25 1098r41 1099r36 1100r39 1101r28 1102r37
+. 1109m44 1124r21 1126m32 1156r54 1157m32 1286m30 1300r39 1303r42 1309m38
+. 1400r69 1403r50 1407r71 1410r46
+66r7*Store{33|186R9} 39|102m27
+67r7*Symbols{11|56R9[58]} 39|102m39 205r46 211r47 228r50 1046m25 1054m25
+68r7*Cf{40|28R9} 39|102m55 226m22 240m19 240r47 1066m19 1066r47 1110m19 1110r47
+. 1131r45 1137m22 1137r50 1141r26 1167m19 1167r47 1190m19 1190r47 1201r26
+. 1219r48 1236r48 1283r54 1284r35 1299r54 1302r28 1370r31 1371r38 1372r23
+. 1377r24 1378r36 1388r49 1412m19 1412r47
+69r7*Module{33|163R9} 39|103m10
+72E9*Interpret_Result 73e70 83r51 39|1416r51
+73n7*INTERPRET_OK{72E9} 39|1423r23
 73n21*INTERPRET_COMPILE_ERROR{72E9}
-73n46*INTERPRET_RUNTIME_ERROR{72E9} 39|1382r23
-75E9*Control_Flow 75e48 85r66 39|234r58 1106r14 1148r40 1153r59 1167r14 1337r66
-. 1372r17
-75n26*Break{75E9} 39|1162r14 1377r18
-75n33*Continue{75E9} 39|239r14 1124r14 1209r14 1368r14 1379r18
-75n43*Trap{75E9} 39|1150r14 1381r18
-77V13*Count_Labels{natural} 77>27 39|61b13 71l8 71t20 205s13
-77r27 Environment{64R9} 39|61b27 64r16 64r49 66r13
-79V13*Init_Environment{64R9} 80>7 80=23 80>46 39|84b13 102l8 102t24
-80r7 S{33|186R9} 39|85b7 100r36
-80r23 Stack{14|91R9[40|54]} 39|85b23 94m44 97r39 100r20
-80r46 Start_Func{83|28R9} 39|85b46 94r32
-83V13*Run{72E9} 83=18 39|1371b13 1386l8 1386t11
-83r18 Environment{64R9} 39|1371b18 1375m41 1375r41
-85V13*Execute_Next_Instr{75E9} 85=33 39|1337b13 1369l8 1369t26 1375s21
-85r33 Environment{64R9} 39|1337b33 1341r32 1343r37 1347m61 1351m63 1351r63
-. 1353m65 1355r57 1358r38 1360m63 1362r59 1365r34 1367m7 1367r35
+73n46*INTERPRET_RUNTIME_ERROR{72E9} 39|1427r23
+75E9*Control_Flow 75e48 85r66 39|236r58 1151r14 1193r40 1198r59 1212r14 1382r66
+. 1417r17
+75n26*Break{75E9} 39|1207r14 1422r18
+75n33*Continue{75E9} 39|241r14 1169r14 1254r14 1413r14 1424r18
+75n43*Trap{75E9} 39|1195r14 1426r18
+77V13*Count_Labels{natural} 77>27 39|63b13 73l8 73t20 207s13
+77r27 Environment{64R9} 39|63b27 66r16 66r49 68r13
+79V13*Init_Environment{64R9} 80>7 80=23 80>46 39|86b13 104l8 104t24
+80r7 S{33|186R9} 39|87b7 102r36
+80r23 Stack{14|91R9[40|54]} 39|87b23 96m44 99r39 102r20
+80r46 Start_Func{83|28R9} 39|87b46 96r32
+83V13*Run{72E9} 83=18 39|1416b13 1431l8 1431t11
+83r18 Environment{64R9} 39|1416b18 1420m41 1420r41
+85V13*Execute_Next_Instr{75E9} 85=33 39|1382b13 1414l8 1414t26 1420s21
+85r33 Environment{64R9} 39|1382b33 1386r32 1388r37 1392m61 1396m63 1396r63
+. 1398m65 1400r57 1403r38 1405m63 1407r59 1410r34 1412m7 1412r35
 X 39 interpreter.adb
-6V13 Shift_Left{35|53I9} 7>7 7>27
-7i7 Value{35|53I9}
-7i27 Amount{natural}
-10V13 Shift_Right{35|53I9} 11>7 11>27
-11i7 Value{35|53I9}
-11i27 Amount{natural}
-14U14 Push_Value 14b14 14=26 14>49 56l8 56t18 244s7 253s10 353s7 457s13 461s13
-. 467s13 471s13
-14r26 Stack{14|91R9[40|54]} 20m19 20r19 28m19 28r19 39m19 39r19 47m19 47r19
-14r49 Num{81|79R9} 16r12 18r18 26r59 34r59 37r18 45r59 53r59
-58U14 Free[31|20]
-62i7 Label_Count{natural} 67m13 67r28 70r14
-64i11 I{integer} 66r32
-73U14 Adding_Start_Call_Frame 73b14 74>7 74=30 82l8 82t31 94s7
-74r7 start{83|28R9} 79r55 80r23
-74r30 Stack{14|91R9[40|54]} 81m7 81r7
-76r7 Current_Frame{40|28R9} 78m7 78r7 81r47
-88r7 Current_Frame{40|28R9} 96r46 97m7 97r7 100r61
-89r7 Current_Module{33|163R9} 96m7 101r20
-90r7 Tab{11|56R9[38|58]} 100r50
-104V13 Count_Values_Top_Stack{natural} 104b13 104>37 116l8 116t30 211s25
-104r37 Environment{38|64R9} 107r16 107r49 109r13
-105i7 Value_Size{natural} 110m13 110r27 115r14
-107i11 I{integer} 109r32
-118V13 Pop_Values{14|91R9[40|54]} 118b13 118>25 118=38 126l8 126t18 213s25
-118i25 N{natural} 121r21
-118r38 Environment{38|64R9} 122r47 123m23 123r23
-119r7 Popped_Values{14|91R9[40|54]} 122m10 122r10 125r14
-121i11 i{integer}
-128U14 Pop_Label_Or_Values 128b14 128>35 128=55 132l8 132t27 219s16
-128i35 Position{natural} 131r63
-128r55 Stack{14|91R9[40|54]} 131m10 131r44
-134U14 Push_Values 134b14 134>27 134>42 134=55 138l8 138t19 222s10
-134r27 Temp{14|91R9[40|54]} 137r40
-134i42 N{natural}
-134r55 Environment{38|64R9} 137m7 137r7
-140V13 Get_Lab_Position{natural} 140b13 140>31 140>49 154l8 154t24 199s19
-140m31 To{35|80M9} 142r32 153r65
-140r49 Stack{14|91R9[40|54]} 144r28 144r49 145r13
-142m7 Counter{35|80M9} 146r16 149m16 149r27
-144i11 Index{integer} 145r20 147r23
-156V13 Get_Lab_From_Position{35|80M9} 156b13 157>7 157>22 168l8 168t29 200s19
-157i7 Pos{natural} 160r11 160r49 162r20 163r43 164r24
-157r22 Stack{14|91R9[40|54]} 160r31 160r68 162r13 164r17
-170V13 Get_Block_Type{81|38E9} 170b13 170>29 170>44 180l8 180t22 201s19
-170i29 Pos{natural} 172r11 172r49 174r20 175r43 176r24
-170r44 Stack{14|91R9[40|54]} 172r31 172r68 174r13 176r17
-182U14 Pop_Values_Before_Label 182b14 183>7 183=27 188l8 188t31 217s16
-183i7 Position{natural} 187r63
-183r27 Stack{14|91R9[40|54]} 187m10 187r44
-190U14 Jump_If_Block_Exists 190b14 190>36 190=54 231l8 231t28 237s7
-190m36 To{35|80M9} 199r37
-190r54 Environment{38|64R9} 199r41 200r52 201r45 203r34 205r27 209r35 211r49
-. 213m48 213r48 217m51 217r51 219m47 219r47 222m47 224m10 226r38
-192i7 Lab_Arity{natural} 208m10 211r65 213r37 222r36
-193i7 Position{natural} 199m7 200r42 201r35 205r43 217r41 219r37
-194m7 Lab_Id{35|80M9} 200m7 203r55 209r56 226r59
-195r7 Tmp_Storage{14|91R9[40|54]} 213m10 222r23
-196e7 Block_Ty{81|38E9} 201m7 202r17 215r15
-233V13 Execute_Branching{38|75E9} 233b13 234>7 234=25 240l8 240t25 1119s17
-. 1180s20
-234m7 To{35|80M9} 237r29
-234r25 Environment{38|64R9} 237m33 238m7 238r35
-242U14 Execute_Const 242b14 242=29 242>52 245l8 245t21 683s13 685s13 687s13
-. 689s13
-242r29 Stack{14|91R9[40|54]} 244m19
-242r52 Var{81|79R9} 244r26
-247U14 Execute_Compare_To_Zero 247b14 248=7 248>30 255l8 255t31 691s13 713s13
-248r7 Stack{14|91R9[40|54]} 251m20 253m22
-248r30 Var{81|79R9} 252r10 252r37 253r29
-271V13 Compare_NT{boolean} 271b13 271>25 271>28 271>46 349l8 349t18 357r37
-271r25 A{81|79R9} 273r10 274r15 276r21 280r36 282r36 284r36 286r36 288r36
-. 290r36 295r36 297r36 299r36 301r36 303r36 305r36 310r21 315r36 317r36 319r36
-. 321r36 323r36 325r36 331r36 333r36 335r36 337r36 339r36 341r36
-271r28 B{81|79R9} 273r16 280r51 282r52 284r51 286r51 288r52 290r52 295r51
-. 297r52 299r51 301r51 303r52 305r52 315r51 317r52 319r51 321r51 323r52 325r52
-. 331r51 333r52 335r51 337r51 339r52 341r52
-271e46 Op{38|24E9} 278r27 293r27 313r27 329r27
-351U14 Push_NT 351b14 351=23 351>46 354l8 354t15 357r66
-351r23 Stack{14|91R9[40|54]} 353m19
-351i46 Value{integer} 353r66
-356U14 Check_Push_NT[38|30] 259b14 377s7
-360V13 Pop_Value{81|79R9} 360b13 360=24 366l8 366t17 455s27 459s27 465s27
-. 469s27
-360r24 Stack{14|91R9[40|54]} 363r31 364m20
-361r7 Result{81|79R9} 363m7 365r14
-368U14 Execute_Compare 368b14 368=31 368>54 378l8 378t23 693s13 695s13 697s13
-. 699s13 701s13 703s13 705s13 707s13 709s13 711s13 715s13 717s13 719s13 721s13
-. 723s13 725s13 727s13 729s13 731s13 733s13 735s13 737s13 739s13 741s13 743s13
-. 745s13 747s13 749s13 751s13 753s13 755s13 757s13
-368r31 Stack{14|91R9[40|54]} 371r22 373r26 374m20 375r26 376m20 377m22
-368e54 Op{38|24E9} 377r69
-369r7 A{40|36R9} 373m7 377r29
-369r10 B{40|36R9} 375m7 377r46
-380V13 Count_Leading_Zeroes_I32{35|53I9} 380b13 381=7 395l8 395t32 456s27
-381i7 Value{35|53I9} 385r10 389r13 390m10 390r20
-383i7 Result{35|53I9} 386m10 391m10 391r20 394r14
-397V13 Count_Trailing_Zeroes_I32{35|53I9} 397b13 398=7 412l8 412t33 466s27
-398i7 Value{35|53I9} 402r10 406r14 407m10 407r20
-400i7 Result{35|53I9} 403m10 408m10 408r20 411r14
-414V13 Count_Leading_Zeroes_I64{35|53I9} 414b13 415=7 429l8 429t32 460s27
-. 470s27
-415i7 Value{35|56I9} 419r10 423r13 424m10 424r20
-417i7 Result{35|53I9} 420m10 425m10 425r20 428r14
-431V13 Count_Trailing_Zeroes_I64{35|53I9} 431b13 432=7 446l8 446t33
-432i7 Value{35|56I9} 436r10 440r14 441m10 441r20
-434i7 Result{35|53I9} 437m10 442m10 442r20 445r14
-448U14 Execute_Count 448b14 448=29 448>52 448>65 474l8 474t21 759s13 761s13
-. 763s13 781s13
-448r29 Stack{14|91R9[40|54]} 455m38 455r38 457m25 459m38 459r38 461m25 465m38
-. 465r38 467m25 469m38 469r38 471m25
-448e52 Ty{81|40E9} 454r13 458r16 464r13 468r16
-448a65 L_T{string} 453r10 463r13
-450i7 Result_I32{35|53I9} 456m13 457r60 460m13 461r60 466m13 467r60 470m13
-. 471r60
-451r7 Tmp{81|79R9} 455m13 456m53 456r53 459m13 460m53 460r53 465m13 466m54
-. 466r54 469m13 470m53 470r53
-480*7 Result{38|36+12} 482m7 483r27
-489*7 Result{38|45+12} 491m7 492r26
-495V13 Clc_Signed{81|52R9} 495b13 496>7 496>10 496>27 496>43 565l8 565t18
-. 649r55
-496r7 A{81|52R9} 504r41 506r41 508r41 510r41 512r41 530r41 535r41 537r41
-. 539r41 541r41 543r41 562r41
-496r10 B{81|52R9} 504r50 506r50 508r50 510r50 512r52 530r52 535r50 537r50
-. 539r50 541r50 543r52 562r52
-496e27 Op{81|33E9} 502r18 533r18
-496e43 Size{81|48E9} 500r12
-567U14 Push_Signed 567b14 567=27 567>50 572l8 572t19 650r22
-567r27 Stack{14|91R9[40|54]} 569m7 569r7
-567r50 Result{81|52R9} 571r67
-593V13 Clc_Float{81|70R9} 593b13 594>7 594>10 594>26 594>42 637l8 637t17
-. 653r43
-594r7 A{81|70R9} 601r41 603r41 605r41 607r41 620r41 622r41 624r41 626r41
-594r10 B{81|70R9} 601r50 603r50 605r50 607r50 620r50 622r50 624r50 626r50
-594e26 Op{81|33E9} 599r18 618r18
-594e42 Size{81|48E9} 597r12
-639U14 Push_Float 639b14 639=26 639>49 644l8 644t18 653r68
-639r26 Stack{14|91R9[40|54]} 641m7 641r7
-639r49 Result{81|70R9} 643r67
-648U14 Calculate_Signed[38|40] 477b14 667s13
-652U14 Calculate_Float[38|49] 486b14 671s13
-655U14 Execute_Binary_Op 655b14 656=7 656>30 656>39 656>55 675l8 675t25 765s13
-. 767s13 769s13 771s13 773s13 785s13 787s13 789s13 791s13 793s13 845s13 847s13
-. 849s13 851s13 873s13 875s13 877s13 879s13
-656r7 Stack{14|91R9[40|54]} 661r26 662m20 663r26 664m20 668m16 672m16
-656e30 T{81|46E9} 665r12
-656e39 Op{81|33E9} 668r77 672r77
-656e55 Size{81|48E9} 669r16 673r16
-658r7 A{40|42R9} 661m7 661r7 668r23 672r23
-658r10 B{40|42R9} 663m7 663r7 668r50 672r50
-659r7 Result{81|79R9}
-677U14 Execute_Numeric_Instruction 677b14 678>7 678=36 963l8 963t35 1347s13
-678r7 Instr{34|103R9} 681r12 683r47 685r47 687r47 689r47 691r57 713r57
-678r36 Environment{38|64R9} 683m28 683r28 685m28 685r28 687m28 687r28 689m28
-. 689r28 691m38 691r38 693m30 693r30 695m30 695r30 697m30 697r30 699m30 699r30
-. 701m30 701r30 703m30 703r30 705m30 705r30 707m30 707r30 709m30 709r30 711m30
-. 711r30 713m38 713r38 715m30 715r30 717m30 717r30 719m30 719r30 721m30 721r30
-. 723m30 723r30 725m30 725r30 727m30 727r30 729m30 729r30 731m30 731r30 733m30
-. 733r30 735m30 735r30 737m30 737r30 739m30 739r30 741m30 741r30 743m30 743r30
-. 745m30 745r30 747m30 747r30 749m30 749r30 751m30 751r30 753m30 753r30 755m30
-. 755r30 757m30 757r30 759m28 759r28 761m28 761r28 763m28 763r28 765m32 765r32
-. 767m32 767r32 769m32 769r32 771m32 771r32 773m32 773r32 781m28 781r28 785m32
-. 785r32 787m32 787r32 789m32 789r32 791m32 791r32 793m32 793r32 845m32 845r32
-. 847m32 847r32 849m32 849r32 851m32 851r32 873m32 873r32 875m32 875r32 877m32
-. 877r32 879m32 879r32
-965U14 Execute_Block_Entry 965b14 966>7 966=40 967>7 967>32 967>64 968>7
-. 1022l8 1022t27 1085s10 1097s7 1173s13 1190s13
-966r7 Instr{34|129R9} 994r12 997r47 1002r16 1005r47 1010r16
-966r40 Environment{38|64R9} 996m13 996r13 1001m13 1001r13 1004m13 1004r13
-. 1009m13 1009r13 1012m13 1012r13 1021m7 1021r35
-967m7 Instr_Ptr{35|80M9} 989r23
-967m32 End_Instr_Offset{35|80M9} 989r54
-967e64 Ty{81|38E9} 990r60
-968r7 Args{34|31R9} 976r12
-970m7 Params{35|69M9} 978m13 981m13 985m13 990r42
-970m15 Results{35|69M9} 979m13 982m13 986m13 990r23
-971r7 New_Block_Frame{40|20R9} 988m7 998r26 1006r26 1016r31
-972i7 Arity{natural} 1002r45 1010r44
-973i7 Lab_Ad{33|29I9} 1002r64 1010r63
-974r7 Func{81|129R9} 984m13 984r13 985r36 986r36
-1024V13 Get_Blocks_Length{natural} 1024b13 1024>32 1033l8 1033t25 1053s10
-1024r32 Stack{14|91R9[40|54]} 1027r16 1027r37 1028r13
-1025i7 Length{natural} 1029m13 1029r23 1032r14
-1027i11 I{integer} 1028r20
-1035U14 Remove_Last_Block_Label 1035b14 1035=39 1044l8 1044t31 1064s7
-1035r39 Stack{14|91R9[40|54]} 1038r24 1038r45 1039r13 1040m21
-1038i11 I{integer} 1039r20 1040r28
-1046U14 Execute_End_Block 1046b14 1047>7 1047=36 1067l8 1067t25 1144s7 1177s13
-1047r7 Instr{34|129R9}
-1047r36 Environment{38|64R9} 1053r29 1054r24 1055r27 1056r16 1057r25 1064m32
-. 1064r32 1065m7 1065r35
-1049r7 Block{40|20R9} 1057m16
-1050i7 Last_Index{natural} 1054m10 1055r60
-1055i14 I{integer} 1056r35 1057r44
-1069U14 Execute_If 1069b14 1070>7 1070>49 1071>7 1071>41 1072=7 1102l8 1102t18
-. 1183s13
-1070r7 Instr{34|129R9} 1086r13 1098r10
-1070r49 Args{34|31R9} 1087r13 1099r22
-1071m7 Else_Offset{35|80M9} 1091r10 1098r36 1098r62
-1071m41 End_Offset{35|80M9} 1086r59 1092r65 1098r49
-1072r7 Environment{38|64R9} 1079r9 1081m20 1081r20 1086m20 1086r33 1092m10
-. 1092r38 1096r14 1098m17
-1074i7 Value_To_Evaluate{35|53I9} 1078m7 1083r10
-1075m7 Old{35|80M9} 1096m7 1098r30
-1104V13 Execute_Branching_If{38|75E9} 1104b13 1105>7 1105>25 1105=54 1125l8
-. 1125t28 1195s15
-1105m7 To{35|80M9} 1119r36
-1105r25 Instr{34|129R9}
-1105r54 Environment{38|64R9} 1111r42 1112m20 1112r20 1119m40 1119r40 1122m7
-. 1122r35
-1108r7 Value_To_Evaluate{40|42R9} 1111m7 1111r7 1116r28
-1109m7 Cond{35|80M9} 1116m7 1118r10
-1127U14 Execute_Nop 1127b14 1130l8 1130t19 1197s13
-1132U14 Execute_Branching_Table 1132b14 1133>7 1133=36 1137l8 1137t31 1199s13
-1133r7 Instr{34|129R9}
-1133r36 Environment{38|64R9}
-1139U14 Execute_Else 1139b14 1140>7 1140=41 1141>7 1146l8 1146t20 1187s13
-1140r7 Instr{34|129R9} 1144r26
-1140r41 Environment{38|64R9} 1144m33 1145m7 1145r35
-1141m7 End_Offset{35|80M9} 1145r62
-1148V13 Execute_Unreachable{38|75E9} 1148b13 1151l8 1151t27 1207s20
-1153V13 Exec_Return{38|75E9} 1153b13 1153=26 1163l8 1163t19 1201s20
-1153r26 Environment{38|64R9} 1156r14
-1154m7 Old{35|80M9} 1156m7
-1165V13 Execute_Control_Instruction{38|75E9} 1165b13 1166>7 1166=36 1210l8
-. 1210t35 1351s15
-1166r7 Instr{34|129R9} 1170r12 1174r16 1175r16 1175r44 1177r32 1180r39 1184r16
-. 1184r23 1184r44 1185r16 1187r27 1187r47 1191r16 1192r16 1192r50 1195r37
-. 1195r56 1199r38
-1166r36 Environment{38|64R9} 1174m23 1174r36 1177m39 1180m55 1180r55 1185m37
-. 1187m34 1191m23 1191r36 1195m63 1195r63 1199m45 1201m33 1201r33
-1212U14 Execute_Reference_Instruction 1212b14 1213>7 1213=38 1217l8 1217t37
-. 1353s13
-1213r7 Instr{34|118R9}
-1213r38 Environment{38|64R9}
-1219U14 Execute_Table_Instruction 1219b14 1220>7 1220>34 1224l8 1224t33 1355s13
-1220r7 Instr{34|168R9}
-1220r34 Stack{14|91R9[40|54]}
-1226U14 Execute_Parametric_Instruction 1226b14 1227>7 1227>39 1231l8 1231t38
-. 1357s13
-1227r7 Instr{34|206R9}
-1227r39 Stack{14|91R9[40|54]}
-1233U14 Get_Push_Local_Variable 1233b14 1234>7 1234=26 1248l8 1248t31 1296s13
-1234i7 Addr{33|39I12} 1238r19 1239r63
-1234r26 Environment{38|64R9} 1238r42 1239r23 1241m18 1241r18
-1236r7 Local_Var{81|110R9} 1239m10 1241r60
-1250U14 Set_Pop_Local_Variable 1250b14 1251>7 1251=26 1272l8 1272t30 1299s13
-1251i7 Addr{33|39I12} 1254r19 1257r48
-1251r26 Environment{38|64R9} 1254r42 1255r27 1257m16 1257r16 1258r30 1264m26
-. 1264r26
-1274U14 Duplicate_Set_Variable 1274b14 1274>38 1277l8 1277t30 1301s13
-1274i38 Addr{33|39I12}
-1279U14 Get_Push_Global_Variable 1279b14 1279>40 1282l8 1282t32 1303s13
-1279i40 Addr{33|39I12}
-1284U14 Set_Push_Global_Variable 1284b14 1284>40 1287l8 1287t32 1305s13
-1284i40 Addr{33|39I12}
-1289U14 Execute_Variable_Instruction 1289b14 1290>7 1290=37 1307l8 1307t36
-. 1360s13
-1290r7 Instr{34|191R9} 1293r12 1296r38 1299r37 1301r37 1303r39 1305r39
-1290r37 Environment{38|64R9} 1296m58 1299m57
-1309U14 Execute_Memory_Instruction 1309b14 1310>7 1310>35 1314l8 1314t34
-. 1362s13
-1310r7 Instr{34|215R9}
-1310r35 Stack{14|91R9[40|54]}
-1316U14 Execute_Vector_128_Instruction 1316b14 1317>7 1317>35 1321l8 1321t38
-. 1364s13
-1317r7 Instr{34|307R9}
-1317r35 Stack{14|91R9[40|54]}
-1323V13 Get_Instruction{34|24P9} 1323b13 1323>30 1335l8 1335t23 1341s15
-1323r30 Environment{38|64R9} 1325r19 1326r26 1327r11 1332r12 1333r24
-1339p7 Inst{34|24P9} 1341m7 1344r12 1347r42 1351r44 1353r44 1355r40 1358r16
-. 1360r43 1362r41 1365r16
-1372e7 Control{38|75E9} 1375m10 1376r15
+8V13 Uns_64[30|20]{35|83M9} 571s38 571s58 575s38 575s57 579s38 579s58 585s39
+. 591s40 597s40 603s41
+10V13 Int_64[30|20]{35|56I9} 571s30 575s30 579s30 584s24 590s24 596s24 602s24
+12V13 Uns_32[30|20]{35|80M9} 518s38 518s58 522s38 522s57 526s38 526s58 532s39
+. 538s40 544s40 550s41
+14V13 Int_32[30|20]{35|53I9} 518s30 522s30 526s30 531s24 537s24 543s24 549s24
+16U14 Push_Value 16b14 16=26 16>49 58l8 58t18 246s7 255s10 355s7 459s13 463s13
+. 469s13 473s13
+16r26 Stack{14|91R9[40|54]} 22m19 22r19 30m19 30r19 41m19 41r19 49m19 49r19
+16r49 Num{81|79R9} 18r12 20r18 28r59 36r59 39r18 47r59 55r59
+60U14 Free[31|20]
+64i7 Label_Count{natural} 69m13 69r28 72r14
+66i11 I{integer} 68r32
+75U14 Adding_Start_Call_Frame 75b14 76>7 76=30 84l8 84t31 96s7
+76r7 start{83|28R9} 81r55 82r23
+76r30 Stack{14|91R9[40|54]} 83m7 83r7
+78r7 Current_Frame{40|28R9} 80m7 80r7 83r47
+90r7 Current_Frame{40|28R9} 98r46 99m7 99r7 102r61
+91r7 Current_Module{33|163R9} 98m7 103r20
+92r7 Tab{11|56R9[38|58]} 102r50
+106V13 Count_Values_Top_Stack{natural} 106b13 106>37 118l8 118t30 213s25
+106r37 Environment{38|64R9} 109r16 109r49 111r13
+107i7 Value_Size{natural} 112m13 112r27 117r14
+109i11 I{integer} 111r32
+120V13 Pop_Values{14|91R9[40|54]} 120b13 120>25 120=38 128l8 128t18 215s25
+120i25 N{natural} 123r21
+120r38 Environment{38|64R9} 124r47 125m23 125r23
+121r7 Popped_Values{14|91R9[40|54]} 124m10 124r10 127r14
+123i11 i{integer}
+130U14 Pop_Label_Or_Values 130b14 130>35 130=55 134l8 134t27 221s16
+130i35 Position{natural} 133r63
+130r55 Stack{14|91R9[40|54]} 133m10 133r44
+136U14 Push_Values 136b14 136>27 136>42 136=55 140l8 140t19 224s10
+136r27 Temp{14|91R9[40|54]} 139r40
+136i42 N{natural}
+136r55 Environment{38|64R9} 139m7 139r7
+142V13 Get_Lab_Position{natural} 142b13 142>31 142>49 156l8 156t24 201s19
+142m31 To{35|80M9} 144r32 155r65
+142r49 Stack{14|91R9[40|54]} 146r28 146r49 147r13
+144m7 Counter{35|80M9} 148r16 151m16 151r27
+146i11 Index{integer} 147r20 149r23
+158V13 Get_Lab_From_Position{35|80M9} 158b13 159>7 159>22 170l8 170t29 202s19
+159i7 Pos{natural} 162r11 162r49 164r20 165r43 166r24
+159r22 Stack{14|91R9[40|54]} 162r31 162r68 164r13 166r17
+172V13 Get_Block_Type{81|38E9} 172b13 172>29 172>44 182l8 182t22 203s19
+172i29 Pos{natural} 174r11 174r49 176r20 177r43 178r24
+172r44 Stack{14|91R9[40|54]} 174r31 174r68 176r13 178r17
+184U14 Pop_Values_Before_Label 184b14 185>7 185=27 190l8 190t31 219s16
+185i7 Position{natural} 189r63
+185r27 Stack{14|91R9[40|54]} 189m10 189r44
+192U14 Jump_If_Block_Exists 192b14 192>36 192=54 233l8 233t28 239s7
+192m36 To{35|80M9} 201r37
+192r54 Environment{38|64R9} 201r41 202r52 203r45 205r34 207r27 211r35 213r49
+. 215m48 215r48 219m51 219r51 221m47 221r47 224m47 226m10 228r38
+194i7 Lab_Arity{natural} 210m10 213r65 215r37 224r36
+195i7 Position{natural} 201m7 202r42 203r35 207r43 219r41 221r37
+196m7 Lab_Id{35|80M9} 202m7 205r55 211r56 228r59
+197r7 Tmp_Storage{14|91R9[40|54]} 215m10 224r23
+198e7 Block_Ty{81|38E9} 203m7 204r17 217r15
+235V13 Execute_Branching{38|75E9} 235b13 236>7 236=25 242l8 242t25 1164s17
+. 1225s20
+236m7 To{35|80M9} 239r29
+236r25 Environment{38|64R9} 239m33 240m7 240r35
+244U14 Execute_Const 244b14 244=29 244>52 247l8 247t21 728s13 730s13 732s13
+. 734s13
+244r29 Stack{14|91R9[40|54]} 246m19
+244r52 Var{81|79R9} 246r26
+249U14 Execute_Compare_To_Zero 249b14 250=7 250>30 257l8 257t31 736s13 758s13
+250r7 Stack{14|91R9[40|54]} 253m20 255m22
+250r30 Var{81|79R9} 254r10 254r37 255r29
+273V13 Compare_NT{boolean} 273b13 273>25 273>28 273>46 351l8 351t18 359r37
+273r25 A{81|79R9} 275r10 276r15 278r21 282r36 284r36 286r36 288r36 290r36
+. 292r36 297r36 299r36 301r36 303r36 305r36 307r36 312r21 317r36 319r36 321r36
+. 323r36 325r36 327r36 333r36 335r36 337r36 339r36 341r36 343r36
+273r28 B{81|79R9} 275r16 282r51 284r52 286r51 288r51 290r52 292r52 297r51
+. 299r52 301r51 303r51 305r52 307r52 317r51 319r52 321r51 323r51 325r52 327r52
+. 333r51 335r52 337r51 339r51 341r52 343r52
+273e46 Op{38|24E9} 280r27 295r27 315r27 331r27
+353U14 Push_NT 353b14 353=23 353>46 356l8 356t15 359r66
+353r23 Stack{14|91R9[40|54]} 355m19
+353i46 Value{integer} 355r66
+358U14 Check_Push_NT[38|30] 261b14 379s7
+362V13 Pop_Value{81|79R9} 362b13 362=24 368l8 368t17 457s27 461s27 467s27
+. 471s27
+362r24 Stack{14|91R9[40|54]} 365r31 366m20
+363r7 Result{81|79R9} 365m7 367r14
+370U14 Execute_Compare 370b14 370=31 370>54 380l8 380t23 738s13 740s13 742s13
+. 744s13 746s13 748s13 750s13 752s13 754s13 756s13 760s13 762s13 764s13 766s13
+. 768s13 770s13 772s13 774s13 776s13 778s13 780s13 782s13 784s13 786s13 788s13
+. 790s13 792s13 794s13 796s13 798s13 800s13 802s13
+370r31 Stack{14|91R9[40|54]} 373r22 375r26 376m20 377r26 378m20 379m22
+370e54 Op{38|24E9} 379r69
+371r7 A{40|36R9} 375m7 379r29
+371r10 B{40|36R9} 377m7 379r46
+382V13 Count_Leading_Zeroes_I32{35|53I9} 382b13 383=7 397l8 397t32 458s27
+383i7 Value{35|53I9} 387r10 391r13 392m10 392r20
+385i7 Result{35|53I9} 388m10 393m10 393r20 396r14
+399V13 Count_Trailing_Zeroes_I32{35|53I9} 399b13 400=7 414l8 414t33 468s27
+400i7 Value{35|53I9} 404r10 408r14 409m10 409r20
+402i7 Result{35|53I9} 405m10 410m10 410r20 413r14
+416V13 Count_Leading_Zeroes_I64{35|53I9} 416b13 417=7 431l8 431t32 462s27
+. 472s27
+417i7 Value{35|56I9} 421r10 425r13 426m10 426r20
+419i7 Result{35|53I9} 422m10 427m10 427r20 430r14
+433V13 Count_Trailing_Zeroes_I64{35|53I9} 433b13 434=7 448l8 448t33
+434i7 Value{35|56I9} 438r10 442r14 443m10 443r20
+436i7 Result{35|53I9} 439m10 444m10 444r20 447r14
+450U14 Execute_Count 450b14 450=29 450>52 450>65 476l8 476t21 804s13 806s13
+. 808s13 824s13 826s13
+450r29 Stack{14|91R9[40|54]} 457m38 457r38 459m25 461m38 461r38 463m25 467m38
+. 467r38 469m25 471m38 471r38 473m25
+450e52 Ty{81|40E9} 456r13 460r16 466r13 470r16
+450a65 L_T{string} 455r10 465r13
+452i7 Result_I32{35|53I9} 458m13 459r60 462m13 463r60 468m13 469r60 472m13
+. 473r60
+453r7 Tmp{81|79R9} 457m13 458m53 458r53 461m13 462m53 462r53 467m13 468m54
+. 468r54 471m13 472m53 472r53
+482*7 Result{38|36+12} 484m7 485r27
+491*7 Result{38|45+12} 493m7 494r26
+497V13 Clc_Signed{81|52R9} 497b13 498>7 498>10 498>27 498>43 610l8 610t18
+. 694r55
+498r7 A{81|52R9} 506r41 508r41 510r41 512r41 514r41 518r46 522r46 526r46
+. 532r47 538r48 544r48 550r49 554r41 559r41 561r41 563r41 565r41 567r41 571r46
+. 575r46 579r46 585r47 591r48 597r48 603r49 607r41
+498r10 B{81|52R9} 506r50 508r50 510r50 512r50 514r52 518r66 522r65 526r66
+. 532r65 538r66 544r66 550r67 554r52 559r50 561r50 563r50 565r50 567r52 571r66
+. 575r65 579r66 585r65 591r66 597r66 603r67 607r52
+498e27 Op{81|33E9} 504r18 557r18
+498e43 Size{81|48E9} 502r12
+612U14 Push_Signed 612b14 612=27 612>50 617l8 617t19 695r22
+612r27 Stack{14|91R9[40|54]} 614m7 614r7
+612r50 Result{81|52R9} 616r67
+638V13 Clc_Float{81|70R9} 638b13 639>7 639>10 639>26 639>42 682l8 682t17
+. 698r43
+639r7 A{81|70R9} 646r41 648r41 650r41 652r41 665r41 667r41 669r41 671r41
+639r10 B{81|70R9} 646r50 648r50 650r50 652r50 665r50 667r50 669r50 671r50
+639e26 Op{81|33E9} 644r18 663r18
+639e42 Size{81|48E9} 642r12
+684U14 Push_Float 684b14 684=26 684>49 689l8 689t18 698r68
+684r26 Stack{14|91R9[40|54]} 686m7 686r7
+684r49 Result{81|70R9} 688r67
+693U14 Calculate_Signed[38|40] 479b14 712s13
+697U14 Calculate_Float[38|49] 488b14 716s13
+700U14 Execute_Binary_Op 700b14 701=7 701>30 701>39 701>55 720l8 720t25 810s13
+. 812s13 814s13 816s13 818s13 820s13 822s13 830s13 832s13 834s13 836s13 838s13
+. 840s13 842s13 844s13 846s13 848s13 850s13 852s13 854s13 856s13 858s13 860s13
+. 862s13 864s13 866s13 868s13 870s13 872s13 874s13 890s13 892s13 894s13 896s13
+. 918s13 920s13 922s13 924s13
+701r7 Stack{14|91R9[40|54]} 706r26 707m20 708r26 709m20 713m16 717m16
+701e30 T{81|46E9} 710r12
+701e39 Op{81|33E9} 713r77 717r77
+701e55 Size{81|48E9} 714r16 718r16
+703r7 A{40|42R9} 706m7 706r7 713r23 717r23
+703r10 B{40|42R9} 708m7 708r7 713r50 717r50
+704r7 Result{81|79R9}
+722U14 Execute_Numeric_Instruction 722b14 723>7 723=36 1008l8 1008t35 1392s13
+723r7 Instr{34|103R9} 726r12 728r47 730r47 732r47 734r47 736r57 758r57
+723r36 Environment{38|64R9} 728m28 728r28 730m28 730r28 732m28 732r28 734m28
+. 734r28 736m38 736r38 738m30 738r30 740m30 740r30 742m30 742r30 744m30 744r30
+. 746m30 746r30 748m30 748r30 750m30 750r30 752m30 752r30 754m30 754r30 756m30
+. 756r30 758m38 758r38 760m30 760r30 762m30 762r30 764m30 764r30 766m30 766r30
+. 768m30 768r30 770m30 770r30 772m30 772r30 774m30 774r30 776m30 776r30 778m30
+. 778r30 780m30 780r30 782m30 782r30 784m30 784r30 786m30 786r30 788m30 788r30
+. 790m30 790r30 792m30 792r30 794m30 794r30 796m30 796r30 798m30 798r30 800m30
+. 800r30 802m30 802r30 804m28 804r28 806m28 806r28 808m28 808r28 810m32 810r32
+. 812m32 812r32 814m32 814r32 816m32 816r32 818m32 818r32 820m32 820r32 822m32
+. 822r32 824m28 824r28 826m28 826r28 830m32 830r32 832m32 832r32 834m32 834r32
+. 836m32 836r32 838m32 838r32 840m32 840r32 842m32 842r32 844m32 844r32 846m32
+. 846r32 848m32 848r32 850m32 850r32 852m32 852r32 854m32 854r32 856m32 856r32
+. 858m32 858r32 860m32 860r32 862m32 862r32 864m32 864r32 866m32 866r32 868m32
+. 868r32 870m32 870r32 872m32 872r32 874m32 874r32 890m32 890r32 892m32 892r32
+. 894m32 894r32 896m32 896r32 918m32 918r32 920m32 920r32 922m32 922r32 924m32
+. 924r32
+1010U14 Execute_Block_Entry 1010b14 1011>7 1011=40 1012>7 1012>32 1012>64
+. 1013>7 1067l8 1067t27 1130s10 1142s7 1218s13 1235s13
+1011r7 Instr{34|129R9} 1039r12 1042r47 1047r16 1050r47 1055r16
+1011r40 Environment{38|64R9} 1041m13 1041r13 1046m13 1046r13 1049m13 1049r13
+. 1054m13 1054r13 1057m13 1057r13 1066m7 1066r35
+1012m7 Instr_Ptr{35|80M9} 1034r23
+1012m32 End_Instr_Offset{35|80M9} 1034r54
+1012e64 Ty{81|38E9} 1035r60
+1013r7 Args{34|31R9} 1021r12
+1015m7 Params{35|69M9} 1023m13 1026m13 1030m13 1035r42
+1015m15 Results{35|69M9} 1024m13 1027m13 1031m13 1035r23
+1016r7 New_Block_Frame{40|20R9} 1033m7 1043r26 1051r26 1061r31
+1017i7 Arity{natural} 1047r45 1055r44
+1018i7 Lab_Ad{33|29I9} 1047r64 1055r63
+1019r7 Func{81|129R9} 1029m13 1029r13 1030r36 1031r36
+1069V13 Get_Blocks_Length{natural} 1069b13 1069>32 1078l8 1078t25 1098s10
+1069r32 Stack{14|91R9[40|54]} 1072r16 1072r37 1073r13
+1070i7 Length{natural} 1074m13 1074r23 1077r14
+1072i11 I{integer} 1073r20
+1080U14 Remove_Last_Block_Label 1080b14 1080=39 1089l8 1089t31 1109s7
+1080r39 Stack{14|91R9[40|54]} 1083r24 1083r45 1084r13 1085m21
+1083i11 I{integer} 1084r20 1085r28
+1091U14 Execute_End_Block 1091b14 1092>7 1092=36 1112l8 1112t25 1189s7 1222s13
+1092r7 Instr{34|129R9}
+1092r36 Environment{38|64R9} 1098r29 1099r24 1100r27 1101r16 1102r25 1109m32
+. 1109r32 1110m7 1110r35
+1094r7 Block{40|20R9} 1102m16
+1095i7 Last_Index{natural} 1099m10 1100r60
+1100i14 I{integer} 1101r35 1102r44
+1114U14 Execute_If 1114b14 1115>7 1115>49 1116>7 1116>41 1117=7 1147l8 1147t18
+. 1228s13
+1115r7 Instr{34|129R9} 1131r13 1143r10
+1115r49 Args{34|31R9} 1132r13 1144r22
+1116m7 Else_Offset{35|80M9} 1136r10 1143r36 1143r62
+1116m41 End_Offset{35|80M9} 1131r59 1137r65 1143r49
+1117r7 Environment{38|64R9} 1124r9 1126m20 1126r20 1131m20 1131r33 1137m10
+. 1137r38 1141r14 1143m17
+1119i7 Value_To_Evaluate{35|53I9} 1123m7 1128r10
+1120m7 Old{35|80M9} 1141m7 1143r30
+1149V13 Execute_Branching_If{38|75E9} 1149b13 1150>7 1150>25 1150=54 1170l8
+. 1170t28 1240s15
+1150m7 To{35|80M9} 1164r36
+1150r25 Instr{34|129R9}
+1150r54 Environment{38|64R9} 1156r42 1157m20 1157r20 1164m40 1164r40 1167m7
+. 1167r35
+1153r7 Value_To_Evaluate{40|42R9} 1156m7 1156r7 1161r28
+1154m7 Cond{35|80M9} 1161m7 1163r10
+1172U14 Execute_Nop 1172b14 1175l8 1175t19 1242s13
+1177U14 Execute_Branching_Table 1177b14 1178>7 1178=36 1182l8 1182t31 1244s13
+1178r7 Instr{34|129R9}
+1178r36 Environment{38|64R9}
+1184U14 Execute_Else 1184b14 1185>7 1185=41 1186>7 1191l8 1191t20 1232s13
+1185r7 Instr{34|129R9} 1189r26
+1185r41 Environment{38|64R9} 1189m33 1190m7 1190r35
+1186m7 End_Offset{35|80M9} 1190r62
+1193V13 Execute_Unreachable{38|75E9} 1193b13 1196l8 1196t27 1252s20
+1198V13 Exec_Return{38|75E9} 1198b13 1198=26 1208l8 1208t19 1246s20
+1198r26 Environment{38|64R9} 1201r14
+1199m7 Old{35|80M9} 1201m7
+1210V13 Execute_Control_Instruction{38|75E9} 1210b13 1211>7 1211=36 1255l8
+. 1255t35 1396s15
+1211r7 Instr{34|129R9} 1215r12 1219r16 1220r16 1220r44 1222r32 1225r39 1229r16
+. 1229r23 1229r44 1230r16 1232r27 1232r47 1236r16 1237r16 1237r50 1240r37
+. 1240r56 1244r38
+1211r36 Environment{38|64R9} 1219m23 1219r36 1222m39 1225m55 1225r55 1230m37
+. 1232m34 1236m23 1236r36 1240m63 1240r63 1244m45 1246m33 1246r33
+1257U14 Execute_Reference_Instruction 1257b14 1258>7 1258=38 1262l8 1262t37
+. 1398s13
+1258r7 Instr{34|118R9}
+1258r38 Environment{38|64R9}
+1264U14 Execute_Table_Instruction 1264b14 1265>7 1265>34 1269l8 1269t33 1400s13
+1265r7 Instr{34|168R9}
+1265r34 Stack{14|91R9[40|54]}
+1271U14 Execute_Parametric_Instruction 1271b14 1272>7 1272>39 1276l8 1276t38
+. 1402s13
+1272r7 Instr{34|206R9}
+1272r39 Stack{14|91R9[40|54]}
+1278U14 Get_Push_Local_Variable 1278b14 1279>7 1279=26 1293l8 1293t31 1341s13
+1279i7 Addr{33|39I12} 1283r19 1284r63
+1279r26 Environment{38|64R9} 1283r42 1284r23 1286m18 1286r18
+1281r7 Local_Var{81|110R9} 1284m10 1286r60
+1295U14 Set_Pop_Local_Variable 1295b14 1296>7 1296=26 1317l8 1317t30 1344s13
+1296i7 Addr{33|39I12} 1299r19 1302r48
+1296r26 Environment{38|64R9} 1299r42 1300r27 1302m16 1302r16 1303r30 1309m26
+. 1309r26
+1319U14 Duplicate_Set_Variable 1319b14 1319>38 1322l8 1322t30 1346s13
+1319i38 Addr{33|39I12}
+1324U14 Get_Push_Global_Variable 1324b14 1324>40 1327l8 1327t32 1348s13
+1324i40 Addr{33|39I12}
+1329U14 Set_Push_Global_Variable 1329b14 1329>40 1332l8 1332t32 1350s13
+1329i40 Addr{33|39I12}
+1334U14 Execute_Variable_Instruction 1334b14 1335>7 1335=37 1352l8 1352t36
+. 1405s13
+1335r7 Instr{34|191R9} 1338r12 1341r38 1344r37 1346r37 1348r39 1350r39
+1335r37 Environment{38|64R9} 1341m58 1344m57
+1354U14 Execute_Memory_Instruction 1354b14 1355>7 1355>35 1359l8 1359t34
+. 1407s13
+1355r7 Instr{34|215R9}
+1355r35 Stack{14|91R9[40|54]}
+1361U14 Execute_Vector_128_Instruction 1361b14 1362>7 1362>35 1366l8 1366t38
+. 1409s13
+1362r7 Instr{34|307R9}
+1362r35 Stack{14|91R9[40|54]}
+1368V13 Get_Instruction{34|24P9} 1368b13 1368>30 1380l8 1380t23 1386s15
+1368r30 Environment{38|64R9} 1370r19 1371r26 1372r11 1377r12 1378r24
+1384p7 Inst{34|24P9} 1386m7 1389r12 1392r42 1396r44 1398r44 1400r40 1403r16
+. 1405r43 1407r41 1410r16
+1417e7 Control{38|75E9} 1420m10 1421r15
 X 40 stack.ads
 14K9*Stack 38|14w6 14r49 40|64e10
-20R9*Block_Frame 39|971r25 1049r20 40|26e14
-21m7*Instr_ptr{35|80M9} 39|989m10
-22m7*End_Instr_Offset{35|80M9} 39|989m34
-23m7*Results{35|69M9} 39|990m10
-24m7*Params{35|69M9} 39|990m32
-25e7*B_Type{81|38E9} 39|176r35 990m50
-28R9*Call_Frame 38|68r17 39|76r23 88r24 40|34e14
-29m7*Instr_Ptr{35|80M9} 39|79m10 224m25 238m22 238r50 1021m22 1021r50 1065m22
-. 1065r50 1086r48 1092m25 1092r53 1096r29 1122m22 1122r50 1145m22 1145r50
-. 1174r51 1191r51 1325r34 1326r41 1333r39 1343r52 1367m22 1367r50
-30m7*Block_Ptr{35|80M9} 39|79m26 1156r29
-31r7*Func_Inst{83|28R9} 39|79m42 1327r26 1332r27
-32i7*Module_Addr{33|41I12} 39|79m62 96r60
-33r7*Locals{14|91R9[81|121]} 39|80m10 1238r57 1239r38 1254r57 1257m31
-36R9*Value_Stack 39|369r14 40|38e14
-37r7*Val{81|110R9} 39|23m26 31m26 42m26 50m26 363r42 377r31 377r48 571m19
-. 643m19 668r29 668r56 672r29 672r56 1079r44 1116r50 1241m53 1258r53
-40n21*Value{40E9} 39|21r23 29r23 40r23 48r23 109r41 570r11 642r11 1241r38
-. 1255r52
-40n28*Label{40E9} 39|66r41 145r33 162r39 174r39 997r26 1005r26 1014r31 1028r37
-. 1039r37 1056r52
-40n35*Activation_Call{40E9} 39|81r22
-42R9*Element_Variation 39|658r16 1108r27 40|52e14
-42e28*Elt{40E9} 39|66r35 109r35 145r27 162r33 174r33 997m17 1005m17 1014m17
-. 1028r31 1039r31 1056r46 1255r46
-45r13*Val{36R9} 39|22m23 30m23 41m23 49m23 363r38 373r33 375r33 571m11 643m11
-. 668r25 668r52 672r25 672r52 1079r40 1116r46 1241m45 1258r49
-47m13*Special_Id{35|80M9} 39|164r29 997m33 1005m33 1015m17
-48r13*Block{20R9} 39|176r29 998m17 1006m17 1016m17 1057r55
-50r13*Call{28R9} 39|81m39 97r46
+20R9*Block_Frame 39|1016r25 1094r20 40|26e14
+21m7*Instr_ptr{35|80M9} 39|1034m10
+22m7*End_Instr_Offset{35|80M9} 39|1034m34
+23m7*Results{35|69M9} 39|1035m10
+24m7*Params{35|69M9} 39|1035m32
+25e7*B_Type{81|38E9} 39|178r35 1035m50
+28R9*Call_Frame 38|68r17 39|78r23 90r24 40|34e14
+29m7*Instr_Ptr{35|80M9} 39|81m10 226m25 240m22 240r50 1066m22 1066r50 1110m22
+. 1110r50 1131r48 1137m25 1137r53 1141r29 1167m22 1167r50 1190m22 1190r50
+. 1219r51 1236r51 1370r34 1371r41 1378r39 1388r52 1412m22 1412r50
+30m7*Block_Ptr{35|80M9} 39|81m26 1201r29
+31r7*Func_Inst{83|28R9} 39|81m42 1372r26 1377r27
+32i7*Module_Addr{33|41I12} 39|81m62 98r60
+33r7*Locals{14|91R9[81|121]} 39|82m10 1283r57 1284r38 1299r57 1302m31
+36R9*Value_Stack 39|371r14 40|38e14
+37r7*Val{81|110R9} 39|25m26 33m26 44m26 52m26 365r42 379r31 379r48 616m19
+. 688m19 713r29 713r56 717r29 717r56 1124r44 1161r50 1286m53 1303r53
+40n21*Value{40E9} 39|23r23 31r23 42r23 50r23 111r41 615r11 687r11 1286r38
+. 1300r52
+40n28*Label{40E9} 39|68r41 147r33 164r39 176r39 1042r26 1050r26 1059r31 1073r37
+. 1084r37 1101r52
+40n35*Activation_Call{40E9} 39|83r22
+42R9*Element_Variation 39|703r16 1153r27 40|52e14
+42e28*Elt{40E9} 39|68r35 111r35 147r27 164r33 176r33 1042m17 1050m17 1059m17
+. 1073r31 1084r31 1101r46 1300r46
+45r13*Val{36R9} 39|24m23 32m23 43m23 51m23 365r38 375r33 377r33 616m11 688m11
+. 713r25 713r52 717r25 717r52 1124r40 1161r46 1286m45 1303r49
+47m13*Special_Id{35|80M9} 39|166r29 1042m33 1050m33 1060m17
+48r13*Block{20R9} 39|178r29 1043m17 1051m17 1061m17 1102r55
+50r13*Call{28R9} 39|83m39 99r46
 54K12*Stack_Vector[14|74] 38|20r8 65r17
 X 41 system.ads
 67M9*Address
@@ -1232,89 +1257,104 @@ X 66 s-stalib.adb
 87U14 Break_Start 88i<c,__gnat_break_start>22
 X 81 types.ads
 13K9*Types 38|13w6 13r49 81|155e10
-33E9*Binary_Op 38|38r25 41r45 47r25 50r45 39|478r45 487r45 496r32 594r31
-. 656r44 81|36e49
-34n7*Addition{33E9} 39|503r21 534r21 600r21 619r21 765r54 785r54 845r54 873r54
-34n17*Subtraction{33E9} 39|505r21 536r21 602r21 621r21 767r54 787r54 847r54
-. 875r54
-34n30*Multiplication{33E9} 39|507r21 538r21 604r21 623r21 769r54 789r54 849r54
-. 877r54
-34n46*Division{33E9} 39|509r21 540r21 606r21 625r21 771r54 773r54 791r54
-. 793r54 851r54 879r54
-34n56*Remainder{33E9} 39|511r21 542r21
-36n21*Minimum{33E9} 39|527r21 559r21
-36n30*Maximum{33E9} 39|527r31 559r31
-36n39*Copy_Sign{33E9} 39|527r41 559r41
-38E9*Block_Type 39|170r67 196r21 967r69 81|38e64
-38n24*Loop_Block{38E9} 39|216r18 1192r38
-38n36*If_Block{38E9} 39|218r26 1086r71
-38n46*Else_Block{38E9} 39|218r37 1099r10
-38n58*Block{38E9} 39|218r18 1175r37
-40E9*Number 39|448r57 81|40e55
-40n20*I_32{40E9} 39|454r18 464r18 759r47 761r47
-40n26*I_64{40E9} 39|458r21 468r21 763r47 781r47
-42n20*I_32{42E9} 39|19r21 26r45 277r24 353r40 457r46 461r46 467r46 471r46
-. 504r27 506r27 508r27 510r27 512r27 530r27
-42n26*I_64{42E9} 39|27r21 34r45 292r24 535r27 537r27 539r27 541r27 543r27
-. 562r27
-44n20*F_32{44E9} 39|38r21 45r45 311r24 601r27 603r27 605r27 607r27
-44n26*F_64{44E9} 39|46r21 53r45 328r24 620r27 622r27 624r27 626r27
-46E9*S_F 39|656r34 81|46e22
-46n17*S{46E9} 39|17r15 26r32 34r32 275r18 353r27 457r33 461r33 467r33 471r33
-. 571r55 666r15 765r51 767r51 769r51 771r51 773r51 785r51 787r51 789r51 791r51
-. 793r51
-46n20*F{46E9} 39|36r15 45r32 53r32 309r18 643r55 670r15 845r51 847r51 849r51
-. 851r51 873r51 875r51 877r51 879r51
-48E9*Numeric_Size 38|38r43 41r63 47r43 50r63 39|478r63 487r63 496r50 594r49
-. 656r62 81|48e39
-48n26*S_F32{48E9} 39|501r15 598r15 765r64 767r67 769r70 771r64 773r64 845r64
-. 847r67 849r70 851r64
-48n33*S_F64{48E9} 39|532r15 617r15 785r64 787r67 789r70 791r64 793r64 873r64
-. 875r67 877r70 879r64
-52R9*Signed_Type 39|496r14 497r14 567r59 649r22 81|59e14
-52e22*Num{42E9} 39|18r28 276r29
-55i13*I_32{35|53I9} 39|26m51 26r69 252r20 280r44 280r59 282r44 282r60 284r44
-. 284r59 286r44 286r59 288r44 288r60 290r44 290r60 353m46 456m63 456r63 457m52
-. 461m52 466m64 466r64 467m52 471m52 504m33 504r43 504r52 506m33 506r43 506r52
-. 508m33 508r43 508r52 510m33 510r43 510r52 512m33 512r43 512r54 530m33 530r43
-. 530r54 1079r64 1116r70
-57i13*I_64{35|56I9} 39|34m51 34r69 252r47 295r44 295r59 297r44 297r60 299r44
-. 299r59 301r44 301r59 303r44 303r60 305r44 305r60 460m63 470m63 535m33 535r43
-. 535r52 537m33 537r43 537r52 539m33 539r43 539r52 541m33 541r43 541r52 543m33
-. 543r43 543r54 562m33 562r43 562r54
-70R9*Float_Type 39|594r14 594r70 639r58 653r12 81|77e14
-70e21*Num{44E9} 39|37r28 310r29
-73f13*F_32{float} 39|45m51 45r69 315r44 315r59 317r44 317r60 319r44 319r59
-. 321r44 321r59 323r44 323r60 325r44 325r60 601m33 601r43 601r52 603m33 603r43
-. 603r52 605m33 605r43 605r52 607m33 607r43 607r52
-75f13*F_64{35|220F9} 39|53m51 53r69 331r44 331r59 333r44 333r60 335r44 335r59
-. 337r44 337r59 339r44 339r60 341r44 341r60 620m33 620r43 620r52 622m33 622r43
-. 622r52 624m33 624r43 624r52 626m33 626r43 626r52
-79R9*Numeric_Type 39|14r55 242r58 248r36 271r32 357r12 360r54 361r16 451r20
-. 659r16 81|86e14
-79e23*N{46E9} 39|16r16 273r12 273r18 274r17
-82r13*Num_S{52R9} 39|18r22 26m35 26r63 34m35 34r63 252r14 252r41 276r23 280r38
-. 280r53 282r38 282r54 284r38 284r53 286r38 286r53 288r38 288r54 290r38 290r54
-. 295r38 295r53 297r38 297r54 299r38 299r53 301r38 301r53 303r38 303r54 305r38
-. 305r54 353m30 456m57 456r57 457m36 460m57 461m36 466m58 466r58 467m36 470m57
-. 471m36 571m58 668r43 668r70 1079r58 1116r64
-84r13*Num_F{70R9} 39|37r22 45m35 45r63 53m35 53r63 310r23 315r38 315r53 317r38
-. 317r54 319r38 319r53 321r38 321r53 323r38 323r54 325r38 325r54 331r38 331r53
-. 333r38 333r54 335r38 335r53 337r38 337r53 339r38 339r54 341r38 341r54 643m58
-. 672r43 672r70
-109n32*Number_Value{109E9} 39|24r29 32r29 43r29 51r29 571r27 643r27
-110R9*Value_Type 39|1236r19 81|119e14
-113r13*Num_Value{79R9} 39|25m29 33m29 44m29 52m29 363r46 377r35 377r52 571m41
-. 643m41 668r33 668r60 672r33 672r60 1079r48 1116r54
-121K12*Value_Type_Vectors[14|74] 39|1256r13
+33E9*Binary_Op 38|38r25 41r45 47r25 50r45 39|480r45 489r45 498r32 639r31
+. 701r44 81|36e49
+34n7*Addition{33E9} 39|505r21 558r21 645r21 664r21 810r54 830r54 890r54 918r54
+34n17*Subtraction{33E9} 39|507r21 560r21 647r21 666r21 812r54 832r54 892r54
+. 920r54
+34n30*Multiplication{33E9} 39|509r21 562r21 649r21 668r21 814r54 834r54 894r54
+. 922r54
+34n46*Division{33E9} 39|511r21 564r21 651r21 670r21 816r54 818r54 836r54
+. 838r54 896r54 924r54
+34n56*Remainder{33E9} 39|513r21 566r21 820r54 822r54 840r54 842r54
+34n67*Logical_And{33E9} 39|515r21 568r21 844r54 860r54
+35n7*Logical_Or{33E9} 39|519r21 572r21 846r54 862r54
+35n19*Logical_Xor{33E9} 39|523r21 576r21 848r54 864r54
+35n32*Shift_Left{33E9} 39|527r21 580r21 850r54 866r54
+35n44*Shift_Right{33E9} 39|533r21 586r21 852r54 854r54 868r54 870r54
+35n57*Rotate_Left{33E9} 39|539r21 592r21 856r54 872r54
+36n7*Rotate_Right{33E9} 39|545r21 598r21 858r54 874r54
+36n21*Minimum{33E9} 39|551r21 604r21
+36n30*Maximum{33E9} 39|551r31 604r31
+36n39*Copy_Sign{33E9} 39|551r41 604r41
+38E9*Block_Type 39|172r67 198r21 1012r69 81|38e64
+38n24*Loop_Block{38E9} 39|218r18 1237r38
+38n36*If_Block{38E9} 39|220r26 1131r71
+38n46*Else_Block{38E9} 39|220r37 1144r10
+38n58*Block{38E9} 39|220r18 1220r37
+40E9*Number 39|450r57 81|40e55
+40n20*I_32{40E9} 39|456r18 466r18 804r47 806r47
+40n26*I_64{40E9} 39|460r21 470r21 808r47 824r47 826r47
+42n20*I_32{42E9} 39|21r21 28r45 279r24 355r40 459r46 463r46 469r46 473r46
+. 506r27 508r27 510r27 512r27 514r27 517r22 521r22 525r22 529r22 535r22 541r22
+. 547r22 554r27
+42n26*I_64{42E9} 39|29r21 36r45 294r24 559r27 561r27 563r27 565r27 567r27
+. 570r22 574r22 578r22 582r22 588r22 594r22 600r22 607r27
+44n20*F_32{44E9} 39|40r21 47r45 313r24 646r27 648r27 650r27 652r27
+44n26*F_64{44E9} 39|48r21 55r45 330r24 665r27 667r27 669r27 671r27
+46E9*S_F 39|701r34 81|46e22
+46n17*S{46E9} 39|19r15 28r32 36r32 277r18 355r27 459r33 463r33 469r33 473r33
+. 616r55 711r15 810r51 812r51 814r51 816r51 818r51 820r51 822r51 830r51 832r51
+. 834r51 836r51 838r51 840r51 842r51 844r51 846r51 848r51 850r51 852r51 854r51
+. 856r51 858r51 860r51 862r51 864r51 866r51 868r51 870r51 872r51 874r51
+46n20*F{46E9} 39|38r15 47r32 55r32 311r18 688r55 715r15 890r51 892r51 894r51
+. 896r51 918r51 920r51 922r51 924r51
+48E9*Numeric_Size 38|38r43 41r63 47r43 50r63 39|480r63 489r63 498r50 639r49
+. 701r62 81|48e39
+48n26*S_F32{48E9} 39|503r15 643r15 810r64 812r67 814r70 816r64 818r64 820r65
+. 822r65 844r67 846r66 848r67 850r66 852r67 854r67 856r67 858r68 890r64 892r67
+. 894r70 896r64
+48n33*S_F64{48E9} 39|556r15 662r15 830r64 832r67 834r70 836r64 838r64 840r65
+. 842r65 860r67 862r66 864r67 866r66 868r67 870r67 872r67 874r68 918r64 920r67
+. 922r70 924r64
+52R9*Signed_Type 39|498r14 499r14 612r59 694r22 81|59e14
+52e22*Num{42E9} 39|20r28 278r29
+55i13*I_32{35|53I9} 39|28m51 28r69 254r20 282r44 282r59 284r44 284r60 286r44
+. 286r59 288r44 288r59 290r44 290r60 292r44 292r60 355m46 458m63 458r63 459m52
+. 463m52 468m64 468r64 469m52 473m52 506m33 506r43 506r52 508m33 508r43 508r52
+. 510m33 510r43 510r52 512m33 512r43 512r52 514m33 514r43 514r54 518m22 518r48
+. 518r68 522m22 522r48 522r67 526m22 526r48 526r68 530m22 532r49 532r67 536m22
+. 538r50 538r68 542m22 544r50 544r68 548m22 550r51 550r69 554m33 554r43 554r54
+. 1124r64 1161r70
+57i13*I_64{35|56I9} 39|36m51 36r69 254r47 297r44 297r59 299r44 299r60 301r44
+. 301r59 303r44 303r59 305r44 305r60 307r44 307r60 462m63 472m63 559m33 559r43
+. 559r52 561m33 561r43 561r52 563m33 563r43 563r52 565m33 565r43 565r52 567m33
+. 567r43 567r54 571m22 571r48 571r68 575m22 575r48 575r67 579m22 579r48 579r68
+. 583m22 585r49 585r67 589m22 591r50 591r68 595m22 597r50 597r68 601m22 603r51
+. 603r69 607m33 607r43 607r54
+70R9*Float_Type 39|639r14 639r70 684r58 698r12 81|77e14
+70e21*Num{44E9} 39|39r28 312r29
+73f13*F_32{float} 39|47m51 47r69 317r44 317r59 319r44 319r60 321r44 321r59
+. 323r44 323r59 325r44 325r60 327r44 327r60 646m33 646r43 646r52 648m33 648r43
+. 648r52 650m33 650r43 650r52 652m33 652r43 652r52
+75f13*F_64{35|220F9} 39|55m51 55r69 333r44 333r59 335r44 335r60 337r44 337r59
+. 339r44 339r59 341r44 341r60 343r44 343r60 665m33 665r43 665r52 667m33 667r43
+. 667r52 669m33 669r43 669r52 671m33 671r43 671r52
+79R9*Numeric_Type 39|16r55 244r58 250r36 273r32 359r12 362r54 363r16 453r20
+. 704r16 81|86e14
+79e23*N{46E9} 39|18r16 275r12 275r18 276r17
+82r13*Num_S{52R9} 39|20r22 28m35 28r63 36m35 36r63 254r14 254r41 278r23 282r38
+. 282r53 284r38 284r54 286r38 286r53 288r38 288r53 290r38 290r54 292r38 292r54
+. 297r38 297r53 299r38 299r54 301r38 301r53 303r38 303r53 305r38 305r54 307r38
+. 307r54 355m30 458m57 458r57 459m36 462m57 463m36 468m58 468r58 469m36 472m57
+. 473m36 616m58 713r43 713r70 1124r58 1161r64
+84r13*Num_F{70R9} 39|39r22 47m35 47r63 55m35 55r63 312r23 317r38 317r53 319r38
+. 319r54 321r38 321r53 323r38 323r53 325r38 325r54 327r38 327r54 333r38 333r53
+. 335r38 335r54 337r38 337r53 339r38 339r53 341r38 341r54 343r38 343r54 688m58
+. 717r43 717r70
+109n32*Number_Value{109E9} 39|26r29 34r29 45r29 53r29 616r27 688r27
+110R9*Value_Type 39|1281r19 81|119e14
+113r13*Num_Value{79R9} 39|27m29 35m29 46m29 54m29 365r46 379r35 379r52 616m41
+. 688m41 713r33 713r60 717r33 717r60 1124r48 1161r54
+121K12*Value_Type_Vectors[14|74] 39|1301r13
 125R12*Result_Type{14|91R9[121]}
 127R12*Parameter_Type{14|91R9[121]}
-129R9*Function_Type 39|974r25 81|132e14
-130r7*Params{127R12} 39|985r41
-131r7*Results{125R12} 39|986r41
+129R9*Function_Type 39|1019r25 81|132e14
+130r7*Params{127R12} 39|1030r41
+131r7*Results{125R12} 39|1031r41
 X 83 wasm.ads
 15K9*Wasm 38|16w6 16r49 83|133e9
-28R9*Function_Spec 38|80r59 39|74r15 85r59 83|32e14
-29p7*Instructions{34|27P9} 39|1327r36 1332r37
-30r7*Locals{14|91R9[81|121]} 39|80r29
+28R9*Function_Spec 38|80r59 39|76r15 87r59 83|32e14
+29p7*Instructions{34|27P9} 39|1372r36 1377r37
+30r7*Locals{14|91R9[81|121]} 39|82r29
 
