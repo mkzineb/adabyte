@@ -12,7 +12,7 @@
 
 # Status
 
-AdaByte is a first Vesion of a minimal Wasm Runtime for Wasm, ...
+AdaByte is a first Vesion of a minimal Wasm Runtime for Wasm 
 
 # Futur improvements
 
