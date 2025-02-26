@@ -12,11 +12,10 @@
 
 # Status
 
-AdaByte is a first Vesion of a minimal Wasm Runtime for Wasm 
-
-# Futur improvements
+AdaByte is a first Vesion of a minimal Wasm Runtime in Ada/SPARK
 
 # Inspirations
+
 Big thanks to the authors of the following projects, which have inspired and influenced AdaByte
 
 - [Fourth interpreter](https://www.teamten.com/lawrence/projects/forth-interpreter/) - interpreter
